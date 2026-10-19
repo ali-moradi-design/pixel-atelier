@@ -4,11 +4,9 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 
 ## 2026-10-19
 
-- Logo: concept C ("dissolving tile"). Files in `brand/`.
-- Reuse over rewrite: KokonutUI (MIT) and shadcn/ui (MIT) code may be used as a
-  starting point instead of writing everything from scratch. Keep their
-  copyright notice in a `THIRD-PARTY-NOTICES.md` and a short source line in
-  each adapted file. This replaces "write everything from scratch" in the brief.
+- Logo: being redesigned around a "P" (the first "A" tile was rejected).
+- Everything is written from scratch. Other kits (KokonutUI, shadcn/ui) are
+  studied for ideas and quality bar only; no code is copied from them.
 - Performance and bundle size are first-class requirements:
   - ESM only, one entry point per component (`pixel-atelier/button`),
     `"sideEffects"` limited to CSS files, so bundlers tree-shake everything
