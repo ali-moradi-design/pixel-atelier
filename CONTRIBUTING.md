@@ -28,3 +28,9 @@ pnpm check                                  # lint, typecheck, test, build
 pnpm --filter pixel-atelier size            # bundle size budgets
 pnpm --filter @pixel-atelier/storybook dev  # Storybook on :6006
 ```
+
+## Lint exceptions
+
+- `noAriaHiddenOnFocusable` is off for the canvas effects (cursor trail, image
+  reveal, page transition): Biome counts `<canvas>` as focusable, but a canvas
+  without `tabindex` is not, and these are purely decorative.

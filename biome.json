@@ -38,6 +38,20 @@
           }
         }
       }
+    },
+    {
+      "includes": [
+        "packages/ui/src/components/cursor-trail.tsx",
+        "packages/ui/src/components/image-reveal.tsx",
+        "packages/ui/src/components/page-transition.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noAriaHiddenOnFocusable": "off"
+          }
+        }
+      }
     }
   ]
 }

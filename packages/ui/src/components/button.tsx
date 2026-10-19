@@ -3,6 +3,7 @@ import { type ButtonHTMLAttributes, forwardRef } from "react";
 import { Slot, Slottable } from "../lib/slot.tsx";
 import { PixelSpinner } from "../pixels/PixelSpinner.tsx";
 import { Pixels } from "../pixels/Pixels.tsx";
+import { RollLabel } from "../pixels/RollLabel.tsx";
 
 /**
  * The class names of `Button` for a given variant, for styling other
@@ -80,6 +81,13 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * @default false
    */
   loading?: boolean;
+  /**
+   * The label rolls up on hover and focus while a copy comes in from below
+   * (as in the full-screen menu). Only for plain text labels, and not with
+   * `asChild`.
+   * @default false
+   */
+  roll?: boolean;
 }
 
 /**
@@ -105,6 +113,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     asChild = false,
     pixel = true,
     loading = false,
+    roll = false,
     disabled,
     children,
     type,
@@ -127,7 +136,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     >
       {pixel && <Pixels />}
       {loading && <PixelSpinner label="Loading" />}
-      <Slottable>{children}</Slottable>
+      {roll && !asChild ? (
+        <RollLabel>{children}</RollLabel>
+      ) : (
+        <Slottable>{children}</Slottable>
+      )}
     </Comp>
   );
 });

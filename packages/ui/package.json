@@ -47,8 +47,8 @@
     "size": "size-limit && node scripts/css-size.ts"
   },
   "peerDependencies": {
-    "react": ">=18.2",
-    "react-dom": ">=18.2"
+    "react": ">=19",
+    "react-dom": ">=19"
   },
   "dependencies": {
     "class-variance-authority": "0.7.1"
