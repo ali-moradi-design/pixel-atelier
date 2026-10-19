@@ -84,9 +84,57 @@
     "limit": "4.2 kB"
   },
   {
+    "name": "Tabs",
+    "path": "dist/components/tabs.js",
+    "import": "{ Tabs, TabList, Tab, TabPanel }",
+    "limit": "1.4 kB"
+  },
+  {
+    "name": "Accordion",
+    "path": "dist/components/accordion.js",
+    "import": "{ Accordion, AccordionItem }",
+    "limit": "0.9 kB"
+  },
+  {
+    "name": "Dialog",
+    "path": "dist/components/dialog.js",
+    "import": "{ Dialog, Sheet, DialogClose }",
+    "limit": "1.9 kB"
+  },
+  {
+    "name": "Popover",
+    "path": "dist/components/popover.js",
+    "import": "{ Popover }",
+    "limit": "1.9 kB"
+  },
+  {
+    "name": "Tooltip",
+    "path": "dist/components/tooltip.js",
+    "import": "{ Tooltip }",
+    "limit": "1.8 kB"
+  },
+  {
+    "name": "DropdownMenu",
+    "path": "dist/components/dropdown-menu.js",
+    "import": "{ DropdownMenu, DropdownItem }",
+    "limit": "3.4 kB"
+  },
+  {
+    "name": "CommandPalette",
+    "path": "dist/components/command-palette.js",
+    "import": "{ CommandPalette }",
+    "limit": "3.6 kB"
+  },
+  {
+    "name": "Toast",
+    "path": "dist/components/toast.js",
+    "import": "{ Toaster, toast }",
+    "limit": "1.7 kB"
+  },
+  {
     "name": "Everything",
     "path": "dist/index.js",
     "import": "*",
-    "limit": "7.7 kB"
+    "limit": "12.5 kB"
   }
 ]
