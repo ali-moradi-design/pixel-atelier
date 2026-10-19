@@ -8,3 +8,5 @@ coverage
 .DS_Store
 test-results
 graphify-out
+test-results
+playwright-report

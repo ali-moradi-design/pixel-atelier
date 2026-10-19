@@ -8,7 +8,9 @@ import {
   type KeyboardEvent,
   type ReactNode,
   useContext,
+  useEffect,
   useId,
+  useState,
 } from "react";
 import { useControllable } from "../lib/use-controllable.ts";
 
@@ -18,6 +20,9 @@ interface TabsState {
   setValue: (v: string) => void;
   variant: "underline" | "segmented";
   keepMounted: boolean;
+  /** Values that have a TabPanel, so tabs only point at panels that exist. */
+  panels: Set<string>;
+  setPanels: (fn: (s: Set<string>) => Set<string>) => void;
 }
 const TabsContext = createContext<TabsState | null>(null);
 function useTabs(part: string) {
@@ -81,8 +86,11 @@ export function Tabs({
 }: TabsProps) {
   const id = useId();
   const [value, setValue] = useControllable(valueProp, defaultValue, onValueChange);
+  const [panels, setPanels] = useState<Set<string>>(() => new Set());
   return (
-    <TabsContext.Provider value={{ id, value, setValue, variant, keepMounted }}>
+    <TabsContext.Provider
+      value={{ id, value, setValue, variant, keepMounted, panels, setPanels }}
+    >
       <div className={cx("grid gap-4", className)} {...props}>
         {children}
       </div>
@@ -152,7 +160,7 @@ export function Tab({ value, className, onClick, ...props }: TabProps) {
       role="tab"
       id={`${ctx.id}-tab-${slug(value)}`}
       aria-selected={selected}
-      aria-controls={`${ctx.id}-panel-${slug(value)}`}
+      aria-controls={ctx.panels.has(value) ? `${ctx.id}-panel-${slug(value)}` : undefined}
       tabIndex={selected ? 0 : -1}
       onClick={(e) => {
         onClick?.(e);
@@ -179,6 +187,16 @@ export interface TabPanelProps extends HTMLAttributes<HTMLDivElement> {
 /** The content shown while its `Tab` is active. */
 export function TabPanel({ value, className, ...props }: TabPanelProps) {
   const ctx = useTabs("TabPanel");
+  const { setPanels } = ctx;
+  useEffect(() => {
+    setPanels((s) => new Set(s).add(value));
+    return () =>
+      setPanels((s) => {
+        const n = new Set(s);
+        n.delete(value);
+        return n;
+      });
+  }, [setPanels, value]);
   const selected = ctx.value === value;
   if (!selected && !ctx.keepMounted) return null;
   return (

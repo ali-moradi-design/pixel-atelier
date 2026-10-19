@@ -2,7 +2,14 @@
 export interface Entry {
   slug: string;
   title: string;
-  group: "Core" | "Forms" | "Overlays" | "Data display" | "Signature" | "Primitives";
+  group:
+    | "Core"
+    | "Forms"
+    | "Overlays"
+    | "Data display"
+    | "Signature"
+    | "Blocks"
+    | "Primitives";
   /** Key in content/api.json (`components/<file>` or `pixels/<file>`). */
   api: string;
   /** Named exports to import, shown in the usage snippet. */
@@ -77,6 +84,11 @@ export const catalog: Entry[] = [
   e("number-ticker", "Number ticker", "Signature", ["NumberTicker"]),
   e("marquee", "Marquee", "Signature", ["Marquee"]),
   e("cursor-trail", "Cursor trail", "Signature", ["CursorTrail"]),
+  e("hero", "Hero", "Blocks", ["Hero"], "blocks/hero"),
+  e("feature-grid", "Feature grid", "Blocks", ["FeatureGrid"], "blocks/feature-grid"),
+  e("pricing", "Pricing", "Blocks", ["Pricing"], "blocks/pricing"),
+  e("site-header", "Site header", "Blocks", ["SiteHeader"], "blocks/site-header"),
+  e("site-footer", "Site footer", "Blocks", ["SiteFooter"], "blocks/site-footer"),
   e(
     "pixels",
     "Pixels",
@@ -92,6 +104,7 @@ export const groups = [
   "Overlays",
   "Data display",
   "Signature",
+  "Blocks",
   "Primitives",
 ] as const;
 export const bySlug = (slug: string) => catalog.find((c) => c.slug === slug);

@@ -7,6 +7,7 @@ export default defineConfig({
   entry: [
     "src/index.ts",
     "src/components/*.tsx",
+    "src/blocks/*.tsx",
     "!src/**/*.{test,stories}.tsx",
     "src/pixels/index.ts",
   ],

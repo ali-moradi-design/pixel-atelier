@@ -13,10 +13,14 @@
     "format": "biome check --write .",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "check": "pnpm lint && turbo run typecheck test build"
+    "check": "pnpm lint && turbo run typecheck test build",
+    "changeset": "changeset",
+    "release": "turbo run build --filter=pixel-atelier && changeset publish"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
+    "@changesets/changelog-github": "1.0.1",
+    "@changesets/cli": "3.0.3",
     "turbo": "2.11.9",
     "typescript": "7.0.2"
   }

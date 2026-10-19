@@ -112,6 +112,41 @@ export function buildRegistry(outDir: string) {
       ],
     });
   }
+  // Blocks: compositions of components, copied as editable page sections.
+  for (const f of readdirSync(join(SRC, "blocks")).filter(
+    (f) => f.endsWith(".tsx") && !f.includes(".test."),
+  )) {
+    const rel = `blocks/${f}`;
+    const name = `block-${f.replace(/\.tsx$/, "")}`;
+    const deps = localImports(rel)
+      .filter((p) => p.startsWith("components/"))
+      .map(
+        (p) => `${SITE}/r/${p.replace(/^components\//, "").replace(/\.tsx$/, "")}.json`,
+      );
+    write({
+      name,
+      type: "registry:block",
+      title: name
+        .replace(/^block-/, "")
+        .replace(
+          /(^|-)(\w)/g,
+          (_, s: string, c: string) => (s ? " " : "") + c.toUpperCase(),
+        ),
+      dependencies: ["class-variance-authority"],
+      registryDependencies: [`${SITE}/r/pixel-atelier-base.json`, ...deps],
+      files: [
+        {
+          path: rel,
+          type: "registry:block",
+          target: `${TARGET}/blocks/${f}`,
+          content: portable(read(rel)).replace(
+            /from "\.\.\/components\//g,
+            'from "../ui/',
+          ),
+        },
+      ],
+    });
+  }
   writeFileSync(
     join(outDir, "registry.json"),
     `${JSON.stringify(

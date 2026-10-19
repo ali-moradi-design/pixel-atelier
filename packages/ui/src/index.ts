@@ -1,5 +1,11 @@
 // Every component is also importable from its own entry ("pixel-atelier/button"),
 // and this barrel is side-effect free, so unused components are tree-shaken.
+
+export * from "./blocks/feature-grid.tsx";
+export * from "./blocks/hero.tsx";
+export * from "./blocks/pricing.tsx";
+export * from "./blocks/site-footer.tsx";
+export * from "./blocks/site-header.tsx";
 export * from "./components/accordion.tsx";
 export * from "./components/avatar.tsx";
 export * from "./components/badge.tsx";

@@ -3,8 +3,12 @@ import { readdirSync, readFileSync } from "node:fs";
 // Every public component and every prop it declares must carry a TSDoc
 // comment, so editors show the description, the allowed values and the
 // default on hover. This is a cheap textual check of src/components.
-const dir = `${process.cwd()}/src/components`;
-const files = readdirSync(dir).filter((f) => f.endsWith(".tsx") && !f.includes(".test."));
+const files = ["components", "blocks"].flatMap((d) =>
+  readdirSync(`${process.cwd()}/src/${d}`)
+    .filter((f) => f.endsWith(".tsx") && !f.includes(".test."))
+    .map((f) => `${d}/${f}`),
+);
+const dir = `${process.cwd()}/src`;
 
 describe.each(files)("%s", (file) => {
   const src = readFileSync(`${dir}/${file}`, "utf8");

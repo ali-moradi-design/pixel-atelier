@@ -33,7 +33,7 @@ export default function Home() {
       <section className="mx-auto grid max-w-6xl gap-10 px-4 pt-20 pb-16 sm:px-6 lg:grid-cols-[1.4fr_1fr] lg:items-center">
         <div className="grid gap-7">
           <Badge variant="accent" dot className="w-fit">
-            v0.6 · {catalog.length} components
+            v1.0 · {catalog.length} components
           </Badge>
           <h1 className="text-pa-display font-light text-balance">
             <TextScramble text="Pixels, crafted with care." />
