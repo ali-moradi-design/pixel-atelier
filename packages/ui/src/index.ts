@@ -1,8 +1,11 @@
 // Every component is also importable from its own entry ("pixel-atelier/button"),
 // and this barrel is side-effect free, so unused components are tree-shaken.
 export * from "./components/accordion.tsx";
+export * from "./components/avatar.tsx";
 export * from "./components/badge.tsx";
+export * from "./components/breadcrumb.tsx";
 export * from "./components/button.tsx";
+export * from "./components/card.tsx";
 export * from "./components/checkbox.tsx";
 export * from "./components/combobox.tsx";
 export * from "./components/command-palette.tsx";
@@ -12,11 +15,15 @@ export * from "./components/field.tsx";
 export * from "./components/icon-button.tsx";
 export * from "./components/input.tsx";
 export * from "./components/link.tsx";
+export * from "./components/pagination.tsx";
 export * from "./components/popover.tsx";
+export * from "./components/progress.tsx";
 export * from "./components/radio.tsx";
 export * from "./components/select.tsx";
+export * from "./components/skeleton.tsx";
 export * from "./components/slider.tsx";
 export * from "./components/switch.tsx";
+export * from "./components/table.tsx";
 export * from "./components/tabs.tsx";
 export * from "./components/tag.tsx";
 export * from "./components/textarea.tsx";

@@ -132,9 +132,51 @@
     "limit": "1.7 kB"
   },
   {
+    "name": "Card",
+    "path": "dist/components/card.js",
+    "import": "{ Card }",
+    "limit": "0.7 kB"
+  },
+  {
+    "name": "Avatar",
+    "path": "dist/components/avatar.js",
+    "import": "{ Avatar, AvatarGroup }",
+    "limit": "1.3 kB"
+  },
+  {
+    "name": "Skeleton",
+    "path": "dist/components/skeleton.js",
+    "import": "{ Skeleton }",
+    "limit": "0.4 kB"
+  },
+  {
+    "name": "Table",
+    "path": "dist/components/table.js",
+    "import": "{ Table, TableHeader, TableBody, TableRow, TableHead, TableCell }",
+    "limit": "0.9 kB"
+  },
+  {
+    "name": "Pagination",
+    "path": "dist/components/pagination.js",
+    "import": "{ Pagination }",
+    "limit": "1.0 kB"
+  },
+  {
+    "name": "Breadcrumb",
+    "path": "dist/components/breadcrumb.js",
+    "import": "{ Breadcrumb }",
+    "limit": "0.8 kB"
+  },
+  {
+    "name": "Progress",
+    "path": "dist/components/progress.js",
+    "import": "{ Progress }",
+    "limit": "0.9 kB"
+  },
+  {
     "name": "Everything",
     "path": "dist/index.js",
     "import": "*",
-    "limit": "12.5 kB"
+    "limit": "15.0 kB"
   }
 ]

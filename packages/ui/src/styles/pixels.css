@@ -448,6 +448,76 @@
   }
 }
 
+/* Skeleton: a band of pixels sweeps across in steps. */
+.pa-skeleton {
+  background-color: var(--pa-border);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0 40%,
+    color-mix(in srgb, var(--pa-muted) 22%, transparent) 40% 60%,
+    transparent 60% 100%
+  );
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  animation: pa-skeleton 1.6s steps(12, end) infinite;
+  -webkit-mask-image: conic-gradient(#000 25%, #000c 0 50%, #000 0 75%, #000c 0);
+  -webkit-mask-size: 6px 6px;
+  mask-image: conic-gradient(#000 25%, #000c 0 50%, #000 0 75%, #000c 0);
+  mask-size: 6px 6px;
+}
+@keyframes pa-skeleton {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* Progress: edge squares flicker; indeterminate sweeps a pixel band. */
+.pa-progress-edge {
+  animation: pa-progress-edge 960ms steps(2, end) infinite;
+  background: var(--pa-accent);
+}
+@keyframes pa-progress-edge {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+.pa-progress-indeterminate::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: 30%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pa-accent) 0 6px,
+    transparent 6px 8px
+  );
+  animation: pa-progress-sweep 1.4s steps(14, end) infinite;
+}
+@keyframes pa-progress-sweep {
+  from {
+    left: -30%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+/* Card: interactive cards zoom their media in pixel steps. */
+.pa-card-media > * {
+  transition: scale var(--pa-duration-slow, 320ms) steps(4, end);
+}
+.pa-card-interactive:hover .pa-card-media > *,
+.pa-card-interactive:focus-within .pa-card-media > * {
+  scale: 1.04;
+}
+
 /* Reduced motion: the dissolve becomes a plain fill, nothing rolls. */
 @media (prefers-reduced-motion: reduce) {
   .pa-px > i {
@@ -466,12 +536,18 @@
   .pa-spinner > i {
     animation-duration: 2.4s;
   }
+  .pa-skeleton,
+  .pa-progress-edge,
+  .pa-progress-indeterminate::after {
+    animation: none;
+  }
   .pa-control::after,
   .pa-check,
   .pa-popup,
   .pa-dialog,
   .pa-dialog::backdrop,
-  .pa-toast {
+  .pa-toast,
+  .pa-card-media > * {
     transition: none;
   }
 }
