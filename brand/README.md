@@ -16,9 +16,9 @@ them in the accent color. It is the kit's hover effect frozen in one frame.
 | `social-preview.png` | GitHub / Open Graph image, 1280 x 640 |
 
 - Wordmark: "pixel atelier" in Geist (Medium + Light), converted to outlines.
-- Colors are provisional until the color tokens are final:
-  dark `#0d0d0f` / ink `#f2efe8` / accent `#d4b072`;
-  light `#f5f2ec` / ink `#151514` / accent `#9a7232`.
+- Colors (gold ramp `#ffe169 #edc531 #c9a227 #a47e1b #805b10`):
+  dark `#0d0d0f` / ink `#f2efe8` / accent `#c9a227`;
+  light `#f5f2ec` / ink `#151514` / accent `#805b10`.
 - Keep at least one cell of clear space around the mark. Do not add seams
   between the squares: the "P" stops reading.
 

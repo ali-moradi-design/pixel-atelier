@@ -6,6 +6,10 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 
 - Logo: concept P1, a tile with a cut-out "P" whose corner dissolves
   (an earlier "A" tile was rejected). Files in `brand/`.
+- Accent "gold" uses the ramp `#ffe169 #edc531 #c9a227 #a47e1b #805b10`:
+  dark theme accent `#c9a227` (hover `#edc531`), light theme accent `#805b10`
+  (hover `#6b4c0d`). All pass WCAG AA on the background and with on-accent text.
+- Type: Geist and Geist Mono for now (may be revisited).
 - Everything is written from scratch. Other kits (KokonutUI, shadcn/ui) are
   studied for ideas and quality bar only; no code is copied from them.
 - Performance and bundle size are first-class requirements:

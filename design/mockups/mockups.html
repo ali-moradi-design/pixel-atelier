@@ -18,7 +18,7 @@
   --bg: #0d0d0f; --surface: #141417; --raised: #1b1b1f; --overlay: #222227;
   --border: #26262b; --border-strong: #3a3a41;
   --text: #f2efe8; --muted: #8f8b83; --faint: #5a5852;
-  --accent: #d4b072; --accent-hover: #e0c08a; --accent-subtle: rgba(212,176,114,.12); --on-accent: #121212;
+  --accent: #c9a227; --accent-hover: #edc531; --accent-subtle: rgba(201,162,39,.13); --on-accent: #121212;
   --success: #6fcf97; --warning: #e8b85c; --danger: #f07171; --info: #7fb2f0;
   --shadow-1: 0 1px 0 rgba(255,255,255,.04) inset, 0 1px 2px rgba(0,0,0,.4);
   --shadow-2: 0 1px 0 rgba(255,255,255,.05) inset, 0 8px 24px rgba(0,0,0,.45);
@@ -30,7 +30,7 @@
   --bg: #f6f4ef; --surface: #fbfaf7; --raised: #ffffff; --overlay: #ffffff;
   --border: #e4dfd5; --border-strong: #cdc6b8;
   --text: #151514; --muted: #6b675f; --faint: #a7a296;
-  --accent: #86621f; --accent-hover: #74541a; --accent-subtle: rgba(134,98,31,.10); --on-accent: #ffffff;
+  --accent: #805b10; --accent-hover: #6b4c0d; --accent-subtle: rgba(128,91,16,.10); --on-accent: #ffffff;
   --success: #1d7549; --warning: #8f6200; --danger: #bf3636; --info: #2a5fb3;
   --shadow-1: 0 1px 2px rgba(30,25,15,.06);
   --shadow-2: 0 2px 4px rgba(30,25,15,.04), 0 10px 28px rgba(30,25,15,.08);
@@ -368,7 +368,7 @@ function tokensPage() {
   const neutrals = ['bg', 'surface', 'raised', 'overlay', 'border', 'border-strong', 'muted', 'text']
     .map(n => `<div class="sw"><div class="chip" style="background:var(--${n})"></div><div class="nm">${n}</div><div class="hx">${v('--' + n)}</div></div>`).join('');
   const ACC = {
-    gold: { dark: ['#d4b072', '#e0c08a'], light: ['#86621f', '#74541a'] },
+    gold: { dark: ['#c9a227', '#edc531'], light: ['#805b10', '#6b4c0d'] },
     jade: { dark: ['#7cc4a2', '#96d3b6'], light: ['#2d7656', '#24644a'] },
     iris: { dark: ['#a99cff', '#bdb3ff'], light: ['#5a4bd0', '#4b3db8'] },
     ember: { dark: ['#f08a5d', '#f4a07a'], light: ['#ad4c1d', '#953f15'] },

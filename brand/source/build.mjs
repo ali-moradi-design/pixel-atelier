@@ -23,8 +23,8 @@ const GRID = [
   '####.#..',
 ];
 const C = {
-  dark: { bg: '#0d0d0f', ink: '#f2efe8', acc: '#d4b072' },
-  light: { bg: '#f5f2ec', ink: '#151514', acc: '#9a7232' },
+  dark: { bg: '#0d0d0f', ink: '#f2efe8', acc: '#c9a227' },
+  light: { bg: '#f5f2ec', ink: '#151514', acc: '#805b10' },
 };
 
 // Pixels as one path per color. gap: seam between squares, in cell units.
