@@ -47,9 +47,7 @@ for (const [k, v] of Object.entries(radius)) statics.push(`--pa-radius-${k}: ${v
 for (const [k, v] of Object.entries(motion.duration))
   statics.push(`--pa-duration-${k}: ${v};`);
 for (const [k, v] of Object.entries(motion.ease)) statics.push(`--pa-ease-${k}: ${v};`);
-gold.forEach((c, i) => {
-  statics.push(`--pa-gold-${(i + 1) * 100}: ${c};`);
-});
+for (const [i, c] of gold.entries()) statics.push(`--pa-gold-${(i + 1) * 100}: ${c};`);
 
 let css = `/* Pixel Atelier tokens. Generated from src/tokens.ts; do not edit. */\n\n`;
 css += `/* Dark is the default; set data-theme="light" (or "system") on any element. */\n`;
@@ -86,9 +84,8 @@ const th: string[] = [];
 for (const k of colorNames)
   if (k !== "scrim") th.push(`--color-pa-${k}: var(--pa-${k});`);
 th.push("--color-pa-scrim: var(--pa-scrim);");
-gold.forEach((_, i) =>
-  th.push(`--color-pa-gold-${(i + 1) * 100}: var(--pa-gold-${(i + 1) * 100});`),
-);
+for (const [i] of gold.entries())
+  th.push(`--color-pa-gold-${(i + 1) * 100}: var(--pa-gold-${(i + 1) * 100});`);
 for (const k of Object.keys(fonts)) th.push(`--font-pa-${k}: var(--pa-font-${k});`);
 for (const k of Object.keys(radius)) th.push(`--radius-pa-${k}: var(--pa-radius-${k});`);
 for (const i of [1, 2, 3]) th.push(`--shadow-pa-${i}: var(--pa-shadow-${i});`);
