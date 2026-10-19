@@ -72,12 +72,12 @@ export const Slot = forwardRef<
   const inner = marker
     ? items.map((c) => (c === marker ? (targetProps.children as ReactNode) : c))
     : targetProps.children;
-  return cloneElement(
-    target,
-    {
-      ...mergeProps(props, targetProps),
-      ref: composeRefs(ref, childRef(target)),
-    } as AnyProps,
-    ...(Array.isArray(inner) ? inner : [inner]),
-  );
+  // Only pass a ref when there is one: server components reject function
+  // refs, and a static `<Button asChild>` there has none.
+  const refs = [ref, childRef(target)].filter(Boolean) as Ref<unknown>[];
+  const merged = mergeProps(props, targetProps);
+  if (refs.length === 1) merged.ref = refs[0];
+  else if (refs.length > 1) merged.ref = composeRefs(...refs);
+  else delete merged.ref;
+  return cloneElement(target, merged, ...(Array.isArray(inner) ? inner : [inner]));
 });

@@ -7,7 +7,15 @@
 
 <p align="center">Pixels, crafted with care. A calm React UI kit whose pixel effects appear only at the moment of interaction.</p>
 
-> Work in progress. See [`docs/brief.md`](docs/brief.md) and [`docs/decisions.md`](docs/decisions.md).
+Docs and live demos: https://pixel-atelier.ali-moradi-develop.com · Storybook: `/storybook`
+
+```sh
+pnpm add pixel-atelier
+# or copy one component's source
+npx shadcn add https://pixel-atelier.ali-moradi-develop.com/r/button.json
+```
+
+See [`docs/brief.md`](docs/brief.md) and [`docs/decisions.md`](docs/decisions.md).
 
 ## Packages
 

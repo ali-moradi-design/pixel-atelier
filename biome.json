@@ -6,7 +6,17 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!**/dist", "!**/storybook-static", "!design/mockups", "!brand"]
+    "includes": [
+      "**",
+      "!**/dist",
+      "!**/storybook-static",
+      "!design/mockups",
+      "!brand",
+      "!apps/docs/public",
+      "!apps/docs/.next",
+      "!apps/docs/out",
+      "!apps/docs/content"
+    ]
   },
   "formatter": {
     "indentStyle": "space",
@@ -49,6 +59,16 @@
         "rules": {
           "a11y": {
             "noAriaHiddenOnFocusable": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["apps/docs/components/code-block.tsx"],
+      "linter": {
+        "rules": {
+          "security": {
+            "noDangerouslySetInnerHtml": "off"
           }
         }
       }
