@@ -9,17 +9,18 @@ const F = 'node_modules/geist/dist/fonts/geist-sans/';
 const medium = opentype.parse(fs.readFileSync(F + 'Geist-Medium.ttf'));
 const light = opentype.parse(fs.readFileSync(F + 'Geist-Light.ttf'));
 
-// 8 x 8: a solid tile with a negative-space "A"; its right edge dissolves into
-// loose pixels, the last one in the accent color (the kit's hover effect).
+// 8 x 8: a solid tile with a negative-space "P"; its bottom-right corner
+// breaks up into loose pixels, one of them in the accent color (the kit's
+// hover effect).
 const GRID = [
-  '######.#',
-  '##..###.',
-  '#.##.#..',
-  '#.##.##A',
-  '#....##.',
-  '#.##.#.#',
-  '#.##.##.',
-  '######..',
+  '########',
+  '#....###',
+  '#..##.##',
+  '#..##.##',
+  '#....###',
+  '#..####.',
+  '#..##.A.',
+  '####.#..',
 ];
 const C = {
   dark: { bg: '#0d0d0f', ink: '#f2efe8', acc: '#d4b072' },

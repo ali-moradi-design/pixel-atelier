@@ -4,7 +4,8 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 
 ## 2026-10-19
 
-- Logo: being redesigned around a "P" (the first "A" tile was rejected).
+- Logo: concept P1, a tile with a cut-out "P" whose corner dissolves
+  (an earlier "A" tile was rejected). Files in `brand/`.
 - Everything is written from scratch. Other kits (KokonutUI, shadcn/ui) are
   studied for ideas and quality bar only; no code is copied from them.
 - Performance and bundle size are first-class requirements:
