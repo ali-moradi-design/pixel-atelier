@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # Actions are pinned to SHAs; Dependabot keeps the SHAs (and version
+  # comments) current.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    # Wait before proposing a fresh release (same idea as minimumReleaseAge).
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+    open-pull-requests-limit: 5
+    groups:
+      dev-tooling:
+        dependency-type: development

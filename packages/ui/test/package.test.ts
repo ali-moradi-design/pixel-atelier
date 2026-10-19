@@ -29,3 +29,18 @@ describe('"use client" directives', () => {
     expect(pkg.exports["./pixels"].default).toBe("./dist/pixels/index.js");
   });
 });
+
+// Security guard: the kit renders text only through React (escaped). These
+// APIs turn strings into markup or code, so they are banned from the source.
+describe("no dangerous APIs in the source", () => {
+  const banned =
+    /dangerouslySetInnerHTML|\.innerHTML|\.outerHTML|insertAdjacentHTML|document\.write|\beval\(|new Function\(|setTimeout\(\s*["'`]|srcdoc/;
+  const files = ["components", "blocks", "lib", "pixels"].flatMap((d) =>
+    readdirSync(`${process.cwd()}/src/${d}`)
+      .filter((f) => /\.tsx?$/.test(f) && !f.includes(".test."))
+      .map((f) => `src/${d}/${f}`),
+  );
+  it.each(files)("%s", (f) => {
+    expect(readFileSync(`${process.cwd()}/${f}`, "utf8")).not.toMatch(banned);
+  });
+});
