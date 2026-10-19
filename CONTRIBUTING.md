@@ -27,6 +27,8 @@ pnpm install
 pnpm check                                  # lint, typecheck, test, build
 pnpm --filter pixel-atelier size            # bundle size budgets
 pnpm --filter @pixel-atelier/storybook dev  # Storybook on :6006
+pnpm --filter @pixel-atelier/storybook test:browser  # axe + visual (after a Storybook build)
+pnpm changeset                              # describe a change for the next release
 ```
 
 ## Lint exceptions

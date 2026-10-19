@@ -35,6 +35,10 @@
       "types": "./dist/pixels/index.d.ts",
       "default": "./dist/pixels/index.js"
     },
+    "./blocks/*": {
+      "types": "./dist/blocks/*.d.ts",
+      "default": "./dist/blocks/*.js"
+    },
     "./*": {
       "types": "./dist/components/*.d.ts",
       "default": "./dist/components/*.js"
@@ -42,7 +46,9 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsdown --log-level warn && node scripts/build-css.ts",
@@ -76,5 +82,12 @@
     "tsdown": "0.23.1",
     "typescript": "7.0.2",
     "vitest": "5.0.5"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "bugs": {
+    "url": "https://github.com/ali-moradi-design/pixel-atelier/issues"
   }
 }

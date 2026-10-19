@@ -27,3 +27,26 @@ jobs:
       - run: pnpm turbo run typecheck test build
       - name: Bundle size budget
         run: pnpm --filter pixel-atelier size
+
+  browser:
+    # Real-browser checks: visual regression of key stories and axe (with
+    # color contrast) in both themes. Unit tests run in the job above.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo run build --filter=@pixel-atelier/storybook...
+      - run: pnpm --filter @pixel-atelier/storybook exec playwright install --with-deps chromium
+      - run: pnpm --filter @pixel-atelier/storybook test:browser
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: |
+            apps/storybook/playwright-report
+            apps/storybook/test-results

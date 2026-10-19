@@ -90,7 +90,7 @@ export default async function ComponentPage({
           <CodeBlock
             title="shadcn: copy the source"
             lang="bash"
-            code={`npx shadcn add ${SITE}/r/${entry.api.startsWith("pixels/") ? "pixel-atelier-base" : slug}.json`}
+            code={`npx shadcn add ${SITE}/r/${entry.api.startsWith("pixels/") ? "pixel-atelier-base" : entry.api.startsWith("blocks/") ? `block-${slug}` : slug}.json`}
           />
         </div>
       </section>

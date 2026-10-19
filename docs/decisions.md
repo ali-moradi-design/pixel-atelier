@@ -57,4 +57,16 @@ Decisions made after the brief (`brief.md`). Newer entries win.
   component with its sibling dependencies). Verified with `shadcn add`.
 - Persian RTL page at `/fa` with its own root layout (`lang="fa" dir="rtl"`,
   Vazirmatn).
+- v1.0 adds five blocks (Hero, FeatureGrid, Pricing, SiteHeader, SiteFooter) as
+  `pixel-atelier/blocks/*` and `block-*` registry items.
+- Browser checks (`apps/storybook/browser`, Playwright on the built
+  Storybook): axe with color contrast in both themes, and screenshot
+  comparison of ten key stories plus one hover state. They found real light
+  theme contrast failures (status badges, muted text on selected rows); status
+  colors were darkened, badge tints made opaque, and the token tests now check
+  colors on their tinted backgrounds too. Baselines are refreshed with the
+  "Update visual baselines" workflow after intended changes.
+- Releases: Changesets + `.github/workflows/release.yml` (npm provenance). The
+  first changeset bumps `pixel-atelier` to 1.0.0; publishing waits for the
+  `NPM_TOKEN` secret (see `docs/release.md`).
 

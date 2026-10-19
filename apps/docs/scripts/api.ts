@@ -116,7 +116,7 @@ export function parseDts(src: string): Api {
 
 export function readApi(distDir: string) {
   const out: Record<string, Api> = {};
-  for (const dir of ["components", "pixels"]) {
+  for (const dir of ["components", "pixels", "blocks"]) {
     for (const f of readdirSync(`${distDir}/${dir}`).filter((f) => f.endsWith(".d.ts"))) {
       out[`${dir}/${f.replace(/\.d\.ts$/, "")}`] = parseDts(
         readFileSync(`${distDir}/${dir}/${f}`, "utf8"),

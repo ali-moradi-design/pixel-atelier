@@ -43,4 +43,9 @@ export const demos: Record<string, ComponentType> = {
   textarea: dynamic(() => import("@/demos/textarea")),
   toast: dynamic(() => import("@/demos/toast")),
   tooltip: dynamic(() => import("@/demos/tooltip")),
+  hero: dynamic(() => import("@/demos/hero")),
+  "feature-grid": dynamic(() => import("@/demos/feature-grid")),
+  pricing: dynamic(() => import("@/demos/pricing")),
+  "site-header": dynamic(() => import("@/demos/site-header")),
+  "site-footer": dynamic(() => import("@/demos/site-footer")),
 };
