@@ -6,12 +6,16 @@
  * highlighted, or forced with data-px-active.
  */
 
-.pa-px-host {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  --px-fill: var(--pa-text);
-  --px-ink: var(--pa-bg);
+/* Defaults live in a layer so component utilities ([--px-fill:…]) win. */
+@layer components {
+  .pa-px-host {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    --px-fill: var(--pa-text);
+    --px-ink: var(--pa-bg);
+    transition: color 0s linear 190ms;
+  }
 }
 
 .pa-px {
@@ -30,10 +34,9 @@
   transition: opacity 120ms linear var(--d, 0ms);
 }
 
-/* The label switches to the ink color once about half the squares are in. */
-.pa-px-host {
-  transition: color 0s linear 190ms;
-}
+/* The label switches to the ink color once about half the squares are in
+   (the delayed color transition is set on .pa-px-host above). The active
+   rules stay unlayered so the ink color wins over text utilities. */
 
 .pa-px-host:is(
   :focus-visible,
@@ -165,6 +168,140 @@
   }
 }
 
+/* Form controls: a bottom hairline fills in pixel steps when focused. */
+.pa-control::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(var(--pa-accent), var(--pa-accent)) no-repeat left / 0 100%;
+  transition: background-size var(--pa-duration-pixel, 400ms) steps(8, end);
+  pointer-events: none;
+}
+.pa-control:dir(rtl)::after {
+  background-position: right;
+}
+.pa-control:focus-within::after,
+.pa-control[aria-expanded="true"]::after {
+  background-size: 100% 100%;
+}
+
+/* Checkbox: the fill comes in three pixel steps from the start corner. */
+.pa-check {
+  background:
+    linear-gradient(var(--pa-accent), var(--pa-accent)) no-repeat left top / 0 0;
+  transition: background-size var(--pa-duration-fast, 120ms) steps(3, end);
+}
+.pa-check:dir(rtl) {
+  background-position: right top;
+}
+.pa-check:checked,
+.pa-check:indeterminate {
+  background-size: 100% 100%;
+}
+
+/* Popups (Select, Combobox, menus): a short fade and lift on open. */
+.pa-popup {
+  transition:
+    opacity var(--pa-duration-fast, 120ms) var(--pa-ease-out, ease-out),
+    translate var(--pa-duration-fast, 120ms) var(--pa-ease-out, ease-out);
+  @starting-style {
+    opacity: 0;
+    translate: 0 -4px;
+  }
+}
+.pa-popup[data-side="top"] {
+  @starting-style {
+    translate: 0 4px;
+  }
+}
+
+/* Slider: a native range input with a square thumb and an accent fill. */
+.pa-slider {
+  --pa-track: 4px;
+  --pa-thumb: 16px;
+  appearance: none;
+  width: 100%;
+  height: var(--pa-thumb);
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+.pa-slider::-webkit-slider-runnable-track {
+  height: var(--pa-track);
+  background: linear-gradient(
+    to right,
+    var(--pa-accent) var(--pa-fill, 0%),
+    var(--pa-border) 0
+  );
+}
+.pa-slider::-moz-range-track {
+  height: var(--pa-track);
+  background: linear-gradient(
+    to right,
+    var(--pa-accent) var(--pa-fill, 0%),
+    var(--pa-border) 0
+  );
+}
+.pa-slider:dir(rtl)::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to left,
+    var(--pa-accent) var(--pa-fill, 0%),
+    var(--pa-border) 0
+  );
+}
+.pa-slider:dir(rtl)::-moz-range-track {
+  background: linear-gradient(
+    to left,
+    var(--pa-accent) var(--pa-fill, 0%),
+    var(--pa-border) 0
+  );
+}
+.pa-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--pa-thumb);
+  height: var(--pa-thumb);
+  margin-top: calc((var(--pa-track) - var(--pa-thumb)) / 2);
+  background: var(--pa-text);
+  border: 3px solid var(--pa-bg);
+  box-shadow: 0 0 0 1px var(--pa-border-strong);
+  transition: scale var(--pa-duration-fast, 120ms) steps(2, end);
+}
+.pa-slider::-moz-range-thumb {
+  width: var(--pa-thumb);
+  height: var(--pa-thumb);
+  box-sizing: border-box;
+  border-radius: 0;
+  background: var(--pa-text);
+  border: 3px solid var(--pa-bg);
+  box-shadow: 0 0 0 1px var(--pa-border-strong);
+}
+.pa-slider:active::-webkit-slider-thumb {
+  scale: 1.15;
+}
+.pa-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 2px var(--pa-accent);
+}
+.pa-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 2px var(--pa-accent);
+}
+.pa-slider:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.pa-slider-ticks::-webkit-slider-runnable-track {
+  background:
+    repeating-linear-gradient(
+      to right,
+      var(--pa-bg) 0 1px,
+      transparent 1px calc(100% / var(--pa-ticks))
+    )
+    no-repeat,
+    linear-gradient(to right, var(--pa-accent) var(--pa-fill, 0%), var(--pa-border) 0);
+}
+
 /* Reduced motion: the dissolve becomes a plain fill, nothing rolls. */
 @media (prefers-reduced-motion: reduce) {
   .pa-px > i {
@@ -182,5 +319,10 @@
   }
   .pa-spinner > i {
     animation-duration: 2.4s;
+  }
+  .pa-control::after,
+  .pa-check,
+  .pa-popup {
+    transition: none;
   }
 }
