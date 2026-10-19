@@ -9,7 +9,7 @@
     "name": "IconButton",
     "path": "dist/components/icon-button.js",
     "import": "{ IconButton }",
-    "limit": "2.2 kB"
+    "limit": "2.3 kB"
   },
   {
     "name": "Link",
@@ -21,18 +21,72 @@
     "name": "Badge",
     "path": "dist/components/badge.js",
     "import": "{ Badge }",
-    "limit": "1 kB"
+    "limit": "0.9 kB"
   },
   {
     "name": "Tag",
     "path": "dist/components/tag.js",
     "import": "{ Tag }",
-    "limit": "1 kB"
+    "limit": "0.7 kB"
+  },
+  {
+    "name": "Field",
+    "path": "dist/components/field.js",
+    "import": "{ Field }",
+    "limit": "0.7 kB"
+  },
+  {
+    "name": "Input",
+    "path": "dist/components/input.js",
+    "import": "{ Input }",
+    "limit": "1.2 kB"
+  },
+  {
+    "name": "Textarea",
+    "path": "dist/components/textarea.js",
+    "import": "{ Textarea }",
+    "limit": "1.4 kB"
+  },
+  {
+    "name": "Checkbox",
+    "path": "dist/components/checkbox.js",
+    "import": "{ Checkbox }",
+    "limit": "1.6 kB"
+  },
+  {
+    "name": "Radio",
+    "path": "dist/components/radio.js",
+    "import": "{ Radio, RadioGroup }",
+    "limit": "1.1 kB"
+  },
+  {
+    "name": "Switch",
+    "path": "dist/components/switch.js",
+    "import": "{ Switch }",
+    "limit": "1.0 kB"
+  },
+  {
+    "name": "Slider",
+    "path": "dist/components/slider.js",
+    "import": "{ Slider }",
+    "limit": "0.8 kB"
+  },
+  {
+    "name": "Select",
+    "path": "dist/components/select.js",
+    "import": "{ Select }",
+    "limit": "4.3 kB"
+  },
+  {
+    "name": "Combobox",
+    "path": "dist/components/combobox.js",
+    "import": "{ Combobox }",
+    "limit": "4.2 kB"
   },
   {
     "name": "Everything",
     "path": "dist/index.js",
     "import": "*",
-    "limit": "3.2 kB"
+    "limit": "7.7 kB"
   }
 ]

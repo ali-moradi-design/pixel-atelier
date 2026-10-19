@@ -32,3 +32,14 @@ Decisions made after the brief (`brief.md`). Newer entries win.
   component).
 - Tailwind utilities from the kit are prefixed `pa-` (`bg-pa-surface`) so they
   never clash with an app's own theme (for example shadcn's `accent`).
+- Platform primitives before Radix: checkbox, radio, switch and slider are styled
+  native inputs; popups (Select, Combobox, later menus and popovers) use the
+  popover API (top layer, never clipped) with a small positioning helper;
+  dialogs will use `<dialog>`. Radix only where the platform has no answer.
+  Result: Select 3.9 kB, all 14 components of v0.2 7 kB (brotli).
+- Variants must never emit two utilities for the same property (no
+  tailwind-merge to resolve them); `test/class-conflicts.test.ts` checks every
+  combination.
+- Tests: unit tests (jsdom) for behavior; a quick real-browser look (Playwright
+  screenshots of Storybook) only for visual or browser-only behavior.
+

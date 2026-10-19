@@ -16,6 +16,8 @@
       or CSS masks.
 - [ ] Tests: behavior with Testing Library, `expectNoAxeViolations`, and a story
       in `apps/storybook/stories`.
+- [ ] Variants never set the same property twice (checked by
+      `test/class-conflicts.test.ts`; add new cva helpers there).
 - [ ] A size budget in `packages/ui/.size-limit.json`.
 
 ## Commands

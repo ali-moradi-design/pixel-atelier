@@ -12,7 +12,7 @@ import { Pixels } from "../pixels/Pixels.tsx";
 export const buttonVariants = cva(
   [
     "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap select-none",
-    "rounded-pa-xs border bg-transparent font-pa-sans font-medium uppercase leading-none tracking-[0.06em] no-underline",
+    "rounded-pa-xs border font-pa-sans font-medium uppercase leading-none tracking-[0.06em] no-underline",
     "outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent",
     "disabled:cursor-not-allowed disabled:opacity-40 aria-disabled:cursor-not-allowed aria-disabled:opacity-40",
     "[&_svg]:size-[1.15em] [&_svg]:shrink-0",
@@ -21,10 +21,11 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary: "border-transparent bg-pa-accent text-pa-on-accent",
-        secondary: "border-pa-border-strong text-pa-text",
+        secondary: "border-pa-border-strong bg-transparent text-pa-text",
         ghost:
           "border-transparent text-pa-text [--px-fill:var(--pa-raised)] [--px-ink:var(--pa-text)]",
-        danger: "border-pa-danger/40 text-pa-danger [--px-fill:var(--pa-danger)]",
+        danger:
+          "border-pa-danger/40 bg-transparent text-pa-danger [--px-fill:var(--pa-danger)]",
       },
       size: {
         sm: "h-8 px-3 text-[0.6875rem]",

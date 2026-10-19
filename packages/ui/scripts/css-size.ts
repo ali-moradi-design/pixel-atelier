@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 
-const LIMIT = 6 * 1024;
+const LIMIT = 12 * 1024;
 const size = gzipSync(
   readFileSync(new URL("../dist/styles.css", import.meta.url)),
 ).length;
