@@ -3,7 +3,7 @@
     "name": "Button",
     "path": "dist/components/button.js",
     "import": "{ Button }",
-    "limit": "2.2 kB"
+    "limit": "2.3 kB"
   },
   {
     "name": "IconButton",
@@ -174,9 +174,69 @@
     "limit": "0.9 kB"
   },
   {
+    "name": "FullScreenMenu",
+    "path": "dist/components/full-screen-menu.js",
+    "import": "{ FullScreenMenu }",
+    "limit": "2.4 kB"
+  },
+  {
+    "name": "PixelImageReveal",
+    "path": "dist/components/image-reveal.js",
+    "import": "{ PixelImageReveal }",
+    "limit": "1.3 kB"
+  },
+  {
+    "name": "TextScramble",
+    "path": "dist/components/text-scramble.js",
+    "import": "{ TextScramble }",
+    "limit": "1.1 kB"
+  },
+  {
+    "name": "PixelTransition",
+    "path": "dist/components/page-transition.js",
+    "import": "{ PixelTransition, pixelTransition }",
+    "limit": "0.9 kB"
+  },
+  {
+    "name": "PixelLoader",
+    "path": "dist/components/pixel-loader.js",
+    "import": "{ PixelLoader }",
+    "limit": "0.8 kB"
+  },
+  {
+    "name": "SpotlightCard",
+    "path": "dist/components/spotlight-card.js",
+    "import": "{ SpotlightCard }",
+    "limit": "0.6 kB"
+  },
+  {
+    "name": "Magnetic",
+    "path": "dist/components/magnetic.js",
+    "import": "{ Magnetic }",
+    "limit": "0.9 kB"
+  },
+  {
+    "name": "NumberTicker",
+    "path": "dist/components/number-ticker.js",
+    "import": "{ NumberTicker }",
+    "limit": "0.9 kB"
+  },
+  {
+    "name": "Marquee",
+    "path": "dist/components/marquee.js",
+    "import": "{ Marquee }",
+    "limit": "0.5 kB"
+  },
+  {
+    "name": "CursorTrail",
+    "path": "dist/components/cursor-trail.js",
+    "import": "{ CursorTrail }",
+    "limit": "0.8 kB"
+  },
+  {
     "name": "Everything",
     "path": "dist/index.js",
     "import": "*",
-    "limit": "15.0 kB"
+    "limit": "18.6 kB"
   }
 ]

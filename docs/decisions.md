@@ -42,4 +42,10 @@ Decisions made after the brief (`brief.md`). Newer entries win.
   combination.
 - Tests: unit tests (jsdom) for behavior; a quick real-browser look (Playwright
   screenshots of Storybook) only for visual or browser-only behavior.
+- React 19 is the minimum peer version (native `inert`, refs as props,
+  `useSyncExternalStore` everywhere); `forwardRef` stays for now.
+- Signature effects: CSS first (dissolve, roll, ticker, marquee, loaders,
+  spotlight); canvas for large or per-frame effects (image reveal, page
+  transition, cursor trail) that only animate while active and stop under
+  reduced motion. No animation library: Motion was not needed.
 
