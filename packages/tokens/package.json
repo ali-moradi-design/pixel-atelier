@@ -1,0 +1,26 @@
+{
+  "name": "@pixel-atelier/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Design tokens of Pixel Atelier: CSS variables and the Tailwind v4 theme.",
+  "type": "module",
+  "exports": {
+    ".": "./src/tokens.ts",
+    "./tokens.css": "./dist/tokens.css",
+    "./theme.css": "./dist/theme.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.ts",
+    "typecheck": "tsc -p .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "7.0.2",
+    "vitest": "5.0.5"
+  }
+}
