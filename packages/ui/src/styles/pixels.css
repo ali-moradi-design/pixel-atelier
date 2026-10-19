@@ -302,6 +302,152 @@
     linear-gradient(to right, var(--pa-accent) var(--pa-fill, 0%), var(--pa-border) 0);
 }
 
+/* Dialog and Sheet (native <dialog>): fade/scale in, backdrop, scroll lock. */
+:root:has(.pa-dialog[open]) {
+  overflow: hidden;
+}
+.pa-dialog {
+  margin: auto;
+  opacity: 0;
+  scale: 0.98;
+  transition:
+    opacity var(--pa-duration-base, 200ms) var(--pa-ease-out, ease-out),
+    scale var(--pa-duration-base, 200ms) var(--pa-ease-out, ease-out),
+    translate var(--pa-duration-slow, 320ms) var(--pa-ease-out, ease-out),
+    overlay var(--pa-duration-base, 200ms) allow-discrete,
+    display var(--pa-duration-base, 200ms) allow-discrete;
+}
+.pa-dialog[open] {
+  opacity: 1;
+  scale: 1;
+  @starting-style {
+    opacity: 0;
+    scale: 0.98;
+  }
+}
+.pa-dialog::backdrop {
+  background: var(--pa-scrim);
+  opacity: 0;
+  transition:
+    opacity var(--pa-duration-base, 200ms),
+    overlay var(--pa-duration-base, 200ms) allow-discrete,
+    display var(--pa-duration-base, 200ms) allow-discrete;
+}
+.pa-dialog[open]::backdrop {
+  opacity: 1;
+  @starting-style {
+    opacity: 0;
+  }
+}
+.pa-command {
+  margin: 12vh auto auto;
+}
+.pa-sheet {
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  scale: 1;
+  opacity: 1;
+}
+.pa-sheet[data-side="end"],
+.pa-sheet[data-side="start"] {
+  inset-block: 0;
+  height: 100dvh;
+  width: min(24rem, 100vw);
+}
+.pa-sheet[data-side="end"] {
+  inset-inline: auto 0;
+  translate: 100% 0;
+}
+.pa-sheet[data-side="start"] {
+  inset-inline: 0 auto;
+  translate: -100% 0;
+}
+.pa-sheet[data-side="end"]:dir(rtl) {
+  translate: -100% 0;
+}
+.pa-sheet[data-side="start"]:dir(rtl) {
+  translate: 100% 0;
+}
+.pa-sheet[data-side="top"],
+.pa-sheet[data-side="bottom"] {
+  inset-inline: 0;
+  width: 100vw;
+  max-height: 85dvh;
+}
+.pa-sheet[data-side="top"] {
+  inset-block: 0 auto;
+  translate: 0 -100%;
+}
+.pa-sheet[data-side="bottom"] {
+  inset-block: auto 0;
+  translate: 0 100%;
+}
+.pa-sheet[data-side][open] {
+  translate: 0 0;
+  @starting-style {
+    translate: var(--pa-sheet-from, 100% 0);
+  }
+}
+.pa-sheet[data-side="start"][open] {
+  --pa-sheet-from: -100% 0;
+}
+.pa-sheet[data-side="top"][open] {
+  --pa-sheet-from: 0 -100%;
+}
+.pa-sheet[data-side="bottom"][open] {
+  --pa-sheet-from: 0 100%;
+}
+.pa-sheet[data-side="end"][open]:dir(rtl) {
+  --pa-sheet-from: -100% 0;
+}
+.pa-sheet[data-side="start"][open]:dir(rtl) {
+  --pa-sheet-from: 100% 0;
+}
+
+/* Tabs (underline): a pixel-dashed accent line under the active tab. */
+.pa-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pa-accent) 0 4px,
+    transparent 4px 6px
+  );
+}
+
+/* Toasts: slide in from their edge; the lifetime bar is pixel dashed. */
+@layer components {
+  .pa-toaster {
+    overflow: visible;
+  }
+}
+.pa-toast {
+  transition:
+    opacity var(--pa-duration-base, 200ms) var(--pa-ease-out, ease-out),
+    translate var(--pa-duration-base, 200ms) var(--pa-ease-out, ease-out);
+  @starting-style {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+.pa-toast-life {
+  background: repeating-linear-gradient(90deg, var(--pa-tone) 0 4px, transparent 4px 6px);
+  transform-origin: left;
+  animation: pa-toast-life linear forwards;
+}
+.pa-toast-life:dir(rtl) {
+  transform-origin: right;
+}
+@keyframes pa-toast-life {
+  to {
+    transform: scaleX(0);
+  }
+}
+
 /* Reduced motion: the dissolve becomes a plain fill, nothing rolls. */
 @media (prefers-reduced-motion: reduce) {
   .pa-px > i {
@@ -322,7 +468,10 @@
   }
   .pa-control::after,
   .pa-check,
-  .pa-popup {
+  .pa-popup,
+  .pa-dialog,
+  .pa-dialog::backdrop,
+  .pa-toast {
     transition: none;
   }
 }
