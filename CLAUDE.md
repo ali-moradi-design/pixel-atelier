@@ -2,6 +2,9 @@
 
 Pixel Atelier: a React UI kit (see docs/brief.md, docs/decisions.md, CONTRIBUTING.md).
 
+Start every session by reading `docs/session-notes.md` (what is done, what is
+open, and the plan for the next session). Update it at the end of the session.
+
 ## Language
 
 Explain in Persian; every English term in parentheses and backticks; never start
