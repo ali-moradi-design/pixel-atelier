@@ -36,7 +36,7 @@ jobs:
         run: pnpm --filter pixel-atelier size
 
   browser:
-    name: Browser: axe and visual regression
+    name: "Browser: axe and visual regression"
     # Real-browser checks: visual regression of key stories and axe (with
     # color contrast) in both themes. Unit tests run in the job above.
     runs-on: ubuntu-latest
