@@ -25,3 +25,5 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm turbo run typecheck test build
+      - name: Bundle size budget
+        run: pnpm --filter pixel-atelier size

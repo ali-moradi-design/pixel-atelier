@@ -22,3 +22,13 @@ Decisions made after the brief (`brief.md`). Newer entries win.
     off screen or in a hidden tab, cap the device pixel ratio, and honor
     `prefers-reduced-motion`.
   - Size budget per component, checked in CI (for example `size-limit`).
+- Strong TypeScript docs: every component, variant helper and prop has a TSDoc
+  comment (description, allowed values with their meaning, `@default`, and an
+  `@example` on components), so editors show it on hover. Prop types are
+  written out explicitly instead of `VariantProps`, which drops comments.
+  `packages/ui/test/docs.test.ts` fails when a doc is missing.
+- No `tailwind-merge` (about 7 kB): `className` is appended to the component's
+  classes. Our own `Slot` replaces `@radix-ui/react-slot` (saves about 0.8 kB per
+  component).
+- Tailwind utilities from the kit are prefixed `pa-` (`bg-pa-surface`) so they
+  never clash with an app's own theme (for example shadcn's `accent`).

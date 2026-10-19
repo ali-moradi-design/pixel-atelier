@@ -1,3 +1,9 @@
 packages:
   - packages/*
   - apps/*
+
+# Build scripts: esbuild needs its binary; the native watcher of
+# @tailwindcss/cli works from prebuilt binaries.
+allowBuilds:
+  esbuild: true
+  "@parcel/watcher": false
