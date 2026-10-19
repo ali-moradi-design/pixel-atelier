@@ -29,6 +29,10 @@
     "import": "{ Tag }",
     "limit": "1 kB"
   },
-  { "name": "Everything", "path": "dist/index.js", "import": "*", "limit": "3.2 kB" },
-  { "name": "styles.css", "path": "dist/styles.css", "limit": "4 kB" }
+  {
+    "name": "Everything",
+    "path": "dist/index.js",
+    "import": "*",
+    "limit": "3.2 kB"
+  }
 ]

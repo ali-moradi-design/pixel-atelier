@@ -44,7 +44,7 @@
     "build": "tsdown --log-level warn && node scripts/build-css.ts",
     "typecheck": "tsc -p .",
     "test": "vitest run",
-    "size": "size-limit"
+    "size": "size-limit && node scripts/css-size.ts"
   },
   "peerDependencies": {
     "react": ">=18.2",
