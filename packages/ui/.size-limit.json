@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Button",
+    "path": "dist/components/button.js",
+    "import": "{ Button }",
+    "limit": "2.2 kB"
+  },
+  {
+    "name": "IconButton",
+    "path": "dist/components/icon-button.js",
+    "import": "{ IconButton }",
+    "limit": "2.2 kB"
+  },
+  {
+    "name": "Link",
+    "path": "dist/components/link.js",
+    "import": "{ Link }",
+    "limit": "1.2 kB"
+  },
+  {
+    "name": "Badge",
+    "path": "dist/components/badge.js",
+    "import": "{ Badge }",
+    "limit": "1 kB"
+  },
+  {
+    "name": "Tag",
+    "path": "dist/components/tag.js",
+    "import": "{ Tag }",
+    "limit": "1 kB"
+  },
+  {
+    "name": "Everything",
+    "path": "dist/index.js",
+    "import": "*",
+    "limit": "3.2 kB"
+  }
+]

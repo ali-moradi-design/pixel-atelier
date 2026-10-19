@@ -1,0 +1,186 @@
+/*
+ * Pixel primitives. Shipped as plain CSS (not utilities) so the squares of a
+ * dissolve share one rule instead of repeating classes on every square.
+ *
+ * "Active" means: hovered (on devices that hover), keyboard focused, open,
+ * highlighted, or forced with data-px-active.
+ */
+
+.pa-px-host {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  --px-fill: var(--pa-text);
+  --px-ink: var(--pa-bg);
+}
+
+.pa-px {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: grid;
+  grid-template-columns: repeat(var(--pa-px-cols, 1), 1fr);
+  grid-template-rows: repeat(var(--pa-px-rows, 1), 1fr);
+  pointer-events: none;
+}
+
+.pa-px > i {
+  background: var(--px-fill);
+  opacity: 0;
+  transition: opacity 120ms linear var(--d, 0ms);
+}
+
+/* The label switches to the ink color once about half the squares are in. */
+.pa-px-host {
+  transition: color 0s linear 190ms;
+}
+
+.pa-px-host:is(
+  :focus-visible,
+  [data-px-active],
+  [aria-expanded="true"],
+  [data-state="open"],
+  [data-highlighted]
+) {
+  color: var(--px-ink);
+}
+.pa-px-host:is(
+    :focus-visible,
+    [data-px-active],
+    [aria-expanded="true"],
+    [data-state="open"],
+    [data-highlighted]
+  )
+  > .pa-px
+  > i {
+  opacity: 1;
+  @starting-style {
+    opacity: 0;
+  }
+}
+@media (hover: hover) {
+  .pa-px-host:hover {
+    color: var(--px-ink);
+  }
+  .pa-px-host:hover > .pa-px > i {
+    opacity: 1;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+
+.pa-px-host:is(:disabled, [aria-disabled="true"], [data-disabled]) > .pa-px {
+  display: none;
+}
+
+/* Rolling label */
+.pa-roll {
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1.25;
+  vertical-align: bottom;
+}
+.pa-roll > span {
+  grid-area: 1 / 1;
+  transition: translate var(--pa-duration-slow, 320ms) var(--pa-ease-out, ease-out);
+}
+.pa-roll > span + span {
+  translate: 0 100%;
+}
+:is(.pa-px-host, .pa-roll-host):is(
+    :focus-visible,
+    [data-px-active],
+    [data-state="open"],
+    [data-highlighted]
+  )
+  .pa-roll
+  > span {
+  translate: 0 -100%;
+}
+:is(.pa-px-host, .pa-roll-host):is(
+    :focus-visible,
+    [data-px-active],
+    [data-state="open"],
+    [data-highlighted]
+  )
+  .pa-roll
+  > span
+  + span {
+  translate: 0 0;
+}
+@media (hover: hover) {
+  :is(.pa-px-host, .pa-roll-host):hover .pa-roll > span {
+    translate: 0 -100%;
+  }
+  :is(.pa-px-host, .pa-roll-host):hover .pa-roll > span + span {
+    translate: 0 0;
+  }
+}
+
+/* Pixel underline for links: fills in eight steps. */
+.pa-link-px {
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) no-repeat left bottom / 0 1px;
+  box-shadow: inset 0 -1px var(--pa-border-strong);
+  transition:
+    background-size var(--pa-duration-pixel, 400ms) steps(8, end),
+    color var(--pa-duration-fast, 120ms);
+}
+.pa-link-px:dir(rtl) {
+  background-position: right bottom;
+}
+.pa-link-px:focus-visible {
+  background-size: 100% 1px;
+}
+@media (hover: hover) {
+  .pa-link-px:hover {
+    background-size: 100% 1px;
+  }
+}
+
+/* 3 x 3 pixel spinner */
+.pa-spinner {
+  display: inline-grid;
+  grid-template: repeat(3, 0.25em) / repeat(3, 0.25em);
+  gap: 0.125em;
+  vertical-align: middle;
+}
+.pa-spinner > i {
+  background: currentColor;
+  opacity: 0.25;
+  animation: pa-spinner 800ms steps(1, end) infinite;
+}
+@keyframes pa-spinner {
+  0%,
+  37.5% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  62.5%,
+  100% {
+    opacity: 0.25;
+  }
+}
+
+/* Reduced motion: the dissolve becomes a plain fill, nothing rolls. */
+@media (prefers-reduced-motion: reduce) {
+  .pa-px > i {
+    transition-duration: 0s;
+    transition-delay: 0s;
+  }
+  .pa-px-host {
+    transition-delay: 0s;
+  }
+  .pa-roll > span {
+    transition: none;
+  }
+  .pa-link-px {
+    transition: none;
+  }
+  .pa-spinner > i {
+    animation-duration: 2.4s;
+  }
+}

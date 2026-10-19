@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "pixel-atelier": ["../../packages/ui/src/index.ts"],
+      "pixel-atelier/pixels": ["../../packages/ui/src/pixels/index.ts"],
+      "pixel-atelier/*": ["../../packages/ui/src/components/*.tsx"]
+    }
+  },
+  "include": [".storybook", "stories"]
+}

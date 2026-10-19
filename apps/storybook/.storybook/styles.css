@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@pixel-atelier/tokens/theme.css";
+@import "../../../packages/ui/src/styles/pixels.css";
+@source "../../../packages/ui/src";
+
+body {
+  background: var(--pa-bg);
+  color: var(--pa-text);
+  font-family: var(--pa-font-sans);
+}

@@ -1,0 +1,6 @@
+/* Precompiled stylesheet for apps without Tailwind: tokens, pixel CSS and only
+   the utilities the components use. No preflight (the app keeps its reset). */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "../../dist/theme.css";
