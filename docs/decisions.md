@@ -69,4 +69,12 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 - Releases: Changesets + `.github/workflows/release.yml` (npm provenance). The
   first changeset bumps `pixel-atelier` to 1.0.0; publishing waits for the
   `NPM_TOKEN` secret (see `docs/release.md`).
+- Security (see docs/security.md): XSS test suite and banned-API guard for the
+  package; pnpm supply-chain policies (minimumReleaseAge, trustPolicy,
+  strictDepBuilds); actions pinned to SHAs and audited with zizmor; CodeQL,
+  Dependency Review, weekly audit, Dependabot with cooldown; per-page
+  hash-based CSP with form-action 'none' on the static site; Nginx read-only
+  config with shared security headers; fonts self-hosted everywhere. The Tailwind
+  CLI was replaced by the PostCSS plugin, removing the only (dev-only)
+  vulnerable dependency.
 

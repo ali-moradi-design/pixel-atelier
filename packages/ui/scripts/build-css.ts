@@ -2,7 +2,6 @@
 //   dist/tokens.css  CSS variables only
 //   dist/theme.css   tokens + Tailwind theme + pixel CSS + @source for Tailwind v4 apps
 //   dist/styles.css  everything precompiled, for apps without Tailwind
-import { execFileSync } from "node:child_process";
 import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 
@@ -20,9 +19,15 @@ writeFileSync(
   `${theme}\n/* Scan the compiled components for the utilities they use. */\n@source "./";\n\n${pixels}`,
 );
 
-execFileSync(
-  "tailwindcss",
-  ["-i", "src/styles/standalone.css", "-o", "dist/styles.css", "--minify"],
-  { stdio: "inherit" },
+// Compiled with the PostCSS plugin (no CLI and its file watcher).
+const tailwind = (await import("@tailwindcss/postcss")).default;
+const postcss = (await import("postcss")).default;
+const input = new URL("../src/styles/standalone.css", import.meta.url);
+const result = await postcss([tailwind({ optimize: { minify: true } })]).process(
+  readFileSync(input, "utf8"),
+  {
+    from: input.pathname,
+  },
 );
+writeFileSync(new URL("styles.css", dist), result.css);
 console.log("css: wrote dist/tokens.css, dist/theme.css, dist/styles.css");

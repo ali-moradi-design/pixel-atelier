@@ -2,8 +2,19 @@ packages:
   - packages/*
   - apps/*
 
-# Build scripts: esbuild needs its binary; the native watcher of
-# @tailwindcss/cli works from prebuilt binaries.
+# Supply-chain safety
+# - Only listed packages may run install scripts (everything else is blocked
+#   and the install fails, so a new script never runs silently).
 allowBuilds:
   esbuild: true
-  "@parcel/watcher": false
+strictDepBuilds: true
+# - Do not install versions published less than 3 days ago: most malicious
+#   releases (hijacked maintainers, worms) are found and pulled within hours.
+minimumReleaseAge: 4320
+# - Refuse a version whose publish trust is weaker than an earlier one
+#   (e.g. lost provenance), a common sign of a hijacked package.
+trustPolicy: no-downgrade
+# Checked by hand: semver 6.3.1 is npm's own 2023 ReDoS fix for the 6.x line,
+# published without provenance; it is the safe 6.x version, not a hijack.
+trustPolicyExclude:
+  - semver@6.3.1

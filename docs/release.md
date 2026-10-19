@@ -11,8 +11,10 @@ Changesets and npm provenance.
    packages (and the right to create new packages), then add it to the GitHub
    repository as the secret `NPM_TOKEN` (Settings → Secrets and variables →
    Actions).
-3. After the first publish, optionally switch to npm trusted publishing (OIDC)
-   for this repository and workflow, and delete the token.
+3. Create the GitHub environment `npm` (Settings → Environments) and add
+   yourself as a required reviewer, so every publish needs your approval.
+4. After the first publish, switch to npm trusted publishing (OIDC) for this
+   repository and `release.yml`, and delete the `NPM_TOKEN` secret.
 
 ## Every release
 
