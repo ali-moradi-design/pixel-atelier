@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pixel Atelier mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* ---------- Tokens (draft) ---------- */
+:root {
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --radius-xs: 2px; --radius-sm: 4px; --radius-md: 6px; --radius-lg: 10px; --radius-xl: 16px;
+}
+[data-theme="dark"] {
+  --bg: #0d0d0f; --surface: #141417; --raised: #1b1b1f; --overlay: #222227;
+  --border: #26262b; --border-strong: #3a3a41;
+  --text: #f2efe8; --muted: #8f8b83; --faint: #5a5852;
+  --accent: #d4b072; --accent-hover: #e0c08a; --accent-subtle: rgba(212,176,114,.12); --on-accent: #121212;
+  --success: #6fcf97; --warning: #e8b85c; --danger: #f07171; --info: #7fb2f0;
+  --shadow-1: 0 1px 0 rgba(255,255,255,.04) inset, 0 1px 2px rgba(0,0,0,.4);
+  --shadow-2: 0 1px 0 rgba(255,255,255,.05) inset, 0 8px 24px rgba(0,0,0,.45);
+  --shadow-3: 0 1px 0 rgba(255,255,255,.06) inset, 0 24px 64px rgba(0,0,0,.6);
+  --scrim: rgba(5,5,6,.66);
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: #f6f4ef; --surface: #fbfaf7; --raised: #ffffff; --overlay: #ffffff;
+  --border: #e4dfd5; --border-strong: #cdc6b8;
+  --text: #151514; --muted: #6b675f; --faint: #a7a296;
+  --accent: #86621f; --accent-hover: #74541a; --accent-subtle: rgba(134,98,31,.10); --on-accent: #ffffff;
+  --success: #1d7549; --warning: #8f6200; --danger: #bf3636; --info: #2a5fb3;
+  --shadow-1: 0 1px 2px rgba(30,25,15,.06);
+  --shadow-2: 0 2px 4px rgba(30,25,15,.04), 0 10px 28px rgba(30,25,15,.08);
+  --shadow-3: 0 4px 8px rgba(30,25,15,.05), 0 28px 72px rgba(30,25,15,.16);
+  --scrim: rgba(40,36,28,.32);
+  color-scheme: light;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 1440px; background: var(--bg); color: var(--text); font: 400 14px/1.5 var(--font-sans);
+  -webkit-font-smoothing: antialiased; font-synthesis: none; }
+svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Page chrome ---------- */
+.top { display: flex; align-items: center; gap: 14px; padding: 28px 64px; border-bottom: 1px solid var(--border); }
+.top .mark { width: 24px; height: 24px; }
+.top .name { font-weight: 500; font-size: 15px; letter-spacing: -.01em; }
+.top .name span { font-weight: 300; }
+.top .crumb { color: var(--muted); font-size: 13px; }
+.top .right { margin-left: auto; display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 12px; }
+.hero { padding: 72px 64px 40px; }
+.eyebrow { font: 500 11px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.hero h1 { font-weight: 300; font-size: 64px; line-height: 1.02; letter-spacing: -.035em; margin-top: 18px; }
+.hero p { color: var(--muted); font-size: 17px; max-width: 620px; margin-top: 16px; }
+main { padding: 0 64px 96px; }
+section.block { padding-top: 56px; }
+.sec-h { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.sec-h h2 { font-weight: 400; font-size: 22px; letter-spacing: -.02em; }
+.sec-h .n { font: 400 12px var(--font-mono); color: var(--faint); }
+.sec-h .d { color: var(--muted); font-size: 13px; margin-left: auto; }
+.mono { font-family: var(--font-mono); font-size: 12px; }
+.muted { color: var(--muted); }
+.lab { font: 500 10.5px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- Token page ---------- */
+.swatches { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
+.sw .chip { height: 88px; border-radius: var(--radius-md); border: 1px solid var(--border); }
+.sw .nm { margin-top: 10px; font-size: 13px; }
+.sw .hx { font: 400 11.5px var(--font-mono); color: var(--muted); }
+.accents { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.acc-card { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); padding: 20px; display: grid; gap: 16px; }
+.acc-card .row { display: flex; gap: 6px; }
+.acc-card .row i { flex: 1; height: 40px; border-radius: var(--radius-sm); }
+.acc-card .t { display: flex; justify-content: space-between; align-items: center; }
+.sem { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
+.sem div { border-radius: var(--radius-md); padding: 14px 16px; display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.type-row { display: grid; grid-template-columns: 160px 1fr 220px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.type-row:last-child { border-bottom: 0; }
+.type-row .spec { text-align: right; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.space-row { display: flex; align-items: center; gap: 16px; padding: 6px 0; }
+.space-row .bar { height: 12px; background: var(--accent); opacity: .85; border-radius: 1px; }
+.space-row .k { width: 40px; }
+.radii { display: flex; gap: 20px; }
+.radii div { width: 76px; height: 76px; border: 1px solid var(--border-strong); background: var(--surface); }
+.elev { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.elev div { height: 120px; border-radius: var(--radius-lg); background: var(--raised); border: 1px solid var(--border); padding: 16px; }
+.curve { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; background: var(--surface); }
+.curve svg { width: 100%; height: 110px; display: block; margin: 8px 0 10px; }
+.timeline { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.timeline .f { display: grid; gap: 8px; }
+
+/* ---------- Pixel layer ---------- */
+.px-host { position: relative; isolation: isolate; overflow: hidden; }
+.px { position: absolute; inset: 0; z-index: -1; display: grid; pointer-events: none; }
+.px i { background: var(--px-fill); }
+
+/* ---------- Components ---------- */
+.btn { --px-fill: var(--text); --px-ink: var(--bg); display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 40px; padding: 0 18px; border-radius: var(--radius-xs); border: 1px solid var(--border-strong);
+  font: 500 12px/1 var(--font-sans); letter-spacing: .06em; text-transform: uppercase; color: var(--text); background: transparent; white-space: nowrap; }
+.btn.primary { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+.btn.ghost { border-color: transparent; }
+.btn.danger { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, transparent); --px-fill: var(--danger); }
+.btn.sm { height: 32px; padding: 0 12px; font-size: 11px; }
+.btn.lg { height: 48px; padding: 0 24px; font-size: 13px; }
+.btn.on { color: var(--px-ink); }
+.btn.focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn.disabled { opacity: .4; }
+.icon-btn { width: 40px; padding: 0; }
+.icon-btn.sm { width: 32px; }
+.link { color: var(--text); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.link.hover { text-decoration-color: var(--accent); color: var(--accent); }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: var(--radius-xs);
+  font: 500 11px/1 var(--font-mono); letter-spacing: .04em; border: 1px solid var(--border-strong); color: var(--muted); }
+.badge .dot { width: 6px; height: 6px; background: currentColor; }
+.badge.accent { color: var(--accent); border-color: transparent; background: var(--accent-subtle); }
+.badge.s { color: var(--success); border-color: transparent; background: color-mix(in srgb, var(--success) 12%, transparent); }
+.badge.w { color: var(--warning); border-color: transparent; background: color-mix(in srgb, var(--warning) 14%, transparent); }
+.badge.d { color: var(--danger); border-color: transparent; background: color-mix(in srgb, var(--danger) 12%, transparent); }
+.badge.solid { background: var(--text); color: var(--bg); border-color: transparent; }
+.tag { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 6px 0 10px; border-radius: var(--radius-xs);
+  background: var(--raised); border: 1px solid var(--border); font-size: 12px; }
+.tag svg { width: 12px; height: 12px; color: var(--muted); }
+
+.cells { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+.cell { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.cell > .lab { display: flex; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); }
+.cell > .lab span:last-child { color: var(--faint); }
+.cell > .body { padding: 22px 18px; display: grid; gap: 16px; }
+.span2 { grid-column: span 2; }
+.span3 { grid-column: span 3; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.col { display: grid; gap: 8px; }
+
+.field { display: grid; gap: 6px; }
+.field label { font-size: 12.5px; font-weight: 500; }
+.field .hint { font-size: 12px; color: var(--muted); }
+.field .err { font-size: 12px; color: var(--danger); display: flex; gap: 6px; align-items: center; }
+.input { height: 40px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--bg);
+  display: flex; align-items: center; gap: 8px; padding: 0 12px; color: var(--text); font-size: 14px; }
+.input .ph { color: var(--faint); }
+.input.focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-subtle); }
+.input.error { border-color: var(--danger); }
+.input .caret { width: 1px; height: 18px; background: var(--accent); margin-left: -6px; }
+.input .r { margin-left: auto; color: var(--muted); display: flex; }
+.textarea { height: 92px; align-items: flex-start; padding-top: 10px; }
+.kbd { font: 500 10.5px/1 var(--font-mono); border: 1px solid var(--border-strong); border-bottom-width: 2px; border-radius: 3px; padding: 3px 5px; color: var(--muted); }
+
+.list { border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--overlay); box-shadow: var(--shadow-2); padding: 4px; }
+.opt { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 10px; border-radius: var(--radius-xs); font-size: 13.5px; }
+.opt .r { margin-left: auto; color: var(--muted); }
+.opt.hl { --px-fill: var(--accent-subtle); color: var(--text); }
+.opt.hl::before { content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: var(--accent); }
+.opt .muted { font-size: 12px; }
+.sep { height: 1px; background: var(--border); margin: 4px -4px; }
+.group { padding: 8px 10px 4px; }
+
+.check { width: 18px; height: 18px; border: 1px solid var(--border-strong); border-radius: 3px; display: grid; place-items: center; background: var(--bg); flex: none; }
+.check.on { background: var(--accent); border-color: transparent; color: var(--on-accent); }
+.check svg { width: 13px; height: 13px; stroke-width: 2; }
+.radio { width: 18px; height: 18px; border: 1px solid var(--border-strong); border-radius: 50%; display: grid; place-items: center; background: var(--bg); flex: none; }
+.radio.on { border-color: var(--accent); }
+.radio.on::after { content: ""; width: 8px; height: 8px; background: var(--accent); }
+.switch { width: 40px; height: 22px; border-radius: 2px; background: var(--border-strong); position: relative; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; background: var(--text); border-radius: 1px; }
+.switch.on { background: var(--accent); }
+.switch.on::after { left: 21px; background: var(--on-accent); }
+.choice { display: flex; align-items: center; gap: 10px; font-size: 13.5px; }
+.slider { position: relative; height: 22px; display: flex; align-items: center; }
+.slider .track { height: 4px; flex: 1; background: var(--border); position: relative; }
+.slider .fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); }
+.slider .thumb { position: absolute; top: 3px; width: 16px; height: 16px; background: var(--text); border: 3px solid var(--bg); outline: 1px solid var(--border-strong); }
+
+.tabs { display: flex; gap: 24px; border-bottom: 1px solid var(--border); }
+.tab { padding: 10px 0; font-size: 13.5px; color: var(--muted); position: relative; }
+.tab.on { color: var(--text); }
+.tab.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 4px, transparent 4px 6px); }
+.seg { display: inline-flex; padding: 3px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
+.seg span { padding: 6px 12px; font-size: 12.5px; color: var(--muted); border-radius: 2px; }
+.seg span.on { background: var(--raised); color: var(--text); box-shadow: var(--shadow-1); }
+.acc-item { border-bottom: 1px solid var(--border); }
+.acc-item .h { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 14px; }
+.acc-item .c { padding: 0 0 16px; color: var(--muted); font-size: 13.5px; }
+.acc-item.open .h svg { transform: rotate(180deg); }
+
+.screen { position: relative; height: 300px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); background: var(--bg); }
+.screen .fake { position: absolute; inset: 0; padding: 18px; display: grid; gap: 10px; align-content: start; }
+.screen .fake i { display: block; height: 10px; background: var(--border); border-radius: 1px; }
+.screen .scrim { position: absolute; inset: 0; background: var(--scrim); }
+.dialog { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 340px; background: var(--overlay); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-3); padding: 22px; display: grid; gap: 10px; }
+.dialog h4, .sheet h4 { font-weight: 500; font-size: 16px; letter-spacing: -.01em; }
+.dialog p { color: var(--muted); font-size: 13px; }
+.dialog .row { justify-content: flex-end; margin-top: 8px; }
+.sheet { position: absolute; right: 0; top: 0; bottom: 0; width: 230px; background: var(--overlay); border-left: 1px solid var(--border); box-shadow: var(--shadow-3); padding: 20px; display: grid; gap: 14px; align-content: start; }
+.close { position: absolute; right: 14px; top: 14px; color: var(--muted); }
+
+.pop { background: var(--overlay); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-2); padding: 14px; font-size: 13px; position: relative; }
+.tooltip { display: inline-block; background: var(--text); color: var(--bg); font-size: 12px; padding: 6px 9px; border-radius: 3px; position: relative; }
+.tooltip::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 8px; height: 8px; background: var(--text); translate: -50% 0; rotate: 45deg; }
+
+.cmd { background: var(--overlay); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-3); overflow: hidden; }
+.cmd .q { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 15px; }
+.cmd .q .caret { width: 1px; height: 18px; background: var(--accent); }
+.cmd .ls { padding: 6px; }
+.cmd .foot { display: flex; gap: 14px; padding: 10px 14px; border-top: 1px solid var(--border); color: var(--muted); font-size: 11.5px; }
+.cmd .foot span { display: flex; gap: 6px; align-items: center; }
+mark { background: none; color: var(--accent); }
+
+.toast { display: flex; gap: 12px; align-items: flex-start; background: var(--overlay); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-2); padding: 14px 14px 14px 16px; font-size: 13px; position: relative; overflow: hidden; }
+.toast .t { font-weight: 500; }
+.toast .m { color: var(--muted); }
+.toast .act { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+.toast .ic { margin-top: 2px; }
+.toast .life { position: absolute; left: 0; bottom: 0; height: 2px; background: repeating-linear-gradient(90deg, var(--accent) 0 4px, transparent 4px 6px); }
+
+.card { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--raised); overflow: hidden; box-shadow: var(--shadow-1); }
+.card .media { height: 120px; }
+.card .cb { padding: 16px; display: grid; gap: 6px; }
+.card h5 { font-weight: 500; font-size: 15px; }
+.avatar { width: 36px; height: 36px; border-radius: 2px; display: grid; place-items: center; font: 500 12px var(--font-mono); background: var(--raised); border: 1px solid var(--border-strong); position: relative; overflow: hidden; }
+.avatar canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.avatar.lg { width: 48px; height: 48px; }
+.av-stack { display: flex; }
+.av-stack .avatar { margin-left: -8px; border: 2px solid var(--surface); }
+.av-stack .avatar:first-child { margin-left: 0; }
+.status { position: absolute; right: -2px; bottom: -2px; width: 10px; height: 10px; background: var(--success); border: 2px solid var(--surface); }
+.sk { background: var(--border); position: relative; overflow: hidden; border-radius: 2px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th { text-align: left; font: 500 10.5px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--border); }
+td { padding: 12px; border-bottom: 1px solid var(--border); }
+tr.sel td { background: var(--accent-subtle); }
+td.num { font-family: var(--font-mono); font-size: 12.5px; text-align: right; }
+th.num { text-align: right; }
+.pag { display: flex; gap: 4px; align-items: center; }
+.pag span { min-width: 32px; height: 32px; display: grid; place-items: center; font: 400 12.5px var(--font-mono); color: var(--muted); border-radius: 2px; }
+.pag span.on { background: var(--text); color: var(--bg); }
+.bc { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+.bc .cur { color: var(--text); }
+.bc svg { width: 12px; height: 12px; color: var(--faint); }
+.prog { height: 6px; background: var(--border); position: relative; }
+.prog i { position: absolute; inset: 0 auto 0 0; background: var(--accent); }
+.prog-px { display: grid; grid-template-columns: repeat(40, 1fr); gap: 2px; height: 8px; }
+.prog-px i { background: var(--border); }
+.prog-px i.on { background: var(--accent); }
+
+/* ---------- Signature ---------- */
+.frames { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.frames .f { display: grid; gap: 10px; justify-items: start; }
+.stage { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); padding: 28px; }
+.menu-screen { position: relative; height: 560px; border-radius: var(--radius-lg); overflow: hidden; background: var(--bg); border: 1px solid var(--border); }
+.menu-screen .bar { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; border-bottom: 1px solid var(--border); }
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; height: calc(100% - 73px); }
+.menu-cell { --px-fill: var(--text); --px-ink: var(--bg); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  display: grid; grid-template: "no no" 1fr "lbl arr" auto / 1fr auto; align-items: end; padding: 24px 28px; }
+.menu-cell .no { grid-area: no; } .menu-cell .lbl { grid-area: lbl; justify-self: start; } .menu-cell > svg { grid-area: arr; margin-bottom: 12px; }
+.menu-cell .no { font: 400 12px var(--font-mono); color: var(--muted); align-self: flex-start; }
+.menu-cell .lbl { font-weight: 300; font-size: 54px; letter-spacing: -.035em; line-height: 1.25; height: 1.25em; overflow: hidden; display: inline-grid; }
+.menu-cell .lbl span { display: block; }
+.menu-cell.on { color: var(--px-ink); }
+.menu-cell.on .no { color: var(--px-ink); opacity: .6; }
+.reveal { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.reveal canvas { width: 100%; aspect-ratio: 4 / 5; display: block; border-radius: var(--radius-sm); image-rendering: pixelated; }
+.scramble { display: grid; gap: 8px; }
+.scramble div { display: grid; grid-template-columns: 70px 1fr; align-items: baseline; }
+.scramble .txt { font: 300 40px/1.1 var(--font-sans); letter-spacing: -.03em; }
+.scramble .txt b { font: 400 34px/1 var(--font-mono); color: var(--accent); letter-spacing: 0; }
+.scramble .txt em { font-style: normal; color: var(--faint); }
+.loaders { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.loaders .stage { display: grid; gap: 18px; justify-items: center; padding: 32px 20px 22px; }
+.ldr { display: grid; grid-template-columns: repeat(3, 10px); gap: 3px; }
+.ldr i { width: 10px; height: 10px; background: var(--border-strong); }
+.ldr i.on { background: var(--text); }
+.ldr i.acc { background: var(--accent); }
+.spot { position: relative; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--surface); padding: 26px; min-height: 230px; display: grid; align-content: end; gap: 6px; }
+.spot .glow { position: absolute; inset: 0; background: radial-gradient(260px circle at 70% 30%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%); }
+.spot .grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 12px 12px; -webkit-mask-image: radial-gradient(200px circle at 70% 30%, #000, transparent 70%); mask-image: radial-gradient(200px circle at 70% 30%, #000, transparent 70%); opacity: .9; }
+.spot > *:not(.glow):not(.grid) { position: relative; }
+.spot h5 { font-weight: 400; font-size: 22px; letter-spacing: -.02em; }
+.ticker { font: 300 64px/1 var(--font-sans); letter-spacing: -.04em; display: flex; }
+.ticker .dg { height: 64px; overflow: hidden; display: inline-flex; flex-direction: column; }
+.marquee { display: flex; gap: 40px; white-space: nowrap; overflow: hidden; font: 300 30px var(--font-sans); letter-spacing: -.02em; color: var(--muted);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marquee span { display: flex; align-items: center; gap: 40px; }
+.marquee i { width: 8px; height: 8px; background: var(--accent); }
+.note { font-size: 12.5px; color: var(--muted); margin-top: 12px; max-width: 760px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <svg class="mark" viewBox="0 0 8 8" shape-rendering="crispEdges" id="mark"></svg>
+  <div class="name">pixel <span>atelier</span></div>
+  <div class="crumb" id="crumb"></div>
+  <div class="right"><span class="badge" id="theme-badge"></span><span class="badge">v0 · draft</span></div>
+</header>
+<div id="page"></div>
+
+<script>
+const q = new URLSearchParams(location.search);
+const THEME = q.get('theme') || 'dark';
+const PAGE = q.get('page') || 'tokens';
+document.documentElement.dataset.theme = THEME;
+document.getElementById('theme-badge').textContent = THEME;
+
+// Logo mark (concept P1).
+const GRID = ['########','#....###','#..##.##','#..##.##','#....###','#..####.','#..##.A.','####.#..'];
+document.getElementById('mark').innerHTML = GRID.flatMap((r, y) => [...r].map((c, x) =>
+  c === '.' ? '' : `<rect x="${x}" y="${y}" width="1" height="1" fill="var(--${c === 'A' ? 'accent' : 'text'})"/>`)).join('');
+
+// Icons.
+const P = {
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  down: '<path d="m6 9 6 6 6-6"/>', right: '<path d="m9 6 6 6-6 6"/>',
+  check: '<path d="M5 12.5 10 17 19 7"/>', x: '<path d="M6 6l12 12M18 6 6 18"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>', arrow: '<path d="M5 12h14m-5-5 5 5-5 5"/>',
+  more: '<circle cx="5" cy="12" r=".8"/><circle cx="12" cy="12" r=".8"/><circle cx="19" cy="12" r=".8"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+  alert: '<path d="M12 4 2.5 20h19z"/><path d="M12 10v4M12 17h.01"/>',
+  ok: '<circle cx="12" cy="12" r="9"/><path d="m8 12.5 3 3 5-6"/>',
+  copy: '<rect x="8" y="8" width="12" height="12" rx="1"/><path d="M16 8V4H4v12h4"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',
+  out: '<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h11"/>',
+  home: '<path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/>', file: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6 19 19M5 19l1.4-1.4M17.6 6.4 19 5"/>',
+  menu: '<path d="M4 8h16M4 16h16"/>', heart: '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+};
+const ic = (n, s = 16) => `<svg class="i" viewBox="0 0 24 24" style="width:${s}px;height:${s}px">${P[n]}</svg>`;
+
+// Pixel dissolve, same timing as the portfolio: about 0.4 s from the first
+// square to the last, left to right with deterministic noise.
+function noise(i) { const x = Math.sin(i * 12.9898) * 43758.5453; return x - Math.floor(x); }
+function pixels(cols, rows, t, fill) {
+  const step = 240 / cols; let s = '';
+  for (let i = 0; i < cols * rows; i++) {
+    const d = Math.round((i % cols) * step + noise(i) * 120);
+    const o = Math.max(0, Math.min(1, (t - d) / 40));
+    s += `<i style="opacity:${o.toFixed(2)}${fill ? ';background:' + fill : ''}"></i>`;
+  }
+  return `<span class="px" aria-hidden="true" style="grid-template-columns:repeat(${cols},1fr);grid-template-rows:repeat(${rows},1fr)">${s}</span>`;
+}
+// A button frozen at time t (ms) of its hover dissolve.
+function btn(label, cls = '', t = -1, opts = {}) {
+  const cols = opts.cols || 16, rows = opts.rows || 4;
+  const on = t >= 190 ? ' on' : '';
+  const px = t >= 0 ? pixels(cols, rows, t) : '';
+  return `<span class="btn px-host ${cls}${on}">${px}${opts.icon ? ic(opts.icon, 14) : ''}${label}${opts.after ? ic(opts.after, 14) : ''}</span>`;
+}
+
+const sec = (n, title, desc, body) =>
+  `<section class="block"><div class="sec-h"><span class="n">${n}</span><h2>${title}</h2><span class="d">${desc}</span></div>${body}</section>`;
+const cell = (title, meta, body, cls = '') =>
+  `<div class="cell ${cls}"><div class="lab"><span>${title}</span><span>${meta}</span></div><div class="body">${body}</div></div>`;
+const hero = (eyebrow, title, text) =>
+  `<div class="hero"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${text}</p></div>`;
+
+const v = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ================= Tokens page ================= */
+function tokensPage() {
+  const neutrals = ['bg', 'surface', 'raised', 'overlay', 'border', 'border-strong', 'muted', 'text']
+    .map(n => `<div class="sw"><div class="chip" style="background:var(--${n})"></div><div class="nm">${n}</div><div class="hx">${v('--' + n)}</div></div>`).join('');
+  const ACC = {
+    gold: { dark: ['#d4b072', '#e0c08a'], light: ['#86621f', '#74541a'] },
+    jade: { dark: ['#7cc4a2', '#96d3b6'], light: ['#2d7656', '#24644a'] },
+    iris: { dark: ['#a99cff', '#bdb3ff'], light: ['#5a4bd0', '#4b3db8'] },
+    ember: { dark: ['#f08a5d', '#f4a07a'], light: ['#ad4c1d', '#953f15'] },
+  };
+  const accents = Object.entries(ACC).map(([n, c]) => {
+    const [a, h] = c[THEME];
+    const on = THEME === 'dark' ? '#121212' : '#ffffff';
+    return `<div class="acc-card" style="--accent:${a};--on-accent:${on};--accent-subtle:color-mix(in srgb, ${a} 12%, transparent)">
+      <div class="t"><span>${n}${n === 'gold' ? ' <span class="muted">· default</span>' : ''}</span><span class="mono muted">${a}</span></div>
+      <div class="row"><i style="background:${a}"></i><i style="background:${h}"></i><i style="background:color-mix(in srgb, ${a} 12%, transparent);border:1px solid var(--border)"></i></div>
+      <div class="row" style="gap:8px">${btn('Primary', 'primary sm')}<span class="badge accent"><span class="dot"></span>Accent</span></div></div>`;
+  }).join('');
+  const sem = [['success', 'ok', 'Saved'], ['warning', 'alert', 'Check this'], ['danger', 'alert', 'Failed'], ['info', 'info', 'Heads up']]
+    .map(([n, i, t]) => `<div style="color:var(--${n});background:color-mix(in srgb, var(--${n}) 11%, transparent)">${ic(i)}<span>${t}</span><span class="mono" style="margin-left:auto;opacity:.8">${n} · ${v('--' + n)}</span></div>`).join('');
+
+  const type = [
+    ['display', 72, 300, -0.04, 1.0, 'Pixels, crafted'],
+    ['h1', 48, 300, -0.035, 1.05, 'A quiet, precise kit'],
+    ['h2', 36, 400, -0.025, 1.1, 'Effects only on interaction'],
+    ['h3', 28, 400, -0.02, 1.15, 'Every state, every theme'],
+    ['h4', 22, 500, -0.015, 1.25, 'Components and blocks'],
+    ['body-lg', 18, 400, -0.005, 1.55, 'Calm surfaces, deliberate color, generous space.'],
+    ['body', 16, 400, 0, 1.55, 'The base size for reading text and long descriptions.'],
+    ['small', 14, 400, 0, 1.5, 'Interface text: inputs, menus, table cells.'],
+    ['caption', 12, 400, 0, 1.4, 'Hints, helper text and timestamps.'],
+  ].map(([n, s, w, ls, lh, t]) => `<div class="type-row"><span class="mono muted">${n}</span>
+    <span style="font-size:${s}px;font-weight:${w};letter-spacing:${ls}em;line-height:${lh}">${t}</span>
+    <span class="mono muted spec">${s} / ${Math.round(s * lh)} · ${w} · ${ls}em</span></div>`).join('')
+    + `<div class="type-row"><span class="mono muted">label</span><span style="font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase">Buttons and overlines</span><span class="mono muted spec">12 · 500 · 0.06em · upper</span></div>
+       <div class="type-row"><span class="mono muted">mono</span><span class="mono" style="font-size:13px">pnpm add pixel-atelier</span><span class="mono muted spec">Geist Mono 13 · 400</span></div>`;
+
+  const space = [[1, 4], [2, 8], [3, 12], [4, 16], [6, 24], [8, 32], [12, 48], [16, 64], [24, 96]]
+    .map(([k, px]) => `<div class="space-row"><span class="mono muted k">${k}</span><span class="bar" style="width:${px * 2}px"></span><span class="mono muted">${px}px</span></div>`).join('');
+  const radii = [['none', 0], ['xs', 2], ['sm', 4], ['md', 6], ['lg', 10], ['xl', 16]]
+    .map(([n, r]) => `<div class="col" style="justify-items:center"><div style="border-radius:${r}px"></div><span class="mono muted">${n} · ${r}</span></div>`).join('');
+  const elev = [1, 2, 3].map(n => `<div style="box-shadow:var(--shadow-${n})"><span class="lab">shadow-${n}</span><p class="muted" style="margin-top:8px;font-size:12.5px">${['Cards, inputs', 'Popovers, menus, toasts', 'Dialogs, command palette'][n - 1]}</p></div>`).join('');
+
+  const curve = (name, d, val, dur) => `<div class="curve"><div class="row" style="justify-content:space-between"><span>${name}</span><span class="mono muted">${dur}</span></div>
+    <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 50 L100 50 M0 0 L0 50" stroke="var(--border)" fill="none" vector-effect="non-scaling-stroke"/>
+    <path d="${d}" stroke="var(--accent)" stroke-width="1.5" fill="none" vector-effect="non-scaling-stroke"/></svg><span class="mono muted">${val}</span></div>`;
+  const curves = curve('ease-out', 'M0 50 C22 0 36 0 100 0', 'cubic-bezier(.22, 1, .36, 1)', 'enter · 200–320 ms')
+    + curve('ease-in-out', 'M0 50 C65 50 35 0 100 0', 'cubic-bezier(.65, 0, .35, 1)', 'move · 320 ms')
+    + curve('steps (pixel)', 'M0 50 H20 V37.5 H40 V25 H60 V12.5 H80 V0 H100', 'steps(5, end)', 'pixel effects');
+  const durations = [['instant', 80], ['fast', 120], ['base', 200], ['slow', 320], ['pixel', 400], ['page', 640]]
+    .map(([n, ms]) => `<div class="col"><span class="mono">${ms} ms</span><span class="muted" style="font-size:12.5px">${n}</span><span class="prog" style="height:4px"><i style="width:${ms / 6.4}%"></i></span></div>`).join('');
+  const timeline = [0, 80, 160, 240, 320, 400].map(t =>
+    `<div class="f">${btn('Explore', '', t, {})}<span class="mono muted">${t} ms</span></div>`).join('');
+
+  return hero('Foundations · tokens', 'Quiet base,<br>precise detail.', 'Every value is a CSS variable with a dark and a light theme and four accents, exposed as a Tailwind v4 theme. The pixel effects use the motion tokens below.')
+  + `<main>`
+  + sec('01', 'Color', 'neutrals · dark default, light alternative', `<div class="swatches">${neutrals}</div>`)
+  + sec('02', 'Accent themes', 'one accent at a time; AA on bg and on its own fill', `<div class="accents">${accents}</div><div class="sem">${sem}</div>`)
+  + sec('03', 'Typography', 'Geist + Geist Mono · tight tracking on large sizes', `<div>${type}</div>`)
+  + `<div class="grid2">`
+  + sec('04', 'Spacing', '4 px base', space)
+  + `<div>` + sec('05', 'Radius', 'sharp by default: 2 px on controls', `<div class="radii">${radii}</div>`)
+  + sec('06', 'Elevation', 'borders first, shadows soft', `<div class="elev">${elev}</div>`) + `</div></div>`
+  + sec('07', 'Motion', 'durations and easings; reduced motion turns pixel effects into a plain fade',
+      `<div class="grid3">${curves}</div><div class="timeline" style="margin-top:24px;grid-template-columns:repeat(6,1fr)">${durations}</div>
+       <div class="stage" style="margin-top:24px"><div class="lab" style="margin-bottom:18px">pixel dissolve · hover / focus · 400 ms</div><div class="timeline">${timeline}</div>
+       <p class="note">Squares switch on left to right with deterministic noise; the label switches to the ink color at 190 ms. Squares are created on the first hover or focus only.</p></div>`)
+  + `</main>`;
+}
+
+/* ================= Core components page ================= */
+function corePage() {
+  const buttons = cell('Button', 'primary · secondary · ghost · danger', `
+    <div class="row">${btn('Get started', 'primary', -1, { after: 'arrow' })}${btn('Secondary')}${btn('Ghost', 'ghost')}${btn('Delete', 'danger')}</div>
+    <div class="row">${btn('Small', 'sm')}${btn('Medium')}${btn('Large', 'lg')}</div>
+    <div class="row"><div class="col"><span class="lab">hover</span>${btn('Secondary', '', 400)}</div>
+      <div class="col"><span class="lab">hover · 200 ms</span>${btn('Primary', 'primary', 200)}</div>
+      <div class="col"><span class="lab">focus</span>${btn('Focus', 'focus')}</div>
+      <div class="col"><span class="lab">disabled</span>${btn('Disabled', 'disabled')}</div></div>
+    <div class="row"><span class="lab" style="width:100%">icon button</span>
+      <span class="btn icon-btn">${ic('plus')}</span><span class="btn icon-btn px-host on">${pixels(4, 4, 400)}${ic('heart')}</span>
+      <span class="btn icon-btn ghost">${ic('more')}</span><span class="btn icon-btn sm">${ic('x', 14)}</span>
+      <span class="btn primary">${'<span class="ldr" style="grid-template-columns:repeat(3,4px);gap:2px">' + [1,0,1,0,1,0,1,0,0].map(o => `<i style="width:4px;height:4px;background:${o ? 'var(--on-accent)' : 'color-mix(in srgb, var(--on-accent) 30%, transparent)'}"></i>`).join('') + '</span>'}Saving</span></div>`, 'span2');
+
+  const badges = cell('Link · Badge · Tag', '', `
+    <p style="font-size:14px">Read the <a class="link">installation guide</a> or browse <a class="link hover">all components</a>.</p>
+    <div class="row"><span class="badge">Default</span><span class="badge accent"><span class="dot"></span>New</span><span class="badge s"><span class="dot"></span>Live</span>
+      <span class="badge w">Beta</span><span class="badge d">Deprecated</span><span class="badge solid">v1.0</span></div>
+    <div class="row"><span class="tag">react${ic('x')}</span><span class="tag">tailwind v4${ic('x')}</span><span class="tag">radix${ic('x')}</span></div>`);
+
+  const inputs = cell('Input · Textarea', 'default · focus · error', `
+    <div class="field"><label>Email</label><div class="input"><span class="ph">you@studio.com</span></div></div>
+    <div class="field"><label>Project name</label><div class="input focus">Pixel Atelier<span class="caret"></span></div><span class="hint">Shown on your public page.</span></div>
+    <div class="field"><label>Website</label><div class="input error">studio,com</div><span class="err">${ic('alert', 13)}Enter a valid address.</span></div>
+    <div class="input">${ic('search')}<span class="ph">Search components</span><span class="r"><span class="kbd">⌘ K</span></span></div>
+    <div class="field"><label>Message</label><div class="input textarea"><span class="ph">Tell us about the project…</span></div></div>`);
+
+  const select = cell('Select · Combobox', 'open states', `
+    <div class="field"><label>Framework</label><div class="input focus">Next.js<span class="r">${ic('down')}</span></div></div>
+    <div class="list">
+      <div class="opt">Astro</div><div class="opt px-host hl">${pixels(30, 4, 400)}Next.js<span class="r">${ic('check', 14)}</span></div>
+      <div class="opt">Remix</div><div class="opt">Vite</div></div>
+    <div class="field" style="margin-top:6px"><label>Assignee</label><div class="input focus">${ic('search')}ar<span class="caret" style="margin-left:-7px"></span></div></div>
+    <div class="list"><div class="opt px-host hl">${pixels(30, 4, 400)}<span class="avatar" style="width:22px;height:22px;font-size:9px">AM</span><span><mark>Ar</mark>ia Moradi</span></div>
+      <div class="opt"><span class="avatar" style="width:22px;height:22px;font-size:9px">KR</span><span>Ka<mark>r</mark>en Ross</span></div></div>`);
+
+  const controls = cell('Checkbox · Radio · Switch · Slider', '', `
+    <div class="col"><div class="choice"><span class="check on">${ic('check')}</span>Email notifications</div>
+      <div class="choice"><span class="check"></span>Weekly digest</div>
+      <div class="choice"><span class="check on" style="color:var(--on-accent)"><svg class="i" viewBox="0 0 24 24" style="stroke-width:2.2"><path d="M6 12h12"/></svg></span>Select all (indeterminate)</div></div>
+    <div class="col"><div class="choice"><span class="radio on"></span>Monthly</div><div class="choice"><span class="radio"></span>Yearly <span class="badge accent" style="margin-left:4px">−20%</span></div></div>
+    <div class="col"><div class="choice"><span class="switch on"></span>Reduced motion</div><div class="choice"><span class="switch"></span>Compact density</div></div>
+    <div class="col"><div class="row" style="justify-content:space-between"><span style="font-size:13px">Pixel size</span><span class="mono muted">9 px</span></div>
+      <div class="slider"><div class="track"><div class="fill" style="width:56%"></div></div><span class="thumb" style="left:calc(56% - 8px)"></span></div></div>`);
+
+  const tabs = cell('Tabs · Accordion', '', `
+    <div class="tabs"><span class="tab on">Preview</span><span class="tab">Code</span><span class="tab">Props</span></div>
+    <div class="seg"><span class="on">Dark</span><span>Light</span><span>System</span></div>
+    <div><div class="acc-item open"><div class="h">Is it accessible?${ic('down')}</div><div class="c">Yes. Radix primitives handle focus and ARIA, and every effect also runs on keyboard focus.</div></div>
+      <div class="acc-item"><div class="h">Can I change the accent?${ic('down')}</div></div>
+      <div class="acc-item"><div class="h">Does it support RTL?${ic('down')}</div></div></div>`);
+
+  const fake = '<div class="fake">' + [60, 90, 75, 40, 85, 70, 50].map(w => `<i style="width:${w}%"></i>`).join('') + '</div>';
+  const dialog = cell('Dialog', 'modal · focus trapped', `<div class="screen">${fake}<div class="scrim"></div>
+    <div class="dialog"><span class="close">${ic('x')}</span><h4>Publish component?</h4><p>It will be added to the public registry and the npm package on the next release.</p>
+    <div class="row">${btn('Cancel', 'ghost sm')}${btn('Publish', 'primary sm')}</div></div></div>`);
+  const sheet = cell('Sheet · Drawer', 'side panel', `<div class="screen">${fake}<div class="scrim"></div>
+    <div class="sheet"><span class="close">${ic('x')}</span><h4>Filters</h4>
+      <div class="col"><span class="lab">category</span><div class="choice"><span class="check on">${ic('check')}</span>Buttons</div><div class="choice"><span class="check on">${ic('check')}</span>Overlays</div><div class="choice"><span class="check"></span>Forms</div></div>
+      <div class="col"><span class="lab">effects</span><div class="choice"><span class="switch on"></span>Pixel only</div></div>
+      ${btn('Apply', 'primary sm')}</div></div>`);
+
+  const overlays = cell('Popover · Tooltip · Dropdown', '', `
+    <div class="row" style="align-items:flex-start;gap:16px">
+      <div class="col" style="justify-items:center;gap:10px"><span class="tooltip">Copy to clipboard</span><span class="btn icon-btn">${ic('copy')}</span></div>
+      <div class="pop" style="flex:1"><div style="font-weight:500;margin-bottom:4px">Share link</div><div class="muted" style="font-size:12.5px;margin-bottom:10px">Anyone with the link can view.</div>
+        <div class="input" style="height:34px;font-size:12.5px"><span class="mono">pa.dev/s/9x2</span><span class="r">${ic('copy', 14)}</span></div></div></div>
+    <div class="list" style="width:240px">
+      <div class="group lab">ali@studio</div>
+      <div class="opt">${ic('user', 15)}Profile<span class="r"><span class="kbd">⇧ P</span></span></div>
+      <div class="opt px-host hl">${pixels(24, 4, 400)}${ic('gear', 15)}Settings<span class="r"><span class="kbd">⌘ ,</span></span></div>
+      <div class="sep"></div>
+      <div class="opt" style="color:var(--danger)">${ic('out', 15)}Sign out</div></div>`);
+
+  const command = cell('Command palette', '⌘ K', `<div class="cmd">
+    <div class="q">${ic('search', 18)}pix<span class="caret"></span><span class="kbd" style="margin-left:auto">esc</span></div>
+    <div class="ls"><div class="group lab">components</div>
+      <div class="opt px-host hl">${pixels(36, 4, 400)}${ic('file', 15)}<span><mark>Pix</mark>el button</span><span class="r">${ic('arrow', 14)}</span></div>
+      <div class="opt">${ic('file', 15)}<span><mark>Pix</mark>el image reveal</span></div>
+      <div class="opt">${ic('file', 15)}<span><mark>Pix</mark>el loader</span></div>
+      <div class="group lab">actions</div>
+      <div class="opt">${ic('sun', 15)}Switch to light theme<span class="r"><span class="kbd">⌘ L</span></span></div></div>
+    <div class="foot"><span><span class="kbd">↑</span><span class="kbd">↓</span>navigate</span><span><span class="kbd">↵</span>open</span></div></div>`);
+
+  const toasts = cell('Toast', 'stacked · with lifetime', `
+    <div class="toast"><span class="ic" style="color:var(--success)">${ic('ok')}</span><div><div class="t">Copied to clipboard</div><div class="m">pnpm add pixel-atelier</div></div><span class="act muted">${ic('x', 14)}</span><span class="life" style="width:62%"></span></div>
+    <div class="toast"><span class="ic" style="color:var(--danger)">${ic('alert')}</span><div><div class="t">Upload failed</div><div class="m">The file is larger than 5 MB.</div></div><span class="act">${btn('Retry', 'sm')}</span></div>
+    <div class="toast"><span class="ic" style="color:var(--info)">${ic('info')}</span><div><div class="t">New version available</div><div class="m">v1.2 adds the marquee.</div></div></div>`);
+
+  const cards = cell('Card · Avatar · Skeleton', '', `
+    <div class="card"><canvas class="media" data-art="2" style="width:100%;display:block"></canvas><div class="cb"><span class="lab">case study</span><h5>Atelier Noir</h5><span class="muted" style="font-size:13px">A fashion house site built on the kit.</span></div></div>
+    <div class="row" style="justify-content:space-between"><div class="row"><span class="avatar lg"><canvas data-av="1"></canvas><span class="status"></span></span>
+      <div><div style="font-weight:500">Ali Moradi</div><div class="muted" style="font-size:12.5px">Design engineer</div></div></div>
+      <div class="av-stack"><span class="avatar">AM</span><span class="avatar">KR</span><span class="avatar"><canvas data-av="2"></canvas></span><span class="avatar muted">+4</span></div></div>
+    <div class="row" style="align-items:flex-start"><span class="sk" style="width:48px;height:48px" data-sk></span><div class="col" style="flex:1"><span class="sk" style="height:12px;width:70%" data-sk></span><span class="sk" style="height:10px;width:90%" data-sk></span><span class="sk" style="height:10px;width:55%" data-sk></span></div></div>`);
+
+  const rows = [['Pixel button', 'Signature', 'success', 'Stable', '1.4'], ['Command palette', 'Overlay', 'success', 'Stable', '3.1'],
+    ['Image reveal', 'Signature', 'warning', 'Beta', '2.2'], ['Combobox', 'Form', 'success', 'Stable', '2.8'], ['Page transition', 'Signature', 'muted', 'Planned', '—']];
+  const table = cell('Table · Pagination · Breadcrumb', 'sortable · selectable', `
+    <div class="bc">${ic('home', 14)}<span>Docs</span>${ic('right')}<span>Components</span>${ic('right')}<span class="cur">Overview</span></div>
+    <table><thead><tr><th style="width:30px"><span class="check" style="width:16px;height:16px"></span></th><th>Component ${'↓'}</th><th>Group</th><th>Status</th><th class="num">kB gzip</th><th></th></tr></thead>
+    <tbody>${rows.map((r, i) => `<tr class="${i === 1 ? 'sel' : ''}"><td><span class="check ${i === 1 ? 'on' : ''}" style="width:16px;height:16px">${i === 1 ? ic('check') : ''}</span></td><td>${r[0]}</td><td class="muted">${r[1]}</td>
+      <td><span class="badge ${r[2] === 'success' ? 's' : r[2] === 'warning' ? 'w' : ''}"><span class="dot"></span>${r[3]}</span></td><td class="num">${r[4]}</td><td style="text-align:right;color:var(--muted)">${ic('more')}</td></tr>`).join('')}</tbody></table>
+    <div class="row" style="justify-content:space-between"><span class="muted" style="font-size:12.5px">1 of 42 selected</span>
+      <div class="pag"><span>${ic('right').replace('m9 6 6 6-6 6', 'm15 6-6 6 6 6')}</span><span class="on">1</span><span>2</span><span>3</span><span>…</span><span>9</span><span>${ic('right')}</span></div></div>`, 'span2');
+
+  const pbar = Array.from({ length: 40 }, (_, i) => `<i class="${i < 26 ? 'on' : ''}" style="${i >= 26 && i < 29 ? `opacity:${0.25 + noise(i) * .6};background:var(--accent)` : ''}"></i>`).join('');
+  const progress = cell('Progress', 'bar · pixel · steps', `
+    <div class="col"><div class="row" style="justify-content:space-between;font-size:13px"><span>Uploading assets</span><span class="mono muted">64%</span></div><div class="prog"><i style="width:64%"></i></div></div>
+    <div class="col"><div class="row" style="justify-content:space-between;font-size:13px"><span>Building registry</span><span class="mono muted">26 / 40</span></div><div class="prog-px">${pbar}</div></div>
+    <div class="row" style="gap:6px">${[1, 1, 1, 0, 0].map((o, i) => `<span style="flex:1;height:3px;background:${o ? 'var(--accent)' : 'var(--border)'}"></span>`).join('')}</div>
+    <div class="row muted" style="font-size:12px;justify-content:space-between"><span>Account</span><span>Team</span><span style="color:var(--text)">Theme</span><span>Billing</span><span>Done</span></div>`);
+
+  return hero('Core components', 'Every state,<br>both themes.', 'Radix primitives underneath; cva variants on top. Pixel effects appear only on hover, focus, open and loading, and always also on keyboard focus.')
+  + `<main><div class="cells" style="padding-top:8px">${buttons}<div style="display:grid;gap:20px">${badges}${progress}</div>${inputs}${select}${controls}${tabs}${dialog}${sheet}${overlays}${command}${toasts}${cards}${table}</div></main>`;
+}
+
+/* ================= Signature page ================= */
+function signaturePage() {
+  const frames = [0, 100, 200, 300, 400];
+  const pbtn = frames.map(t => `<div class="f">${btn('Start a project', 'lg', t, { cols: 20, rows: 5, after: 'arrow' })}<span class="mono muted">${t} ms</span></div>`).join('');
+  const pbtn2 = frames.map(t => `<div class="f">${btn('Download', 'primary lg', t, { cols: 14, rows: 5 })}<span class="mono muted">${t} ms</span></div>`).join('');
+
+  const items = [['01', 'Work'], ['02', 'Studio'], ['03', 'Journal'], ['04', 'Contact']];
+  const menu = `<div class="menu-screen"><div class="bar"><div class="row"><svg viewBox="0 0 8 8" style="width:22px;height:22px" shape-rendering="crispEdges">${document.getElementById('mark').innerHTML}</svg><span style="font-weight:500">pixel <span style="font-weight:300">atelier</span></span></div>
+    <span class="btn sm">${ic('x', 14)}Close</span></div><div class="menu-grid">${items.map(([n, l], i) => {
+      const t = i === 1 ? 400 : i === 2 ? 90 : -1;
+      const roll = i === 1 ? -100 : 0;
+      return `<div class="menu-cell px-host ${t >= 190 ? 'on' : ''}">${t >= 0 ? pixels(30, 10, t) : ''}<span class="no">${n}</span>
+        <span class="lbl"><span style="transform:translateY(${roll}%)">${l}</span><span style="transform:translateY(${roll}%)">${l}</span></span>${ic('arrow', 28)}</div>`; }).join('')}</div></div>`;
+
+  const reveal = [24, 12, 6, 3, 0].map((s, i) => `<div class="col"><canvas data-art="1" data-mosaic="${s}"></canvas><span class="mono muted">${['0 ms · 24 px', '150 ms · 12 px', '300 ms · 6 px', '450 ms · 3 px', '600 ms · sharp'][i]}</span></div>`).join('');
+
+  const target = 'Crafted with care';
+  const glyphs = '#%&*+=/<>[]{}01';
+  const scr = [0, .3, .55, .8, 1].map((p, k) => {
+    const out = [...target].map((ch, i) => {
+      if (ch === ' ') return ' ';
+      const done = i / target.length < p;
+      if (done) return ch;
+      const near = i / target.length < p + .25;
+      return near ? `<b>${glyphs[Math.floor(noise(i + k * 31) * glyphs.length)]}</b>` : `<em>${glyphs[Math.floor(noise(i * 7 + k) * glyphs.length)]}</em>`;
+    }).join('');
+    return `<div><span class="mono muted">${[0, 180, 360, 540, 720][k]} ms</span><span class="txt">${out}</span></div>`;
+  }).join('');
+
+  const L = (on, acc) => `<div class="ldr">${Array.from({ length: 9 }, (_, i) => `<i class="${i === acc ? 'acc' : on.includes(i) ? 'on' : ''}"></i>`).join('')}</div>`;
+  const loaders = `<div class="stage">${L([0, 1, 2, 5], 8)}<span class="lab">snake</span></div>
+    <div class="stage">${L([1, 3, 5, 7], 4)}<span class="lab">pulse</span></div>
+    <div class="stage"><div class="ldr" style="grid-template-columns:repeat(12,6px);gap:2px">${Array.from({ length: 24 }, (_, i) => `<i style="width:6px;height:6px;${noise(i * 3) > .55 ? 'background:var(--text)' : ''}${i === 9 ? ';background:var(--accent)' : ''}"></i>`).join('')}</div><span class="lab">noise</span></div>
+    <div class="stage"><div class="ticker">${['1', '2', '8'].map((d, i) => `<span class="dg"><span>${d}</span></span>`).join('')}<span style="color:var(--accent)">k</span></div><span class="lab">number ticker</span></div>`;
+
+  const spot = `<div class="grid3"><div class="spot"><div class="glow"></div><div class="grid"></div><span class="lab">spotlight card</span><h5>Follows the pointer</h5><span class="muted" style="font-size:13px">A soft accent glow and a pixel grid revealed under the cursor.</span></div>
+    <div class="spot" style="align-content:center;justify-items:center"><span class="btn lg primary" style="translate:10px -6px;box-shadow:0 18px 40px -12px color-mix(in srgb, var(--accent) 60%, transparent)">Magnetic${ic('arrow', 14)}</span><span class="muted mono" style="font-size:11.5px;margin-top:22px">pulled 10 px toward the pointer</span></div>
+    <div class="spot" style="align-content:center"><div class="marquee"><span>Tailwind v4<i></i>Radix<i></i>Motion<i></i>shadcn registry<i></i></span><span>Tailwind v4<i></i>Radix<i></i></span></div><span class="lab" style="margin-top:28px">marquee</span></div></div>`;
+
+  return hero('Signature components', 'Pixels at the<br>moment of touch.', 'Frames from each effect, frozen in time. Large effects use canvas or CSS masks instead of hundreds of elements; Motion only where CSS cannot do it.')
+  + `<main>`
+  + sec('01', 'Pixel button', 'hover / focus dissolve · 400 ms', `<div class="stage"><div class="frames">${pbtn}</div><div class="frames" style="margin-top:24px">${pbtn2}</div></div>`)
+  + sec('02', 'Full-screen menu', 'rolling labels · cell 02 hovered, cell 03 entering', menu)
+  + sec('03', 'Pixel image reveal', 'mosaic to sharp · one canvas', `<div class="reveal">${reveal}</div>`)
+  + sec('04', 'Text scramble', 'decrypts left to right · keeps its width', `<div class="stage scramble">${scr}</div>`)
+  + sec('05', 'Loaders · ticker', '', `<div class="loaders">${loaders}</div>`)
+  + sec('06', 'Spotlight · magnetic · marquee', '', spot)
+  + `</main>`;
+}
+
+document.getElementById('crumb').textContent = '/ ' + PAGE;
+document.getElementById('page').innerHTML = PAGE === 'tokens' ? tokensPage() : PAGE === 'core' ? corePage() : signaturePage();
+
+/* ---------- Canvas art (procedural stand-in for a photo) ---------- */
+function art(cv, variant) {
+  const w = cv.width = 400, h = cv.height = variant === 2 ? 120 : 500, x = cv.getContext('2d');
+  const g = x.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0, '#1d1a2b'); g.addColorStop(.55, '#7a4a3a'); g.addColorStop(1, '#e2a36a');
+  x.fillStyle = g; x.fillRect(0, 0, w, h);
+  x.fillStyle = '#f6d39a'; x.beginPath(); x.arc(w * .66, h * .52, Math.min(w, h) * .16, 0, 7); x.fill();
+  const hill = (y, c, a) => { x.fillStyle = c; x.beginPath(); x.moveTo(0, h);
+    for (let i = 0; i <= 40; i++) x.lineTo(i / 40 * w, y + Math.sin(i * a) * h * .05 + Math.cos(i * .7 * a) * h * .03); x.lineTo(w, h); x.fill(); };
+  hill(h * .62, '#3b2730', .35); hill(h * .74, '#24181f', .5); hill(h * .86, '#120d11', .7);
+}
+function mosaic(cv, size) {
+  if (!size) return;
+  const x = cv.getContext('2d'), w = cv.width, h = cv.height;
+  const t = document.createElement('canvas'); t.width = Math.ceil(w / size); t.height = Math.ceil(h / size);
+  t.getContext('2d').drawImage(cv, 0, 0, t.width, t.height);
+  x.imageSmoothingEnabled = false; x.clearRect(0, 0, w, h); x.drawImage(t, 0, 0, w, h);
+}
+document.querySelectorAll('canvas[data-art]').forEach(cv => { art(cv, +cv.dataset.art); mosaic(cv, +cv.dataset.mosaic * (400 / 260) | 0); });
+document.querySelectorAll('canvas[data-av]').forEach(cv => {
+  cv.width = cv.height = 6; const x = cv.getContext('2d'); const s = +cv.dataset.av;
+  for (let i = 0; i < 36; i++) { const n = noise(i * 5 + s * 17); x.fillStyle = n > .66 ? v('--accent') : n > .33 ? v('--text') : v('--raised'); x.fillRect(i % 6, Math.floor(i / 6), 1, 1); }
+});
+// Skeleton: a pixel shimmer band, frozen mid-sweep.
+document.querySelectorAll('[data-sk]').forEach((el, k) => {
+  const cols = Math.max(4, Math.round(el.offsetWidth / 8)), rows = Math.max(1, Math.round(el.offsetHeight / 8));
+  let s = ''; for (let i = 0; i < cols * rows; i++) { const c = i % cols / cols; const d = Math.abs(c - .45 - k * .03);
+    s += `<i style="background:var(--muted);opacity:${d < .18 && noise(i + k * 9) > .35 ? (.18 - d) * 1.4 : 0}"></i>`; }
+  el.innerHTML = `<span class="px" style="z-index:0;grid-template-columns:repeat(${cols},1fr)">${s}</span>`;
+});
+</script>
+</body>
+</html>
