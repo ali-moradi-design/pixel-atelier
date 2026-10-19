@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@import "pixel-atelier/theme.css";
+
+@source "../demos";
+@source "../components";
+
+:root {
+  --pa-font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --pa-font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+:root[lang="fa"] {
+  --pa-font-sans: var(--font-vazirmatn), var(--font-geist-sans), sans-serif;
+}
+
+html {
+  background: var(--pa-bg);
+  color: var(--pa-text);
+  font-family: var(--pa-font-sans);
+  -webkit-font-smoothing: antialiased;
+  scroll-padding-top: 5rem;
+}
+::selection {
+  background: var(--pa-accent);
+  color: var(--pa-on-accent);
+}
+
+/* Code blocks (Shiki dual themes). */
+.shiki,
+.shiki span {
+  color: var(--shiki-dark);
+  /* biome-ignore lint/complexity/noImportantStyles: overrides the inline background Shiki writes */
+  background-color: transparent !important;
+}
+[data-theme="light"] .shiki,
+[data-theme="light"] .shiki span {
+  color: var(--shiki-light);
+}
+@layer components {
+  .prose-pa p {
+    color: var(--pa-muted);
+    line-height: 1.7;
+    font-size: 0.9375rem;
+  }
+  .prose-pa code:not(pre code) {
+    font-family: var(--pa-font-mono);
+    font-size: 0.8125em;
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    background: var(--pa-raised);
+    color: var(--pa-text);
+  }
+}

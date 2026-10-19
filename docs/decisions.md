@@ -48,4 +48,13 @@ Decisions made after the brief (`brief.md`). Newer entries win.
   spotlight); canvas for large or per-frame effects (image reveal, page
   transition, cursor trail) that only animate while active and stop under
   reduced motion. No animation library: Motion was not needed.
+- Docs site: Next.js static export (`apps/docs/out`, plain files for Nginx),
+  using the kit from its built package like any app. Props tables are generated
+  from the TSDoc in `dist/**/*.d.ts`; each demo file is both the live example
+  and the code shown. Storybook is copied to `/storybook`.
+- shadcn registry: `apps/docs/scripts/registry.ts` generates `/r/<name>.json`
+  from `packages/ui/src` (base item with tokens, CSS and helpers; one item per
+  component with its sibling dependencies). Verified with `shadcn add`.
+- Persian RTL page at `/fa` with its own root layout (`lang="fa" dir="rtl"`,
+  Vazirmatn).
 
