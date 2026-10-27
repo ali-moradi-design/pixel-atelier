@@ -76,11 +76,12 @@ Local checks all pass; these are GitHub-only:
       `npm`, allowed: npm publish). `release.yml` passes no npm token;
       `pnpm publish` (pnpm 12) uses the OIDC token. 1.0.1 was published this
       way by "GitHub Actions" with provenance.
-- [x] Owner deleted the npm token (2026-10-27); publishing now needs no
-      token at all.
-- [ ] Owner: in the package's Publishing access, pick "Require two-factor
-      authentication and disallow bypass 2fa tokens". Optionally deprecate
-      `0.0.0-stage`.
+- [x] Owner deleted the npm token and the `NPM_TOKEN` secret (2026-10-27).
+      Trusted publisher status: Valid. Publishing access: "Require two-factor
+      authentication and disallow bypass 2fa tokens", so only `release.yml`
+      (or the owner with 2FA) can publish.
+- [ ] Optional: deprecate `0.0.0-stage` (`npm deprecate pixelbits@0.0.0-stage
+      "placeholder from staged publishing"`).
 - [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
       protection, branch protection on `main` (require CI and Security),
       required reviewer on the `npm` environment.
