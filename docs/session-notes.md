@@ -83,8 +83,7 @@ Local checks all pass; these are GitHub-only:
 - [ ] Optional: deprecate `0.0.0-stage` (`npm deprecate pixelbits@0.0.0-stage
       "placeholder from staged publishing"`).
 - [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
-      protection, branch protection on `main` (require CI and Security; more
-      important now that every merge deploys the docs site),
+      protection,
       required reviewer on the `npm` environment.
 - `shadcn add` works only after the docs deploy: the registry is served from
   `https://pixelbits.ali-moradi-develop.com/r/*.json`.
@@ -111,6 +110,15 @@ Local checks all pass; these are GitHub-only:
   (it cannot run any other command).
 - [ ] Upload `brand/social-preview.png` as the repository's social preview.
 - [ ] Decide on the font (Geist kept for now; the logo wordmark uses it).
+
+- [x] Ruleset `protect-main` on the default branch (2026-10-27): PR required
+      (0 approvals), no force push or deletion, branch must be up to date,
+      required checks: "Lint, types, unit tests, build, size", "Browser: axe
+      and visual regression", "Build on windows-latest", "Build on
+      macos-latest", "Workflow files are valid", "CodeQL", "Dependency
+      review". Not `pnpm audit` (a new advisory would block every PR).
+      Renaming a job means updating the ruleset. "Version packages" PR: close
+      and reopen it so the checks run (GITHUB_TOKEN events start no workflows).
 
 ## Ideas (not planned yet)
 
