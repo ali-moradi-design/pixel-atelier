@@ -11,7 +11,9 @@ keyboard focus too.
   stylesheet for apps without Tailwind.
 - Full TSDoc on every component and prop; WCAG AA colors; RTL ready.
 
-Docs and live demos: https://pixelbits.ali-moradi-develop.com
+Source and issues: https://github.com/ali-moradi-design/pixelbits
+(the docs site with live demos, https://pixelbits.ali-moradi-develop.com,
+is not online yet).
 
 ## Install
 
@@ -45,7 +47,8 @@ import { Input } from "pixelbits/input";
 <Button variant="primary">Subscribe</Button>
 ```
 
-Prefer to own the code? Every component is also a shadcn registry item:
+Prefer to own the code? Every component is also a shadcn registry item,
+served by the docs site (available once the site is online):
 
 ```sh
 npx shadcn add https://pixelbits.ali-moradi-develop.com/r/button.json
