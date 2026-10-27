@@ -11,8 +11,6 @@ Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
    - Done: the GitHub repo is now `ali-moradi-design/pixelbits`; all URLs
      updated. Old URLs redirect, but local clones should run
      `git remote set-url origin https://github.com/ali-moradi-design/pixelbits.git`.
-   - Owner: confirm the license of the persian-y font files allows shipping
-     them in a public repository.
    - Check the new Windows/macOS CI job on the first push.
 1. The owner wants a **walkthrough of the code from the beginning**, step by
    step, before going further. Do not explain everything at once; go in this
@@ -107,8 +105,7 @@ Local checks all pass; these are GitHub-only:
   secrets → artifact → deploy job in environment `docs` → rsync. The key
   `gha_pixelbits` is forced to `rrsync /srv/static/pixelbits` on the server
   (it cannot run any other command).
-- English UI font is Manrope (decided). Check whether the logo wordmark,
-  which used Geist, should move to Manrope too.
+- English UI font is Manrope (decided); the new logo is in `brand/`.
 
 - [x] Ruleset `protect-main` on the default branch (2026-10-27): PR required
       (0 approvals), no force push or deletion, branch must be up to date,
@@ -120,6 +117,11 @@ Local checks all pass; these are GitHub-only:
       and reopen it so the checks run (GITHUB_TOKEN events start no workflows).
 
 ## Ideas (not planned yet)
+
+- Keep `workspace:*` for `pixelbits` in the docs and Storybook apps (they show
+  the code that is about to ship). To test what npm users really get, add a
+  CI check on the packed tarball: `pnpm pack`, then publint and
+  are-the-types-wrong, then install it into a small Next app and build it.
 
 - Refactor Select/Combobox onto `usePopup` (smaller, one popup code path).
 - Run Storybook `play` interaction tests in CI (they exist, CI does not run them).
