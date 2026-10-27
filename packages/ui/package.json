@@ -51,7 +51,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsdown --log-level warn && node scripts/build-css.ts",
+    "build": "tsdown --log-level warn && node scripts/check-directives.ts && node scripts/build-css.ts",
     "typecheck": "tsc -p .",
     "test": "vitest run",
     "size": "size-limit && node scripts/css-size.ts"
