@@ -17,8 +17,8 @@ import {
 const out = new URL("../dist/", import.meta.url);
 mkdirSync(out, { recursive: true });
 
-const alpha = (hex: string, a: number) =>
-  `color-mix(in srgb, ${hex} ${Math.round(a * 100)}%, transparent)`;
+const alpha = (color: string, a: number) =>
+  `color-mix(in oklab, ${color} ${Math.round(a * 100)}%, transparent)`;
 
 function themeVars(t: ThemeName) {
   const v: string[] = [`color-scheme: ${t};`];
@@ -55,7 +55,7 @@ css += block(":root", statics);
 css += block(':root,\n[data-theme="dark"]', themeVars("dark"));
 css += block('[data-theme="light"]', themeVars("light"));
 css += `@media (prefers-color-scheme: light) {\n${block('[data-theme="system"]', themeVars("light"), "  ")}}\n`;
-css += `\n/* Accent themes: data-accent="jade" | "iris" | "ember" (gold is the default). */\n`;
+css += `\n/* Accent themes: data-accent="platinum" | "emerald" | "sapphire" | "ruby" | "amethyst" (gold is the default). */\n`;
 for (const name of Object.keys(accents) as (keyof typeof accents)[]) {
   if (name === defaultAccent) continue;
   css += block(`[data-accent="${name}"]`, accentVars(name, "dark"));

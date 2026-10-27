@@ -223,7 +223,7 @@ const itemClass = (danger: boolean) =>
     "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
     "aria-disabled:cursor-not-allowed aria-disabled:opacity-40",
     danger &&
-      "text-pb-danger [--px-fill:color-mix(in_srgb,var(--pb-danger)_12%,transparent)]",
+      "text-pb-danger [--px-fill:color-mix(in_oklab,var(--pb-danger)_12%,transparent)]",
   );
 
 function Shortcut({ value }: { value?: string }) {

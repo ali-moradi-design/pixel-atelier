@@ -11,7 +11,7 @@ const preview: Preview = {
       description: "Accent",
       toolbar: {
         icon: "paintbrush",
-        items: ["gold", "jade", "iris", "ember"],
+        items: ["gold", "platinum", "emerald", "sapphire", "ruby", "amethyst"],
         dynamicTitle: true,
       },
     },

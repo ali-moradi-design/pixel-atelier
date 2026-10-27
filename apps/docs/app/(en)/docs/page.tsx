@@ -53,8 +53,9 @@ export default function GettingStarted() {
       <p>
         Dark is the default. Set <code>data-theme="light"</code> (or <code>"system"</code>
         ) on <code>&lt;html&gt;</code> or on any element, and{" "}
-        <code>data-accent="jade" | "iris" | "ember"</code> to change the accent.
-        Components use logical properties, so <code>dir="rtl"</code> just works — see the{" "}
+        <code>data-accent="platinum" | "emerald" | "sapphire" | "ruby" | "amethyst"</code>{" "}
+        to change the accent. Components use logical properties, so <code>dir="rtl"</code>{" "}
+        just works — see the{" "}
         <a href="/fa/" className="text-pb-accent underline underline-offset-4">
           Persian demo
         </a>
@@ -62,7 +63,7 @@ export default function GettingStarted() {
       </p>
       <CodeBlock
         lang="html"
-        code={`<html lang="en" data-theme="light" data-accent="jade">`}
+        code={`<html lang="en" data-theme="light" data-accent="emerald">`}
       />
 
       <h2 className="mt-4 text-pb-h4 text-pb-text">Copy the source instead (shadcn)</h2>

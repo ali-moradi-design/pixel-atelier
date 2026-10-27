@@ -14,14 +14,14 @@ export const badgeVariants = cva(
       variant: {
         neutral: "border-pb-border-strong text-pb-muted",
         accent:
-          "border-transparent bg-[color-mix(in_srgb,var(--pb-accent)_12%,var(--pb-raised))] text-pb-accent",
+          "border-transparent bg-[color-mix(in_oklab,var(--pb-accent)_12%,var(--pb-raised))] text-pb-accent",
         success:
-          "border-transparent bg-[color-mix(in_srgb,var(--pb-success)_12%,var(--pb-raised))] text-pb-success",
+          "border-transparent bg-[color-mix(in_oklab,var(--pb-success)_12%,var(--pb-raised))] text-pb-success",
         warning:
-          "border-transparent bg-[color-mix(in_srgb,var(--pb-warning)_14%,var(--pb-raised))] text-pb-warning",
+          "border-transparent bg-[color-mix(in_oklab,var(--pb-warning)_14%,var(--pb-raised))] text-pb-warning",
         danger:
-          "border-transparent bg-[color-mix(in_srgb,var(--pb-danger)_12%,var(--pb-raised))] text-pb-danger",
-        info: "border-transparent bg-[color-mix(in_srgb,var(--pb-info)_12%,var(--pb-raised))] text-pb-info",
+          "border-transparent bg-[color-mix(in_oklab,var(--pb-danger)_12%,var(--pb-raised))] text-pb-danger",
+        info: "border-transparent bg-[color-mix(in_oklab,var(--pb-info)_12%,var(--pb-raised))] text-pb-info",
         solid: "border-transparent bg-pb-text text-pb-bg",
       },
     },

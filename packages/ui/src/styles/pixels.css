@@ -454,7 +454,7 @@
   background-image: linear-gradient(
     90deg,
     transparent 0 40%,
-    color-mix(in srgb, var(--pb-muted) 22%, transparent) 40% 60%,
+    color-mix(in oklab, var(--pb-muted) 22%, transparent) 40% 60%,
     transparent 60% 100%
   );
   background-size: 300% 100%;
@@ -596,7 +596,7 @@
 .pb-spotlight::before {
   background: radial-gradient(
     var(--pb-r, 260px) circle at var(--pb-x, 50%) var(--pb-y, 50%),
-    color-mix(in srgb, var(--pb-accent) 20%, transparent),
+    color-mix(in oklab, var(--pb-accent) 20%, transparent),
     transparent 70%
   );
 }
