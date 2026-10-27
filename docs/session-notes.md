@@ -66,18 +66,21 @@ Local checks all pass; these are GitHub-only:
 
 ## Open: owner actions (account settings)
 
-- Why `pnpm add pixelbits` and `shadcn add` do not work yet: nothing is
-  published. npm needs the token below; the shadcn registry is served by the
-  docs site (`https://pixelbits.ali-moradi-develop.com/r/*.json`), so it works
-  after the docs deploy.
-- [ ] npm: account with 2FA; check `npm view pixelbits` still 404s;
-      granular token as `NPM_TOKEN` secret, or trusted publishing.
+- [x] npm: account `ali-moradi-dev` with 2FA (security key; npm no longer
+      offers authenticator apps to new accounts), granular token as the
+      `NPM_TOKEN` secret, Actions allowed to create PRs.
+- [x] `pixelbits@1.0.0` published (2026-10-27) with provenance. npm staged
+      the first publish: it created a placeholder `0.0.0-stage` and released
+      1.0.0 a few minutes later without a manual approval.
+- [ ] Switch to trusted publishing (npmjs.com → pixelbits → Settings →
+      Trusted publisher: GitHub Actions, repo `ali-moradi-design/pixelbits`,
+      workflow `release.yml`, environment `npm`), then delete `NPM_TOKEN`
+      and the npm token. Optionally deprecate `0.0.0-stage`.
 - [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
       protection, branch protection on `main` (require CI and Security),
-      required reviewer on the `npm` environment, Actions allowed to create
-      PRs.
-- [ ] Merge the "Version packages" PR to publish 1.0.0; after the first
-      publish, switch to trusted publishing and delete `NPM_TOKEN`.
+      required reviewer on the `npm` environment.
+- `shadcn add` works only after the docs deploy: the registry is served from
+  `https://pixelbits.ali-moradi-develop.com/r/*.json`.
 - [ ] Deploy the docs (roadmap phase 7): `apps/docs/out` →
       `/srv/static/pixelbits`, Nginx config in `deploy/nginx/`, certbot.
 - [ ] Upload `brand/social-preview.png` as the repository's social preview.
