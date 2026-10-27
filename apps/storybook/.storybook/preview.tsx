@@ -1,5 +1,6 @@
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react-vite";
+import { ThemedDocsContainer } from "./docs-container";
 import "./styles.css";
 
 const preview: Preview = {
@@ -35,8 +36,8 @@ const preview: Preview = {
     layout: "centered",
     backgrounds: { disable: true },
     a11y: { test: "error" },
-    // Code samples on docs pages: always the dark block (readable in both themes).
-    docs: { source: { dark: true } },
+    // Docs pages (code blocks, tables, inline code) follow the theme toggle.
+    docs: { container: ThemedDocsContainer },
   },
   tags: ["autodocs"],
 };
