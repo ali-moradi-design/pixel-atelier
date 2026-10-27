@@ -11,7 +11,6 @@ Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
    - Done: the GitHub repo is now `ali-moradi-design/pixelbits`; all URLs
      updated. Old URLs redirect, but local clones should run
      `git remote set-url origin https://github.com/ali-moradi-design/pixelbits.git`.
-   - Check the new Windows/macOS CI job on the first push.
 1. The owner wants a **walkthrough of the code from the beginning**, step by
    step, before going further. Do not explain everything at once; go in this
    order and wait for questions after each part:
@@ -56,8 +55,9 @@ Local checks all pass; these are GitHub-only:
       with the "Update visual baselines" workflow.
 - [x] `Release` workflow: `changesets/action` v2 renamed its inputs
       (`publish-script`, `version-script`, `pr-title`, `commit-message`).
-      Fixed. Next run shows whether "Allow GitHub Actions to create and
-      approve pull requests" also needs turning on.
+      Fixed; later runs are green and 1.0.1 shipped through it, so no extra
+      repository setting was needed.
+- [x] Windows/macOS build jobs: green on main (required checks).
 - Local note: in the cloud session `turbo` cannot spawn tasks ("Exec format
   error"); run `pnpm -r run build|typecheck|test` instead there.
 - [ ] Watch the first CodeQL results in the Security tab.
@@ -116,19 +116,6 @@ Local checks all pass; these are GitHub-only:
       Renaming a job means updating the ruleset. "Version packages" PR: close
       and reopen it so the checks run (GITHUB_TOKEN events start no workflows).
 
-## Ideas (not planned yet)
-
-- Keep `workspace:*` for `pixelbits` in the docs and Storybook apps (they show
-  the code that is about to ship). To test what npm users really get, add a
-  CI check on the packed tarball: `pnpm pack`, then publint and
-  are-the-types-wrong, then install it into a small Next app and build it.
-
-- Refactor Select/Combobox onto `usePopup` (smaller, one popup code path).
-- Run Storybook `play` interaction tests in CI (they exist, CI does not run them).
-- Visual tests in the light theme and at phone width.
-- Positioning helper: collision handling beyond flip and clamp.
-- Server-side security tests for the demo apps that have a database
-  (see "Forms in apps with a server and a database" in `docs/security.md`).
 
 ## Working rules (from the owner)
 
