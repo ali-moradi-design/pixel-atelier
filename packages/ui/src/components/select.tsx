@@ -205,15 +205,15 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(function Select
         }}
         className={cx(
           controlFrame({ size }),
-          "cursor-pointer text-start outline-none disabled:cursor-not-allowed aria-expanded:border-pa-accent",
+          "cursor-pointer text-start outline-none disabled:cursor-not-allowed aria-expanded:border-pb-accent",
           className,
         )}
       >
         {current?.icon}
-        <span className={cx("min-w-0 flex-1 truncate", !current && "text-pa-muted")}>
+        <span className={cx("min-w-0 flex-1 truncate", !current && "text-pb-muted")}>
           {current?.label ?? placeholder}
         </span>
-        <ChevronDownIcon className="transition-transform duration-pa-fast group-aria-expanded/control:rotate-180" />
+        <ChevronDownIcon className="transition-transform duration-pb-fast group-aria-expanded/control:rotate-180" />
       </button>
       {name && <input type="hidden" name={name} value={value} />}
       <div

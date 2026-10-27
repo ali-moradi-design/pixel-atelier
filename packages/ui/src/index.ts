@@ -1,4 +1,4 @@
-// Every component is also importable from its own entry ("pixel-atelier/button"),
+// Every component is also importable from its own entry ("pixelbits/button"),
 // and this barrel is side-effect free, so unused components are tree-shaken.
 
 export * from "./blocks/feature-grid.tsx";

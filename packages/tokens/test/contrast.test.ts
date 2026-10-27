@@ -4,7 +4,7 @@ import { accents, onAccent, themes } from "../src/tokens.ts";
 
 const AA = 4.5;
 
-/** `fg` at `p` opacity over `bg`, like `bg-pa-success/14` in CSS. */
+/** `fg` at `p` opacity over `bg`, like `bg-pb-success/14` in CSS. */
 function tint(fg: string, bg: string, p: number) {
   const ch = (h: string, i: number) => Number.parseInt(h.slice(i, i + 2), 16);
   return `#${[1, 3, 5]

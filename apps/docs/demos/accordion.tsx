@@ -1,4 +1,4 @@
-import { Accordion, AccordionItem } from "pixel-atelier/accordion";
+import { Accordion, AccordionItem } from "pixelbits/accordion";
 
 export default function Demo() {
   return (

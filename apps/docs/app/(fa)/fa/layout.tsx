@@ -2,7 +2,7 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
-import { Toaster } from "pixel-atelier/toast";
+import { Toaster } from "pixelbits/toast";
 import type { ReactNode } from "react";
 import "../../globals.css";
 
@@ -14,11 +14,11 @@ const vazir = Vazirmatn({
 
 export const metadata: Metadata = {
   title: "پیکسل آتلیه — نمایش راست‌به‌چپ",
-  description: "همهٔ کامپوننت‌های Pixel Atelier در جهت راست‌به‌چپ و به زبان فارسی.",
+  description: "همهٔ کامپوننت‌های Pixelbits در جهت راست‌به‌چپ و به زبان فارسی.",
   icons: { icon: "/favicon.svg" },
 };
 
-const restoreTheme = `try{var t=localStorage.getItem("pa-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}`;
+const restoreTheme = `try{var t=localStorage.getItem("pb-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}`;
 
 export default function FaLayout({ children }: { children: ReactNode }) {
   return (

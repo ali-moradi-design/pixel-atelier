@@ -16,7 +16,7 @@ export interface CursorTrailProps {
   life?: number;
   /**
    * Square color; any CSS color.
-   * @default "var(--pa-accent)"
+   * @default "var(--pb-accent)"
    */
   color?: string;
 }
@@ -35,7 +35,7 @@ export interface CursorTrailProps {
 export function CursorTrail({
   size = 10,
   life = 500,
-  color = "var(--pa-accent)",
+  color = "var(--pb-accent)",
 }: CursorTrailProps) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {

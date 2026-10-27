@@ -75,11 +75,11 @@ export function Pagination({
     opts: { label?: string; current?: boolean; disabled?: boolean } = {},
   ) => {
     const cls = cx(
-      "inline-grid h-8 min-w-8 place-items-center rounded-[2px] px-1.5 font-pa-mono text-xs outline-none transition-colors duration-pa-fast",
-      "focus-visible:outline-2 focus-visible:outline-pa-accent",
+      "inline-grid h-8 min-w-8 place-items-center rounded-[2px] px-1.5 font-pb-mono text-xs outline-none transition-colors duration-pb-fast",
+      "focus-visible:outline-2 focus-visible:outline-pb-accent",
       opts.current
-        ? "bg-pa-text text-pa-bg"
-        : "text-pa-muted hover:bg-pa-raised hover:text-pa-text",
+        ? "bg-pb-text text-pb-bg"
+        : "text-pb-muted hover:bg-pb-raised hover:text-pb-text",
       opts.disabled && "pointer-events-none opacity-35",
     );
     const common = {
@@ -123,7 +123,7 @@ export function Pagination({
             {p === "…" ? (
               <span
                 aria-hidden="true"
-                className="inline-grid h-8 min-w-8 place-items-center font-pa-mono text-xs text-pa-faint"
+                className="inline-grid h-8 min-w-8 place-items-center font-pb-mono text-xs text-pb-faint"
               >
                 …
               </span>

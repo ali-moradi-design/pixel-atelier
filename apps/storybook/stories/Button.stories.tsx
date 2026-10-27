@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "pixel-atelier/button";
-import { IconButton } from "pixel-atelier/icon-button";
+import { Button } from "pixelbits/button";
+import { IconButton } from "pixelbits/icon-button";
 import { expect, userEvent, within } from "storybook/test";
 
 const meta = {
@@ -110,7 +110,7 @@ export const KeyboardFocus: Story = {
     const button = canvas.getByRole("button");
     await expect(button).toHaveFocus();
     await expect(
-      button.querySelector("[data-pa-pixels]")?.childElementCount,
+      button.querySelector("[data-pb-pixels]")?.childElementCount,
     ).toBeGreaterThan(0);
   },
 };

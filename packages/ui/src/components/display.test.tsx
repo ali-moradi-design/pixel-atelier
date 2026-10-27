@@ -151,7 +151,7 @@ describe("Breadcrumb, Table, Progress, Card, Skeleton", () => {
       </>,
     );
     expect(screen.getByRole("heading", { name: "Atelier Noir" })).toBeInTheDocument();
-    expect(container.querySelector(".pa-skeleton")).toHaveAttribute(
+    expect(container.querySelector(".pb-skeleton")).toHaveAttribute(
       "aria-hidden",
       "true",
     );

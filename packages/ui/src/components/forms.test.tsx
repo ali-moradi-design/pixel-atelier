@@ -105,10 +105,10 @@ describe("Checkbox, Radio, Switch, Slider", () => {
       />,
     );
     const slider = screen.getByRole("slider", { name: "Pixel size" });
-    expect(slider.style.getPropertyValue("--pa-fill")).toBe("25%");
+    expect(slider.style.getPropertyValue("--pb-fill")).toBe("25%");
     fireEvent.change(slider, { target: { value: "10" } });
     expect(onValueChange).toHaveBeenCalledWith(10);
-    expect(slider.style.getPropertyValue("--pa-fill")).toBe("50%");
+    expect(slider.style.getPropertyValue("--pb-fill")).toBe("50%");
   });
 });
 

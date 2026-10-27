@@ -75,11 +75,11 @@ export function Hero({
             {eyebrow}
           </Badge>
         )}
-        <h1 className="max-w-3xl text-pa-display font-light text-balance">
+        <h1 className="max-w-3xl text-pb-display font-light text-balance">
           {scramble && typeof title === "string" ? <TextScramble text={title} /> : title}
         </h1>
         {description && (
-          <p className="max-w-xl text-pa-body-lg text-pa-muted text-pretty">
+          <p className="max-w-xl text-pb-body-lg text-pb-muted text-pretty">
             {description}
           </p>
         )}

@@ -14,7 +14,7 @@ export interface PixelSpinnerProps extends HTMLAttributes<HTMLSpanElement> {
  *
  * @example
  * ```tsx
- * <PixelSpinner label="Uploading" className="text-pa-accent" />
+ * <PixelSpinner label="Uploading" className="text-pb-accent" />
  * ```
  */
 export function PixelSpinner({
@@ -26,7 +26,7 @@ export function PixelSpinner({
     <span
       role="status"
       aria-label={label}
-      className={`pa-spinner ${className ?? ""}`}
+      className={`pb-spinner ${className ?? ""}`}
       {...props}
     >
       {[0, 1, 2, 5, 8, 7, 6, 3].map((cell, i) => (

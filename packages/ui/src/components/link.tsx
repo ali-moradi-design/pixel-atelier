@@ -7,18 +7,18 @@ import { Slot } from "../lib/slot.tsx";
  * elements the same way, e.g. `className={linkVariants({ variant: "pixel" })}`.
  */
 export const linkVariants = cva(
-  "rounded-pa-xs outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent",
+  "rounded-pb-xs outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
   {
     variants: {
       variant: {
         /** Classic underline that turns to the accent. */
         underline:
-          "text-pa-text underline decoration-pa-border-strong decoration-1 underline-offset-4 transition-colors duration-pa-fast hover:text-pa-accent hover:decoration-pa-accent",
+          "text-pb-text underline decoration-pb-border-strong decoration-1 underline-offset-4 transition-colors duration-pb-fast hover:text-pb-accent hover:decoration-pb-accent",
         /** A hairline that fills in eight pixel steps on hover or focus. */
-        pixel: "pa-link-px text-pa-text hover:text-pa-accent",
+        pixel: "pb-link-px text-pb-text hover:text-pb-accent",
         /** No decoration (navigation, cards). */
         plain:
-          "text-inherit no-underline hover:text-pa-accent transition-colors duration-pa-fast",
+          "text-inherit no-underline hover:text-pb-accent transition-colors duration-pb-fast",
       },
     },
     defaultVariants: { variant: "underline" },

@@ -1,5 +1,5 @@
-import { Button } from "pixel-atelier/button";
-import { Magnetic } from "pixel-atelier/magnetic";
+import { Button } from "pixelbits/button";
+import { Magnetic } from "pixelbits/magnetic";
 
 export default function Demo() {
   return (

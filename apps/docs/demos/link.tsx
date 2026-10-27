@@ -1,4 +1,4 @@
-import { Link } from "pixel-atelier/link";
+import { Link } from "pixelbits/link";
 
 export default function Demo() {
   return (

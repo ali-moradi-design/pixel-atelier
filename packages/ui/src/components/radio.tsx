@@ -91,7 +91,7 @@ export function RadioGroup({
     >
       <RadioGroupContext.Provider
         value={{
-          name: nameProp ?? `pa-radio-${auto}`,
+          name: nameProp ?? `pb-radio-${auto}`,
           value,
           setValue: setValue as (v: string) => void,
           disabled,
@@ -139,26 +139,26 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
         onChange={() => group?.setValue(value)}
         {...props}
         className={cx(
-          "peer size-full cursor-pointer appearance-none rounded-full border border-pa-border-strong bg-pa-bg outline-none",
-          "checked:border-pa-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent",
+          "peer size-full cursor-pointer appearance-none rounded-full border border-pb-border-strong bg-pb-bg outline-none",
+          "checked:border-pb-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
           "disabled:cursor-not-allowed disabled:opacity-40",
           className,
         )}
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute size-2 scale-0 bg-pa-accent transition-transform duration-pa-fast [transition-timing-function:steps(2,end)] peer-checked:scale-100"
+        className="pointer-events-none absolute size-2 scale-0 bg-pb-accent transition-transform duration-pb-fast [transition-timing-function:steps(2,end)] peer-checked:scale-100"
       />
     </span>
   );
   if (!label) return input;
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: the input is inside `control`
-    <label className="inline-flex cursor-pointer items-start gap-2.5 text-sm text-pa-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
+    <label className="inline-flex cursor-pointer items-start gap-2.5 text-sm text-pb-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
       <span className="mt-px">{input}</span>
       <span className="grid gap-0.5">
         <span>{label}</span>
-        {description && <span className="text-xs text-pa-muted">{description}</span>}
+        {description && <span className="text-xs text-pb-muted">{description}</span>}
       </span>
     </label>
   );

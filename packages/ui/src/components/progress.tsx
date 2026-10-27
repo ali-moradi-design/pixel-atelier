@@ -62,10 +62,10 @@ export function Progress({
   return (
     <div className={cx("grid gap-1.5", className)}>
       {label && (
-        <div className="flex items-baseline justify-between gap-3 text-[0.8125rem] text-pa-text">
+        <div className="flex items-baseline justify-between gap-3 text-[0.8125rem] text-pb-text">
           <span>{label}</span>
           {showValue && determinate && (
-            <span className="font-pa-mono text-xs text-pa-muted tabular-nums">
+            <span className="font-pb-mono text-xs text-pb-muted tabular-nums">
               {pct}%
             </span>
           )}
@@ -81,8 +81,8 @@ export function Progress({
         {...props}
         className={cx(
           "relative overflow-hidden",
-          variant === "bar" ? "h-1.5 bg-pa-border" : "grid h-2 gap-0.5",
-          !determinate && "pa-progress-indeterminate",
+          variant === "bar" ? "h-1.5 bg-pb-border" : "grid h-2 gap-0.5",
+          !determinate && "pb-progress-indeterminate",
         )}
         style={
           variant === "pixel"
@@ -93,7 +93,7 @@ export function Progress({
         {variant === "bar"
           ? determinate && (
               <span
-                className="absolute inset-y-0 start-0 bg-pa-accent transition-[width] duration-pa-slow ease-pa-out"
+                className="absolute inset-y-0 start-0 bg-pb-accent transition-[width] duration-pb-slow ease-pb-out"
                 style={{ width: `${pct}%` }}
               />
             )
@@ -103,8 +103,8 @@ export function Progress({
                 key={i}
                 className={cx(
                   "block",
-                  determinate && i < lit ? "bg-pa-accent" : "bg-pa-border",
-                  determinate && i >= lit && i < lit + 3 && "pa-progress-edge",
+                  determinate && i < lit ? "bg-pb-accent" : "bg-pb-border",
+                  determinate && i >= lit && i < lit + 3 && "pb-progress-edge",
                 )}
                 style={
                   determinate && i >= lit && i < lit + 3

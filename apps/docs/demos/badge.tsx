@@ -1,4 +1,4 @@
-import { Badge } from "pixel-atelier/badge";
+import { Badge } from "pixelbits/badge";
 
 export default function Demo() {
   return (

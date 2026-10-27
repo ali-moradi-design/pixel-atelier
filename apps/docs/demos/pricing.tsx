@@ -1,4 +1,4 @@
-import { Pricing } from "pixel-atelier/blocks/pricing";
+import { Pricing } from "pixelbits/blocks/pricing";
 
 export default function Demo() {
   return (

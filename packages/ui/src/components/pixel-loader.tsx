@@ -61,11 +61,11 @@ export function PixelLoader({
       role="status"
       aria-label={label}
       data-variant={variant}
-      className={cx("pa-loader inline-grid", className)}
+      className={cx("pb-loader inline-grid", className)}
       style={
         {
-          "--pa-cell": `${size}px`,
-          gridTemplateColumns: `repeat(${variant === "noise" ? 12 : 3}, var(--pa-cell))`,
+          "--pb-cell": `${size}px`,
+          gridTemplateColumns: `repeat(${variant === "noise" ? 12 : 3}, var(--pb-cell))`,
           gap: Math.max(1, Math.round(size / 3)),
           ...style,
         } as CSSProperties

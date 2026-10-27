@@ -1,4 +1,4 @@
-// Builds the Pixel Atelier logo files from one pixel grid.
+// Builds the Pixelbits logo files from one pixel grid.
 import fs from 'node:fs';
 import opentype from 'opentype.js';
 import { chromium } from 'playwright';
@@ -51,11 +51,11 @@ const GAP = 0;
 const m = cells(10, GAP);
 const markW = 8 * 10 - 10 * GAP;
 for (const t of ['dark', 'light']) {
-  files[`mark-on-${t}.svg`] = svg(markW, markW, `<title>Pixel Atelier</title>` + paths(m, C[t].ink, C[t].acc), ' role="img"');
+  files[`mark-on-${t}.svg`] = svg(markW, markW, `<title>Pixelbits</title>` + paths(m, C[t].ink, C[t].acc), ' role="img"');
 }
-files['mark-mono.svg'] = svg(markW, markW, `<title>Pixel Atelier</title>` + paths(m, 'currentColor', 'currentColor'), ' role="img"');
+files['mark-mono.svg'] = svg(markW, markW, `<title>Pixelbits</title>` + paths(m, 'currentColor', 'currentColor'), ' role="img"');
 
-// Wordmark "pixel atelier" as outlines: "pixel" medium, "atelier" light.
+// Wordmark "pixelbits" as outlines: "pixel" medium, "atelier" light.
 const SIZE = 52;
 function wordmark(x, baseline) {
   const a = medium.getPath('pixel', x, baseline, SIZE);
@@ -75,10 +75,10 @@ const logoW = Math.ceil(TX + wm.width);
 const logoH = Math.ceil(Math.max(markW, baseline + desc * 0.85));
 for (const t of ['dark', 'light']) {
   files[`logo-on-${t}.svg`] = svg(logoW, logoH,
-    `<title>Pixel Atelier</title>` + paths(m, C[t].ink, C[t].acc) + `<path fill="${C[t].ink}" d="${wm.d}"/>`, ' role="img"');
+    `<title>Pixelbits</title>` + paths(m, C[t].ink, C[t].acc) + `<path fill="${C[t].ink}" d="${wm.d}"/>`, ' role="img"');
 }
 files['logo-mono.svg'] = svg(logoW, logoH,
-  `<title>Pixel Atelier</title>` + paths(m, 'currentColor', 'currentColor') + `<path fill="currentColor" d="${wm.d}"/>`, ' role="img"');
+  `<title>Pixelbits</title>` + paths(m, 'currentColor', 'currentColor') + `<path fill="currentColor" d="${wm.d}"/>`, ' role="img"');
 
 // Favicon: no seams (2 px per cell at 16 px), ink follows the browser theme.
 const f = cells(2, 0);

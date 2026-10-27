@@ -8,13 +8,13 @@ import { linkVariants } from "../src/components/link.tsx";
 // This checks every variant combination for the families that clash in practice.
 const families: [string, RegExp][] = [
   ["background", /^bg-/],
-  ["text color", /^text-(pa-|inherit$|current$|transparent$)/],
+  ["text color", /^text-(pb-|inherit$|current$|transparent$)/],
   ["font size", /^text-(xs|sm|base|lg|xl|\d?xl|\[[\d.]+(rem|px)\])$/],
   ["height", /^h-/],
   ["size", /^size-/],
   ["inline padding", /^(px|p)-/],
   ["radius", /^rounded-/],
-  ["border color", /^border-(pa-|transparent$)/],
+  ["border color", /^border-(pb-|transparent$)/],
 ];
 
 function conflicts(className: string) {

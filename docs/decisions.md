@@ -13,7 +13,7 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 - Everything is written from scratch. Other kits (KokonutUI, shadcn/ui) are
   studied for ideas and quality bar only; no code is copied from them.
 - Performance and bundle size are first-class requirements:
-  - ESM only, one entry point per component (`pixel-atelier/button`),
+  - ESM only, one entry point per component (`pixelbits/button`),
     `"sideEffects"` limited to CSS files, so bundlers tree-shake everything
     that is not imported.
   - CSS first; Motion only where CSS cannot do it, and then with `LazyMotion`
@@ -30,7 +30,7 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 - No `tailwind-merge` (about 7 kB): `className` is appended to the component's
   classes. Our own `Slot` replaces `@radix-ui/react-slot` (saves about 0.8 kB per
   component).
-- Tailwind utilities from the kit are prefixed `pa-` (`bg-pa-surface`) so they
+- Tailwind utilities from the kit are prefixed `pb-` (`bg-pb-surface`) so they
   never clash with an app's own theme (for example shadcn's `accent`).
 - Platform primitives before Radix: checkbox, radio, switch and slider are styled
   native inputs; popups (Select, Combobox, later menus and popovers) use the
@@ -58,7 +58,7 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 - Persian RTL page at `/fa` with its own root layout (`lang="fa" dir="rtl"`,
   Vazirmatn).
 - v1.0 adds five blocks (Hero, FeatureGrid, Pricing, SiteHeader, SiteFooter) as
-  `pixel-atelier/blocks/*` and `block-*` registry items.
+  `pixelbits/blocks/*` and `block-*` registry items.
 - Browser checks (`apps/storybook/browser`, Playwright on the built
   Storybook): axe with color contrast in both themes, and screenshot
   comparison of ten key stories plus one hover state. They found real light
@@ -67,7 +67,7 @@ Decisions made after the brief (`brief.md`). Newer entries win.
   colors on their tinted backgrounds too. Baselines are refreshed with the
   "Update visual baselines" workflow after intended changes.
 - Releases: Changesets + `.github/workflows/release.yml` (npm provenance). The
-  first changeset bumps `pixel-atelier` to 1.0.0; publishing waits for the
+  first changeset bumps `pixelbits` to 1.0.0; publishing waits for the
   `NPM_TOKEN` secret (see `docs/release.md`).
 - Security (see docs/security.md): XSS test suite and banned-API guard for the
   package; pnpm supply-chain policies (minimumReleaseAge, trustPolicy,

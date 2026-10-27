@@ -166,16 +166,16 @@ export function CommandPalette({
       onOpenChange={setOpen}
       aria-label={label}
       closeButton={false}
-      className="pa-command [&>div]:w-[min(36rem,calc(100vw-2rem))] [&>div]:gap-0 [&>div]:p-0"
+      className="pb-command [&>div]:w-[min(36rem,calc(100vw-2rem))] [&>div]:gap-0 [&>div]:p-0"
     >
-      <div className="flex items-center gap-2.5 border-b border-pa-border px-4">
+      <div className="flex items-center gap-2.5 border-b border-pb-border px-4">
         <svg
           aria-hidden="true"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
-          className="size-[1.125rem] shrink-0 text-pa-muted"
+          className="size-[1.125rem] shrink-0 text-pb-muted"
         >
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3.5-3.5" />
@@ -195,9 +195,9 @@ export function CommandPalette({
           }}
           onKeyDown={onKeyDown}
           placeholder={placeholder}
-          className="h-[3.25rem] min-w-0 flex-1 bg-transparent text-[0.9375rem] text-pa-text outline-none placeholder:text-pa-muted"
+          className="h-[3.25rem] min-w-0 flex-1 bg-transparent text-[0.9375rem] text-pb-text outline-none placeholder:text-pb-muted"
         />
-        <kbd className="rounded-[3px] border border-b-2 border-pa-border-strong px-1.5 py-0.5 font-pa-mono text-[0.625rem] text-pa-muted">
+        <kbd className="rounded-[3px] border border-b-2 border-pb-border-strong px-1.5 py-0.5 font-pb-mono text-[0.625rem] text-pb-muted">
           esc
         </kbd>
       </div>
@@ -208,7 +208,7 @@ export function CommandPalette({
         className="max-h-[min(22rem,60vh)] overflow-auto p-1.5"
       >
         {shown.length === 0 && (
-          <div className="px-3 py-6 text-center text-[0.8125rem] text-pa-muted">
+          <div className="px-3 py-6 text-center text-[0.8125rem] text-pb-muted">
             {emptyText}
           </div>
         )}
@@ -218,7 +218,7 @@ export function CommandPalette({
           return (
             <div key={c.id}>
               {heading && (
-                <div className="px-2.5 pt-2.5 pb-1 font-pa-mono text-[0.625rem] font-medium uppercase tracking-[0.12em] text-pa-muted">
+                <div className="px-2.5 pt-2.5 pb-1 font-pb-mono text-[0.625rem] font-medium uppercase tracking-[0.12em] text-pb-muted">
                   {heading}
                 </div>
               )}
@@ -232,15 +232,15 @@ export function CommandPalette({
                 onClick={() => run(c)}
                 tabIndex={-1}
                 className={cx(
-                  "pa-px-host flex h-10 cursor-pointer items-center gap-2.5 rounded-pa-xs px-2.5 text-sm [--px-fill:var(--pa-accent-subtle)] [--px-ink:var(--pa-text)] [&_svg]:size-4 [&_svg]:text-pa-muted",
-                  "data-highlighted:before:absolute data-highlighted:before:inset-y-2.5 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pa-accent",
+                  "pb-px-host flex h-10 cursor-pointer items-center gap-2.5 rounded-pb-xs px-2.5 text-sm [--px-fill:var(--pb-accent-subtle)] [--px-ink:var(--pb-text)] [&_svg]:size-4 [&_svg]:text-pb-muted",
+                  "data-highlighted:before:absolute data-highlighted:before:inset-y-2.5 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
                 )}
               >
                 <Pixels />
                 {c.icon}
                 <span className="truncate">{c.label}</span>
                 {c.shortcut && (
-                  <kbd className="ms-auto rounded-[3px] border border-b-2 border-pa-border-strong px-1.5 py-0.5 font-pa-mono text-[0.625rem] text-pa-muted">
+                  <kbd className="ms-auto rounded-[3px] border border-b-2 border-pb-border-strong px-1.5 py-0.5 font-pb-mono text-[0.625rem] text-pb-muted">
                     {c.shortcut}
                   </kbd>
                 )}

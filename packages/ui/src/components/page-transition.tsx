@@ -35,7 +35,7 @@ export interface PixelTransitionProps {
   duration?: number;
   /**
    * Fill color; any CSS color.
-   * @default "var(--pa-text)"
+   * @default "var(--pb-text)"
    */
   color?: string;
 }
@@ -55,7 +55,7 @@ export interface PixelTransitionProps {
 export function PixelTransition({
   size = 32,
   duration = 480,
-  color = "var(--pa-text)",
+  color = "var(--pb-text)",
 }: PixelTransitionProps) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {

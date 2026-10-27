@@ -29,7 +29,7 @@ export function Skeleton({ shape = "block", className, ...props }: SkeletonProps
     <div
       aria-hidden="true"
       className={cx(
-        "pa-skeleton rounded-[2px]",
+        "pb-skeleton rounded-[2px]",
         shape === "text" ? "h-[0.8em] w-full" : shape === "square" ? "size-9" : "min-h-4",
         className,
       )}

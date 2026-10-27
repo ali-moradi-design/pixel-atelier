@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { CommandPalette } from "pixel-atelier/command-palette";
-import { IconButton } from "pixel-atelier/icon-button";
-import { toast } from "pixel-atelier/toast";
+import { CommandPalette } from "pixelbits/command-palette";
+import { IconButton } from "pixelbits/icon-button";
+import { toast } from "pixelbits/toast";
 import { useEffect, useState } from "react";
 import { catalog } from "@/lib/catalog";
 
@@ -24,7 +24,7 @@ export function ThemeToggle() {
       onClick={() => {
         document.documentElement.dataset.theme = next;
         try {
-          localStorage.setItem("pa-theme", next);
+          localStorage.setItem("pb-theme", next);
         } catch {}
         setTheme(next);
       }}
@@ -64,10 +64,10 @@ export function SiteSearch() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="hidden h-8 w-52 cursor-pointer items-center gap-2 rounded-pa-sm border border-pa-border px-2.5 text-[0.8125rem] text-pa-muted outline-none hover:border-pa-border-strong focus-visible:outline-2 focus-visible:outline-pa-accent md:inline-flex"
+        className="hidden h-8 w-52 cursor-pointer items-center gap-2 rounded-pb-sm border border-pb-border px-2.5 text-[0.8125rem] text-pb-muted outline-none hover:border-pb-border-strong focus-visible:outline-2 focus-visible:outline-pb-accent md:inline-flex"
       >
         Search components
-        <kbd className="ms-auto font-pa-mono text-[0.625rem]">⌘K</kbd>
+        <kbd className="ms-auto font-pb-mono text-[0.625rem]">⌘K</kbd>
       </button>
       <CommandPalette
         open={open}

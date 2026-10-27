@@ -1,5 +1,5 @@
 "use client";
-import { Tag } from "pixel-atelier/tag";
+import { Tag } from "pixelbits/tag";
 import { useState } from "react";
 
 export default function Demo() {

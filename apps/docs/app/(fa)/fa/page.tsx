@@ -1,19 +1,19 @@
 import NextLink from "next/link";
-import { Accordion, AccordionItem } from "pixel-atelier/accordion";
-import { Badge } from "pixel-atelier/badge";
-import { Breadcrumb } from "pixel-atelier/breadcrumb";
-import { Button } from "pixel-atelier/button";
-import { Card } from "pixel-atelier/card";
-import { Checkbox } from "pixel-atelier/checkbox";
-import { Field } from "pixel-atelier/field";
-import { Input } from "pixel-atelier/input";
-import { Marquee } from "pixel-atelier/marquee";
-import { Progress } from "pixel-atelier/progress";
-import { Radio, RadioGroup } from "pixel-atelier/radio";
-import { Slider } from "pixel-atelier/slider";
-import { Switch } from "pixel-atelier/switch";
-import { Tab, TabList, TabPanel, Tabs } from "pixel-atelier/tabs";
-import { TextScramble } from "pixel-atelier/text-scramble";
+import { Accordion, AccordionItem } from "pixelbits/accordion";
+import { Badge } from "pixelbits/badge";
+import { Breadcrumb } from "pixelbits/breadcrumb";
+import { Button } from "pixelbits/button";
+import { Card } from "pixelbits/card";
+import { Checkbox } from "pixelbits/checkbox";
+import { Field } from "pixelbits/field";
+import { Input } from "pixelbits/input";
+import { Marquee } from "pixelbits/marquee";
+import { Progress } from "pixelbits/progress";
+import { Radio, RadioGroup } from "pixelbits/radio";
+import { Slider } from "pixelbits/slider";
+import { Switch } from "pixelbits/switch";
+import { Tab, TabList, TabPanel, Tabs } from "pixelbits/tabs";
+import { TextScramble } from "pixelbits/text-scramble";
 import { Logo } from "@/components/logo";
 import { FaInteractive } from "./interactive";
 
@@ -40,12 +40,12 @@ export default function Persian() {
         <Badge variant="accent" dot className="w-fit">
           راست‌به‌چپ
         </Badge>
-        <h1 className="text-pa-h1 font-light">
+        <h1 className="text-pb-h1 font-light">
           <TextScramble text="پیکسل‌ها، با دقت ساخته شده." />
         </h1>
-        <p className="max-w-2xl text-pa-body-lg text-pa-muted">
+        <p className="max-w-2xl text-pb-body-lg text-pb-muted">
           همهٔ کامپوننت‌ها از ویژگی‌های منطقی CSS استفاده می‌کنند؛ پس با تنظیم{" "}
-          <code className="font-pa-mono text-sm">dir="rtl"</code> چیدمان، فلش‌ها، کلیدهای
+          <code className="font-pb-mono text-sm">dir="rtl"</code> چیدمان، فلش‌ها، کلیدهای
           جهت‌دار و افکت‌های پیکسلی خودبه‌خود برمی‌گردند.
         </p>
         <div className="flex flex-wrap gap-3">
@@ -91,10 +91,10 @@ export default function Persian() {
               <Tab value="b">کد</Tab>
               <Tab value="c">ویژگی‌ها</Tab>
             </TabList>
-            <TabPanel value="a" className="text-sm text-pa-muted">
+            <TabPanel value="a" className="text-sm text-pb-muted">
               کلیدهای چپ و راست در جهت راست‌به‌چپ برعکس کار می‌کنند.
             </TabPanel>
-            <TabPanel value="b" className="font-pa-mono text-xs" dir="ltr">
+            <TabPanel value="b" className="font-pb-mono text-xs" dir="ltr">
               {"<Button />"}
             </TabPanel>
             <TabPanel value="c" className="text-sm">
@@ -109,12 +109,12 @@ export default function Persian() {
 
       <Marquee
         aria-label="ساخته شده با"
-        className="border-y border-pa-border py-4 text-2xl font-light text-pa-muted"
+        className="border-y border-pb-border py-4 text-2xl font-light text-pb-muted"
       >
         {["تیلویند ۴", "ری‌اکت ۱۹", "دیالوگ بومی", "پاپ‌اور", "بوم (canvas)"].map((t) => (
           <span key={t} className="flex items-center gap-10 whitespace-nowrap">
             {t}
-            <i className="size-2 bg-pa-accent" />
+            <i className="size-2 bg-pb-accent" />
           </span>
         ))}
       </Marquee>

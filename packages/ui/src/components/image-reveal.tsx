@@ -144,7 +144,7 @@ export function PixelImageReveal({
         ref={canvas}
         aria-hidden="true"
         className={cx(
-          "pointer-events-none absolute inset-0 size-full transition-opacity duration-pa-fast [image-rendering:pixelated]",
+          "pointer-events-none absolute inset-0 size-full transition-opacity duration-pb-fast [image-rendering:pixelated]",
           sharp ? "opacity-0" : "opacity-100",
         )}
       />

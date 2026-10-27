@@ -2,8 +2,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Badge } from "pixel-atelier/badge";
-import { Tab, TabList, TabPanel, Tabs } from "pixel-atelier/tabs";
+import { Badge } from "pixelbits/badge";
+import { Tab, TabList, TabPanel, Tabs } from "pixelbits/tabs";
 import { CodeBlock } from "@/components/code-block";
 import { Md } from "@/components/md";
 import apiJson from "@/content/api.json";
@@ -12,7 +12,7 @@ import { demos } from "@/lib/demos";
 import type { Api } from "@/scripts/api";
 
 const api = apiJson as unknown as Record<string, Api>;
-const SITE = "https://pixel-atelier.ali-moradi-develop.com";
+const SITE = "https://pixelbits.ali-moradi-develop.com";
 
 export function generateStaticParams() {
   return catalog.map((c) => ({ slug: c.slug }));
@@ -47,8 +47,8 @@ export default async function ComponentPage({
   ).replace(/^"use client";\n/, "");
   const main = doc.components[0];
   const importPath = entry.api.startsWith("pixels/")
-    ? "pixel-atelier/pixels"
-    : `pixel-atelier/${slug}`;
+    ? "pixelbits/pixels"
+    : `pixelbits/${slug}`;
   const i = catalog.indexOf(entry);
   const prev = catalog[i - 1];
   const next = catalog[i + 1];
@@ -56,8 +56,8 @@ export default async function ComponentPage({
     <article className="grid gap-10">
       <header className="grid gap-3">
         <Badge className="w-fit">{entry.group}</Badge>
-        <h1 className="text-pa-h1">{entry.title}</h1>
-        <div className="prose-pa grid max-w-2xl gap-3">
+        <h1 className="text-pb-h1">{entry.title}</h1>
+        <div className="prose-pb grid max-w-2xl gap-3">
           {main && <Md text={main.description} />}
         </div>
       </header>
@@ -69,7 +69,7 @@ export default async function ComponentPage({
         </TabList>
         <TabPanel
           value="preview"
-          className="grid min-h-64 place-items-center rounded-pa-lg border border-pa-border bg-pa-surface p-8 sm:p-12"
+          className="grid min-h-64 place-items-center rounded-pb-lg border border-pb-border bg-pb-surface p-8 sm:p-12"
         >
           {Demo && <Demo />}
         </TabPanel>
@@ -79,7 +79,7 @@ export default async function ComponentPage({
       </Tabs>
 
       <section className="grid gap-4" aria-labelledby="install">
-        <h2 id="install" className="text-pa-h4">
+        <h2 id="install" className="text-pb-h4">
           Installation
         </h2>
         <div className="grid gap-4 lg:grid-cols-2">
@@ -90,13 +90,13 @@ export default async function ComponentPage({
           <CodeBlock
             title="shadcn: copy the source"
             lang="bash"
-            code={`npx shadcn add ${SITE}/r/${entry.api.startsWith("pixels/") ? "pixel-atelier-base" : entry.api.startsWith("blocks/") ? `block-${slug}` : slug}.json`}
+            code={`npx shadcn add ${SITE}/r/${entry.api.startsWith("pixels/") ? "pixelbits-base" : entry.api.startsWith("blocks/") ? `block-${slug}` : slug}.json`}
           />
         </div>
       </section>
 
       <section className="grid gap-8" aria-labelledby="api">
-        <h2 id="api" className="text-pa-h4">
+        <h2 id="api" className="text-pb-h4">
           API
         </h2>
         {doc.components.map((c) => {
@@ -104,16 +104,16 @@ export default async function ComponentPage({
             doc.props[`${c.name}Props`] ?? (c.name === "Sheet" ? undefined : undefined);
           return (
             <div key={c.name} className="grid gap-4">
-              <h3 className="font-pa-mono text-sm text-pa-accent">{`<${c.name}>`}</h3>
-              <div className="prose-pa grid max-w-2xl gap-3">
+              <h3 className="font-pb-mono text-sm text-pb-accent">{`<${c.name}>`}</h3>
+              <div className="prose-pb grid max-w-2xl gap-3">
                 <Md text={c.description} />
               </div>
               {c.example && <CodeBlock code={c.example} title="Example" />}
               {props && props.props.length > 0 && (
-                <div className="overflow-x-auto rounded-pa-md border border-pa-border">
+                <div className="overflow-x-auto rounded-pb-md border border-pb-border">
                   <table className="w-full min-w-[40rem] border-collapse text-[0.8125rem]">
                     <thead>
-                      <tr className="border-b border-pa-border text-start font-pa-mono text-[0.65625rem] uppercase tracking-[0.1em] text-pa-muted">
+                      <tr className="border-b border-pb-border text-start font-pb-mono text-[0.65625rem] uppercase tracking-[0.1em] text-pb-muted">
                         <th scope="col" className="px-3 py-2.5 text-start font-medium">
                           Prop
                         </th>
@@ -132,23 +132,23 @@ export default async function ComponentPage({
                       {props.props.map((p) => (
                         <tr
                           key={p.name}
-                          className="border-b border-pa-border align-top last:border-0"
+                          className="border-b border-pb-border align-top last:border-0"
                         >
-                          <td className="px-3 py-3 font-pa-mono text-xs whitespace-nowrap">
+                          <td className="px-3 py-3 font-pb-mono text-xs whitespace-nowrap">
                             {p.name}
                             {!p.optional && (
-                              <span className="text-pa-accent" title="required">
+                              <span className="text-pb-accent" title="required">
                                 *
                               </span>
                             )}
                           </td>
-                          <td className="max-w-56 px-3 py-3 font-pa-mono text-xs break-words text-pa-muted">
+                          <td className="max-w-56 px-3 py-3 font-pb-mono text-xs break-words text-pb-muted">
                             {p.type}
                           </td>
-                          <td className="px-3 py-3 font-pa-mono text-xs whitespace-nowrap text-pa-muted">
+                          <td className="px-3 py-3 font-pb-mono text-xs whitespace-nowrap text-pb-muted">
                             {p.default ?? "—"}
                           </td>
-                          <td className="prose-pa grid gap-2 px-3 py-3 [&_p]:text-[0.8125rem]">
+                          <td className="prose-pb grid gap-2 px-3 py-3 [&_p]:text-[0.8125rem]">
                             <Md text={p.description} />
                           </td>
                         </tr>
@@ -156,9 +156,9 @@ export default async function ComponentPage({
                     </tbody>
                   </table>
                   {props.extends && (
-                    <p className="border-t border-pa-border px-3 py-2.5 text-xs text-pa-muted">
+                    <p className="border-t border-pb-border px-3 py-2.5 text-xs text-pb-muted">
                       Also accepts every prop of{" "}
-                      <code className="font-pa-mono">{props.extends}</code>.
+                      <code className="font-pb-mono">{props.extends}</code>.
                     </p>
                   )}
                 </div>
@@ -170,17 +170,17 @@ export default async function ComponentPage({
 
       <nav
         aria-label="Pagination"
-        className="flex justify-between gap-4 border-t border-pa-border pt-6 text-sm"
+        className="flex justify-between gap-4 border-t border-pb-border pt-6 text-sm"
       >
         {prev ? (
-          <a href={`/docs/${prev.slug}/`} className="text-pa-muted hover:text-pa-text">
+          <a href={`/docs/${prev.slug}/`} className="text-pb-muted hover:text-pb-text">
             ← {prev.title}
           </a>
         ) : (
           <span />
         )}
         {next && (
-          <a href={`/docs/${next.slug}/`} className="text-pa-muted hover:text-pa-text">
+          <a href={`/docs/${next.slug}/`} className="text-pb-muted hover:text-pb-text">
             {next.title} →
           </a>
         )}

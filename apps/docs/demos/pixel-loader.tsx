@@ -1,4 +1,4 @@
-import { PixelLoader } from "pixel-atelier/pixel-loader";
+import { PixelLoader } from "pixelbits/pixel-loader";
 
 export default function Demo() {
   return (

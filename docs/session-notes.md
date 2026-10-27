@@ -28,7 +28,7 @@ Last session: 2026-10-19. Read this first, then `docs/decisions.md`.
 
 - Brief copied to `docs/brief.md`; logo P1 (`brand/`); mockups (`design/mockups/`).
 - v0.1–v1.0 merged (PRs #1–#10): tokens; 39 components and 5 blocks in
-  `pixel-atelier`; Storybook; docs site with generated API, shadcn registry
+  `pixelbits`; Storybook; docs site with generated API, shadcn registry
   (verified with `shadcn add`) and Persian RTL page; Playwright axe + visual
   tests; Changesets release pipeline; security hardening (see
   `docs/security.md`).
@@ -55,7 +55,7 @@ Local checks all pass; these are GitHub-only:
 
 ## Open: owner actions (account settings)
 
-- [ ] npm: account with 2FA; check `npm view pixel-atelier` still 404s;
+- [ ] npm: account with 2FA; check `npm view pixelbits` still 404s;
       granular token as `NPM_TOKEN` secret, or trusted publishing.
 - [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
       protection, branch protection on `main` (require CI and Security),
@@ -64,7 +64,7 @@ Local checks all pass; these are GitHub-only:
 - [ ] Merge the "Version packages" PR to publish 1.0.0; after the first
       publish, switch to trusted publishing and delete `NPM_TOKEN`.
 - [ ] Deploy the docs (roadmap phase 7): `apps/docs/out` →
-      `/srv/static/pixel-atelier`, Nginx config in `deploy/nginx/`, certbot.
+      `/srv/static/pixelbits`, Nginx config in `deploy/nginx/`, certbot.
 - [ ] Upload `brand/social-preview.png` as the repository's social preview.
 - [ ] Decide on the font (Geist kept for now; the logo wordmark uses it).
 

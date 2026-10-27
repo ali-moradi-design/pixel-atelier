@@ -1,5 +1,5 @@
 "use client";
-import { IconButton } from "pixel-atelier/icon-button";
+import { IconButton } from "pixelbits/icon-button";
 
 const Plus = () => (
   <svg

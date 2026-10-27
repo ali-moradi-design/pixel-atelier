@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "pixel-atelier/button";
-import { toast } from "pixel-atelier/toast";
+import { Button } from "pixelbits/button";
+import { toast } from "pixelbits/toast";
 
 export default function Demo() {
   return (
@@ -9,7 +9,7 @@ export default function Demo() {
         onClick={() =>
           toast({
             title: "Copied to clipboard",
-            description: "pnpm add pixel-atelier",
+            description: "pnpm add pixelbits",
             variant: "success",
           })
         }

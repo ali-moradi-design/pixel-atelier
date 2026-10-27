@@ -1,5 +1,5 @@
-import { Badge } from "pixel-atelier/badge";
-import { Card } from "pixel-atelier/card";
+import { Badge } from "pixelbits/badge";
+import { Card } from "pixelbits/card";
 
 export default function Demo() {
   return (

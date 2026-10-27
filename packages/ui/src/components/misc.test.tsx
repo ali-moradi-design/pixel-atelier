@@ -16,7 +16,7 @@ describe("Link", () => {
       </>,
     );
     expect(screen.getByRole("link", { name: "Docs" })).toHaveAttribute("href", "/docs");
-    expect(screen.getByRole("link", { name: "Child" })).toHaveClass("pa-link-px");
+    expect(screen.getByRole("link", { name: "Child" })).toHaveClass("pb-link-px");
   });
 });
 

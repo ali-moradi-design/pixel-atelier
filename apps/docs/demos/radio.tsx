@@ -1,4 +1,4 @@
-import { Radio, RadioGroup } from "pixel-atelier/radio";
+import { Radio, RadioGroup } from "pixelbits/radio";
 
 export default function Demo() {
   return (

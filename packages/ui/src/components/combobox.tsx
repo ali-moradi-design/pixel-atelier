@@ -218,7 +218,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
             setOpen(true);
           }}
           className={cx(
-            "h-full min-w-0 flex-1 bg-transparent text-inherit outline-none placeholder:text-pa-muted",
+            "h-full min-w-0 flex-1 bg-transparent text-inherit outline-none placeholder:text-pb-muted",
             className,
           )}
         />

@@ -1,5 +1,5 @@
 "use client";
-import { Checkbox } from "pixel-atelier/checkbox";
+import { Checkbox } from "pixelbits/checkbox";
 import { useState } from "react";
 
 export default function Demo() {

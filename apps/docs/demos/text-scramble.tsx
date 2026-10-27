@@ -1,4 +1,4 @@
-import { TextScramble } from "pixel-atelier/text-scramble";
+import { TextScramble } from "pixelbits/text-scramble";
 
 export default function Demo() {
   return (

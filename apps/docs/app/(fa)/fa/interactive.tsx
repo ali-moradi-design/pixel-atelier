@@ -1,15 +1,11 @@
 "use client";
 
-import { Button } from "pixel-atelier/button";
-import { Sheet } from "pixel-atelier/dialog";
-import {
-  DropdownItem,
-  DropdownMenu,
-  DropdownSeparator,
-} from "pixel-atelier/dropdown-menu";
-import { Pagination } from "pixel-atelier/pagination";
-import { Select } from "pixel-atelier/select";
-import { toast } from "pixel-atelier/toast";
+import { Button } from "pixelbits/button";
+import { Sheet } from "pixelbits/dialog";
+import { DropdownItem, DropdownMenu, DropdownSeparator } from "pixelbits/dropdown-menu";
+import { Pagination } from "pixelbits/pagination";
+import { Select } from "pixelbits/select";
+import { toast } from "pixelbits/toast";
 import { useState } from "react";
 
 export function FaInteractive() {

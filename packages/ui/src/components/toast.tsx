@@ -111,7 +111,7 @@ export function Toaster({ position = "bottom-end", max = 3 }: ToasterProps) {
       aria-live="polite"
       aria-label="Notifications"
       className={cx(
-        "pa-toaster fixed m-0 w-[min(24rem,calc(100vw-2rem))] gap-2 border-0 bg-transparent p-0",
+        "pb-toaster fixed m-0 w-[min(24rem,calc(100vw-2rem))] gap-2 border-0 bg-transparent p-0",
         list.length ? "flex" : "hidden",
         v === "top" ? "top-4 bottom-auto flex-col" : "top-auto bottom-4 flex-col-reverse",
         h === "end" ? "end-4 start-auto" : "start-4 end-auto",
@@ -125,11 +125,11 @@ export function Toaster({ position = "bottom-end", max = 3 }: ToasterProps) {
 }
 
 const tone = {
-  default: "var(--pa-accent)",
-  success: "var(--pa-success)",
-  warning: "var(--pa-warning)",
-  danger: "var(--pa-danger)",
-  info: "var(--pa-info)",
+  default: "var(--pb-accent)",
+  success: "var(--pb-success)",
+  warning: "var(--pb-warning)",
+  danger: "var(--pb-danger)",
+  info: "var(--pb-info)",
 };
 
 function ToastView({ item }: { item: ToastItem }) {
@@ -162,16 +162,16 @@ function ToastView({ item }: { item: ToastItem }) {
       onPointerLeave={resume}
       onFocus={pause}
       onBlur={resume}
-      style={{ "--pa-tone": tone[variant] } as CSSProperties}
-      className="pa-toast relative flex items-start gap-3 overflow-hidden rounded-pa-md border border-pa-border bg-pa-overlay py-3.5 ps-4 pe-3 text-[0.8125rem] text-pa-text shadow-pa-2"
+      style={{ "--pb-tone": tone[variant] } as CSSProperties}
+      className="pb-toast relative flex items-start gap-3 overflow-hidden rounded-pb-md border border-pb-border bg-pb-overlay py-3.5 ps-4 pe-3 text-[0.8125rem] text-pb-text shadow-pb-2"
     >
       <span
         aria-hidden="true"
-        className="mt-[0.3125rem] size-2 shrink-0 bg-(--pa-tone)"
+        className="mt-[0.3125rem] size-2 shrink-0 bg-(--pb-tone)"
       />
       <div className="grid min-w-0 flex-1 gap-0.5">
         <div className="font-medium">{title}</div>
-        {description && <div className="text-pa-muted">{description}</div>}
+        {description && <div className="text-pb-muted">{description}</div>}
       </div>
       {action && (
         <button
@@ -180,7 +180,7 @@ function ToastView({ item }: { item: ToastItem }) {
             action.onClick();
             dismissToast(id);
           }}
-          className="shrink-0 cursor-pointer rounded-pa-xs border border-pa-border-strong px-2.5 py-1.5 font-medium text-[0.6875rem] uppercase tracking-[0.06em] outline-none hover:bg-pa-raised focus-visible:outline-2 focus-visible:outline-pa-accent"
+          className="shrink-0 cursor-pointer rounded-pb-xs border border-pb-border-strong px-2.5 py-1.5 font-medium text-[0.6875rem] uppercase tracking-[0.06em] outline-none hover:bg-pb-raised focus-visible:outline-2 focus-visible:outline-pb-accent"
         >
           {action.label}
         </button>
@@ -189,7 +189,7 @@ function ToastView({ item }: { item: ToastItem }) {
         type="button"
         aria-label="Dismiss"
         onClick={() => dismissToast(id)}
-        className="inline-grid size-6 shrink-0 cursor-pointer place-items-center rounded-pa-xs text-pa-muted outline-none hover:bg-pa-raised hover:text-pa-text focus-visible:outline-2 focus-visible:outline-pa-accent"
+        className="inline-grid size-6 shrink-0 cursor-pointer place-items-center rounded-pb-xs text-pb-muted outline-none hover:bg-pb-raised hover:text-pb-text focus-visible:outline-2 focus-visible:outline-pb-accent"
       >
         <XIcon width={14} height={14} />
       </button>
@@ -197,7 +197,7 @@ function ToastView({ item }: { item: ToastItem }) {
         <span
           ref={bar}
           aria-hidden="true"
-          className="pa-toast-life absolute start-0 bottom-0 h-0.5 w-full"
+          className="pb-toast-life absolute start-0 bottom-0 h-0.5 w-full"
           style={{ animationDuration: `${duration}ms` }}
         />
       )}

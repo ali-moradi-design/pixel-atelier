@@ -16,7 +16,7 @@ describe("Button", () => {
 
   it("creates the pixel squares only on the first hover or focus", () => {
     const { container } = render(<Button>Explore</Button>);
-    const pixels = container.querySelector("[data-pa-pixels]");
+    const pixels = container.querySelector("[data-pb-pixels]");
     expect(pixels).toBeInTheDocument();
     expect(pixels?.children).toHaveLength(0);
     fireEvent.pointerEnter(screen.getByRole("button"));
@@ -27,14 +27,14 @@ describe("Button", () => {
     const { container } = render(<Button>Explore</Button>);
     await userEvent.tab();
     expect(screen.getByRole("button")).toHaveFocus();
-    expect(container.querySelector("[data-pa-pixels]")?.children.length).toBeGreaterThan(
+    expect(container.querySelector("[data-pb-pixels]")?.children.length).toBeGreaterThan(
       0,
     );
   });
 
   it("can be a plain button without pixels", () => {
     const { container } = render(<Button pixel={false}>Plain</Button>);
-    expect(container.querySelector("[data-pa-pixels]")).toBeNull();
+    expect(container.querySelector("[data-pb-pixels]")).toBeNull();
   });
 
   it("renders its child with asChild", () => {
@@ -44,7 +44,7 @@ describe("Button", () => {
       </Button>,
     );
     const link = screen.getByRole("link", { name: "Start" });
-    expect(link).toHaveClass("pa-px-host");
+    expect(link).toHaveClass("pb-px-host");
     expect(link).not.toHaveAttribute("type");
   });
 

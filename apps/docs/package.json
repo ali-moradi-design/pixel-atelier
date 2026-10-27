@@ -1,5 +1,5 @@
 {
-  "name": "@pixel-atelier/docs",
+  "name": "@pixelbits/docs",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -12,12 +12,12 @@
   "dependencies": {
     "geist": "1.8.1",
     "next": "16.4.2",
-    "pixel-atelier": "workspace:*",
+    "pixelbits": "workspace:*",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
   "devDependencies": {
-    "@pixel-atelier/tokens": "workspace:*",
+    "@pixelbits/tokens": "workspace:*",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",

@@ -11,11 +11,11 @@ import { fieldControlProps, useField } from "./field.tsx";
  */
 export const controlFrame = cva(
   [
-    "pa-control group/control relative flex w-full items-center gap-2 rounded-pa-sm border bg-pa-bg text-pa-text",
-    "border-pa-border-strong transition-[border-color,box-shadow] duration-pa-fast",
-    "focus-within:border-pa-accent focus-within:shadow-[0_0_0_3px_var(--pa-accent-subtle)]",
-    "has-[[aria-invalid=true]]:border-pa-danger has-[:disabled]:opacity-50",
-    "[&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-pa-muted",
+    "pb-control group/control relative flex w-full items-center gap-2 rounded-pb-sm border bg-pb-bg text-pb-text",
+    "border-pb-border-strong transition-[border-color,box-shadow] duration-pb-fast",
+    "focus-within:border-pb-accent focus-within:shadow-[0_0_0_3px_var(--pb-accent-subtle)]",
+    "has-[[aria-invalid=true]]:border-pb-danger has-[:disabled]:opacity-50",
+    "[&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-pb-muted",
   ],
   {
     variants: {
@@ -70,11 +70,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         {...props}
         {...fieldControlProps(field, props)}
         className={cx(
-          "h-full min-w-0 flex-1 bg-transparent text-inherit outline-none placeholder:text-pa-muted disabled:cursor-not-allowed",
+          "h-full min-w-0 flex-1 bg-transparent text-inherit outline-none placeholder:text-pb-muted disabled:cursor-not-allowed",
           className,
         )}
       />
-      {end && <span className="ms-auto flex items-center text-pa-muted">{end}</span>}
+      {end && <span className="ms-auto flex items-center text-pb-muted">{end}</span>}
     </div>
   );
 });

@@ -49,22 +49,22 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
     <div
       ref={ref}
       className={cx(
-        "group/card relative flex flex-col overflow-hidden rounded-pa-lg border border-pa-border bg-pa-raised text-pa-text shadow-pa-1",
+        "group/card relative flex flex-col overflow-hidden rounded-pb-lg border border-pb-border bg-pb-raised text-pb-text shadow-pb-1",
         interactive &&
-          "pa-card-interactive transition-colors duration-pa-base hover:border-pa-accent/50 focus-within:border-pa-accent/50",
+          "pb-card-interactive transition-colors duration-pb-base hover:border-pb-accent/50 focus-within:border-pb-accent/50",
         className,
       )}
       {...props}
     >
       {media && (
-        <div className="pa-card-media overflow-hidden [&>img]:block [&>img]:w-full [&>img]:object-cover">
+        <div className="pb-card-media overflow-hidden [&>img]:block [&>img]:w-full [&>img]:object-cover">
           {media}
         </div>
       )}
       {(eyebrow || title || description || children) && (
         <div className="grid gap-1.5 p-4">
           {eyebrow && (
-            <div className="font-pa-mono text-[0.625rem] font-medium uppercase tracking-[0.12em] text-pa-muted">
+            <div className="font-pb-mono text-[0.625rem] font-medium uppercase tracking-[0.12em] text-pb-muted">
               {eyebrow}
             </div>
           )}
@@ -72,7 +72,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
             <h3 className="text-[0.9375rem] font-medium tracking-[-0.01em]">{title}</h3>
           )}
           {description && (
-            <p className="text-[0.8125rem] leading-relaxed text-pa-muted">
+            <p className="text-[0.8125rem] leading-relaxed text-pb-muted">
               {description}
             </p>
           )}
@@ -80,7 +80,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
         </div>
       )}
       {footer && (
-        <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-pa-border px-4 py-3">
+        <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-pb-border px-4 py-3">
           {footer}
         </div>
       )}

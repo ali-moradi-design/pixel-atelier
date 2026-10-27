@@ -13,7 +13,7 @@ export function DocsNav() {
         <NextLink
           href={href}
           aria-current={current ? "page" : undefined}
-          className="block rounded-pa-xs border-s-2 border-transparent py-1 ps-3 text-[0.8125rem] text-pa-muted outline-none transition-colors hover:text-pa-text focus-visible:outline-2 focus-visible:outline-pa-accent aria-[current=page]:border-pa-accent aria-[current=page]:text-pa-text"
+          className="block rounded-pb-xs border-s-2 border-transparent py-1 ps-3 text-[0.8125rem] text-pb-muted outline-none transition-colors hover:text-pb-text focus-visible:outline-2 focus-visible:outline-pb-accent aria-[current=page]:border-pb-accent aria-[current=page]:text-pb-text"
         >
           {label}
         </NextLink>
@@ -23,7 +23,7 @@ export function DocsNav() {
   const list = (
     <div className="grid gap-6">
       <div className="grid gap-2">
-        <h2 className="font-pa-mono text-[0.625rem] uppercase tracking-[0.14em] text-pa-accent">
+        <h2 className="font-pb-mono text-[0.625rem] uppercase tracking-[0.14em] text-pb-accent">
           Start
         </h2>
         <ul>
@@ -33,7 +33,7 @@ export function DocsNav() {
       </div>
       {groups.map((g) => (
         <div key={g} className="grid gap-2">
-          <h2 className="font-pa-mono text-[0.625rem] uppercase tracking-[0.14em] text-pa-accent">
+          <h2 className="font-pb-mono text-[0.625rem] uppercase tracking-[0.14em] text-pb-accent">
             {g}
           </h2>
           <ul>
@@ -51,20 +51,20 @@ export function DocsNav() {
   return (
     <div>
       {/* Phones: the list folds into a native disclosure above the page. */}
-      <details className="group/nav rounded-pa-md border border-pa-border lg:hidden">
-        <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-pa-accent [&::-webkit-details-marker]:hidden">
+      <details className="group/nav rounded-pb-md border border-pb-border lg:hidden">
+        <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-pb-accent [&::-webkit-details-marker]:hidden">
           <span>
-            <span className="text-pa-muted">Docs / </span>
+            <span className="text-pb-muted">Docs / </span>
             {current}
           </span>
           <span
             aria-hidden="true"
-            className="text-pa-muted transition-transform group-open/nav:rotate-180"
+            className="text-pb-muted transition-transform group-open/nav:rotate-180"
           >
             ▾
           </span>
         </summary>
-        <nav aria-label="Documentation" className="border-t border-pa-border p-4">
+        <nav aria-label="Documentation" className="border-t border-pb-border p-4">
           {list}
         </nav>
       </details>

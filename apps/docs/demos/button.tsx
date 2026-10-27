@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "pixel-atelier/button";
+import { Button } from "pixelbits/button";
 
 export default function Demo() {
   return (

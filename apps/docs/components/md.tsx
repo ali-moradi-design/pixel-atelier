@@ -37,7 +37,7 @@ export function Md({ text }: { text: string }) {
           <Fragment key={i}>
             {lead && <p>{inline(lead)}</p>}
             {items.length > 0 && (
-              <ul className="ms-4 list-disc space-y-1 text-pa-muted marker:text-pa-accent">
+              <ul className="ms-4 list-disc space-y-1 text-pb-muted marker:text-pb-accent">
                 {items.map((it, k) => (
                   // biome-ignore lint/suspicious/noArrayIndexKey: static text
                   <li key={k}>{inline(it)}</li>

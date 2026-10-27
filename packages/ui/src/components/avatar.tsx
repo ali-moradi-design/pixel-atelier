@@ -35,7 +35,7 @@ export function PixelIdenticon({
       className={cx("size-full", className)}
     >
       {cells.flatMap(([x, y], i) => {
-        const fill = i === accent ? "var(--pa-accent)" : "currentColor";
+        const fill = i === accent ? "var(--pb-accent)" : "currentColor";
         const a = <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill={fill} />;
         return x === 2
           ? [a]
@@ -84,9 +84,9 @@ const sizes = {
   xl: "size-16 text-base",
 };
 const statusColor = {
-  online: "bg-pa-success",
-  away: "bg-pa-warning",
-  busy: "bg-pa-danger",
+  online: "bg-pb-success",
+  away: "bg-pb-warning",
+  busy: "bg-pb-danger",
 };
 
 /**
@@ -126,7 +126,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
       role="img"
       aria-label={name}
       className={cx(
-        "relative inline-grid shrink-0 place-items-center rounded-[2px] border border-pa-border-strong bg-pa-surface font-pa-mono font-medium text-pa-text",
+        "relative inline-grid shrink-0 place-items-center rounded-[2px] border border-pb-border-strong bg-pb-surface font-pb-mono font-medium text-pb-text",
         sizes[size],
         className,
       )}
@@ -151,7 +151,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
         <span
           aria-hidden="true"
           className={cx(
-            "absolute -end-0.5 -bottom-0.5 size-2.5 border-2 border-pa-bg",
+            "absolute -end-0.5 -bottom-0.5 size-2.5 border-2 border-pb-bg",
             statusColor[status],
           )}
         />
@@ -190,14 +190,14 @@ export function AvatarGroup({
   return (
     <div
       className={cx(
-        "flex items-center [&>*]:ring-2 [&>*]:ring-pa-surface [&>*+*]:-ms-2",
+        "flex items-center [&>*]:ring-2 [&>*]:ring-pb-surface [&>*+*]:-ms-2",
         className,
       )}
       {...props}
     >
       {shown}
       {rest > 0 && (
-        <span className="inline-grid size-9 place-items-center rounded-[2px] border border-pa-border-strong bg-pa-raised font-pa-mono text-xs text-pa-muted">
+        <span className="inline-grid size-9 place-items-center rounded-[2px] border border-pb-border-strong bg-pb-raised font-pb-mono text-xs text-pb-muted">
           +{rest}
         </span>
       )}

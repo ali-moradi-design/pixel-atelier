@@ -1,5 +1,5 @@
 {
-  "name": "pixel-atelier-monorepo",
+  "name": "pixelbits-monorepo",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@12.14.0",
@@ -15,7 +15,7 @@
     "test": "turbo run test",
     "check": "pnpm lint && turbo run typecheck test build",
     "changeset": "changeset",
-    "release": "turbo run build --filter=pixel-atelier && changeset publish"
+    "release": "turbo run build --filter=pixelbits && changeset publish"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",

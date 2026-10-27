@@ -1,27 +1,27 @@
 @import "tailwindcss";
-@import "pixel-atelier/theme.css";
+@import "pixelbits/theme.css";
 
 @source "../demos";
 @source "../components";
 
 :root {
-  --pa-font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --pa-font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --pb-font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --pb-font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 :root[lang="fa"] {
-  --pa-font-sans: var(--font-vazirmatn), var(--font-geist-sans), sans-serif;
+  --pb-font-sans: var(--font-vazirmatn), var(--font-geist-sans), sans-serif;
 }
 
 html {
-  background: var(--pa-bg);
-  color: var(--pa-text);
-  font-family: var(--pa-font-sans);
+  background: var(--pb-bg);
+  color: var(--pb-text);
+  font-family: var(--pb-font-sans);
   -webkit-font-smoothing: antialiased;
   scroll-padding-top: 5rem;
 }
 ::selection {
-  background: var(--pa-accent);
-  color: var(--pa-on-accent);
+  background: var(--pb-accent);
+  color: var(--pb-on-accent);
 }
 
 /* Code blocks (Shiki dual themes). */
@@ -36,17 +36,17 @@ html {
   color: var(--shiki-light);
 }
 @layer components {
-  .prose-pa p {
-    color: var(--pa-muted);
+  .prose-pb p {
+    color: var(--pb-muted);
     line-height: 1.7;
     font-size: 0.9375rem;
   }
-  .prose-pa code:not(pre code) {
-    font-family: var(--pa-font-mono);
+  .prose-pb code:not(pre code) {
+    font-family: var(--pb-font-mono);
     font-size: 0.8125em;
     padding: 0.1em 0.35em;
     border-radius: 3px;
-    background: var(--pa-raised);
-    color: var(--pa-text);
+    background: var(--pb-raised);
+    color: var(--pb-text);
   }
 }

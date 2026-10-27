@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Badge } from "pixel-atelier/badge";
-import { Link } from "pixel-atelier/link";
-import { Tag } from "pixel-atelier/tag";
+import { Badge } from "pixelbits/badge";
+import { Link } from "pixelbits/link";
+import { Tag } from "pixelbits/tag";
 import { useState } from "react";
 
 const meta = { title: "Core/Link, Badge, Tag", component: Badge } satisfies Meta<

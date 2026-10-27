@@ -83,7 +83,7 @@ export function Popover({
         aria-labelledby={title ? `${id}-title` : undefined}
         hidden={!open}
         className={cx(
-          "pa-popup m-0 w-72 max-w-[calc(100vw-1rem)] rounded-pa-md border border-pa-border bg-pa-overlay p-4 text-[0.8125rem] text-pa-text shadow-pa-2",
+          "pb-popup m-0 w-72 max-w-[calc(100vw-1rem)] rounded-pb-md border border-pb-border bg-pb-overlay p-4 text-[0.8125rem] text-pb-text shadow-pb-2",
           className,
         )}
         {...props}

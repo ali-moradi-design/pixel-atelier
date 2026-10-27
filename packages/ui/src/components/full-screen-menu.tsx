@@ -115,16 +115,16 @@ export function FullScreenMenu({
           close();
         }}
         onClose={() => open && close()}
-        className="pa-dialog pa-menu m-0 size-full max-h-none max-w-none bg-pa-bg p-0 text-pa-text"
+        className="pb-dialog pb-menu m-0 size-full max-h-none max-w-none bg-pb-bg p-0 text-pb-text"
       >
         {open && (
           <div className="flex min-h-full flex-col">
-            <div className="flex items-center justify-between border-b border-pa-border px-5 py-4 sm:px-7">
+            <div className="flex items-center justify-between border-b border-pb-border px-5 py-4 sm:px-7">
               <div>{brand}</div>
               <button
                 type="button"
                 onClick={close}
-                className="pa-px-host inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-pa-xs border border-pa-border-strong px-3 text-[0.6875rem] font-medium uppercase tracking-[0.06em] outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent"
+                className="pb-px-host inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-pb-xs border border-pb-border-strong px-3 text-[0.6875rem] font-medium uppercase tracking-[0.06em] outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent"
               >
                 <Pixels />
                 <XIcon width={14} height={14} />
@@ -136,7 +136,7 @@ export function FullScreenMenu({
                 const children = (
                   <>
                     <Pixels size={28} />
-                    <span className="self-start font-pa-mono text-xs text-pa-muted group-hover/cell:text-inherit">
+                    <span className="self-start font-pb-mono text-xs text-pb-muted group-hover/cell:text-inherit">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="grid gap-1">
@@ -152,7 +152,7 @@ export function FullScreenMenu({
                   </>
                 );
                 const className =
-                  "pa-px-host group/cell flex min-h-36 flex-col justify-between gap-6 border-b border-pa-border p-6 no-underline outline-none sm:border-e sm:p-7 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-pa-accent";
+                  "pb-px-host group/cell flex min-h-36 flex-col justify-between gap-6 border-b border-pb-border p-6 no-underline outline-none sm:border-e sm:p-7 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-pb-accent";
                 return (
                   <div key={l.href} className="contents">
                     {renderLink ? (
@@ -172,7 +172,7 @@ export function FullScreenMenu({
               })}
             </nav>
             {footer && (
-              <div className="px-5 py-4 text-[0.8125rem] text-pa-muted sm:px-7">
+              <div className="px-5 py-4 text-[0.8125rem] text-pb-muted sm:px-7">
                 {footer}
               </div>
             )}

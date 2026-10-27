@@ -1,6 +1,6 @@
 # Brand
 
-Logo of Pixel Atelier (concept P1): a solid 8 x 8 pixel tile with a
+Logo of Pixelbits (concept P1): a solid 8 x 8 pixel tile with a
 negative-space "P"; its bottom-right corner breaks up into loose pixels, one of
 them in the accent color. It is the kit's hover effect frozen in one frame.
 
@@ -15,7 +15,7 @@ them in the accent color. It is the kit's hover effect frozen in one frame.
 | `apple-touch-icon.png`, `icon-512.png` | App icons on the dark tile |
 | `social-preview.png` | GitHub / Open Graph image, 1280 x 640 |
 
-- Wordmark: "pixel atelier" in Geist (Medium + Light), converted to outlines.
+- Wordmark: "pixelbits" in Geist (Medium + Light), converted to outlines.
 - Colors (gold ramp `#ffe169 #edc531 #c9a227 #a47e1b #805b10`):
   dark `#0d0d0f` / ink `#f2efe8` / accent `#c9a227`;
   light `#f5f2ec` / ink `#151514` / accent `#805b10`.

@@ -82,7 +82,7 @@ export function Tooltip({
         role="tooltip"
         hidden={!open}
         className={cx(
-          "pa-popup pointer-events-none m-0 max-w-64 rounded-[3px] bg-pa-text px-2 py-1.5 text-xs leading-snug text-pa-bg",
+          "pb-popup pointer-events-none m-0 max-w-64 rounded-[3px] bg-pb-text px-2 py-1.5 text-xs leading-snug text-pb-bg",
         )}
       >
         {content}

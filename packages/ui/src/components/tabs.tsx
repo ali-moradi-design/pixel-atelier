@@ -134,8 +134,8 @@ export function TabList({ className, children, onKeyDown, ...props }: TabListPro
       onKeyDown={move}
       className={cx(
         variant === "underline"
-          ? "flex gap-6 border-b border-pa-border"
-          : "inline-flex w-fit gap-0.5 rounded-pa-sm border border-pa-border bg-pa-bg p-[3px]",
+          ? "flex gap-6 border-b border-pb-border"
+          : "inline-flex w-fit gap-0.5 rounded-pb-sm border border-pb-border bg-pb-bg p-[3px]",
         className,
       )}
       {...props}
@@ -167,11 +167,11 @@ export function Tab({ value, className, onClick, ...props }: TabProps) {
         if (!e.defaultPrevented) ctx.setValue(value);
       }}
       className={cx(
-        "relative cursor-pointer whitespace-nowrap text-sm text-pa-muted outline-none transition-colors duration-pa-fast hover:text-pa-text aria-selected:text-pa-text",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent disabled:cursor-not-allowed disabled:opacity-40",
+        "relative cursor-pointer whitespace-nowrap text-sm text-pb-muted outline-none transition-colors duration-pb-fast hover:text-pb-text aria-selected:text-pb-text",
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent disabled:cursor-not-allowed disabled:opacity-40",
         ctx.variant === "underline"
-          ? "pa-tab py-2.5"
-          : "rounded-[2px] px-3 py-1.5 text-[0.8125rem] aria-selected:bg-pa-raised aria-selected:shadow-pa-1",
+          ? "pb-tab py-2.5"
+          : "rounded-[2px] px-3 py-1.5 text-[0.8125rem] aria-selected:bg-pb-raised aria-selected:shadow-pb-1",
         className,
       )}
       {...props}
@@ -208,7 +208,7 @@ export function TabPanel({ value, className, ...props }: TabPanelProps) {
       // biome-ignore lint/a11y/noNoninteractiveTabindex: ARIA tabs pattern: the panel is a tab stop when it has no focusable content
       tabIndex={0}
       className={cx(
-        "rounded-pa-xs outline-none focus-visible:outline-2 focus-visible:outline-pa-accent",
+        "rounded-pb-xs outline-none focus-visible:outline-2 focus-visible:outline-pb-accent",
         className,
       )}
       {...props}

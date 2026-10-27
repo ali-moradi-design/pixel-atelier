@@ -29,9 +29,9 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo run build --filter=@pixel-atelier/storybook...
-      - run: pnpm --filter @pixel-atelier/storybook exec playwright install --with-deps chromium
-      - run: pnpm --filter @pixel-atelier/storybook test:browser:update
+      - run: pnpm turbo run build --filter=@pixelbits/storybook...
+      - run: pnpm --filter @pixelbits/storybook exec playwright install --with-deps chromium
+      - run: pnpm --filter @pixelbits/storybook test:browser:update
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

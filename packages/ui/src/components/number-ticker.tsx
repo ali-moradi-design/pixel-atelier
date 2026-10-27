@@ -70,7 +70,7 @@ export function NumberTicker({
             // biome-ignore lint/suspicious/noArrayIndexKey: positions are stable
             <span key={i} className="inline-block h-[1lh] overflow-hidden">
               <span
-                className="pa-ticker-col flex flex-col"
+                className="pb-ticker-col flex flex-col"
                 style={{
                   translate: `0 -${(shown ? d : 0) * 10}%`,
                   transitionTimingFunction: `steps(${Math.max(1, Math.abs(d - (Number.parseInt(before[i] ?? "0", 10) || 0)))}, end)`,

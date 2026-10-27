@@ -42,8 +42,8 @@ export function SiteHeader({
   return (
     <header
       className={cx(
-        "z-40 border-b border-pa-border",
-        sticky && "sticky top-0 bg-pa-bg/85 backdrop-blur",
+        "z-40 border-b border-pb-border",
+        sticky && "sticky top-0 bg-pb-bg/85 backdrop-blur",
         className,
       )}
       {...props}
@@ -59,7 +59,7 @@ export function SiteHeader({
               key={l.href}
               href={l.href}
               aria-current={l.current ? "page" : undefined}
-              className="pa-link-px text-pa-muted outline-none hover:text-pa-text focus-visible:text-pa-text aria-[current=page]:text-pa-text"
+              className="pb-link-px text-pb-muted outline-none hover:text-pb-text focus-visible:text-pb-text aria-[current=page]:text-pb-text"
             >
               {l.label}
             </a>

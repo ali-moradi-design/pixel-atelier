@@ -1,6 +1,6 @@
 "use client";
-import { IconButton } from "pixel-atelier/icon-button";
-import { Tooltip } from "pixel-atelier/tooltip";
+import { IconButton } from "pixelbits/icon-button";
+import { Tooltip } from "pixelbits/tooltip";
 
 export default function Demo() {
   return (

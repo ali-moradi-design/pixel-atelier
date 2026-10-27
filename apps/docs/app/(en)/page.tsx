@@ -1,9 +1,9 @@
 import NextLink from "next/link";
-import { Badge } from "pixel-atelier/badge";
-import { Button } from "pixel-atelier/button";
-import { Marquee } from "pixel-atelier/marquee";
-import { SpotlightCard } from "pixel-atelier/spotlight-card";
-import { TextScramble } from "pixel-atelier/text-scramble";
+import { Badge } from "pixelbits/badge";
+import { Button } from "pixelbits/button";
+import { Marquee } from "pixelbits/marquee";
+import { SpotlightCard } from "pixelbits/spotlight-card";
+import { TextScramble } from "pixelbits/text-scramble";
 import { CodeBlock } from "@/components/code-block";
 import { Mark } from "@/components/logo";
 import { catalog, groups } from "@/lib/catalog";
@@ -35,10 +35,10 @@ export default function Home() {
           <Badge variant="accent" dot className="w-fit">
             v1.0 · {catalog.length} components
           </Badge>
-          <h1 className="text-pa-display font-light text-balance">
+          <h1 className="text-pb-display font-light text-balance">
             <TextScramble text="Pixels, crafted with care." />
           </h1>
-          <p className="max-w-xl text-pa-body-lg text-pa-muted">
+          <p className="max-w-xl text-pb-body-lg text-pb-muted">
             A calm React UI kit with a luxurious, minimal base. Its pixel effects appear
             only when you interact — and every one of them also runs on keyboard focus.
           </p>
@@ -52,12 +52,12 @@ export default function Home() {
           </div>
         </div>
         <SpotlightCard className="grid aspect-square place-items-center">
-          <Mark className="size-1/2 text-pa-text" />
+          <Mark className="size-1/2 text-pb-text" />
         </SpotlightCard>
       </section>
       <Marquee
         aria-label="Built with"
-        className="border-y border-pa-border py-5 text-2xl font-light text-pa-muted"
+        className="border-y border-pb-border py-5 text-2xl font-light text-pb-muted"
       >
         {[
           "Tailwind v4",
@@ -71,7 +71,7 @@ export default function Home() {
         ].map((t) => (
           <span key={t} className="flex items-center gap-10 whitespace-nowrap">
             {t}
-            <i className="size-2 bg-pa-accent" />
+            <i className="size-2 bg-pb-accent" />
           </span>
         ))}
       </Marquee>
@@ -79,26 +79,26 @@ export default function Home() {
         {features.map((f) => (
           <div
             key={f.title}
-            className="grid content-start gap-2 border-t border-pa-border pt-5"
+            className="grid content-start gap-2 border-t border-pb-border pt-5"
           >
             <h2 className="text-[0.9375rem] font-medium">{f.title}</h2>
-            <p className="text-[0.8125rem] leading-relaxed text-pa-muted">{f.text}</p>
+            <p className="text-[0.8125rem] leading-relaxed text-pb-muted">{f.text}</p>
           </div>
         ))}
       </section>
       <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-20 sm:px-6 lg:grid-cols-2">
-        <CodeBlock title="npm" lang="bash" code="pnpm add pixel-atelier" />
+        <CodeBlock title="npm" lang="bash" code="pnpm add pixelbits" />
         <CodeBlock
           title="or copy the source"
           lang="bash"
-          code="npx shadcn add https://pixel-atelier.ali-moradi-develop.com/r/button.json"
+          code="npx shadcn add https://pixelbits.ali-moradi-develop.com/r/button.json"
         />
       </section>
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {groups.map((g) => (
             <div key={g} className="grid content-start gap-3">
-              <h2 className="font-pa-mono text-[0.6875rem] uppercase tracking-[0.14em] text-pa-accent">
+              <h2 className="font-pb-mono text-[0.6875rem] uppercase tracking-[0.14em] text-pb-accent">
                 {g}
               </h2>
               <ul className="grid gap-1.5 text-sm">
@@ -108,7 +108,7 @@ export default function Home() {
                     <li key={c.slug}>
                       <NextLink
                         href={`/docs/${c.slug}/`}
-                        className="text-pa-muted transition-colors hover:text-pa-text"
+                        className="text-pb-muted transition-colors hover:text-pb-text"
                       >
                         {c.title}
                       </NextLink>

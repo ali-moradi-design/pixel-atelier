@@ -28,7 +28,7 @@ export function Mark({ className }: { className?: string }) {
               y={y}
               width="1"
               height="1"
-              fill={c === "A" ? "var(--pa-accent)" : "currentColor"}
+              fill={c === "A" ? "var(--pb-accent)" : "currentColor"}
             />
           ),
         ),

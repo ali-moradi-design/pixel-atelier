@@ -8,7 +8,7 @@
 - [ ] TSDoc on the component (what it is, when to use it, `@example`) and on
       every prop (meaning of each allowed value, `@default`). Prop unions are
       written out, not derived with `VariantProps`.
-- [ ] Classes use the `pa-` theme (`bg-pa-raised`, `text-pa-muted`); logical
+- [ ] Classes use the `pb-` theme (`bg-pb-raised`, `text-pb-muted`); logical
       properties (`ps-`, `pe-`, `start-`) so RTL works.
 - [ ] Every pixel effect runs on keyboard focus too, not only on hover, and
       becomes a plain change under `prefers-reduced-motion`.
@@ -25,9 +25,9 @@
 ```sh
 pnpm install
 pnpm check                                  # lint, typecheck, test, build
-pnpm --filter pixel-atelier size            # bundle size budgets
-pnpm --filter @pixel-atelier/storybook dev  # Storybook on :6006
-pnpm --filter @pixel-atelier/storybook test:browser  # axe + visual (after a Storybook build)
+pnpm --filter pixelbits size            # bundle size budgets
+pnpm --filter @pixelbits/storybook dev  # Storybook on :6006
+pnpm --filter @pixelbits/storybook test:browser  # axe + visual (after a Storybook build)
 pnpm changeset                              # describe a change for the next release
 ```
 

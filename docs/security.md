@@ -5,7 +5,7 @@ Two different things need protecting, with different risks:
 - **The npm package** runs inside other people's apps. The main risks are the
   supply chain (a poisoned dependency, a hijacked workflow or token) and XSS
   (a component turning untrusted text or links into running code).
-- **The demo site** (`pixel-atelier.ali-moradi-develop.com`) is static files
+- **The demo site** (`pixelbits.ali-moradi-develop.com`) is static files
   only. It has no application server and no database, so form input there has
   nowhere to go: there is nothing to inject into. Its risks are XSS in the
   browser and a misconfigured web server.
@@ -42,7 +42,7 @@ Recommended next steps for the owner (account settings, not code):
 | Clickjacking, sniffing, downgrade | `frame-ancestors 'none'`, `X-Content-Type-Options: nosniff`, HSTS, `Referrer-Policy`, `Permissions-Policy`, COOP. Headers are in one snippet included in every location (Nginx drops inherited `add_header` lines otherwise). | `nginx -t` and `curl -I` |
 | Third-party requests | Fonts are self-hosted on the site and in Storybook; no analytics or CDNs. | CSP `default-src 'self'` with zero violations |
 
-Config: `deploy/nginx/pixel-atelier.conf` and `deploy/nginx/security-headers.conf`.
+Config: `deploy/nginx/pixelbits.conf` and `deploy/nginx/security-headers.conf`.
 
 ## Forms in apps with a server and a database
 

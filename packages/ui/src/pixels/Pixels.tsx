@@ -25,7 +25,7 @@ const ACTIVE =
  * The pixel dissolve: a grid of squares behind the host's content that switch
  * on left to right with noise when the host is hovered, focused or open (see
  * styles/pixels.css). Put it as the first child of an element with the
- * `pa-px-host` class.
+ * `pb-px-host` class.
  *
  * The squares are created on the host's first hover or focus, never on page
  * load, so a page full of buttons adds no extra nodes until someone interacts.
@@ -35,7 +35,7 @@ const ACTIVE =
  *
  * @example
  * ```tsx
- * <a className="pa-px-host [--px-fill:var(--pa-accent)]" href="/work">
+ * <a className="pb-px-host [--px-fill:var(--pb-accent)]" href="/work">
  *   <Pixels />
  *   Work
  * </a>
@@ -71,10 +71,10 @@ export function Pixels({ size = 9, cols, rows }: PixelsProps) {
   }, [grid, cols, rows, size]);
 
   const style = grid
-    ? ({ "--pa-px-cols": grid[0], "--pa-px-rows": grid[1] } as CSSProperties)
+    ? ({ "--pb-px-cols": grid[0], "--pb-px-rows": grid[1] } as CSSProperties)
     : undefined;
   return (
-    <span ref={ref} className="pa-px" aria-hidden="true" data-pa-pixels="" style={style}>
+    <span ref={ref} className="pb-px" aria-hidden="true" data-pb-pixels="" style={style}>
       {grid &&
         pixelDelays(grid[0], grid[1]).map((d, i) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: squares never reorder

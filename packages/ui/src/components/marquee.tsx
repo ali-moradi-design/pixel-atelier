@@ -48,17 +48,17 @@ export function Marquee({
   ...props
 }: MarqueeProps) {
   const track =
-    "pa-marquee-track flex shrink-0 items-center gap-(--pa-gap) pe-(--pa-gap)";
+    "pb-marquee-track flex shrink-0 items-center gap-(--pb-gap) pe-(--pb-gap)";
   return (
     <div
       className={cx(
-        "pa-marquee flex overflow-hidden",
-        pauseOnHover && "pa-marquee-pause",
-        reverse && "pa-marquee-reverse",
+        "pb-marquee flex overflow-hidden",
+        pauseOnHover && "pb-marquee-pause",
+        reverse && "pb-marquee-reverse",
         className,
       )}
       style={
-        { "--pa-gap": gap, "--pa-duration": `${duration}s`, ...style } as CSSProperties
+        { "--pb-gap": gap, "--pb-duration": `${duration}s`, ...style } as CSSProperties
       }
       {...props}
     >

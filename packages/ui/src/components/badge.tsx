@@ -5,24 +5,24 @@ import { forwardRef, type HTMLAttributes } from "react";
  * The class names of `Badge` for a given variant, for styling other
  * elements the same way, e.g. `className={badgeVariants({ variant: "accent" })}`.
  */
-// Tints are opaque (mixed with --pa-raised), so a badge keeps its contrast on
+// Tints are opaque (mixed with --pb-raised), so a badge keeps its contrast on
 // any background, including a selected row that is tinted itself.
 export const badgeVariants = cva(
-  "inline-flex h-[1.375rem] items-center gap-1.5 whitespace-nowrap rounded-pa-xs border px-2 font-pa-mono text-[0.6875rem] font-medium leading-none tracking-[0.04em]",
+  "inline-flex h-[1.375rem] items-center gap-1.5 whitespace-nowrap rounded-pb-xs border px-2 font-pb-mono text-[0.6875rem] font-medium leading-none tracking-[0.04em]",
   {
     variants: {
       variant: {
-        neutral: "border-pa-border-strong text-pa-muted",
+        neutral: "border-pb-border-strong text-pb-muted",
         accent:
-          "border-transparent bg-[color-mix(in_srgb,var(--pa-accent)_12%,var(--pa-raised))] text-pa-accent",
+          "border-transparent bg-[color-mix(in_srgb,var(--pb-accent)_12%,var(--pb-raised))] text-pb-accent",
         success:
-          "border-transparent bg-[color-mix(in_srgb,var(--pa-success)_12%,var(--pa-raised))] text-pa-success",
+          "border-transparent bg-[color-mix(in_srgb,var(--pb-success)_12%,var(--pb-raised))] text-pb-success",
         warning:
-          "border-transparent bg-[color-mix(in_srgb,var(--pa-warning)_14%,var(--pa-raised))] text-pa-warning",
+          "border-transparent bg-[color-mix(in_srgb,var(--pb-warning)_14%,var(--pb-raised))] text-pb-warning",
         danger:
-          "border-transparent bg-[color-mix(in_srgb,var(--pa-danger)_12%,var(--pa-raised))] text-pa-danger",
-        info: "border-transparent bg-[color-mix(in_srgb,var(--pa-info)_12%,var(--pa-raised))] text-pa-info",
-        solid: "border-transparent bg-pa-text text-pa-bg",
+          "border-transparent bg-[color-mix(in_srgb,var(--pb-danger)_12%,var(--pb-raised))] text-pb-danger",
+        info: "border-transparent bg-[color-mix(in_srgb,var(--pb-info)_12%,var(--pb-raised))] text-pb-info",
+        solid: "border-transparent bg-pb-text text-pb-bg",
       },
     },
     defaultVariants: { variant: "neutral" },

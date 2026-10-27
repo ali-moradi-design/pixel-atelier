@@ -88,7 +88,7 @@ describe("effects", () => {
     render(<SpotlightCard data-testid="card">Hi</SpotlightCard>);
     const card = screen.getByTestId("card");
     fireEvent.pointerMove(card, { clientX: 30, clientY: 40 });
-    expect(card.style.getPropertyValue("--pa-x")).toBe("30px");
+    expect(card.style.getPropertyValue("--pb-x")).toBe("30px");
   });
   it("Marquee hides its copy and loaders have a status role", () => {
     const { container } = render(
@@ -103,7 +103,7 @@ describe("effects", () => {
         <CursorTrail />
       </>,
     );
-    expect(container.querySelectorAll(".pa-marquee-track")[1]).toHaveAttribute(
+    expect(container.querySelectorAll(".pb-marquee-track")[1]).toHaveAttribute(
       "aria-hidden",
       "true",
     );
