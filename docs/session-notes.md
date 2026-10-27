@@ -66,9 +66,11 @@ Local checks all pass; these are GitHub-only:
 
 ## Open: owner actions (account settings)
 
-- [x] npm: account `ali-moradi-dev` with 2FA (security key; npm no longer
-      offers authenticator apps to new accounts), granular token as the
-      `NPM_TOKEN` secret, Actions allowed to create PRs.
+- [x] npm: account `ali-moradi-dev`, granular token as the `NPM_TOKEN`
+      secret, Actions allowed to create PRs. 2FA is off: the owner removed
+      it on purpose (the security-key flow was too much friction; npm no
+      longer offers authenticator apps to new accounts). Use a long unique
+      password and trusted publishing instead.
 - [x] `pixelbits@1.0.0` published (2026-10-27) with provenance. npm staged
       the first publish: it created a placeholder `0.0.0-stage` and released
       1.0.0 a few minutes later without a manual approval.
