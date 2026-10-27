@@ -21,8 +21,11 @@ the docs: they are few and small.
 ## Workflow
 
 - Small PRs from the session branch: run `pnpm check` and
-  `pnpm --filter pixelbits size` locally, then squash-merge right away;
-  do not wait for GitHub CI. Reset the session branch onto `main` afterwards.
+  `pnpm --filter pixelbits size` locally, open the PR, wait for the required
+  checks (ruleset `protect-main`, ~2 min), then squash-merge. Every merge
+  deploys the docs site. Reset the session branch onto `main` afterwards.
+- The "Version packages" PR (made by changesets with GITHUB_TOKEN) gets no
+  checks: the owner closes and reopens it once so CI runs.
 - End-to-end/visual tests (Playwright) only where needed: components with
   real browser behavior (layout, canvas, focus across portals) and releases.
   Unit tests (Vitest + Testing Library + axe) for everything else.
