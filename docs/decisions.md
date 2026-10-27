@@ -2,6 +2,15 @@
 
 Decisions made after the brief (`brief.md`). Newer entries win.
 
+## 2026-10-27 (later)
+
+- English UI font: Manrope (variable, OFL, kept in the repo). Persian font
+  files are named persian-y. Satoshi was dropped: its license forbids sharing
+  the files in a public repository.
+- `pnpm dev` (turbo) now builds the packages first, and the docs `gen.ts`
+  rebuilds the kit when `packages/ui/dist` is missing or older than the
+  sources, so the site never runs on stale CSS after a pull.
+
 ## 2026-10-27
 
 - Renamed to **Pixelbits** (npm `pixelbits`, free on 2026-10-27; "Pixel
@@ -21,15 +30,15 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 - Every exported component accepts `className` (test/props.test.tsx checks all
   exports) and every `asChild` path is tested.
 - Docs: next-themes for the theme (no flash, no transition blink), Lenis
-  smooth scrolling, all fonts local (Geist, Yekan Bakh, Story Script), no
+  smooth scrolling, all fonts local (Manrope for the UI, Geist Mono for code, persian-y for Persian, Story Script for the wordmark), no
   Google Fonts. Code blocks are rendered to React elements (no
   dangerouslySetInnerHTML). Folder structure documented in apps/docs/README.md.
 - SEO per the Next.js docs: per-page metadata helper (canonical, language
   alternates, Open Graph, Twitter), robots, sitemap, manifest, JSON-LD.
 - Storybook: theme toggle with @storybook/addon-themes; docs pages follow it.
 - Cross-platform: `.gitattributes` forces LF, scripts use `fileURLToPath`
-  and POSIX paths for registry paths, Node >= 22.18 (type stripping) with
-  `engineStrict`, and CI builds on Windows and macOS too.
+  and POSIX paths for registry paths, Node >= 22.18 (type stripping; `engineStrict` was
+  tried and dropped: it also rejects dependencies that ask for newer Node), and CI builds on Windows and macOS too.
 
 ## 2026-10-19
 

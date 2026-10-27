@@ -1,24 +1,32 @@
-// Every font is a local file served from this site: nothing is fetched from
-// Google or any other host (faster, private, and allowed by the strict CSP).
+// Every font is a local file in this folder, served from this site: nothing is
+// fetched from Google or any other host (faster, private, and allowed by the
+// strict CSP).
 import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import localFont from "next/font/local";
 
-/** Interface text (English). Swap here to change the font of the whole site. */
-export const sans = GeistSans;
+/** Interface text (English): Manrope, variable 200–800 (SIL Open Font License). */
+export const sans = localFont({
+  variable: "--font-manrope",
+  display: "swap",
+  src: "./manrope/Manrope-Variable.woff2",
+  weight: "200 800",
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+});
+
+/** Code: Geist Mono (the geist package, SIL Open Font License). */
 export const mono = GeistMono;
 
 /** Persian text on the /fa page. */
-export const yekanBakh = localFont({
-  variable: "--font-yekan-bakh",
+export const persianY = localFont({
+  variable: "--font-persian-y",
   display: "swap",
   preload: false,
   src: [
-    { path: "./YekanBakh-Light.woff2", weight: "300", style: "normal" },
-    { path: "./YekanBakh-Regular.woff2", weight: "400", style: "normal" },
-    { path: "./YekanBakh-Medium.woff2", weight: "500", style: "normal" },
-    { path: "./YekanBakh-Bold.woff2", weight: "700", style: "normal" },
-    { path: "./YekanBakh-Heavy.woff2", weight: "800", style: "normal" },
+    { path: "./persian-y/persian-y-light.woff2", weight: "300", style: "normal" },
+    { path: "./persian-y/persian-y-regular.woff2", weight: "400", style: "normal" },
+    { path: "./persian-y/persian-y-medium.woff2", weight: "500", style: "normal" },
+    { path: "./persian-y/persian-y-bold.woff2", weight: "700", style: "normal" },
+    { path: "./persian-y/persian-y-heavy.woff2", weight: "800", style: "normal" },
   ],
 });
 
@@ -26,7 +34,7 @@ export const yekanBakh = localFont({
 export const storyScript = localFont({
   variable: "--font-story-script",
   display: "swap",
-  src: "./StoryScript-Regular.woff2",
+  src: "./story-script/story-script-regular.woff2",
   weight: "400",
 });
 
