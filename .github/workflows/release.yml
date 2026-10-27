@@ -46,6 +46,6 @@ jobs:
           commit-message: Version packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # No npm token: npm trusts this workflow (trusted publishing), and
+          # pnpm publish gets a short-lived OIDC token via id-token: write.
           NPM_CONFIG_PROVENANCE: "true"
