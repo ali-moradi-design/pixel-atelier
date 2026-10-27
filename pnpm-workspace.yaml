@@ -18,6 +18,3 @@ trustPolicy: no-downgrade
 # published without provenance; it is the safe 6.x version, not a hijack.
 trustPolicyExclude:
   - semver@6.3.1
-# Fail early with a clear message on a Node.js version that cannot run the
-# .ts build scripts directly (type stripping needs Node 22.18 or newer).
-engineStrict: true

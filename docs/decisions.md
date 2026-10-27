@@ -37,8 +37,8 @@ Decisions made after the brief (`brief.md`). Newer entries win.
   alternates, Open Graph, Twitter), robots, sitemap, manifest, JSON-LD.
 - Storybook: theme toggle with @storybook/addon-themes; docs pages follow it.
 - Cross-platform: `.gitattributes` forces LF, scripts use `fileURLToPath`
-  and POSIX paths for registry paths, Node >= 22.18 (type stripping) with
-  `engineStrict`, and CI builds on Windows and macOS too.
+  and POSIX paths for registry paths, Node >= 22.18 (type stripping; `engineStrict` was
+  tried and dropped: it also rejects dependencies that ask for newer Node), and CI builds on Windows and macOS too.
 
 ## 2026-10-19
 
