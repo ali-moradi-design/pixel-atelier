@@ -80,11 +80,10 @@ Local checks all pass; these are GitHub-only:
       Trusted publisher status: Valid. Publishing access: "Require two-factor
       authentication and disallow bypass 2fa tokens", so only `release.yml`
       (or the owner with 2FA) can publish.
-- [ ] Optional: deprecate `0.0.0-stage` (`npm deprecate pixelbits@0.0.0-stage
-      "placeholder from staged publishing"`).
-- [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
-      protection,
-      required reviewer on the `npm` environment.
+- [x] Owner (2026-10-27): `0.0.0-stage`
+      deprecated; GitHub 2FA, private vulnerability reporting, secret
+      scanning with push protection, required reviewer on the `npm`
+      environment; social preview uploaded.
 - `shadcn add` works only after the docs deploy: the registry is served from
   `https://pixelbits.ali-moradi-develop.com/r/*.json`.
 - [x] Docs live at https://pixelbits.ali-moradi-develop.com (roadmap 7.1-7.2,
@@ -108,8 +107,8 @@ Local checks all pass; these are GitHub-only:
   secrets → artifact → deploy job in environment `docs` → rsync. The key
   `gha_pixelbits` is forced to `rrsync /srv/static/pixelbits` on the server
   (it cannot run any other command).
-- [ ] Upload `brand/social-preview.png` as the repository's social preview.
-- [ ] Decide on the font (Geist kept for now; the logo wordmark uses it).
+- English UI font is Manrope (decided). Check whether the logo wordmark,
+  which used Geist, should move to Manrope too.
 
 - [x] Ruleset `protect-main` on the default branch (2026-10-27): PR required
       (0 approvals), no force push or deletion, branch must be up to date,
@@ -133,7 +132,7 @@ Local checks all pass; these are GitHub-only:
 
 - Explain in Persian with the language rules in `CLAUDE.md`.
 - graphify for code lookup (`graphify query`, `graphify update .`).
-- PRs: check locally, then squash-merge without waiting for GitHub CI; but
-  look at CI on main at the end of a session and note failures here.
+- PRs: check locally, wait for the required checks (ruleset `protect-main`),
+  then squash-merge.
 - Browser/e2e tests only where needed.
 - If the usage limit is reached, wait for the reset and continue.
