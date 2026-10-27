@@ -87,8 +87,18 @@ Local checks all pass; these are GitHub-only:
       required reviewer on the `npm` environment.
 - `shadcn add` works only after the docs deploy: the registry is served from
   `https://pixelbits.ali-moradi-develop.com/r/*.json`.
-- [ ] Deploy the docs (roadmap phase 7): `apps/docs/out` →
-      `/srv/static/pixelbits`, Nginx config in `deploy/nginx/`, certbot.
+- [x] Docs live at https://pixelbits.ali-moradi-develop.com (roadmap 7.1-7.2,
+      2026-10-27): first upload by hand, Nginx config from `deploy/nginx/`,
+      own certbot certificate. Server-wide gzip for JS/CSS/JSON added in
+      `/etc/nginx/conf.d/gzip.conf` (Ubuntu gzips only HTML by default).
+- [ ] Deploy from CI (roadmap 7.3): build on Linux, rsync `apps/docs/out` to
+      `/srv/static/pixelbits`. Never upload a Windows build: Next 16 writes the
+      prefetch files (`__next.*.txt`) as nested folders there, so the browser
+      gets 404s for them.
+- Storybook: changing the theme or accent on a DOCS page reloads the whole
+  preview iframe (Storybook 10.6 behavior, also without our docs container;
+  story pages switch in ~150 ms). Hence the immutable cache for
+  `/storybook/assets/` in `deploy/nginx/pixelbits.conf`.
 - [ ] Upload `brand/social-preview.png` as the repository's social preview.
 - [ ] Decide on the font (Geist kept for now; the logo wordmark uses it).
 
