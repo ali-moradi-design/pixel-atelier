@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "ali-moradi-design/pixel-atelier" }
+    { "repo": "ali-moradi-design/pixelbits" }
   ],
   "commit": false,
   "access": "public",

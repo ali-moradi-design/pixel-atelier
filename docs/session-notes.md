@@ -8,8 +8,9 @@ Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
    - English UI font: Manrope (chosen by the owner).
    - Visual baselines are outdated on purpose (new colors, logo, pagination,
      accordion): run the "Update visual baselines" workflow.
-   - Owner: rename the GitHub repo to `pixelbits`, then replace
-     `ali-moradi-design/pixel-atelier` (package.json, site.ts, changesets).
+   - Done: the GitHub repo is now `ali-moradi-design/pixelbits`; all URLs
+     updated. Old URLs redirect, but local clones should run
+     `git remote set-url origin https://github.com/ali-moradi-design/pixelbits.git`.
    - Owner: confirm the license of the persian-y font files allows shipping
      them in a public repository.
    - Check the new Windows/macOS CI job on the first push.
