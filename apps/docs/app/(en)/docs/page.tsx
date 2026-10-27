@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
-import { CodeBlock } from "@/components/code-block";
+import NextLink from "next/link";
+import { CodeBlock } from "@/components/docs/code-block";
+import { pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Getting started" };
+export const metadata: Metadata = pageMetadata({
+  title: "Getting started",
+  description:
+    "Install Pixelbits, add the Tailwind v4 theme or the precompiled CSS, and use its React components, or copy their source with the shadcn CLI.",
+  path: "/docs/",
+});
 
 export default function GettingStarted() {
   return (
@@ -56,9 +64,9 @@ export default function GettingStarted() {
         <code>data-accent="platinum" | "emerald" | "sapphire" | "ruby" | "amethyst"</code>{" "}
         to change the accent. Components use logical properties, so <code>dir="rtl"</code>{" "}
         just works — see the{" "}
-        <a href="/fa/" className="text-pb-accent underline underline-offset-4">
-          Persian demo
-        </a>
+        <NextLink href="/fa/" className="text-pb-accent underline underline-offset-4">
+          Persian page
+        </NextLink>
         .
       </p>
       <CodeBlock
@@ -75,7 +83,7 @@ export default function GettingStarted() {
       <CodeBlock
         lang="bash"
         title="terminal"
-        code="npx shadcn add https://pixelbits.ali-moradi-develop.com/r/button.json"
+        code={`npx shadcn add ${site.url}/r/button.json`}
       />
       <CodeBlock
         lang="css"
@@ -85,10 +93,16 @@ export default function GettingStarted() {
 
       <h2 className="mt-4 text-pb-h4 text-pb-text">Fonts</h2>
       <p>
-        The kit is designed with Geist and Geist Mono. Load them however you like and set{" "}
-        <code>--pb-font-sans</code> and <code>--pb-font-mono</code>; without them the
-        system font is used.
+        The kit reads two CSS variables, <code>--pb-font-sans</code> and{" "}
+        <code>--pb-font-mono</code>; without them the system font is used. Self-host your
+        fonts (for example with <code>next/font/local</code>) and point the variables at
+        them:
       </p>
+      <CodeBlock
+        lang="css"
+        title="app/globals.css"
+        code={`:root {\n  --pb-font-sans: var(--font-geist-sans), system-ui, sans-serif;\n  --pb-font-mono: var(--font-geist-mono), ui-monospace, monospace;\n}`}
+      />
     </article>
   );
 }

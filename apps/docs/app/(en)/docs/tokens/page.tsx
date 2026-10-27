@@ -1,7 +1,13 @@
 import { accents, fonts, gold, motion, radius, themes, type } from "@pixelbits/tokens";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Tokens" };
+export const metadata: Metadata = pageMetadata({
+  title: "Design tokens",
+  description:
+    "The Pixelbits design tokens: OKLCH colors for dark and light themes, six luxury accents, type scale, radius and motion, as CSS variables and Tailwind v4 utilities.",
+  path: "/docs/tokens/",
+});
 
 export default function Tokens() {
   const names = Object.keys(themes.dark) as (keyof typeof themes.dark)[];
@@ -11,14 +17,15 @@ export default function Tokens() {
         <h1 className="text-pb-h1 text-pb-text">Tokens</h1>
         <p>
           Every value is a CSS variable (<code>--pb-*</code>) with a dark and a light
-          theme, and a Tailwind v4 utility (<code>bg-pb-surface</code>,{" "}
-          <code>rounded-pb-md</code>, <code>text-pb-h2</code>…). All text and accent
-          colors pass WCAG AA; a test checks it.
+          theme, and every color is written in <code>oklch()</code>, and a Tailwind v4
+          utility (<code>bg-pb-surface</code>, <code>rounded-pb-md</code>,{" "}
+          <code>text-pb-h2</code>…). All text and accent colors pass WCAG AA; a test
+          checks it.
         </p>
       </header>
       <section className="grid gap-4">
         <h2 className="text-pb-h4">Colors</h2>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {names.map((n) => (
             <div key={n} className="grid gap-1.5">
               <div
@@ -26,8 +33,9 @@ export default function Tokens() {
                 style={{ background: `var(--pb-${n})` }}
               />
               <span className="text-xs">{n}</span>
-              <span className="font-pb-mono text-[0.6875rem] text-pb-muted">
-                {themes.dark[n]} / {themes.light[n]}
+              <span className="grid font-pb-mono text-[0.625rem] leading-relaxed text-pb-muted">
+                <span>{themes.dark[n]}</span>
+                <span>{themes.light[n]}</span>
               </span>
             </div>
           ))}
@@ -35,7 +43,7 @@ export default function Tokens() {
       </section>
       <section className="grid gap-4">
         <h2 className="text-pb-h4">Accents</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {Object.entries(accents).map(([name, v]) => (
             <div
               key={name}
@@ -48,8 +56,9 @@ export default function Tokens() {
                 <i className="h-10 flex-1 rounded-pb-sm bg-pb-accent-subtle" />
               </div>
               <span className="text-sm">{name}</span>
-              <span className="font-pb-mono text-[0.6875rem] text-pb-muted">
-                {v.dark[0]} / {v.light[0]}
+              <span className="grid font-pb-mono text-[0.625rem] leading-relaxed text-pb-muted">
+                <span>{v.dark[0]}</span>
+                <span>{v.light[0]}</span>
               </span>
             </div>
           ))}

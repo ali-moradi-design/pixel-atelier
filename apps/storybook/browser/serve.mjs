@@ -1,9 +1,10 @@
 // Tiny static server for storybook-static (used by Playwright's webServer).
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
-import { extname, join } from "node:path";
+import { extname, join, resolve, sep } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = new URL("../storybook-static/", import.meta.url).pathname;
+const root = fileURLToPath(new URL("../storybook-static/", import.meta.url));
 const types = {
   ".html": "text/html",
   ".js": "text/javascript",
@@ -14,6 +15,10 @@ const types = {
 };
 createServer((req, res) => {
   let file = join(root, decodeURIComponent((req.url ?? "/").split("?")[0] ?? "/"));
+  if (!resolve(file).startsWith(resolve(root) + sep) && resolve(file) !== resolve(root)) {
+    res.writeHead(403).end();
+    return;
+  }
   if (existsSync(file) && statSync(file).isDirectory()) file = join(file, "index.html");
   if (!existsSync(file)) {
     res.writeHead(404).end();

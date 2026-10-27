@@ -4,9 +4,11 @@ import { Button } from "pixelbits/button";
 import { Marquee } from "pixelbits/marquee";
 import { SpotlightCard } from "pixelbits/spotlight-card";
 import { TextScramble } from "pixelbits/text-scramble";
-import { CodeBlock } from "@/components/code-block";
-import { Mark } from "@/components/logo";
+import { CodeBlock } from "@/components/docs/code-block";
+import { Mark } from "@/components/layout/logo";
 import { catalog, groups } from "@/lib/catalog";
+import { JsonLd, softwareLd, websiteLd } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 const features = [
   {
@@ -30,7 +32,8 @@ const features = [
 export default function Home() {
   return (
     <main>
-      <section className="mx-auto grid max-w-6xl gap-10 px-4 pt-20 pb-16 sm:px-6 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+      <JsonLd data={{ "@graph": [websiteLd, softwareLd] }} />
+      <section className="pb-container grid gap-12 pt-20 pb-16 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:pt-28">
         <div className="grid gap-7">
           <Badge variant="accent" dot className="w-fit">
             v1.0 · {catalog.length} components
@@ -46,13 +49,13 @@ export default function Home() {
             <Button asChild variant="primary" size="lg" roll>
               <NextLink href="/docs/">Get started</NextLink>
             </Button>
-            <Button asChild size="lg" roll>
+            <Button asChild variant="outline" size="lg" roll>
               <NextLink href="/docs/button/">Browse components</NextLink>
             </Button>
           </div>
         </div>
         <SpotlightCard className="grid aspect-square place-items-center">
-          <Mark className="size-1/2 text-pb-text" />
+          <Mark className="w-1/2" />
         </SpotlightCard>
       </section>
       <Marquee
@@ -75,7 +78,7 @@ export default function Home() {
           </span>
         ))}
       </Marquee>
-      <section className="mx-auto grid max-w-6xl gap-4 px-4 py-20 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
+      <section className="pb-container grid gap-6 py-20 sm:grid-cols-2 lg:grid-cols-4">
         {features.map((f) => (
           <div
             key={f.title}
@@ -86,15 +89,15 @@ export default function Home() {
           </div>
         ))}
       </section>
-      <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-20 sm:px-6 lg:grid-cols-2">
+      <section className="pb-container grid gap-6 pb-20 lg:grid-cols-2">
         <CodeBlock title="npm" lang="bash" code="pnpm add pixelbits" />
         <CodeBlock
           title="or copy the source"
           lang="bash"
-          code="npx shadcn add https://pixelbits.ali-moradi-develop.com/r/button.json"
+          code={`npx shadcn add ${site.url}/r/button.json`}
         />
       </section>
-      <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
+      <section className="pb-container pb-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {groups.map((g) => (
             <div key={g} className="grid content-start gap-3">

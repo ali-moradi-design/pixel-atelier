@@ -1,0 +1,146 @@
+@import "tailwindcss";
+@import "pixelbits/theme.css";
+@import "./code.css";
+
+@source "../app";
+@source "../demos";
+@source "../components";
+
+/* `light:` utilities apply under data-theme="light" (set by next-themes). */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+:root {
+  --pb-font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --pb-font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+:root[lang="fa"] {
+  --pb-font-sans: var(--font-yekan-bakh), var(--font-geist-sans), sans-serif;
+  /* Persian has no monospace face: labels set in mono use Yekan Bakh too. */
+  --pb-font-mono: var(--font-yekan-bakh), var(--font-geist-mono), monospace;
+}
+/* Code stays in Geist Mono, also on the Persian page. */
+:root[lang="fa"] :is([dir="ltr"], code, pre, kbd) {
+  --pb-font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+/* Letter spacing breaks the joined letters of Persian script, and Persian
+   has no capitals: turn both off outside LTR islands. */
+:root[lang="fa"] :not([dir="ltr"], [dir="ltr"] *, code, pre, kbd) {
+  /* biome-ignore lint/complexity/noImportantStyles: overrides tracking utilities of the kit */
+  letter-spacing: 0 !important;
+  text-transform: none;
+}
+
+/* Gem logo tones (gold ramp; one step darker on light backgrounds). */
+:root {
+  --gem-a: var(--pb-gold-100);
+  --gem-b: var(--pb-gold-200);
+  --gem-c: var(--pb-gold-300);
+  --gem-d: var(--pb-gold-500);
+}
+[data-theme="light"] {
+  --gem-a: var(--pb-gold-200);
+  --gem-b: var(--pb-gold-300);
+  --gem-c: var(--pb-gold-400);
+  --gem-d: var(--pb-gold-500);
+}
+
+/* The wordmark face (Story Script, self-hosted). */
+@utility font-story {
+  font-family: var(--font-story-script), cursive;
+  font-weight: 400;
+}
+
+/* Page container: wide, with a fluid side gutter. */
+@utility pb-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 88rem;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+html {
+  background: var(--pb-bg);
+  color: var(--pb-text);
+  font-family: var(--pb-font-sans);
+  -webkit-font-smoothing: antialiased;
+  scroll-padding-top: 5rem;
+  text-rendering: optimizeLegibility;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+::selection {
+  background: var(--pb-accent);
+  color: var(--pb-on-accent);
+}
+
+/* Lenis (smooth scrolling): its required base styles. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  /* biome-ignore lint/complexity/noImportantStyles: Lenis drives the scroll itself */
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Quiet scroll areas: a thin scrollbar that warms up on hover, and soft
+   fades at the top and bottom edges. */
+.pb-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  scrollbar-gutter: stable;
+  transition: scrollbar-color var(--pb-duration-base);
+}
+.pb-scroll:hover,
+.pb-scroll:focus-within {
+  scrollbar-color: var(--pb-border-strong) transparent;
+}
+.pb-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.pb-scroll::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+}
+.pb-scroll:hover::-webkit-scrollbar-thumb {
+  background: var(--pb-border-strong);
+}
+.pb-scroll-fade {
+  -webkit-mask-image: linear-gradient(
+    transparent,
+    #000 1.25rem,
+    #000 calc(100% - 2rem),
+    transparent
+  );
+  mask-image: linear-gradient(
+    transparent,
+    #000 1.25rem,
+    #000 calc(100% - 2rem),
+    transparent
+  );
+}
+
+@layer components {
+  .prose-pb p {
+    color: var(--pb-muted);
+    line-height: 1.75;
+    font-size: 0.9375rem;
+  }
+  .prose-pb code:not(pre code) {
+    font-family: var(--pb-font-mono);
+    font-size: 0.8125em;
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    background: var(--pb-raised);
+    color: var(--pb-text);
+  }
+}

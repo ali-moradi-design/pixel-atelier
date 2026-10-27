@@ -57,7 +57,16 @@ export const catalog: Entry[] = [
   ]),
   e("command-palette", "Command palette", "Overlays", ["CommandPalette"]),
   e("toast", "Toast", "Overlays", ["Toaster", "toast"]),
-  e("card", "Card", "Data display", ["Card"]),
+  e("card", "Card", "Data display", [
+    "Card",
+    "CardMedia",
+    "CardHeader",
+    "CardEyebrow",
+    "CardTitle",
+    "CardDescription",
+    "CardContent",
+    "CardFooter",
+  ]),
   e("avatar", "Avatar", "Data display", ["Avatar", "AvatarGroup"]),
   e("skeleton", "Skeleton", "Data display", ["Skeleton"]),
   e("table", "Table", "Data display", [

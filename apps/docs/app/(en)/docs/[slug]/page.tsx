@@ -1,18 +1,29 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
+import NextLink from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "pixelbits/badge";
 import { Tab, TabList, TabPanel, Tabs } from "pixelbits/tabs";
-import { CodeBlock } from "@/components/code-block";
-import { Md } from "@/components/md";
+import { CodeBlock } from "@/components/docs/code-block";
+import { Md } from "@/components/docs/md";
 import apiJson from "@/content/api.json";
 import { bySlug, catalog } from "@/lib/catalog";
 import { demos } from "@/lib/demos";
+import { breadcrumbLd, JsonLd, pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 import type { Api } from "@/scripts/api";
 
 const api = apiJson as unknown as Record<string, Api>;
-const SITE = "https://pixelbits.ali-moradi-develop.com";
+
+/** The first paragraph of the component's TSDoc, as plain text (for meta tags). */
+function describe(entry: NonNullable<ReturnType<typeof bySlug>>) {
+  const text = api[entry.api]?.components[0]?.description.split("\n\n")[0];
+  const plain = text?.replace(/\n/g, " ").replace(/`/g, "").trim();
+  return plain
+    ? `${plain} Part of ${site.name}, a React UI kit with pixel effects.`
+    : `${entry.title}: a ${site.name} React component with pixel effects.`;
+}
 
 export function generateStaticParams() {
   return catalog.map((c) => ({ slug: c.slug }));
@@ -23,12 +34,15 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const entry = bySlug((await params).slug);
-  const first = entry && api[entry.api]?.components[0];
-  return {
-    title: entry?.title,
-    description: first?.description.split("\n\n")[0]?.replace(/\n/g, " "),
-  };
+  const { slug } = await params;
+  const entry = bySlug(slug);
+  if (!entry) return {};
+  return pageMetadata({
+    title: `${entry.title} – React component`,
+    description: describe(entry),
+    path: `/docs/${slug}/`,
+    type: "article",
+  });
 }
 
 export default async function ComponentPage({
@@ -54,6 +68,25 @@ export default async function ComponentPage({
   const next = catalog[i + 1];
   return (
     <article className="grid gap-10">
+      <JsonLd
+        data={{
+          "@graph": [
+            breadcrumbLd([
+              { name: "Docs", path: "/docs/" },
+              { name: entry.group, path: "/docs/" },
+              { name: entry.title, path: `/docs/${slug}/` },
+            ]),
+            {
+              "@type": "TechArticle",
+              headline: `${entry.title} – ${site.name}`,
+              description: describe(entry),
+              url: `${site.url}/docs/${slug}/`,
+              inLanguage: "en",
+              author: { "@type": "Person", name: site.author.name },
+            },
+          ],
+        }}
+      />
       <header className="grid gap-3">
         <Badge className="w-fit">{entry.group}</Badge>
         <h1 className="text-pb-h1">{entry.title}</h1>
@@ -90,7 +123,7 @@ export default async function ComponentPage({
           <CodeBlock
             title="shadcn: copy the source"
             lang="bash"
-            code={`npx shadcn add ${SITE}/r/${entry.api.startsWith("pixels/") ? "pixelbits-base" : entry.api.startsWith("blocks/") ? `block-${slug}` : slug}.json`}
+            code={`npx shadcn add ${site.url}/r/${entry.api.startsWith("pixels/") ? "pixelbits-base" : entry.api.startsWith("blocks/") ? `block-${slug}` : slug}.json`}
           />
         </div>
       </section>
@@ -100,8 +133,7 @@ export default async function ComponentPage({
           API
         </h2>
         {doc.components.map((c) => {
-          const props =
-            doc.props[`${c.name}Props`] ?? (c.name === "Sheet" ? undefined : undefined);
+          const props = doc.props[`${c.name}Props`];
           return (
             <div key={c.name} className="grid gap-4">
               <h3 className="font-pb-mono text-sm text-pb-accent">{`<${c.name}>`}</h3>
@@ -173,16 +205,22 @@ export default async function ComponentPage({
         className="flex justify-between gap-4 border-t border-pb-border pt-6 text-sm"
       >
         {prev ? (
-          <a href={`/docs/${prev.slug}/`} className="text-pb-muted hover:text-pb-text">
+          <NextLink
+            href={`/docs/${prev.slug}/`}
+            className="text-pb-muted hover:text-pb-text"
+          >
             ← {prev.title}
-          </a>
+          </NextLink>
         ) : (
           <span />
         )}
         {next && (
-          <a href={`/docs/${next.slug}/`} className="text-pb-muted hover:text-pb-text">
+          <NextLink
+            href={`/docs/${next.slug}/`}
+            className="text-pb-muted hover:text-pb-text"
+          >
             {next.title} →
-          </a>
+          </NextLink>
         )}
       </nav>
     </article>
