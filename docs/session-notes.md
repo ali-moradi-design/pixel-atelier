@@ -6,8 +6,8 @@ Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
 
 0. Open from 2026-10-27 (the big redesign session, see decisions.md):
    - English UI font: Manrope (chosen by the owner).
-   - Visual baselines are outdated on purpose (new colors, logo, pagination,
-     accordion): run the "Update visual baselines" workflow.
+   - Done (2026-10-27, later): visual baselines re-rendered on GitHub's runner
+     with the "Update visual baselines" workflow.
    - Done: the GitHub repo is now `ali-moradi-design/pixelbits`; all URLs
      updated. Old URLs redirect, but local clones should run
      `git remote set-url origin https://github.com/ali-moradi-design/pixelbits.git`.
@@ -50,21 +50,26 @@ Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
 
 Local checks all pass; these are GitHub-only:
 
-- [x] `ci.yml` was invalid YAML (unquoted colon in a job name); fixed in the
-      last PR. Add a YAML validity check to CI so this cannot happen again.
-- [ ] `browser` job failed on main (step `test:browser`, since v1.0). Most
-      likely the visual baselines were rendered locally and differ slightly
-      on GitHub's runner. Check the uploaded `playwright-report` artifact; if
-      it is only rendering differences, run the "Update visual baselines"
-      workflow. If axe failed, fix the component instead.
-- [ ] `Release` workflow fails in the `changesets/action` step. Read its
-      log. Likely causes: the repository setting "Allow GitHub Actions to
-      create and approve pull requests" is off (Settings → Actions →
-      General), or the new `npm` environment needs approval.
+- [x] `ci.yml` was invalid YAML; now `scripts/check-workflows.mjs` checks
+      every workflow file in `pnpm lint` and in the Security workflow (which
+      still runs when `ci.yml` is broken).
+- [x] `browser` job: only one visual test failed (hovered button 117px wide
+      instead of 119px, from the Manrope font change). Baselines re-rendered
+      with the "Update visual baselines" workflow.
+- [x] `Release` workflow: `changesets/action` v2 renamed its inputs
+      (`publish-script`, `version-script`, `pr-title`, `commit-message`).
+      Fixed. Next run shows whether "Allow GitHub Actions to create and
+      approve pull requests" also needs turning on.
+- Local note: in the cloud session `turbo` cannot spawn tasks ("Exec format
+  error"); run `pnpm -r run build|typecheck|test` instead there.
 - [ ] Watch the first CodeQL results in the Security tab.
 
 ## Open: owner actions (account settings)
 
+- Why `pnpm add pixelbits` and `shadcn add` do not work yet: nothing is
+  published. npm needs the token below; the shadcn registry is served by the
+  docs site (`https://pixelbits.ali-moradi-develop.com/r/*.json`), so it works
+  after the docs deploy.
 - [ ] npm: account with 2FA; check `npm view pixelbits` still 404s;
       granular token as `NPM_TOKEN` secret, or trusted publishing.
 - [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
