@@ -99,6 +99,14 @@ Local checks all pass; these are GitHub-only:
   preview iframe (Storybook 10.6 behavior, also without our docs container;
   story pages switch in ~150 ms). Hence the immutable cache for
   `/storybook/assets/` in `deploy/nginx/pixelbits.conf`.
+- [ ] Storybook flash on docs pages: the reloaded iframe paints white before
+      the CSS loads. Idea: `.storybook/preview-head.html` with a tiny inline
+      script that reads `globals=theme:...` from the iframe URL and sets
+      `data-theme` plus a background color before anything renders.
+- Deploy workflow `deploy-docs.yml` (push to main): build job without
+  secrets → artifact → deploy job in environment `docs` → rsync. The key
+  `gha_pixelbits` is forced to `rrsync /srv/static/pixelbits` on the server
+  (it cannot run any other command).
 - [ ] Upload `brand/social-preview.png` as the repository's social preview.
 - [ ] Decide on the font (Geist kept for now; the logo wordmark uses it).
 
