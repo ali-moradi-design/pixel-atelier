@@ -1,5 +1,11 @@
 # pixelbits
 
+## 1.0.1
+
+### Patch Changes
+
+- [#26](https://github.com/ali-moradi-design/pixelbits/pull/26) [`f0beef6`](https://github.com/ali-moradi-design/pixelbits/commit/f0beef6d26f9b2f6aa5eb7fbbf036e278a1edd5c) Thanks [@ali-moradi-design](https://github.com/ali-moradi-design)! - README: link to the GitHub repository and say that the docs site and the shadcn registry are not online yet.
+
 ## 1.0.0
 
 ### Major Changes
