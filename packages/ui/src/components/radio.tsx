@@ -128,7 +128,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
 ) {
   const group = useContext(RadioGroupContext);
   const input = (
-    <span className="relative inline-grid size-[1.125rem] shrink-0 place-items-center">
+    <span className="relative inline-grid size-4.5 shrink-0 place-items-center">
       <input
         ref={ref}
         type="radio"
@@ -147,14 +147,14 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute size-2 scale-0 bg-pb-accent transition-transform duration-pb-fast [transition-timing-function:steps(2,end)] peer-checked:scale-100"
+        className="pointer-events-none absolute size-2 scale-0 bg-pb-accent transition-transform duration-pb-fast ease-[steps(2,end)] peer-checked:scale-100"
       />
     </span>
   );
   if (!label) return input;
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: the input is inside `control`
-    <label className="inline-flex cursor-pointer items-start gap-2.5 text-sm text-pb-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
+    <label className="inline-flex cursor-pointer items-start gap-2.5 text-sm text-pb-text has-disabled:cursor-not-allowed has-disabled:opacity-60">
       <span className="mt-px">{input}</span>
       <span className="grid gap-0.5">
         <span>{label}</span>

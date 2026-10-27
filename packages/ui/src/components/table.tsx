@@ -130,7 +130,7 @@ export function TableHead({
       scope="col"
       aria-sort={sort}
       className={cx(
-        "px-3 py-2.5 font-pb-mono text-[0.65625rem] font-medium uppercase tracking-[0.1em] text-pb-muted whitespace-nowrap",
+        "px-3 py-2.5 font-pb-mono text-[0.65625rem] font-medium uppercase tracking-widest text-pb-muted whitespace-nowrap",
         numeric ? "text-end" : "text-start",
         className,
       )}

@@ -38,7 +38,7 @@ export interface PixelImageRevealProps extends ImgHTMLAttributes<HTMLImageElemen
  *
  * @example
  * ```tsx
- * <PixelImageReveal src="/work/noir.jpg" alt="Atelier Noir home page" wrapperClassName="aspect-[4/5]" />
+ * <PixelImageReveal src="/work/noir.jpg" alt="Atelier Noir home page" wrapperClassName="aspect-4/5" />
  * ```
  */
 export function PixelImageReveal({

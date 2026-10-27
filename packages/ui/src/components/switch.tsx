@@ -34,10 +34,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   const sm = size === "sm";
   const control = (
     <span
-      className={cx(
-        "relative inline-flex shrink-0",
-        sm ? "h-[1.125rem] w-8" : "h-[1.375rem] w-10",
-      )}
+      className={cx("relative inline-flex shrink-0", sm ? "h-4.5 w-8" : "h-5.5 w-10")}
     >
       <input
         ref={ref}
@@ -61,9 +58,9 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
       <span
         aria-hidden="true"
         className={cx(
-          "pointer-events-none absolute top-[3px] start-[3px] rounded-[1px] bg-pb-text",
-          "transition-transform duration-pb-base [transition-timing-function:steps(4,end)]",
-          "peer-checked:bg-pb-on-accent rtl:peer-checked:-translate-x-[var(--pb-switch-travel)] ltr:peer-checked:translate-x-[var(--pb-switch-travel)]",
+          "pointer-events-none absolute top-0.75 inset-s-0.75 rounded-[1px] bg-pb-text",
+          "transition-transform duration-pb-base ease-[steps(4,end)]",
+          "peer-checked:bg-pb-on-accent rtl:peer-checked:-translate-x-(--pb-switch-travel) ltr:peer-checked:translate-x-(--pb-switch-travel)",
           sm ? "size-3 [--pb-switch-travel:14px]" : "size-4 [--pb-switch-travel:18px]",
         )}
       />
@@ -72,7 +69,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   if (!label) return control;
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: the input is inside `control`
-    <label className="inline-flex cursor-pointer items-center gap-2.5 text-sm text-pb-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
+    <label className="inline-flex cursor-pointer items-center gap-2.5 text-sm text-pb-text has-disabled:cursor-not-allowed has-disabled:opacity-60">
       {control}
       {label}
     </label>

@@ -143,9 +143,9 @@ export default async function ComponentPage({
               {c.example && <CodeBlock code={c.example} title="Example" />}
               {props && props.props.length > 0 && (
                 <div className="overflow-x-auto rounded-pb-md border border-pb-border">
-                  <table className="w-full min-w-[40rem] border-collapse text-[0.8125rem]">
+                  <table className="w-full min-w-160 border-collapse text-[0.8125rem]">
                     <thead>
-                      <tr className="border-b border-pb-border text-start font-pb-mono text-[0.65625rem] uppercase tracking-[0.1em] text-pb-muted">
+                      <tr className="border-b border-pb-border text-start font-pb-mono text-[0.65625rem] uppercase tracking-widest text-pb-muted">
                         <th scope="col" className="px-3 py-2.5 text-start font-medium">
                           Prop
                         </th>
@@ -174,7 +174,7 @@ export default async function ComponentPage({
                               </span>
                             )}
                           </td>
-                          <td className="max-w-56 px-3 py-3 font-pb-mono text-xs break-words text-pb-muted">
+                          <td className="max-w-56 px-3 py-3 font-pb-mono text-xs wrap-break-word text-pb-muted">
                             {p.type}
                           </td>
                           <td className="px-3 py-3 font-pb-mono text-xs whitespace-nowrap text-pb-muted">

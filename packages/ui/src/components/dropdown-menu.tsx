@@ -218,9 +218,9 @@ function useItem(disabled: boolean | undefined, run: () => void) {
 
 const itemClass = (danger: boolean) =>
   cx(
-    "pb-px-host flex h-[2.125rem] cursor-pointer select-none items-center gap-2.5 rounded-pb-xs px-2.5 text-[0.8125rem] outline-none",
-    "[--px-fill:var(--pb-accent-subtle)] [--px-ink:currentColor] [&_svg]:size-[0.9375rem] [&_svg]:shrink-0",
-    "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
+    "pb-px-host flex h-8.5 cursor-pointer select-none items-center gap-2.5 rounded-pb-xs px-2.5 text-[0.8125rem] outline-none",
+    "[--px-fill:var(--pb-accent-subtle)] [--px-ink:currentColor] [&_svg]:size-3.75 [&_svg]:shrink-0",
+    "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:inset-s-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
     "aria-disabled:cursor-not-allowed aria-disabled:opacity-40",
     danger &&
       "text-pb-danger [--px-fill:color-mix(in_oklab,var(--pb-danger)_12%,transparent)]",
@@ -290,7 +290,7 @@ export function DropdownCheckboxItem({
       {...props}
     >
       <Pixels />
-      <span className="inline-grid size-[0.9375rem] place-items-center">
+      <span className="inline-grid size-3.75 place-items-center">
         {checked && <CheckIcon className="text-pb-accent" />}
       </span>
       {icon}

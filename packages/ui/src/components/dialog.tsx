@@ -169,7 +169,7 @@ function DialogShell({
                   type="button"
                   aria-label="Close"
                   onClick={close}
-                  className="absolute end-3.5 top-3.5 inline-grid size-7 cursor-pointer place-items-center rounded-pb-xs text-pb-muted outline-none hover:bg-pb-raised hover:text-pb-text focus-visible:outline-2 focus-visible:outline-pb-accent"
+                  className="absolute inset-e-3.5 top-3.5 inline-grid size-7 cursor-pointer place-items-center rounded-pb-xs text-pb-muted outline-none hover:bg-pb-raised hover:text-pb-text focus-visible:outline-2 focus-visible:outline-pb-accent"
                 >
                   <XIcon />
                 </button>

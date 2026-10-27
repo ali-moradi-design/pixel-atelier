@@ -68,7 +68,7 @@ export function NumberTicker({
             );
           return (
             // biome-ignore lint/suspicious/noArrayIndexKey: positions are stable
-            <span key={i} className="inline-block h-[1lh] overflow-hidden">
+            <span key={i} className="inline-block h-lh overflow-hidden">
               <span
                 className="pb-ticker-col flex flex-col"
                 style={{

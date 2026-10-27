@@ -47,7 +47,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
         }
         className={cx(
           "w-full resize-y bg-transparent px-3 py-2.5 leading-normal text-inherit outline-none placeholder:text-pb-muted",
-          autoResize && "[field-sizing:content] resize-none",
+          autoResize && "field-sizing-content resize-none",
           className,
         )}
       />

@@ -30,7 +30,7 @@ export function Skeleton({ shape = "block", className, ...props }: SkeletonProps
     <div
       aria-hidden="true"
       className={cx(
-        "pb-skeleton rounded-[2px]",
+        "pb-skeleton rounded-xs",
         shape === "text" ? "h-[0.8em] w-full" : shape === "square" ? "size-9" : "min-h-4",
         className,
       )}

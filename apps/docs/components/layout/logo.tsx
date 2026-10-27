@@ -49,7 +49,7 @@ export function Mark({ className }: { className?: string }) {
 export function Logo({ className }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className ?? ""}`}>
-      <Mark className="h-[1.125rem] w-auto" />
+      <Mark className="h-4.5 w-auto" />
       <span className="font-story text-[1.375rem] leading-none tracking-[0.01em] text-pb-text">
         Pixelbits
       </span>

@@ -64,7 +64,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     if (inner.current) inner.current.indeterminate = indeterminate;
   }, [indeterminate]);
   const control = (
-    <span className="relative inline-grid size-[1.125rem] shrink-0 place-items-center">
+    <span className="relative inline-grid size-4.5 shrink-0 place-items-center">
       <input
         ref={composeRefs(ref, inner)}
         type="checkbox"
@@ -79,7 +79,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           "peer pb-check size-full cursor-pointer appearance-none rounded-[3px] border border-pb-border-strong bg-pb-bg outline-none",
           "checked:border-transparent indeterminate:border-transparent",
           "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
-          "disabled:cursor-not-allowed disabled:opacity-40 aria-[invalid=true]:border-pb-danger",
+          "disabled:cursor-not-allowed disabled:opacity-40 aria-invalid:border-pb-danger",
           className,
         )}
       />
@@ -96,7 +96,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   if (!label) return control;
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: the input is inside `control`
-    <label className="inline-flex cursor-pointer items-start gap-2.5 text-sm text-pb-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
+    <label className="inline-flex cursor-pointer items-start gap-2.5 text-sm text-pb-text has-disabled:cursor-not-allowed has-disabled:opacity-60">
       <span className="mt-px">{control}</span>
       <span className="grid gap-0.5">
         <span>{label}</span>

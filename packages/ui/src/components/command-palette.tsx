@@ -184,7 +184,7 @@ export function CommandPalette({
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
-          className="size-[1.125rem] shrink-0 text-pb-muted"
+          className="size-4.5 shrink-0 text-pb-muted"
         >
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3.5-3.5" />
@@ -204,7 +204,7 @@ export function CommandPalette({
           }}
           onKeyDown={onKeyDown}
           placeholder={placeholder}
-          className="h-[3.25rem] min-w-0 flex-1 bg-transparent text-[0.9375rem] text-pb-text outline-none placeholder:text-pb-muted"
+          className="h-13 min-w-0 flex-1 bg-transparent text-[0.9375rem] text-pb-text outline-none placeholder:text-pb-muted"
         />
         <kbd className="rounded-[3px] border border-b-2 border-pb-border-strong px-1.5 py-0.5 font-pb-mono text-[0.625rem] text-pb-muted">
           esc
@@ -242,7 +242,7 @@ export function CommandPalette({
                 tabIndex={-1}
                 className={cx(
                   "pb-px-host flex h-10 cursor-pointer items-center gap-2.5 rounded-pb-xs px-2.5 text-sm [--px-fill:var(--pb-accent-subtle)] [--px-ink:var(--pb-text)] [&_svg]:size-4 [&_svg]:text-pb-muted",
-                  "data-highlighted:before:absolute data-highlighted:before:inset-y-2.5 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
+                  "data-highlighted:before:absolute data-highlighted:before:inset-y-2.5 data-highlighted:before:inset-s-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
                 )}
               >
                 <Pixels />

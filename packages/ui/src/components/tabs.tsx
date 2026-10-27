@@ -144,7 +144,7 @@ export function TabList({ className, children, onKeyDown, ...props }: TabListPro
       className={cx(
         variant === "underline"
           ? "flex gap-6 border-b border-pb-border"
-          : "inline-flex w-fit gap-0.5 rounded-pb-sm border border-pb-border bg-pb-bg p-[3px]",
+          : "inline-flex w-fit gap-0.5 rounded-pb-sm border border-pb-border bg-pb-bg p-0.75",
         className,
       )}
       {...props}
@@ -192,7 +192,7 @@ export function Tab({ value, className, onClick, ...props }: TabProps) {
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent disabled:cursor-not-allowed disabled:opacity-40",
         ctx.variant === "underline"
           ? "pb-tab py-2.5"
-          : "rounded-[2px] px-3 py-1.5 text-[0.8125rem] aria-selected:bg-pb-raised aria-selected:shadow-pb-1",
+          : "rounded-xs px-3 py-1.5 text-[0.8125rem] aria-selected:bg-pb-raised aria-selected:shadow-pb-1",
         className,
       )}
       {...props}

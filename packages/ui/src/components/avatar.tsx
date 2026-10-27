@@ -126,7 +126,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
       role="img"
       aria-label={name}
       className={cx(
-        "relative inline-grid shrink-0 place-items-center rounded-[2px] border border-pb-border-strong bg-pb-surface font-pb-mono font-medium text-pb-text",
+        "relative inline-grid shrink-0 place-items-center rounded-xs border border-pb-border-strong bg-pb-surface font-pb-mono font-medium text-pb-text",
         sizes[size],
         className,
       )}
@@ -151,7 +151,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
         <span
           aria-hidden="true"
           className={cx(
-            "absolute -end-0.5 -bottom-0.5 size-2.5 border-2 border-pb-bg",
+            "absolute -inset-e-0.5 -bottom-0.5 size-2.5 border-2 border-pb-bg",
             statusColor[status],
           )}
         />
@@ -190,14 +190,14 @@ export function AvatarGroup({
   return (
     <div
       className={cx(
-        "flex items-center [&>*]:ring-2 [&>*]:ring-pb-surface [&>*+*]:-ms-2",
+        "flex items-center *:ring-2 *:ring-pb-surface [&>*+*]:-ms-2",
         className,
       )}
       {...props}
     >
       {shown}
       {rest > 0 && (
-        <span className="inline-grid size-9 place-items-center rounded-[2px] border border-pb-border-strong bg-pb-raised font-pb-mono text-xs text-pb-muted">
+        <span className="inline-grid size-9 place-items-center rounded-xs border border-pb-border-strong bg-pb-raised font-pb-mono text-xs text-pb-muted">
           +{rest}
         </span>
       )}
