@@ -55,13 +55,13 @@ export function Breadcrumb({
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
-      className="size-3 text-pa-faint rtl:-scale-x-100"
+      className="size-3 text-pb-faint rtl:-scale-x-100"
     >
       <path d="m9 6 6 6-6 6" />
     </svg>
   );
   const link =
-    "rounded-pa-xs text-pa-muted outline-none transition-colors duration-pa-fast hover:text-pa-text focus-visible:outline-2 focus-visible:outline-pa-accent";
+    "rounded-pb-xs text-pb-muted outline-none transition-colors duration-pb-fast hover:text-pb-text focus-visible:outline-2 focus-visible:outline-pb-accent";
   return (
     <nav aria-label={label} className={className} {...props}>
       <ol className="flex flex-wrap items-center gap-2 text-[0.8125rem]">
@@ -81,7 +81,7 @@ export function Breadcrumb({
                   aria-current={last ? "page" : undefined}
                   className={cx(
                     "inline-flex items-center gap-1.5",
-                    last ? "text-pa-text" : "text-pa-muted",
+                    last ? "text-pb-text" : "text-pb-muted",
                   )}
                 >
                   {content}

@@ -43,7 +43,7 @@ export function Accordion({
 }: AccordionProps) {
   const name = useId();
   return (
-    <div className={cx("pa-accordion", className)} {...props}>
+    <div className={cx("pb-accordion", className)} {...props}>
       {type === "single"
         ? Children.map(children, (c) =>
             isValidElement(c)
@@ -68,7 +68,11 @@ export interface AccordionItemProps
   children: ReactNode;
 }
 
-/** One section of an `Accordion`. */
+/**
+ * One section of an `Accordion`. Opening animates the height smoothly where
+ * the browser supports `::details-content` (Chrome, Edge, Safari 18.4+) and
+ * opens at once elsewhere; the marker fills with the accent in pixel steps.
+ */
 export function AccordionItem({
   title,
   defaultOpen = false,
@@ -79,14 +83,16 @@ export function AccordionItem({
   return (
     <details
       open={defaultOpen || undefined}
-      className={cx("group/acc border-b border-pa-border", className)}
+      className={cx("pb-acc group/acc border-b border-pb-border", className)}
       {...props}
     >
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-pa-xs py-3.5 text-sm text-pa-text outline-none focus-visible:outline-2 focus-visible:outline-pa-accent [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-pb-xs py-4 text-sm text-pb-text outline-none transition-colors duration-pb-fast hover:text-pb-accent focus-visible:outline-2 focus-visible:outline-pb-accent [&::-webkit-details-marker]:hidden">
         {title}
-        <ChevronDownIcon className="size-4 shrink-0 text-pa-muted transition-transform duration-pa-base [transition-timing-function:steps(3,end)] group-open/acc:rotate-180" />
+        <span aria-hidden="true" className="pb-acc-mark">
+          <ChevronDownIcon className="size-3.5" />
+        </span>
       </summary>
-      <div className="pb-4 text-[0.8125rem] leading-relaxed text-pa-muted">
+      <div className="pb-acc-body pb-5 text-[0.8125rem] leading-relaxed text-pb-muted">
         {children}
       </div>
     </details>

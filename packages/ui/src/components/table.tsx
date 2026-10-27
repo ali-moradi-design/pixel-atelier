@@ -41,7 +41,7 @@ export function Table({
       <table
         data-density={density}
         className={cx(
-          "group/table w-full border-collapse text-[0.8125rem] text-pa-text",
+          "group/table w-full border-collapse text-[0.8125rem] text-pb-text",
           className,
         )}
         {...props}
@@ -57,7 +57,7 @@ export function TableHeader({
 }: HTMLAttributes<HTMLTableSectionElement>) {
   return (
     <thead
-      className={cx("[&_tr]:border-b [&_tr]:border-pa-border", className)}
+      className={cx("[&_tr]:border-b [&_tr]:border-pb-border", className)}
       {...props}
     />
   );
@@ -70,7 +70,7 @@ export function TableBody({
 }: HTMLAttributes<HTMLTableSectionElement>) {
   return (
     <tbody
-      className={cx("[&_tr]:border-b [&_tr]:border-pa-border", className)}
+      className={cx("[&_tr]:border-b [&_tr]:border-pb-border", className)}
       {...props}
     />
   );
@@ -90,7 +90,7 @@ export function TableRow({ selected = false, className, ...props }: TableRowProp
     <tr
       aria-selected={selected || undefined}
       className={cx(
-        "transition-colors duration-pa-fast hover:bg-pa-surface aria-selected:bg-pa-accent-subtle",
+        "transition-colors duration-pb-fast hover:bg-pb-surface aria-selected:bg-pb-accent-subtle",
         className,
       )}
       {...props}
@@ -130,7 +130,7 @@ export function TableHead({
       scope="col"
       aria-sort={sort}
       className={cx(
-        "px-3 py-2.5 font-pa-mono text-[0.65625rem] font-medium uppercase tracking-[0.1em] text-pa-muted whitespace-nowrap",
+        "px-3 py-2.5 font-pb-mono text-[0.65625rem] font-medium uppercase tracking-[0.1em] text-pb-muted whitespace-nowrap",
         numeric ? "text-end" : "text-start",
         className,
       )}
@@ -140,12 +140,12 @@ export function TableHead({
         <button
           type="button"
           onClick={onSort}
-          className="inline-flex cursor-pointer items-center gap-1.5 rounded-pa-xs uppercase outline-none hover:text-pa-text focus-visible:outline-2 focus-visible:outline-pa-accent"
+          className="inline-flex cursor-pointer items-center gap-1.5 rounded-pb-xs uppercase outline-none hover:text-pb-text focus-visible:outline-2 focus-visible:outline-pb-accent"
         >
           {children}
           <span
             aria-hidden="true"
-            className={sort === "none" ? "opacity-40" : "text-pa-accent"}
+            className={sort === "none" ? "opacity-40" : "text-pb-accent"}
           >
             {arrow}
           </span>
@@ -171,7 +171,7 @@ export function TableCell({ numeric = false, className, ...props }: TableCellPro
     <td
       className={cx(
         "px-3 group-data-[density=compact]/table:py-1.5 group-data-[density=comfortable]/table:py-3",
-        numeric && "text-end font-pa-mono text-xs tabular-nums",
+        numeric && "text-end font-pb-mono text-xs tabular-nums",
         className,
       )}
       {...props}

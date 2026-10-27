@@ -12,8 +12,9 @@ export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * A placeholder while content loads: a quiet block with a band of pixels
- * sweeping across in steps. CSS only. Hidden from screen readers; announce
+ * A placeholder while content loads: a fine pixel texture with a soft light
+ * gliding across it. CSS only; the glide is a GPU transform that starts
+ * mid-sweep, so it never looks frozen. Hidden from screen readers; announce
  * loading elsewhere (for example `aria-busy` on the region).
  *
  * @example
@@ -29,7 +30,7 @@ export function Skeleton({ shape = "block", className, ...props }: SkeletonProps
     <div
       aria-hidden="true"
       className={cx(
-        "pa-skeleton rounded-[2px]",
+        "pb-skeleton rounded-[2px]",
         shape === "text" ? "h-[0.8em] w-full" : shape === "square" ? "size-9" : "min-h-4",
         className,
       )}

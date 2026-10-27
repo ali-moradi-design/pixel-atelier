@@ -8,16 +8,13 @@ import { fileURLToPath } from "node:url";
 
 const require = createRequire(import.meta.url);
 const tokensDir = require
-  .resolve("@pixel-atelier/tokens/tokens.css")
+  .resolve("@pixelbits/tokens/tokens.css")
   .replace(/tokens\.css$/, "");
 const dist = new URL("../dist/", import.meta.url);
 
 copyFileSync(`${tokensDir}tokens.css`, new URL("tokens.css", dist));
 const theme = readFileSync(`${tokensDir}theme.css`, "utf8");
-const pixels = readFileSync(
-  new URL("../src/styles/pixels.css", import.meta.url),
-  "utf8",
-);
+const pixels = readFileSync(new URL("../src/styles/pixels.css", import.meta.url), "utf8");
 writeFileSync(
   new URL("theme.css", dist),
   `${theme}\n/* Scan the compiled components for the utilities they use. */\n@source "./";\n\n${pixels}`,
@@ -27,10 +24,11 @@ writeFileSync(
 const tailwind = (await import("@tailwindcss/postcss")).default;
 const postcss = (await import("postcss")).default;
 const input = new URL("../src/styles/standalone.css", import.meta.url);
-const result = await postcss([
-  tailwind({ optimize: { minify: true } }),
-]).process(readFileSync(input, "utf8"), {
-  from: fileURLToPath(input),
-});
+const result = await postcss([tailwind({ optimize: { minify: true } })]).process(
+  readFileSync(input, "utf8"),
+  {
+    from: fileURLToPath(input),
+  },
+);
 writeFileSync(new URL("styles.css", dist), result.css);
 console.log("css: wrote dist/tokens.css, dist/theme.css, dist/styles.css");

@@ -51,9 +51,9 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
           onCheckedChange?.(e.currentTarget.checked);
         }}
         className={cx(
-          "peer absolute inset-0 size-full cursor-pointer appearance-none rounded-pa-xs bg-pa-border-strong outline-none",
-          "transition-colors duration-pa-fast checked:bg-pa-accent",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent",
+          "peer absolute inset-0 size-full cursor-pointer appearance-none rounded-pb-xs bg-pb-border-strong outline-none",
+          "transition-colors duration-pb-fast checked:bg-pb-accent",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
           "disabled:cursor-not-allowed disabled:opacity-40",
           className,
         )}
@@ -61,10 +61,10 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
       <span
         aria-hidden="true"
         className={cx(
-          "pointer-events-none absolute top-[3px] start-[3px] rounded-[1px] bg-pa-text",
-          "transition-transform duration-pa-base [transition-timing-function:steps(4,end)]",
-          "peer-checked:bg-pa-on-accent rtl:peer-checked:-translate-x-[var(--pa-switch-travel)] ltr:peer-checked:translate-x-[var(--pa-switch-travel)]",
-          sm ? "size-3 [--pa-switch-travel:14px]" : "size-4 [--pa-switch-travel:18px]",
+          "pointer-events-none absolute top-[3px] start-[3px] rounded-[1px] bg-pb-text",
+          "transition-transform duration-pb-base [transition-timing-function:steps(4,end)]",
+          "peer-checked:bg-pb-on-accent rtl:peer-checked:-translate-x-[var(--pb-switch-travel)] ltr:peer-checked:translate-x-[var(--pb-switch-travel)]",
+          sm ? "size-3 [--pb-switch-travel:14px]" : "size-4 [--pb-switch-travel:18px]",
         )}
       />
     </span>
@@ -72,7 +72,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   if (!label) return control;
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: the input is inside `control`
-    <label className="inline-flex cursor-pointer items-center gap-2.5 text-sm text-pa-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
+    <label className="inline-flex cursor-pointer items-center gap-2.5 text-sm text-pb-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
       {control}
       {label}
     </label>

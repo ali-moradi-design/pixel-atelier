@@ -1,4 +1,4 @@
-import { FeatureGrid } from "pixel-atelier/blocks/feature-grid";
+import { FeatureGrid } from "pixelbits/blocks/feature-grid";
 
 const icon = (
   <svg
@@ -16,7 +16,7 @@ export default function Demo() {
   return (
     <FeatureGrid
       className="py-4 sm:py-4"
-      title="Why Pixel Atelier"
+      title="Why Pixelbits"
       description="A quiet base, with detail where it counts."
       features={[
         {

@@ -3,9 +3,7 @@ import { fileURLToPath } from "node:url";
 import { readApi } from "./api.ts";
 import { buildRegistry } from "./registry.ts";
 
-const dist = fileURLToPath(
-  new URL("../../../packages/ui/dist/", import.meta.url),
-);
+const dist = fileURLToPath(new URL("../../../packages/ui/dist/", import.meta.url));
 mkdirSync(fileURLToPath(new URL("../content/", import.meta.url)), {
   recursive: true,
 });
@@ -13,12 +11,8 @@ writeFileSync(
   fileURLToPath(new URL("../content/api.json", import.meta.url)),
   `${JSON.stringify(readApi(dist), null, 1)}\n`,
 );
-const n = buildRegistry(
-  fileURLToPath(new URL("../public/r/", import.meta.url)),
-);
-const sb = fileURLToPath(
-  new URL("../../storybook/storybook-static/", import.meta.url),
-);
+const n = buildRegistry(fileURLToPath(new URL("../public/r/", import.meta.url)));
+const sb = fileURLToPath(new URL("../../storybook/storybook-static/", import.meta.url));
 const target = fileURLToPath(new URL("../public/storybook/", import.meta.url));
 rmSync(target, { recursive: true, force: true });
 if (existsSync(sb)) cpSync(sb, target, { recursive: true });

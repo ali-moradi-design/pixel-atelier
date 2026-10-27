@@ -3,29 +3,29 @@ import { type AnchorHTMLAttributes, forwardRef } from "react";
 import { Slot } from "../lib/slot.tsx";
 
 /**
- * The class names of `Link` for a given variant, for styling other
- * elements the same way, e.g. `className={linkVariants({ variant: "pixel" })}`.
+ * The class names of `TextLink` for a given variant, for styling other
+ * elements the same way, e.g. `className={textLinkVariants({ variant: "pixel" })}`.
  */
-export const linkVariants = cva(
-  "rounded-pa-xs outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent",
+export const textLinkVariants = cva(
+  "rounded-pb-xs outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
   {
     variants: {
       variant: {
         /** Classic underline that turns to the accent. */
         underline:
-          "text-pa-text underline decoration-pa-border-strong decoration-1 underline-offset-4 transition-colors duration-pa-fast hover:text-pa-accent hover:decoration-pa-accent",
+          "text-pb-text underline decoration-pb-border-strong decoration-1 underline-offset-4 transition-colors duration-pb-fast hover:text-pb-accent hover:decoration-pb-accent",
         /** A hairline that fills in eight pixel steps on hover or focus. */
-        pixel: "pa-link-px text-pa-text hover:text-pa-accent",
+        pixel: "pb-link-px text-pb-text hover:text-pb-accent",
         /** No decoration (navigation, cards). */
         plain:
-          "text-inherit no-underline hover:text-pa-accent transition-colors duration-pa-fast",
+          "text-inherit no-underline hover:text-pb-accent transition-colors duration-pb-fast",
       },
     },
     defaultVariants: { variant: "underline" },
   },
 );
 
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface TextLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   /**
    * Decoration.
    * - `"underline"`: a quiet underline that turns to the accent on hover.
@@ -44,20 +44,21 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 /**
  * A text link. All native anchor props (`href`, `target`, `rel`…) are passed
- * through.
+ * through. Named `TextLink` so it never clashes with Next.js `Link`: use
+ * both together with `asChild`.
  *
  * @example
  * ```tsx
- * <Link href="/docs">Read the docs</Link>
- * <Link variant="pixel" asChild><NextLink href="/about">About</NextLink></Link>
+ * <TextLink href="/docs">Read the docs</TextLink>
+ * <TextLink variant="pixel" asChild><Link href="/about">About</Link></TextLink>
  * ```
  */
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+export const TextLink = forwardRef<HTMLAnchorElement, TextLinkProps>(function TextLink(
   { className, variant, asChild = false, ...props },
   ref,
 ) {
   const Comp = asChild ? Slot : "a";
   return (
-    <Comp ref={ref} className={cx(linkVariants({ variant }), className)} {...props} />
+    <Comp ref={ref} className={cx(textLinkVariants({ variant }), className)} {...props} />
   );
 });

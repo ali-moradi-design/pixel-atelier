@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Accordion, AccordionItem } from "pixel-atelier/accordion";
-import { Button } from "pixel-atelier/button";
-import { Checkbox } from "pixel-atelier/checkbox";
-import { CommandPalette } from "pixel-atelier/command-palette";
-import { Dialog, DialogClose, Sheet } from "pixel-atelier/dialog";
+import { Accordion, AccordionItem } from "pixelbits/accordion";
+import { Button } from "pixelbits/button";
+import { Checkbox } from "pixelbits/checkbox";
+import { CommandPalette } from "pixelbits/command-palette";
+import { Dialog, DialogClose, Sheet } from "pixelbits/dialog";
 import {
   DropdownCheckboxItem,
   DropdownItem,
   DropdownLabel,
   DropdownMenu,
   DropdownSeparator,
-} from "pixel-atelier/dropdown-menu";
-import { IconButton } from "pixel-atelier/icon-button";
-import { Input } from "pixel-atelier/input";
-import { Popover } from "pixel-atelier/popover";
-import { Tab, TabList, TabPanel, Tabs } from "pixel-atelier/tabs";
-import { Toaster, toast } from "pixel-atelier/toast";
-import { Tooltip } from "pixel-atelier/tooltip";
+} from "pixelbits/dropdown-menu";
+import { IconButton } from "pixelbits/icon-button";
+import { Input } from "pixelbits/input";
+import { Popover } from "pixelbits/popover";
+import { Tab, TabList, TabPanel, Tabs } from "pixelbits/tabs";
+import { Toaster, toast } from "pixelbits/toast";
+import { Tooltip } from "pixelbits/tooltip";
 import { useState } from "react";
 
 const meta = {
@@ -48,10 +48,10 @@ export const TabsAndAccordion: Story = {
           <Tab value="code">Code</Tab>
           <Tab value="props">Props</Tab>
         </TabList>
-        <TabPanel value="preview" className="text-sm text-pa-muted">
+        <TabPanel value="preview" className="text-sm text-pb-muted">
           The preview.
         </TabPanel>
-        <TabPanel value="code" className="font-pa-mono text-xs">
+        <TabPanel value="code" className="font-pb-mono text-xs">
           {"<Button />"}
         </TabPanel>
         <TabPanel value="props" className="text-sm">
@@ -133,8 +133,8 @@ export const PopoverTooltipMenu: Story = {
           </IconButton>
         </Tooltip>
         <Popover trigger={<Button>Share</Button>} title="Share link">
-          <p className="mb-2.5 text-pa-muted">Anyone with the link can view.</p>
-          <Input readOnly value="pa.dev/s/9x2" size="sm" />
+          <p className="mb-2.5 text-pb-muted">Anyone with the link can view.</p>
+          <Input readOnly value="pb.dev/s/9x2" size="sm" />
         </Popover>
         <DropdownMenu defaultOpen trigger={<Button>Account</Button>}>
           <DropdownLabel>ali@studio</DropdownLabel>
@@ -173,7 +173,7 @@ export const PopoverTooltipMenu: Story = {
 export const Command: Story = {
   render: () => (
     <>
-      <p className="text-sm text-pa-muted">Press ⌘K / Ctrl+K.</p>
+      <p className="text-sm text-pb-muted">Press ⌘K / Ctrl+K.</p>
       <CommandPalette
         defaultOpen
         commands={[
@@ -212,7 +212,7 @@ export const Toasts: Story = {
         onClick={() =>
           toast({
             title: "Copied to clipboard",
-            description: "pnpm add pixel-atelier",
+            description: "pnpm add pixelbits",
             variant: "success",
           })
         }

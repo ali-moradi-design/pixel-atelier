@@ -85,6 +85,8 @@ export function DropdownMenu({
     [setOpen],
   );
   usePopup({ open, onClose: close, anchor, popup, align });
+  // Stable value: menu items do not re-render when the menu does.
+  const closeItem = useCallback(() => close(), [close]);
 
   const items = () => [...(popup.current?.querySelectorAll<HTMLElement>(ITEM) ?? [])];
   useEffect(() => {
@@ -150,14 +152,12 @@ export function DropdownMenu({
         hidden={!open}
         onKeyDown={onMenuKey}
         className={cx(
-          "pa-popup m-0 min-w-52 max-w-[calc(100vw-1rem)] rounded-pa-md border border-pa-border bg-pa-overlay p-1 text-pa-text shadow-pa-2 outline-none",
+          "pb-popup m-0 min-w-52 max-w-[calc(100vw-1rem)] rounded-pb-md border border-pb-border bg-pb-overlay p-1 text-pb-text shadow-pb-2 outline-none",
           className,
         )}
         {...props}
       >
-        {open && (
-          <MenuClose.Provider value={() => close()}>{children}</MenuClose.Provider>
-        )}
+        {open && <MenuClose.Provider value={closeItem}>{children}</MenuClose.Provider>}
       </div>
     </>
   );
@@ -218,18 +218,18 @@ function useItem(disabled: boolean | undefined, run: () => void) {
 
 const itemClass = (danger: boolean) =>
   cx(
-    "pa-px-host flex h-[2.125rem] cursor-pointer select-none items-center gap-2.5 rounded-pa-xs px-2.5 text-[0.8125rem] outline-none",
-    "[--px-fill:var(--pa-accent-subtle)] [--px-ink:currentColor] [&_svg]:size-[0.9375rem] [&_svg]:shrink-0",
-    "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pa-accent",
+    "pb-px-host flex h-[2.125rem] cursor-pointer select-none items-center gap-2.5 rounded-pb-xs px-2.5 text-[0.8125rem] outline-none",
+    "[--px-fill:var(--pb-accent-subtle)] [--px-ink:currentColor] [&_svg]:size-[0.9375rem] [&_svg]:shrink-0",
+    "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
     "aria-disabled:cursor-not-allowed aria-disabled:opacity-40",
     danger &&
-      "text-pa-danger [--px-fill:color-mix(in_srgb,var(--pa-danger)_12%,transparent)]",
+      "text-pb-danger [--px-fill:color-mix(in_oklab,var(--pb-danger)_12%,transparent)]",
   );
 
 function Shortcut({ value }: { value?: string }) {
   if (!value) return null;
   return (
-    <kbd className="ms-auto rounded-[3px] border border-b-2 border-pa-border-strong px-1.5 py-0.5 font-pa-mono text-[0.625rem] text-pa-muted">
+    <kbd className="ms-auto rounded-[3px] border border-b-2 border-pb-border-strong px-1.5 py-0.5 font-pb-mono text-[0.625rem] text-pb-muted">
       {value}
     </kbd>
   );
@@ -291,7 +291,7 @@ export function DropdownCheckboxItem({
     >
       <Pixels />
       <span className="inline-grid size-[0.9375rem] place-items-center">
-        {checked && <CheckIcon className="text-pa-accent" />}
+        {checked && <CheckIcon className="text-pb-accent" />}
       </span>
       {icon}
       <span className="truncate">{children}</span>
@@ -305,7 +305,7 @@ export function DropdownLabel({ className, ...props }: HTMLAttributes<HTMLDivEle
   return (
     <div
       className={cx(
-        "px-2.5 pt-2 pb-1 font-pa-mono text-[0.625rem] font-medium uppercase tracking-[0.12em] text-pa-muted",
+        "px-2.5 pt-2 pb-1 font-pb-mono text-[0.625rem] font-medium uppercase tracking-[0.12em] text-pb-muted",
         className,
       )}
       {...props}
@@ -319,6 +319,6 @@ export function DropdownSeparator({
   ...props
 }: HTMLAttributes<HTMLHRElement>) {
   return (
-    <hr className={cx("-mx-1 my-1 h-px border-0 bg-pa-border", className)} {...props} />
+    <hr className={cx("-mx-1 my-1 h-px border-0 bg-pb-border", className)} {...props} />
   );
 }

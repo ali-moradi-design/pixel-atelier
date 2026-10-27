@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Checkbox } from "pixel-atelier/checkbox";
-import { Combobox } from "pixel-atelier/combobox";
-import { Field } from "pixel-atelier/field";
-import { Input } from "pixel-atelier/input";
-import { Radio, RadioGroup } from "pixel-atelier/radio";
-import { Select } from "pixel-atelier/select";
-import { Slider } from "pixel-atelier/slider";
-import { Switch } from "pixel-atelier/switch";
-import { Textarea } from "pixel-atelier/textarea";
+import { Checkbox } from "pixelbits/checkbox";
+import { Combobox } from "pixelbits/combobox";
+import { Field } from "pixelbits/field";
+import { Input } from "pixelbits/input";
+import { Radio, RadioGroup } from "pixelbits/radio";
+import { Select } from "pixelbits/select";
+import { Slider } from "pixelbits/slider";
+import { Switch } from "pixelbits/switch";
+import { Textarea } from "pixelbits/textarea";
 import { useState } from "react";
 import { expect, userEvent, within } from "storybook/test";
 
@@ -62,7 +62,7 @@ export const TextFields: Story = {
       <Field label="Search">
         <Input
           start={search}
-          end={<kbd className="font-pa-mono text-[0.6875rem]">⌘K</kbd>}
+          end={<kbd className="font-pb-mono text-[0.6875rem]">⌘K</kbd>}
           placeholder="Search components"
         />
       </Field>

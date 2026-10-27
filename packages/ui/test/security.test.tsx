@@ -15,10 +15,10 @@ import { Dialog } from "../src/components/dialog.tsx";
 import { Field } from "../src/components/field.tsx";
 import { FullScreenMenu } from "../src/components/full-screen-menu.tsx";
 import { Input } from "../src/components/input.tsx";
-import { Link } from "../src/components/link.tsx";
 import { Pagination } from "../src/components/pagination.tsx";
 import { Select } from "../src/components/select.tsx";
 import { Tag } from "../src/components/tag.tsx";
+import { TextLink } from "../src/components/text-link.tsx";
 import { TextScramble } from "../src/components/text-scramble.tsx";
 import { dismissToast, Toaster, toast } from "../src/components/toast.tsx";
 
@@ -146,7 +146,7 @@ describe("links", () => {
   it("never render a working javascript: URL (React 19 blocks them)", () => {
     const { container } = render(
       <div>
-        <Link href={JS_URL}>a</Link>
+        <TextLink href={JS_URL}>a</TextLink>
         <Breadcrumb items={[{ label: "x", href: JS_URL }, { label: "y" }]} />
         <Pagination page={1} count={3} href={() => JS_URL} />
         <SiteHeader brand="b" links={[{ label: "w", href: JS_URL }]} />

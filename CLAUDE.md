@@ -1,6 +1,6 @@
 # Project instructions
 
-Pixel Atelier: a React UI kit (see docs/brief.md, docs/decisions.md, CONTRIBUTING.md).
+Pixelbits: a React UI kit (see docs/brief.md, docs/decisions.md, CONTRIBUTING.md).
 
 Start every session by reading `docs/session-notes.md` (what is done, what is
 open, and the plan for the next session). Update it at the end of the session.
@@ -21,7 +21,7 @@ the docs: they are few and small.
 ## Workflow
 
 - Small PRs from the session branch: run `pnpm check` and
-  `pnpm --filter pixel-atelier size` locally, then squash-merge right away;
+  `pnpm --filter pixelbits size` locally, then squash-merge right away;
   do not wait for GitHub CI. Reset the session branch onto `main` afterwards.
 - End-to-end/visual tests (Playwright) only where needed: components with
   real browser behavior (layout, canvas, focus across portals) and releases.

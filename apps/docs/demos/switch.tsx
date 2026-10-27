@@ -1,4 +1,4 @@
-import { Switch } from "pixel-atelier/switch";
+import { Switch } from "pixelbits/switch";
 
 export default function Demo() {
   return (

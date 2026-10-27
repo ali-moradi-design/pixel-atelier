@@ -34,7 +34,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
     <span
       ref={ref}
       className={cx(
-        "inline-flex h-[1.625rem] items-center gap-1 rounded-pa-xs border border-pa-border bg-pa-raised ps-2.5 text-xs text-pa-text",
+        "inline-flex h-[1.625rem] items-center gap-1 rounded-pb-xs border border-pb-border bg-pb-raised ps-2.5 text-xs text-pb-text",
         onRemove ? "pe-0.5" : "pe-2.5",
         className,
       )}
@@ -48,7 +48,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
           aria-label={
             removeLabel ?? `Remove ${typeof children === "string" ? children : ""}`.trim()
           }
-          className="inline-grid size-5 cursor-pointer place-items-center rounded-[1px] text-pa-muted outline-none hover:bg-pa-border hover:text-pa-text focus-visible:outline-2 focus-visible:outline-pa-accent"
+          className="inline-grid size-5 cursor-pointer place-items-center rounded-[1px] text-pb-muted outline-none hover:bg-pb-border hover:text-pb-text focus-visible:outline-2 focus-visible:outline-pb-accent"
         >
           <XIcon width={12} height={12} />
         </button>

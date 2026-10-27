@@ -93,12 +93,12 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(function Slider(
       }}
       style={
         {
-          "--pa-fill": `${pct}%`,
-          "--pa-ticks": steps || undefined,
+          "--pb-fill": `${pct}%`,
+          "--pb-ticks": steps || undefined,
           ...style,
         } as CSSProperties
       }
-      className={cx("pa-slider", ticks && "pa-slider-ticks", className)}
+      className={cx("pb-slider", ticks && "pb-slider-ticks", className)}
     />
   );
 });

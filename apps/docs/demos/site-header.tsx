@@ -1,15 +1,15 @@
-import { SiteHeader } from "pixel-atelier/blocks/site-header";
-import { Button } from "pixel-atelier/button";
+import { SiteHeader } from "pixelbits/blocks/site-header";
+import { Button } from "pixelbits/button";
 
 export default function Demo() {
   return (
-    <div className="w-full overflow-hidden rounded-pa-md border border-pa-border">
+    <div className="w-full overflow-hidden rounded-pb-md border border-pb-border">
       <SiteHeader
         sticky={false}
         className="border-b-0"
         brand={
           <a href="#home" className="text-sm font-medium">
-            pixel <span className="font-light">atelier</span>
+            pixel<span className="font-light">bits</span>
           </a>
         }
         links={[
@@ -22,7 +22,7 @@ export default function Demo() {
             Contact
           </Button>
         }
-        menuFooter="hello@pixel-atelier.dev"
+        menuFooter="hello@pixelbits.dev"
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { Progress } from "pixel-atelier/progress";
+import { Progress } from "pixelbits/progress";
 
 export default function Demo() {
   return (

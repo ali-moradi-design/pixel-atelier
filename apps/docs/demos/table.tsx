@@ -1,5 +1,5 @@
 "use client";
-import { Badge } from "pixel-atelier/badge";
+import { Badge } from "pixelbits/badge";
 import {
   Table,
   TableBody,
@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "pixel-atelier/table";
+} from "pixelbits/table";
 import { useState } from "react";
 
 const rows = [

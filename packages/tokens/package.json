@@ -1,8 +1,8 @@
 {
-  "name": "@pixel-atelier/tokens",
+  "name": "@pixelbits/tokens",
   "version": "0.0.0",
   "private": true,
-  "description": "Design tokens of Pixel Atelier: CSS variables and the Tailwind v4 theme.",
+  "description": "Design tokens of Pixelbits: CSS variables and the Tailwind v4 theme.",
   "type": "module",
   "exports": {
     ".": "./src/tokens.ts",

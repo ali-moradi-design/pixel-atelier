@@ -1,20 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { contrast } from "../src/contrast.ts";
-import { accents, onAccent, themes } from "../src/tokens.ts";
+import { contrast, inGamut, mix } from "../src/contrast.ts";
+import { accents, gold, onAccent, themes } from "../src/tokens.ts";
 
 const AA = 4.5;
-
-/** `fg` at `p` opacity over `bg`, like `bg-pa-success/14` in CSS. */
-function tint(fg: string, bg: string, p: number) {
-  const ch = (h: string, i: number) => Number.parseInt(h.slice(i, i + 2), 16);
-  return `#${[1, 3, 5]
-    .map((i) =>
-      Math.round(ch(fg, i) * p + ch(bg, i) * (1 - p))
-        .toString(16)
-        .padStart(2, "0"),
-    )
-    .join("")}`;
-}
 
 describe.each(["dark", "light"] as const)("%s theme", (t) => {
   const c = themes[t];
@@ -33,7 +21,7 @@ describe.each(["dark", "light"] as const)("%s theme", (t) => {
     for (const surface of ["bg", "surface", "raised"] as const) {
       for (const s of ["success", "warning", "danger", "info"] as const) {
         expect(
-          contrast(c[s], tint(c[s], c[surface], 0.14)),
+          contrast(c[s], mix(c[s], c[surface], 0.14)),
           `${s} on ${surface}`,
         ).toBeGreaterThanOrEqual(AA);
       }
@@ -43,7 +31,7 @@ describe.each(["dark", "light"] as const)("%s theme", (t) => {
     for (const [name, byTheme] of Object.entries(accents)) {
       const [accent] = byTheme[t];
       expect(
-        contrast(c.muted, tint(accent, c.surface, 0.12)),
+        contrast(c.muted, mix(accent, c.surface, 0.12)),
         name,
       ).toBeGreaterThanOrEqual(AA);
     }
@@ -58,4 +46,20 @@ describe.each(["dark", "light"] as const)("%s theme", (t) => {
       }
     },
   );
+});
+
+describe("color space", () => {
+  it("every color is written in OKLCH and fits in sRGB", () => {
+    const all = [
+      ...Object.values(themes.dark),
+      ...Object.values(themes.light),
+      ...Object.values(onAccent),
+      ...Object.values(accents).flatMap((a) => [...a.dark, ...a.light]),
+      ...gold,
+    ];
+    for (const c of all) {
+      expect(c, c).toMatch(/^oklch\(/);
+      expect(inGamut(c), c).toBe(true);
+    }
+  });
 });

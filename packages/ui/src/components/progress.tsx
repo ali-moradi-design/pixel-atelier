@@ -36,7 +36,7 @@ export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Shows how far a task has come. `role="progressbar"` with the value exposed
  * to screen readers; without a value it is indeterminate (a pixel band
- * sweeps across). CSS only.
+ * glides across). CSS only; the bar grows with a GPU transform.
  *
  * @example
  * ```tsx
@@ -62,10 +62,10 @@ export function Progress({
   return (
     <div className={cx("grid gap-1.5", className)}>
       {label && (
-        <div className="flex items-baseline justify-between gap-3 text-[0.8125rem] text-pa-text">
+        <div className="flex items-baseline justify-between gap-3 text-[0.8125rem] text-pb-text">
           <span>{label}</span>
           {showValue && determinate && (
-            <span className="font-pa-mono text-xs text-pa-muted tabular-nums">
+            <span className="font-pb-mono text-xs text-pb-muted tabular-nums">
               {pct}%
             </span>
           )}
@@ -81,8 +81,8 @@ export function Progress({
         {...props}
         className={cx(
           "relative overflow-hidden",
-          variant === "bar" ? "h-1.5 bg-pa-border" : "grid h-2 gap-0.5",
-          !determinate && "pa-progress-indeterminate",
+          variant === "bar" ? "h-1.5 bg-pb-border" : "grid h-2 gap-0.5",
+          !determinate && "pb-progress-indeterminate",
         )}
         style={
           variant === "pixel"
@@ -93,26 +93,27 @@ export function Progress({
         {variant === "bar"
           ? determinate && (
               <span
-                className="absolute inset-y-0 start-0 bg-pa-accent transition-[width] duration-pa-slow ease-pa-out"
-                style={{ width: `${pct}%` }}
+                className="pb-progress-fill"
+                style={{ "--pb-progress": ratio } as CSSProperties}
               />
             )
-          : Array.from({ length: segments }, (_, i) => (
-              <i
-                // biome-ignore lint/suspicious/noArrayIndexKey: segments never reorder
-                key={i}
-                className={cx(
-                  "block",
-                  determinate && i < lit ? "bg-pa-accent" : "bg-pa-border",
-                  determinate && i >= lit && i < lit + 3 && "pa-progress-edge",
-                )}
-                style={
-                  determinate && i >= lit && i < lit + 3
-                    ? ({ animationDelay: `${(i - lit) * 160}ms` } as CSSProperties)
-                    : undefined
-                }
-              />
-            ))}
+          : Array.from({ length: segments }, (_, i) => {
+              const edge = determinate && i >= lit && i < lit + 3;
+              return (
+                <i
+                  // biome-ignore lint/suspicious/noArrayIndexKey: segments never reorder
+                  key={i}
+                  data-lit={(determinate && i < lit) || undefined}
+                  className={cx("pb-progress-cell block", edge && "pb-progress-edge")}
+                  style={
+                    {
+                      "--pb-cell-delay": `${Math.min(i, 40) * 8}ms`,
+                      animationDelay: edge ? `${(i - lit) * 120}ms` : undefined,
+                    } as CSSProperties
+                  }
+                />
+              );
+            })}
       </div>
     </div>
   );

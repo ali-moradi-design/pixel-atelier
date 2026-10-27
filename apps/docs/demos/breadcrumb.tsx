@@ -1,4 +1,4 @@
-import { Breadcrumb } from "pixel-atelier/breadcrumb";
+import { Breadcrumb } from "pixelbits/breadcrumb";
 
 export default function Demo() {
   return (

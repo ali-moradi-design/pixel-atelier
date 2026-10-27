@@ -1,5 +1,6 @@
 "use client";
 
+import { cx } from "class-variance-authority";
 import { useEffect, useRef } from "react";
 import { prefersReducedMotion } from "../lib/motion.ts";
 import { noise } from "../pixels/noise.ts";
@@ -35,9 +36,11 @@ export interface PixelTransitionProps {
   duration?: number;
   /**
    * Fill color; any CSS color.
-   * @default "var(--pa-text)"
+   * @default "var(--pb-text)"
    */
   color?: string;
+  /** Extra classes for the canvas. */
+  className?: string;
 }
 
 /**
@@ -55,7 +58,8 @@ export interface PixelTransitionProps {
 export function PixelTransition({
   size = 32,
   duration = 480,
-  color = "var(--pa-text)",
+  color = "var(--pb-text)",
+  className,
 }: PixelTransitionProps) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -123,7 +127,10 @@ export function PixelTransition({
       ref={ref}
       aria-hidden="true"
       style={{ color, display: "none" }}
-      className="pointer-events-none fixed inset-0 z-[2147483647] size-full"
+      className={cx(
+        "pointer-events-none fixed inset-0 z-[2147483647] size-full",
+        className,
+      )}
     />
   );
 }

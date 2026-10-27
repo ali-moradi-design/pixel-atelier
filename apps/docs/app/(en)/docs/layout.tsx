@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import { DocsNav } from "@/components/docs-nav";
+import { DocsSidebar } from "@/components/layout/docs-sidebar";
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[13rem_1fr]">
-      <DocsNav />
+    <div className="pb-container grid gap-10 py-10 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-14">
+      <DocsSidebar />
       <main className="min-w-0">{children}</main>
     </div>
   );

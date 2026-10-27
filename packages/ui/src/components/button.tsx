@@ -8,25 +8,27 @@ import { RollLabel } from "../pixels/RollLabel.tsx";
 /**
  * The class names of `Button` for a given variant, for styling other
  * elements the same way, e.g. `className={buttonVariants({ variant: "primary" })}`.
- * Note that the pixel effect of a button also needs the `pa-px-host` class and `<Pixels />`.
+ * Note that the pixel effect of a button also needs the `pb-px-host` class and `<Pixels />`.
  */
 export const buttonVariants = cva(
   [
     "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap select-none",
-    "rounded-pa-xs border font-pa-sans font-medium uppercase leading-none tracking-[0.06em] no-underline",
-    "outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent",
+    "rounded-pb-xs border font-pb-sans font-medium uppercase leading-none tracking-[0.06em] no-underline",
+    "outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
     "disabled:cursor-not-allowed disabled:opacity-40 aria-disabled:cursor-not-allowed aria-disabled:opacity-40",
     "[&_svg]:size-[1.15em] [&_svg]:shrink-0",
   ],
   {
     variants: {
       variant: {
-        primary: "border-transparent bg-pa-accent text-pa-on-accent",
-        secondary: "border-pa-border-strong bg-transparent text-pa-text",
+        primary: "border-transparent bg-pb-accent text-pb-on-accent",
+        secondary: "border-pb-border-strong bg-transparent text-pb-text",
+        outline:
+          "border-pb-accent bg-transparent text-pb-accent [--px-fill:var(--pb-accent)] [--px-ink:var(--pb-on-accent)]",
         ghost:
-          "border-transparent text-pa-text [--px-fill:var(--pa-raised)] [--px-ink:var(--pa-text)]",
+          "border-transparent text-pb-text [--px-fill:var(--pb-raised)] [--px-ink:var(--pb-text)]",
         danger:
-          "border-pa-danger/40 bg-transparent text-pa-danger [--px-fill:var(--pa-danger)]",
+          "border-pb-danger/40 bg-transparent text-pb-danger [--px-fill:var(--pb-danger)]",
       },
       size: {
         sm: "h-8 px-3 text-[0.6875rem]",
@@ -41,7 +43,7 @@ export const buttonVariants = cva(
   },
 );
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger";
 export type ButtonSize = "sm" | "md" | "lg" | "icon-sm" | "icon" | "icon-lg";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -49,6 +51,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Visual style.
    * - `"primary"`: accent fill, for the one main action of a view.
    * - `"secondary"`: hairline border, for most actions.
+   * - `"outline"`: accent border and text; fills with the accent on hover,
+   *   for a second important action next to a primary one.
    * - `"ghost"`: no border, for toolbars and dense rows.
    * - `"danger"`: red, for destructive actions.
    * @default "secondary"
@@ -127,7 +131,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       ref={ref}
       className={cx(
         buttonVariants({ variant, size }),
-        pixel ? "pa-px-host" : "transition-colors duration-pa-fast hover:bg-pa-raised",
+        pixel ? "pb-px-host" : "transition-colors duration-pb-fast hover:bg-pb-raised",
         className,
       )}
       {...(asChild ? {} : { type: type ?? "button", disabled: disabled || loading })}

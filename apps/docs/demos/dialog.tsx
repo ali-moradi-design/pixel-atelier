@@ -1,7 +1,7 @@
 "use client";
-import { Button } from "pixel-atelier/button";
-import { Checkbox } from "pixel-atelier/checkbox";
-import { Dialog, DialogClose, Sheet } from "pixel-atelier/dialog";
+import { Button } from "pixelbits/button";
+import { Checkbox } from "pixelbits/checkbox";
+import { Dialog, DialogClose, Sheet } from "pixelbits/dialog";
 
 export default function Demo() {
   return (

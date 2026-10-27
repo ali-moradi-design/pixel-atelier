@@ -15,8 +15,8 @@
       "cache": false,
       "persistent": true
     },
-    "@pixel-atelier/docs#build": {
-      "dependsOn": ["^build", "@pixel-atelier/storybook#build"],
+    "@pixelbits/docs#build": {
+      "dependsOn": ["^build", "@pixelbits/storybook#build"],
       "outputs": ["out/**"]
     }
   }

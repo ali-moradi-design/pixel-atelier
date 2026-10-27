@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup } from "pixel-atelier/avatar";
+import { Avatar, AvatarGroup } from "pixelbits/avatar";
 
 export default function Demo() {
   return (

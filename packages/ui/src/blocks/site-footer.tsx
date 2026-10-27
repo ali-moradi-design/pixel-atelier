@@ -38,19 +38,19 @@ export function SiteFooter({
   ...props
 }: SiteFooterProps) {
   return (
-    <footer className={cx("border-t border-pa-border", className)} {...props}>
+    <footer className={cx("border-t border-pb-border", className)} {...props}>
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.5fr_repeat(auto-fit,minmax(9rem,1fr))]">
         {(brand || tagline) && (
           <div className="grid content-start gap-3">
             {brand}
             {tagline && (
-              <p className="max-w-xs text-[0.8125rem] text-pa-muted">{tagline}</p>
+              <p className="max-w-xs text-[0.8125rem] text-pb-muted">{tagline}</p>
             )}
           </div>
         )}
         {columns.map((c) => (
           <nav key={c.title} aria-label={c.title} className="grid content-start gap-3">
-            <h2 className="font-pa-mono text-[0.625rem] font-medium uppercase tracking-[0.14em] text-pa-accent">
+            <h2 className="font-pb-mono text-[0.625rem] font-medium uppercase tracking-[0.14em] text-pb-accent">
               {c.title}
             </h2>
             <ul className="grid gap-2 text-[0.8125rem]">
@@ -58,7 +58,7 @@ export function SiteFooter({
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="text-pa-muted outline-none transition-colors hover:text-pa-text focus-visible:text-pa-text"
+                    className="text-pb-muted outline-none transition-colors hover:text-pb-text focus-visible:text-pb-text"
                   >
                     {l.label}
                   </a>
@@ -69,8 +69,8 @@ export function SiteFooter({
         ))}
       </div>
       {legal && (
-        <div className="border-t border-pa-border">
-          <div className="mx-auto w-full max-w-6xl px-4 py-5 text-xs text-pa-muted sm:px-6">
+        <div className="border-t border-pb-border">
+          <div className="mx-auto w-full max-w-6xl px-4 py-5 text-xs text-pb-muted sm:px-6">
             {legal}
           </div>
         </div>

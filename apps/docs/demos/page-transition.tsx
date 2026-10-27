@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "pixel-atelier/button";
-import { pixelTransition } from "pixel-atelier/page-transition";
+import { Button } from "pixelbits/button";
+import { pixelTransition } from "pixelbits/page-transition";
 
 // <PixelTransition /> is mounted once in this site's layout.
 export default function Demo() {

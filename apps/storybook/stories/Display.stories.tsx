@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Avatar, AvatarGroup } from "pixel-atelier/avatar";
-import { Badge } from "pixel-atelier/badge";
-import { Breadcrumb } from "pixel-atelier/breadcrumb";
-import { Card } from "pixel-atelier/card";
-import { Pagination } from "pixel-atelier/pagination";
-import { Progress } from "pixel-atelier/progress";
-import { Skeleton } from "pixel-atelier/skeleton";
+import { Avatar, AvatarGroup } from "pixelbits/avatar";
+import { Badge } from "pixelbits/badge";
+import { Breadcrumb } from "pixelbits/breadcrumb";
+import { Card } from "pixelbits/card";
+import { Pagination } from "pixelbits/pagination";
+import { Progress } from "pixelbits/progress";
+import { Skeleton } from "pixelbits/skeleton";
 import {
   Table,
   TableBody,
@@ -13,7 +13,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "pixel-atelier/table";
+} from "pixelbits/table";
 import { useState } from "react";
 
 const meta = {
@@ -74,7 +74,7 @@ export const PeopleAndLoading: Story = {
         <Avatar name="Ali Moradi" size="lg" status="online" />
         <div>
           <div className="text-sm font-medium">Ali Moradi</div>
-          <div className="text-xs text-pa-muted">Design engineer</div>
+          <div className="text-xs text-pb-muted">Design engineer</div>
         </div>
         <AvatarGroup className="ms-auto" max={3}>
           <Avatar name="Karen Ross" fallback="initials" />
@@ -138,7 +138,7 @@ export const TableAndNavigation: Story = {
             {sorted.map((r, i) => (
               <TableRow key={r[0]} selected={i === 1}>
                 <TableCell>{r[0]}</TableCell>
-                <TableCell className="text-pa-muted">{r[1]}</TableCell>
+                <TableCell className="text-pb-muted">{r[1]}</TableCell>
                 <TableCell>
                   <Badge variant={r[2] === "Stable" ? "success" : "warning"} dot>
                     {r[2]}

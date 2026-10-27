@@ -44,17 +44,17 @@ export function SpotlightCard({
   const move = (e: PointerEvent<HTMLDivElement>) => {
     onPointerMove?.(e);
     const r = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty("--pa-x", `${e.clientX - r.left}px`);
-    e.currentTarget.style.setProperty("--pa-y", `${e.clientY - r.top}px`);
+    e.currentTarget.style.setProperty("--pb-x", `${e.clientX - r.left}px`);
+    e.currentTarget.style.setProperty("--pb-y", `${e.clientY - r.top}px`);
   };
   return (
     <div
       ref={ref}
       onPointerMove={move}
-      style={{ "--pa-r": `${radius}px`, ...style } as CSSProperties}
+      style={{ "--pb-r": `${radius}px`, ...style } as CSSProperties}
       className={cx(
-        "pa-spotlight group/spot relative isolate overflow-hidden rounded-pa-lg border border-pa-border bg-pa-surface",
-        grid && "pa-spotlight-grid",
+        "pb-spotlight group/spot relative isolate overflow-hidden rounded-pb-lg border border-pb-border bg-pb-surface",
+        grid && "pb-spotlight-grid",
         className,
       )}
       {...props}

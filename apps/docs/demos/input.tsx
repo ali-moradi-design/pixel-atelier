@@ -1,5 +1,5 @@
-import { Field } from "pixel-atelier/field";
-import { Input } from "pixel-atelier/input";
+import { Field } from "pixelbits/field";
+import { Input } from "pixelbits/input";
 
 const Search = () => (
   <svg
@@ -20,7 +20,7 @@ export default function Demo() {
       <Field label="Search">
         <Input
           start={<Search />}
-          end={<kbd className="font-pa-mono text-[0.6875rem]">⌘K</kbd>}
+          end={<kbd className="font-pb-mono text-[0.6875rem]">⌘K</kbd>}
           placeholder="Search components"
         />
       </Field>

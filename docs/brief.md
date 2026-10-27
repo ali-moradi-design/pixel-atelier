@@ -1,4 +1,4 @@
-# Pixel Atelier UI kit: brief
+# Pixelbits UI kit: brief
 
 Decisions from 2026-10-19. Demo 4 in notes/demos.md (UI kit). Built in the public
 repo `ali-moradi-design/pixel-atelier` (to be created by the user) in its own sessions;
@@ -24,7 +24,7 @@ backticks, never start a line with an English word, repo files in English.
   what is already in it.
 - GitHub fetch/push works; the public `ali-moradi-design/portfolio` repo is
   readable (the pixel effects to start from live there).
-- npm account; check that `pixel-atelier` is still free (or choose a scope, the
+- npm account; check that `pixelbits` is still free (or choose a scope, the
   same one as the form builder packages if one was chosen already).
 - Playwright runs locally (mockups, visual regression).
 - Read the current docs of Tailwind v4, Radix primitives, the shadcn registry
@@ -51,7 +51,7 @@ backticks, never start a line with an English word, repo files in English.
 
 - Needed for the docs site, npm/GitHub (README header, social preview), favicon.
 - Direction: a monogram built from square pixels (for example "PA", or an "A"
-  whose strokes are pixel squares), with the wordmark "Pixel Atelier" in the kit's
+  whose strokes are pixel squares), with the wordmark "Pixelbits" in the kit's
   type; refined, not retro-game.
 - Must stay readable at 16 px (favicon) on a pixel grid; versions: mark only,
   mark + wordmark, light and dark, one-color.
@@ -60,7 +60,7 @@ backticks, never start a line with an English word, repo files in English.
 
 ## Identity
 
-- Name: Pixel Atelier: pixels, crafted with care.
+- Name: Pixelbits: pixels, crafted with care.
 - Luxurious and modern: calm, minimal base (few, deliberate colors; dark theme by
   default plus light; precise typography; generous spacing); the pixel effects
   appear only at moments of interaction (hover, focus, open, loading), so they
@@ -102,7 +102,7 @@ apps/
   - shadcn registry: `shadcn add <url>` copies a component's source into the
     user's project (KokonutUI style). Registry items are generated from the same
     source as the package, never maintained twice.
-- The docs site is the public demo on `pixel-atelier.ali-moradi-develop.com`. Prefer a
+- The docs site is the public demo on `pixelbits.ali-moradi-develop.com`. Prefer a
   static export so it deploys through roadmap phase 7. Storybook is published too
   (it is on the CV), for example under `/storybook`.
 - Accessibility: Radix handles keyboard and ARIA; every effect also runs on
@@ -123,7 +123,7 @@ apps/
 - Docs in English, with one Persian demo page to show RTL.
 - What happens after the first release (for example the portfolio using the kit)
   is decided later by the user; do not plan it now.
-- Name: Pixel Atelier ("atelier": an artist's or couturier's workshop; pixels,
-  crafted by hand). Repo `ali-moradi-design/pixel-atelier`, subdomain
-  `pixel-atelier.ali-moradi-develop.com`. npm: `pixel-atelier` was free unscoped
-  on 2026-10-19; check again, or publish under a scope.
+- Name: Pixelbits (renamed from "Pixel Atelier" on 2026-10-27: easier to
+  type; small pixel pieces). Repo `ali-moradi-design/pixel-atelier`, subdomain
+  `pixelbits.ali-moradi-develop.com`. npm: `pixelbits` was free unscoped
+  on 2026-10-27; check again before the first publish.

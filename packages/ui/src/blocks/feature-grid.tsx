@@ -31,7 +31,7 @@ export interface FeatureGridProps extends Omit<HTMLAttributes<HTMLElement>, "tit
  *
  * @example
  * ```tsx
- * <FeatureGrid title="Why Pixel Atelier" features={[{ title: "Tiny", description: "Button is 2 kB." }]} />
+ * <FeatureGrid title="Why Pixelbits" features={[{ title: "Tiny", description: "Button is 2 kB." }]} />
  * ```
  */
 export function FeatureGrid({
@@ -55,23 +55,23 @@ export function FeatureGrid({
     >
       {(title || description) && (
         <header className="grid max-w-2xl gap-3">
-          {title && <h2 className="text-pa-h2">{title}</h2>}
-          {description && <p className="text-pa-body text-pa-muted">{description}</p>}
+          {title && <h2 className="text-pb-h2">{title}</h2>}
+          {description && <p className="text-pb-body text-pb-muted">{description}</p>}
         </header>
       )}
       <ul className={cx("grid gap-x-6 gap-y-10", cols)}>
         {features.map((f) => (
           <li
             key={f.title}
-            className="grid content-start gap-2.5 border-t border-pa-border pt-5"
+            className="grid content-start gap-2.5 border-t border-pb-border pt-5"
           >
             {f.icon && (
-              <span className="mb-1 inline-grid size-9 place-items-center rounded-pa-xs bg-pa-accent-subtle text-pa-accent [&_svg]:size-[1.125rem]">
+              <span className="mb-1 inline-grid size-9 place-items-center rounded-pb-xs bg-pb-accent-subtle text-pb-accent [&_svg]:size-[1.125rem]">
                 {f.icon}
               </span>
             )}
             <h3 className="text-[0.9375rem] font-medium">{f.title}</h3>
-            <div className="text-[0.8125rem] leading-relaxed text-pa-muted">
+            <div className="text-[0.8125rem] leading-relaxed text-pb-muted">
               {f.description}
             </div>
           </li>

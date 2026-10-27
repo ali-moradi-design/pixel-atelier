@@ -11,6 +11,7 @@
     "lib",
     "demos",
     "components",
+    "fonts",
     "scripts",
     "next-env.d.ts",
     "next.config.ts",

@@ -1,4 +1,4 @@
-// Every component is also importable from its own entry ("pixel-atelier/button"),
+// Every component is also importable from its own entry ("pixelbits/button"),
 // and this barrel is side-effect free, so unused components are tree-shaken.
 
 export * from "./blocks/feature-grid.tsx";
@@ -23,7 +23,6 @@ export * from "./components/full-screen-menu.tsx";
 export * from "./components/icon-button.tsx";
 export * from "./components/image-reveal.tsx";
 export * from "./components/input.tsx";
-export * from "./components/link.tsx";
 export * from "./components/magnetic.tsx";
 export * from "./components/marquee.tsx";
 export * from "./components/number-ticker.tsx";
@@ -41,6 +40,7 @@ export * from "./components/switch.tsx";
 export * from "./components/table.tsx";
 export * from "./components/tabs.tsx";
 export * from "./components/tag.tsx";
+export * from "./components/text-link.tsx";
 export * from "./components/text-scramble.tsx";
 export * from "./components/textarea.tsx";
 export * from "./components/toast.tsx";

@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "pixel-atelier/button";
-import { NumberTicker } from "pixel-atelier/number-ticker";
+import { Button } from "pixelbits/button";
+import { NumberTicker } from "pixelbits/number-ticker";
 import { useState } from "react";
 
 export default function Demo() {

@@ -6,8 +6,9 @@
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const OUT = new URL("../out/", import.meta.url).pathname;
+const OUT = fileURLToPath(new URL("../out/", import.meta.url));
 
 function* pages(dir: string): Generator<string> {
   for (const name of readdirSync(dir)) {

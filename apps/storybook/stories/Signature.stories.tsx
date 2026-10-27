@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "pixel-atelier/button";
-import { CursorTrail } from "pixel-atelier/cursor-trail";
-import { FullScreenMenu } from "pixel-atelier/full-screen-menu";
-import { PixelImageReveal } from "pixel-atelier/image-reveal";
-import { Magnetic } from "pixel-atelier/magnetic";
-import { Marquee } from "pixel-atelier/marquee";
-import { NumberTicker } from "pixel-atelier/number-ticker";
-import { PixelTransition, pixelTransition } from "pixel-atelier/page-transition";
-import { PixelLoader } from "pixel-atelier/pixel-loader";
-import { SpotlightCard } from "pixel-atelier/spotlight-card";
-import { TextScramble } from "pixel-atelier/text-scramble";
+import { Button } from "pixelbits/button";
+import { CursorTrail } from "pixelbits/cursor-trail";
+import { FullScreenMenu } from "pixelbits/full-screen-menu";
+import { PixelImageReveal } from "pixelbits/image-reveal";
+import { Magnetic } from "pixelbits/magnetic";
+import { Marquee } from "pixelbits/marquee";
+import { NumberTicker } from "pixelbits/number-ticker";
+import { PixelTransition, pixelTransition } from "pixelbits/page-transition";
+import { PixelLoader } from "pixelbits/pixel-loader";
+import { SpotlightCard } from "pixelbits/spotlight-card";
+import { TextScramble } from "pixelbits/text-scramble";
 import { useState } from "react";
 
 const meta = {
@@ -36,9 +36,9 @@ const mark = (
         fill="currentColor"
         d="M0 0h8v1H0zM0 1h1v7H0zM5 1h3v1H5zM6 2h2v2H6zM5 4h3v1H5zM3 5h4v1H3zM3 6h2v1H3zM1 7h3v1H1zM5 7h1v1H5z"
       />
-      <path fill="var(--pa-accent)" d="M6 6h1v1H6z" />
+      <path fill="var(--pb-accent)" d="M6 6h1v1H6z" />
     </svg>
-    pixel <span className="font-light">atelier</span>
+    pixel<span className="font-light">bits</span>
   </span>
 );
 
@@ -72,7 +72,7 @@ export const Menu: Story = {
         { label: "Journal", href: "#journal" },
         { label: "Contact", href: "#contact" },
       ]}
-      footer="hello@pixel-atelier.dev"
+      footer="hello@pixelbits.dev"
     />
   ),
 };
@@ -83,13 +83,13 @@ export const ImageReveal: Story = {
       <PixelImageReveal
         src={sunset}
         alt="Sunset over hills"
-        wrapperClassName="aspect-[4/5] rounded-pa-sm"
+        wrapperClassName="aspect-[4/5] rounded-pb-sm"
       />
       <PixelImageReveal
         src={sunset}
         alt="Sunset, revealed on hover"
         trigger="hover"
-        wrapperClassName="aspect-[4/5] rounded-pa-sm"
+        wrapperClassName="aspect-[4/5] rounded-pb-sm"
       />
     </div>
   ),
@@ -100,22 +100,22 @@ export const TextAndNumbers: Story = {
     const [n, setN] = useState(128);
     return (
       <div className="grid gap-6">
-        <h2 className="text-pa-display font-light">
+        <h2 className="text-pb-display font-light">
           <TextScramble text="Crafted with care" />
         </h2>
         <div className="flex items-baseline gap-4">
           <NumberTicker value={n} className="text-6xl font-light tracking-tight" />
-          <span className="text-3xl text-pa-accent">k</span>
+          <span className="text-3xl text-pb-accent">k</span>
           <Button size="sm" onClick={() => setN(Math.round(Math.random() * 900))}>
             Random
           </Button>
         </div>
-        <Marquee aria-label="Built with" className="text-3xl font-light text-pa-muted">
+        <Marquee aria-label="Built with" className="text-3xl font-light text-pb-muted">
           {["Tailwind v4", "React 19", "Native dialog", "Popover API", "Canvas"].map(
             (t) => (
               <span key={t} className="flex items-center gap-10 whitespace-nowrap">
                 {t}
-                <i className="size-2 bg-pa-accent" />
+                <i className="size-2 bg-pb-accent" />
               </span>
             ),
           )}
@@ -135,7 +135,7 @@ export const LoadersAndSpotlight: Story = {
       </div>
       <div className="grid grid-cols-2 gap-4">
         <SpotlightCard className="grid min-h-56 content-end gap-1.5 p-6">
-          <span className="font-pa-mono text-[0.625rem] uppercase tracking-[0.12em] text-pa-muted">
+          <span className="font-pb-mono text-[0.625rem] uppercase tracking-[0.12em] text-pb-muted">
             Spotlight card
           </span>
           <h3 className="text-xl font-light tracking-tight">Follows the pointer</h3>
@@ -153,7 +153,7 @@ export const PageTransitionAndTrail: Story = {
     <div className="grid gap-4">
       <PixelTransition />
       <CursorTrail />
-      <p className="text-sm text-pa-muted">Move the mouse for the trail.</p>
+      <p className="text-sm text-pb-muted">Move the mouse for the trail.</p>
       <Button
         variant="primary"
         onClick={() => pixelTransition(() => new Promise((r) => setTimeout(r, 300)))}

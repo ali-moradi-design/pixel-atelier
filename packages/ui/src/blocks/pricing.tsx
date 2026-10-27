@@ -81,15 +81,16 @@ export function Pricing({
       {...props}
     >
       <header className="grid justify-items-center gap-4 text-center">
-        {title && <h2 className="text-pa-h2">{title}</h2>}
+        {title && <h2 className="text-pb-h2">{title}</h2>}
         {description && (
-          <p className="max-w-xl text-pa-body text-pa-muted">{description}</p>
+          <p className="max-w-xl text-pb-body text-pb-muted">{description}</p>
         )}
         {billingToggle && (
           <Tabs
             value={period}
             onValueChange={(v) => setPeriod(v as "monthly" | "yearly")}
             variant="segmented"
+            withPanels={false}
           >
             <TabList aria-label="Billing period">
               <Tab value="monthly">Monthly</Tab>
@@ -107,8 +108,8 @@ export function Pricing({
             <li
               key={p.name}
               className={cx(
-                "relative grid content-start gap-5 rounded-pa-lg border bg-pa-surface p-6",
-                p.featured ? "border-pa-accent shadow-pa-2" : "border-pa-border",
+                "relative grid content-start gap-5 rounded-pb-lg border bg-pb-surface p-6",
+                p.featured ? "border-pb-accent shadow-pb-2" : "border-pb-border",
               )}
             >
               <div className="flex items-center justify-between gap-3">
@@ -120,13 +121,13 @@ export function Pricing({
                 )}
               </div>
               {p.description && (
-                <p className="-mt-3 text-[0.8125rem] text-pa-muted">{p.description}</p>
+                <p className="-mt-3 text-[0.8125rem] text-pb-muted">{p.description}</p>
               )}
               <p className="flex items-baseline gap-1.5">
                 <span className="text-[2.75rem] leading-none font-light tracking-[-0.03em] tabular-nums">
                   {price}
                 </span>
-                <span className="text-[0.8125rem] text-pa-muted">
+                <span className="text-[0.8125rem] text-pb-muted">
                   {p.unit ??
                     (period === "monthly" ? "/ month" : "/ month, billed yearly")}
                 </span>
@@ -139,10 +140,10 @@ export function Pricing({
               >
                 {p.cta.href ? <a href={p.cta.href}>{p.cta.label}</a> : p.cta.label}
               </Button>
-              <ul className="grid gap-2.5 border-t border-pa-border pt-5 text-[0.8125rem]">
+              <ul className="grid gap-2.5 border-t border-pb-border pt-5 text-[0.8125rem]">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
-                    <CheckIcon className="mt-0.5 size-3.5 shrink-0 text-pa-accent" />
+                    <CheckIcon className="mt-0.5 size-3.5 shrink-0 text-pb-accent" />
                     {f}
                   </li>
                 ))}

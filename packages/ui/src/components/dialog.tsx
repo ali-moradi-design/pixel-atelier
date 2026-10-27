@@ -7,6 +7,7 @@ import {
   type MouseEvent,
   type ReactElement,
   type ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useId,
@@ -102,7 +103,7 @@ function DialogShell({
   // dialogs free), and stays so the close animation shows it.
   const [mounted, setMounted] = useState(open);
   if (open && !mounted) setMounted(true);
-  const close = () => setOpen(false);
+  const close = useCallback(() => setOpen(false), [setOpen]);
   const onBackdrop = (e: MouseEvent<HTMLDialogElement>) => {
     // A click on the <dialog> itself (not its content) is a click on the backdrop.
     if (dismissible && e.target === e.currentTarget) close();
@@ -127,8 +128,8 @@ function DialogShell({
         onClick={onBackdrop}
         data-side={side}
         className={cx(
-          "pa-dialog max-h-[calc(100dvh-2rem)] overflow-visible bg-transparent p-0 text-pa-text",
-          kind === "sheet" && "pa-sheet",
+          "pb-dialog max-h-[calc(100dvh-2rem)] overflow-visible bg-transparent p-0 text-pb-text",
+          kind === "sheet" && "pb-sheet",
           className,
         )}
         {...rest}
@@ -137,9 +138,9 @@ function DialogShell({
           <CloseContext.Provider value={close}>
             <div
               className={cx(
-                "relative grid max-h-[inherit] gap-3 overflow-auto border border-pa-border bg-pa-overlay shadow-pa-3",
+                "relative grid max-h-[inherit] gap-3 overflow-auto border border-pb-border bg-pb-overlay shadow-pb-3",
                 kind === "dialog"
-                  ? "w-[min(28rem,calc(100vw-2rem))] rounded-pa-lg p-6"
+                  ? "w-[min(28rem,calc(100vw-2rem))] rounded-pb-lg p-6"
                   : "size-full content-start p-6",
               )}
             >
@@ -154,7 +155,7 @@ function DialogShell({
               {description && (
                 <p
                   id={`${id}-desc`}
-                  className="text-[0.8125rem] leading-relaxed text-pa-muted"
+                  className="text-[0.8125rem] leading-relaxed text-pb-muted"
                 >
                   {description}
                 </p>
@@ -168,7 +169,7 @@ function DialogShell({
                   type="button"
                   aria-label="Close"
                   onClick={close}
-                  className="absolute end-3.5 top-3.5 inline-grid size-7 cursor-pointer place-items-center rounded-pa-xs text-pa-muted outline-none hover:bg-pa-raised hover:text-pa-text focus-visible:outline-2 focus-visible:outline-pa-accent"
+                  className="absolute end-3.5 top-3.5 inline-grid size-7 cursor-pointer place-items-center rounded-pb-xs text-pb-muted outline-none hover:bg-pb-raised hover:text-pb-text focus-visible:outline-2 focus-visible:outline-pb-accent"
                 >
                   <XIcon />
                 </button>
@@ -232,6 +233,8 @@ export interface DialogCloseProps {
   asChild?: boolean;
   /** The label or the element to use. */
   children: ReactNode;
+  /** Extra classes, for the button or merged into the child with `asChild`. */
+  className?: string;
 }
 
 /**
@@ -242,11 +245,16 @@ export interface DialogCloseProps {
  * <DialogClose asChild><Button variant="ghost">Cancel</Button></DialogClose>
  * ```
  */
-export function DialogClose({ asChild = false, children }: DialogCloseProps) {
+export function DialogClose({ asChild = false, children, className }: DialogCloseProps) {
   const close = useContext(CloseContext);
-  if (asChild) return <Slot onClick={() => close?.()}>{children}</Slot>;
+  if (asChild)
+    return (
+      <Slot className={className} onClick={() => close?.()}>
+        {children}
+      </Slot>
+    );
   return (
-    <button type="button" onClick={() => close?.()}>
+    <button type="button" className={className} onClick={() => close?.()}>
       {children}
     </button>
   );

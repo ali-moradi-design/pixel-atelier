@@ -1,5 +1,5 @@
-import { Combobox } from "pixel-atelier/combobox";
-import { Field } from "pixel-atelier/field";
+import { Combobox } from "pixelbits/combobox";
+import { Field } from "pixelbits/field";
 
 const people = [
   "Aria Moradi",

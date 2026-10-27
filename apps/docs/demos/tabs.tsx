@@ -1,4 +1,4 @@
-import { Tab, TabList, TabPanel, Tabs } from "pixel-atelier/tabs";
+import { Tab, TabList, TabPanel, Tabs } from "pixelbits/tabs";
 
 export default function Demo() {
   return (
@@ -9,10 +9,10 @@ export default function Demo() {
           <Tab value="code">Code</Tab>
           <Tab value="props">Props</Tab>
         </TabList>
-        <TabPanel value="preview" className="text-sm text-pa-muted">
+        <TabPanel value="preview" className="text-sm text-pb-muted">
           The preview.
         </TabPanel>
-        <TabPanel value="code" className="font-pa-mono text-xs">
+        <TabPanel value="code" className="font-pb-mono text-xs">
           {"<Button />"}
         </TabPanel>
         <TabPanel value="props" className="text-sm">

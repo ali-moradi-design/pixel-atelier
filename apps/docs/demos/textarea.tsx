@@ -1,5 +1,5 @@
-import { Field } from "pixel-atelier/field";
-import { Textarea } from "pixel-atelier/textarea";
+import { Field } from "pixelbits/field";
+import { Textarea } from "pixelbits/textarea";
 
 export default function Demo() {
   return (

@@ -1,5 +1,5 @@
-import { Field } from "pixel-atelier/field";
-import { Input } from "pixel-atelier/input";
+import { Field } from "pixelbits/field";
+import { Input } from "pixelbits/input";
 
 export default function Demo() {
   return (

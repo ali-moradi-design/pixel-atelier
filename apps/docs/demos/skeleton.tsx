@@ -1,4 +1,4 @@
-import { Skeleton } from "pixel-atelier/skeleton";
+import { Skeleton } from "pixelbits/skeleton";
 
 export default function Demo() {
   return (

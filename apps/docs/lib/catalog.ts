@@ -33,7 +33,7 @@ const e = (
 export const catalog: Entry[] = [
   e("button", "Button", "Core", ["Button"]),
   e("icon-button", "Icon button", "Core", ["IconButton"]),
-  e("link", "Link", "Core", ["Link"]),
+  e("text-link", "Text link", "Core", ["TextLink"]),
   e("badge", "Badge", "Core", ["Badge"]),
   e("tag", "Tag", "Core", ["Tag"]),
   e("field", "Field", "Forms", ["Field"]),
@@ -57,7 +57,16 @@ export const catalog: Entry[] = [
   ]),
   e("command-palette", "Command palette", "Overlays", ["CommandPalette"]),
   e("toast", "Toast", "Overlays", ["Toaster", "toast"]),
-  e("card", "Card", "Data display", ["Card"]),
+  e("card", "Card", "Data display", [
+    "Card",
+    "CardMedia",
+    "CardHeader",
+    "CardEyebrow",
+    "CardTitle",
+    "CardDescription",
+    "CardContent",
+    "CardFooter",
+  ]),
   e("avatar", "Avatar", "Data display", ["Avatar", "AvatarGroup"]),
   e("skeleton", "Skeleton", "Data display", ["Skeleton"]),
   e("table", "Table", "Data display", [

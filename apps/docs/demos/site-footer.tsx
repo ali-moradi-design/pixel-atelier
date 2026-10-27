@@ -1,13 +1,13 @@
-import { SiteFooter } from "pixel-atelier/blocks/site-footer";
+import { SiteFooter } from "pixelbits/blocks/site-footer";
 
 export default function Demo() {
   return (
-    <div className="w-full overflow-hidden rounded-pa-md border border-pa-border">
+    <div className="w-full overflow-hidden rounded-pb-md border border-pb-border">
       <SiteFooter
         className="border-t-0"
         brand={
           <span className="text-sm font-medium">
-            pixel <span className="font-light">atelier</span>
+            pixel<span className="font-light">bits</span>
           </span>
         }
         tagline="Pixels, crafted with care."

@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-The latest minor release of `pixel-atelier` receives security fixes.
+The latest minor release of `pixelbits` receives security fixes.
 
 ## Reporting a vulnerability
 

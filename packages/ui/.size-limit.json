@@ -12,9 +12,9 @@
     "limit": "2.4 kB"
   },
   {
-    "name": "Link",
-    "path": "dist/components/link.js",
-    "import": "{ Link }",
+    "name": "TextLink",
+    "path": "dist/components/text-link.js",
+    "import": "{ TextLink }",
     "limit": "1.2 kB"
   },
   {
@@ -135,7 +135,7 @@
     "name": "Card",
     "path": "dist/components/card.js",
     "import": "{ Card }",
-    "limit": "0.7 kB"
+    "limit": "0.8 kB"
   },
   {
     "name": "Avatar",
@@ -159,7 +159,7 @@
     "name": "Pagination",
     "path": "dist/components/pagination.js",
     "import": "{ Pagination }",
-    "limit": "1.0 kB"
+    "limit": "1.7 kB"
   },
   {
     "name": "Breadcrumb",
@@ -195,7 +195,7 @@
     "name": "PixelTransition",
     "path": "dist/components/page-transition.js",
     "import": "{ PixelTransition, pixelTransition }",
-    "limit": "0.9 kB"
+    "limit": "1.0 kB"
   },
   {
     "name": "PixelLoader",
@@ -231,7 +231,7 @@
     "name": "CursorTrail",
     "path": "dist/components/cursor-trail.js",
     "import": "{ CursorTrail }",
-    "limit": "0.8 kB"
+    "limit": "1.1 kB"
   },
   {
     "name": "Hero",

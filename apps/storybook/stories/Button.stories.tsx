@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "pixel-atelier/button";
-import { IconButton } from "pixel-atelier/icon-button";
+import { Button } from "pixelbits/button";
+import { IconButton } from "pixelbits/icon-button";
 import { expect, userEvent, within } from "storybook/test";
 
 const meta = {
@@ -10,7 +10,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "inline-radio",
-      options: ["primary", "secondary", "ghost", "danger"],
+      options: ["primary", "secondary", "outline", "ghost", "danger"],
     },
     size: { control: "inline-radio", options: ["sm", "md", "lg"] },
   },
@@ -25,6 +25,7 @@ export const Variants: Story = {
     <div className="flex flex-wrap items-center gap-3">
       <Button variant="primary">Get started</Button>
       <Button>Secondary</Button>
+      <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="danger">Delete</Button>
     </div>
@@ -110,7 +111,7 @@ export const KeyboardFocus: Story = {
     const button = canvas.getByRole("button");
     await expect(button).toHaveFocus();
     await expect(
-      button.querySelector("[data-pa-pixels]")?.childElementCount,
+      button.querySelector("[data-pb-pixels]")?.childElementCount,
     ).toBeGreaterThan(0);
   },
 };

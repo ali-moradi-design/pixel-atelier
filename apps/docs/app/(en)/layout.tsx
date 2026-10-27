@@ -1,53 +1,78 @@
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
-import type { Metadata } from "next";
-import { PixelTransition } from "pixel-atelier/page-transition";
-import { Toaster } from "pixel-atelier/toast";
+import type { Metadata, Viewport } from "next";
+import { PixelTransition } from "pixelbits/page-transition";
+import { Toaster } from "pixelbits/toast";
 import type { ReactNode } from "react";
-import { SiteFooter, SiteHeader } from "@/components/site-header";
-import "../globals.css";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SmoothScroll } from "@/components/layout/smooth-scroll";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { fontVariables } from "@/fonts";
+import { pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pixel-atelier.ali-moradi-develop.com"),
+  ...pageMetadata({ path: "/" }),
+  metadataBase: new URL(site.url),
   title: {
-    default: "Pixel Atelier — pixels, crafted with care",
-    template: "%s · Pixel Atelier",
+    default: `${site.name}: React UI kit with pixel effects`,
+    template: `%s · ${site.name}`,
   },
-  description:
-    "A calm React UI kit whose pixel effects appear only at the moment of interaction. Tailwind v4, native dialog and popover, tiny bundles.",
+  applicationName: site.name,
+  keywords: [...site.keywords],
+  authors: [{ name: site.author.name, url: site.author.url }],
+  creator: site.author.name,
+  publisher: site.author.name,
+  category: "technology",
+  formatDetection: { telephone: false, email: false, address: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/favicon.ico" }],
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
     apple: "/apple-touch-icon.png",
   },
-  openGraph: { images: "/social-preview.png" },
+  manifest: "/manifest.webmanifest",
 };
 
-const restoreTheme = `try{var t=localStorage.getItem("pa-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}`;
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0d0d0f" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f4ef" },
+  ],
+  colorScheme: "dark light",
+};
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      data-theme="dark"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
-      suppressHydrationWarning
-    >
-      <head>
-        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: restores the saved theme before paint */}
-        <script dangerouslySetInnerHTML={{ __html: restoreTheme }} />
-      </head>
-      <body className="min-h-dvh">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-3 focus:z-50 focus:bg-pa-accent focus:px-3 focus:py-2 focus:text-pa-on-accent"
-        >
-          Skip to content
-        </a>
-        <SiteHeader />
-        <div id="main">{children}</div>
-        <SiteFooter />
-        <Toaster />
-        <PixelTransition />
+    <html lang="en" className={fontVariables} suppressHydrationWarning>
+      <body className="flex min-h-dvh flex-col">
+        <ThemeProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-3 focus:z-50 focus:bg-pb-accent focus:px-3 focus:py-2 focus:text-pb-on-accent"
+          >
+            Skip to content
+          </a>
+          <SiteHeader />
+          <div id="main" className="flex-1">
+            {children}
+          </div>
+          <SiteFooter />
+          <Toaster />
+          <PixelTransition />
+          <SmoothScroll />
+        </ThemeProvider>
       </body>
     </html>
   );

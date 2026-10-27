@@ -1,7 +1,7 @@
 name: Release
 
 # On main: if there are changesets, open or update the "Version packages" PR.
-# Merging that PR publishes pixel-atelier to npm with provenance.
+# Merging that PR publishes pixelbits to npm with provenance.
 on:
   push:
     branches: [main]
@@ -37,7 +37,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: pnpm install --frozen-lockfile
       - run: pnpm audit --prod
-      - run: pnpm turbo run test --filter=pixel-atelier
+      - run: pnpm turbo run test --filter=pixelbits
       - uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
           version: pnpm changeset version

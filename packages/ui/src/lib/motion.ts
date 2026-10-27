@@ -24,6 +24,11 @@ export function prefersReducedMotion() {
   return typeof matchMedia === "function" && matchMedia(QUERY).matches;
 }
 
+/** True on devices with a precise pointer (a mouse or trackpad). */
+export function hasFinePointer() {
+  return typeof matchMedia === "function" && matchMedia("(pointer: fine)").matches;
+}
+
 /**
  * Becomes true once the element has scrolled into view (and stays true).
  * Without IntersectionObserver (old browsers, tests) it is true at once.

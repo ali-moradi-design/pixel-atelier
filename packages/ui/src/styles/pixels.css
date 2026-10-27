@@ -8,37 +8,37 @@
 
 /* Defaults live in a layer so component utilities ([--px-fill:…]) win. */
 @layer components {
-  .pa-px-host {
+  .pb-px-host {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    --px-fill: var(--pa-text);
-    --px-ink: var(--pa-bg);
+    --px-fill: var(--pb-text);
+    --px-ink: var(--pb-bg);
     transition: color 0s linear 190ms;
   }
 }
 
-.pa-px {
+.pb-px {
   position: absolute;
   inset: 0;
   z-index: -1;
   display: grid;
-  grid-template-columns: repeat(var(--pa-px-cols, 1), 1fr);
-  grid-template-rows: repeat(var(--pa-px-rows, 1), 1fr);
+  grid-template-columns: repeat(var(--pb-px-cols, 1), 1fr);
+  grid-template-rows: repeat(var(--pb-px-rows, 1), 1fr);
   pointer-events: none;
 }
 
-.pa-px > i {
+.pb-px > i {
   background: var(--px-fill);
   opacity: 0;
   transition: opacity 120ms linear var(--d, 0ms);
 }
 
 /* The label switches to the ink color once about half the squares are in
-   (the delayed color transition is set on .pa-px-host above). The active
+   (the delayed color transition is set on .pb-px-host above). The active
    rules stay unlayered so the ink color wins over text utilities. */
 
-.pa-px-host:is(
+.pb-px-host:is(
   :focus-visible,
   [data-px-active],
   [aria-expanded="true"],
@@ -47,14 +47,14 @@
 ) {
   color: var(--px-ink);
 }
-.pa-px-host:is(
+.pb-px-host:is(
     :focus-visible,
     [data-px-active],
     [aria-expanded="true"],
     [data-state="open"],
     [data-highlighted]
   )
-  > .pa-px
+  > .pb-px
   > i {
   opacity: 1;
   @starting-style {
@@ -62,10 +62,10 @@
   }
 }
 @media (hover: hover) {
-  .pa-px-host:hover {
+  .pb-px-host:hover {
     color: var(--px-ink);
   }
-  .pa-px-host:hover > .pa-px > i {
+  .pb-px-host:hover > .pb-px > i {
     opacity: 1;
     @starting-style {
       opacity: 0;
@@ -73,88 +73,88 @@
   }
 }
 
-.pa-px-host:is(:disabled, [aria-disabled="true"], [data-disabled]) > .pa-px {
+.pb-px-host:is(:disabled, [aria-disabled="true"], [data-disabled]) > .pb-px {
   display: none;
 }
 
 /* Rolling label */
-.pa-roll {
+.pb-roll {
   display: inline-grid;
   overflow: hidden;
   line-height: 1.25;
   vertical-align: bottom;
 }
-.pa-roll > span {
+.pb-roll > span {
   grid-area: 1 / 1;
-  transition: translate var(--pa-duration-slow, 320ms) var(--pa-ease-out, ease-out);
+  transition: translate var(--pb-duration-slow, 320ms) var(--pb-ease-out, ease-out);
 }
-.pa-roll > span + span {
+.pb-roll > span + span {
   translate: 0 100%;
 }
-:is(.pa-px-host, .pa-roll-host):is(
+:is(.pb-px-host, .pb-roll-host):is(
     :focus-visible,
     [data-px-active],
     [data-state="open"],
     [data-highlighted]
   )
-  .pa-roll
+  .pb-roll
   > span {
   translate: 0 -100%;
 }
-:is(.pa-px-host, .pa-roll-host):is(
+:is(.pb-px-host, .pb-roll-host):is(
     :focus-visible,
     [data-px-active],
     [data-state="open"],
     [data-highlighted]
   )
-  .pa-roll
+  .pb-roll
   > span
   + span {
   translate: 0 0;
 }
 @media (hover: hover) {
-  :is(.pa-px-host, .pa-roll-host):hover .pa-roll > span {
+  :is(.pb-px-host, .pb-roll-host):hover .pb-roll > span {
     translate: 0 -100%;
   }
-  :is(.pa-px-host, .pa-roll-host):hover .pa-roll > span + span {
+  :is(.pb-px-host, .pb-roll-host):hover .pb-roll > span + span {
     translate: 0 0;
   }
 }
 
 /* Pixel underline for links: fills in eight steps. */
-.pa-link-px {
+.pb-link-px {
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) no-repeat left bottom / 0 1px;
-  box-shadow: inset 0 -1px var(--pa-border-strong);
+  box-shadow: inset 0 -1px var(--pb-border-strong);
   transition:
-    background-size var(--pa-duration-pixel, 400ms) steps(8, end),
-    color var(--pa-duration-fast, 120ms);
+    background-size var(--pb-duration-pixel, 400ms) steps(8, end),
+    color var(--pb-duration-fast, 120ms);
 }
-.pa-link-px:dir(rtl) {
+.pb-link-px:dir(rtl) {
   background-position: right bottom;
 }
-.pa-link-px:focus-visible {
+.pb-link-px:focus-visible {
   background-size: 100% 1px;
 }
 @media (hover: hover) {
-  .pa-link-px:hover {
+  .pb-link-px:hover {
     background-size: 100% 1px;
   }
 }
 
 /* 3 x 3 pixel spinner */
-.pa-spinner {
+.pb-spinner {
   display: inline-grid;
   grid-template: repeat(3, 0.25em) / repeat(3, 0.25em);
   gap: 0.125em;
   vertical-align: middle;
 }
-.pa-spinner > i {
+.pb-spinner > i {
   background: currentColor;
   opacity: 0.25;
-  animation: pa-spinner 800ms steps(1, end) infinite;
+  animation: pb-spinner 800ms steps(1, end) infinite;
 }
-@keyframes pa-spinner {
+@keyframes pb-spinner {
   0%,
   37.5% {
     opacity: 1;
@@ -169,155 +169,155 @@
 }
 
 /* Form controls: a bottom hairline fills in pixel steps when focused. */
-.pa-control::after {
+.pb-control::after {
   content: "";
   position: absolute;
   inset-inline: 0;
   bottom: -1px;
   height: 1px;
-  background: linear-gradient(var(--pa-accent), var(--pa-accent)) no-repeat left / 0 100%;
-  transition: background-size var(--pa-duration-pixel, 400ms) steps(8, end);
+  background: linear-gradient(var(--pb-accent), var(--pb-accent)) no-repeat left / 0 100%;
+  transition: background-size var(--pb-duration-pixel, 400ms) steps(8, end);
   pointer-events: none;
 }
-.pa-control:dir(rtl)::after {
+.pb-control:dir(rtl)::after {
   background-position: right;
 }
-.pa-control:focus-within::after,
-.pa-control[aria-expanded="true"]::after {
+.pb-control:focus-within::after,
+.pb-control[aria-expanded="true"]::after {
   background-size: 100% 100%;
 }
 
 /* Checkbox: the fill comes in three pixel steps from the start corner. */
-.pa-check {
+.pb-check {
   background:
-    linear-gradient(var(--pa-accent), var(--pa-accent)) no-repeat left top / 0 0;
-  transition: background-size var(--pa-duration-fast, 120ms) steps(3, end);
+    linear-gradient(var(--pb-accent), var(--pb-accent)) no-repeat left top / 0 0;
+  transition: background-size var(--pb-duration-fast, 120ms) steps(3, end);
 }
-.pa-check:dir(rtl) {
+.pb-check:dir(rtl) {
   background-position: right top;
 }
-.pa-check:checked,
-.pa-check:indeterminate {
+.pb-check:checked,
+.pb-check:indeterminate {
   background-size: 100% 100%;
 }
 
 /* Popups (Select, Combobox, menus): a short fade and lift on open. */
-.pa-popup {
+.pb-popup {
   transition:
-    opacity var(--pa-duration-fast, 120ms) var(--pa-ease-out, ease-out),
-    translate var(--pa-duration-fast, 120ms) var(--pa-ease-out, ease-out);
+    opacity var(--pb-duration-fast, 120ms) var(--pb-ease-out, ease-out),
+    translate var(--pb-duration-fast, 120ms) var(--pb-ease-out, ease-out);
   @starting-style {
     opacity: 0;
     translate: 0 -4px;
   }
 }
-.pa-popup[data-side="top"] {
+.pb-popup[data-side="top"] {
   @starting-style {
     translate: 0 4px;
   }
 }
 
 /* Slider: a native range input with a square thumb and an accent fill. */
-.pa-slider {
-  --pa-track: 4px;
-  --pa-thumb: 16px;
+.pb-slider {
+  --pb-track: 4px;
+  --pb-thumb: 16px;
   appearance: none;
   width: 100%;
-  height: var(--pa-thumb);
+  height: var(--pb-thumb);
   margin: 0;
   background: transparent;
   cursor: pointer;
   outline: none;
 }
-.pa-slider::-webkit-slider-runnable-track {
-  height: var(--pa-track);
+.pb-slider::-webkit-slider-runnable-track {
+  height: var(--pb-track);
   background: linear-gradient(
     to right,
-    var(--pa-accent) var(--pa-fill, 0%),
-    var(--pa-border) 0
+    var(--pb-accent) var(--pb-fill, 0%),
+    var(--pb-border) 0
   );
 }
-.pa-slider::-moz-range-track {
-  height: var(--pa-track);
+.pb-slider::-moz-range-track {
+  height: var(--pb-track);
   background: linear-gradient(
     to right,
-    var(--pa-accent) var(--pa-fill, 0%),
-    var(--pa-border) 0
+    var(--pb-accent) var(--pb-fill, 0%),
+    var(--pb-border) 0
   );
 }
-.pa-slider:dir(rtl)::-webkit-slider-runnable-track {
+.pb-slider:dir(rtl)::-webkit-slider-runnable-track {
   background: linear-gradient(
     to left,
-    var(--pa-accent) var(--pa-fill, 0%),
-    var(--pa-border) 0
+    var(--pb-accent) var(--pb-fill, 0%),
+    var(--pb-border) 0
   );
 }
-.pa-slider:dir(rtl)::-moz-range-track {
+.pb-slider:dir(rtl)::-moz-range-track {
   background: linear-gradient(
     to left,
-    var(--pa-accent) var(--pa-fill, 0%),
-    var(--pa-border) 0
+    var(--pb-accent) var(--pb-fill, 0%),
+    var(--pb-border) 0
   );
 }
-.pa-slider::-webkit-slider-thumb {
+.pb-slider::-webkit-slider-thumb {
   appearance: none;
-  width: var(--pa-thumb);
-  height: var(--pa-thumb);
-  margin-top: calc((var(--pa-track) - var(--pa-thumb)) / 2);
-  background: var(--pa-text);
-  border: 3px solid var(--pa-bg);
-  box-shadow: 0 0 0 1px var(--pa-border-strong);
-  transition: scale var(--pa-duration-fast, 120ms) steps(2, end);
+  width: var(--pb-thumb);
+  height: var(--pb-thumb);
+  margin-top: calc((var(--pb-track) - var(--pb-thumb)) / 2);
+  background: var(--pb-text);
+  border: 3px solid var(--pb-bg);
+  box-shadow: 0 0 0 1px var(--pb-border-strong);
+  transition: scale var(--pb-duration-fast, 120ms) steps(2, end);
 }
-.pa-slider::-moz-range-thumb {
-  width: var(--pa-thumb);
-  height: var(--pa-thumb);
+.pb-slider::-moz-range-thumb {
+  width: var(--pb-thumb);
+  height: var(--pb-thumb);
   box-sizing: border-box;
   border-radius: 0;
-  background: var(--pa-text);
-  border: 3px solid var(--pa-bg);
-  box-shadow: 0 0 0 1px var(--pa-border-strong);
+  background: var(--pb-text);
+  border: 3px solid var(--pb-bg);
+  box-shadow: 0 0 0 1px var(--pb-border-strong);
 }
-.pa-slider:active::-webkit-slider-thumb {
+.pb-slider:active::-webkit-slider-thumb {
   scale: 1.15;
 }
-.pa-slider:focus-visible::-webkit-slider-thumb {
-  box-shadow: 0 0 0 2px var(--pa-accent);
+.pb-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 2px var(--pb-accent);
 }
-.pa-slider:focus-visible::-moz-range-thumb {
-  box-shadow: 0 0 0 2px var(--pa-accent);
+.pb-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 2px var(--pb-accent);
 }
-.pa-slider:disabled {
+.pb-slider:disabled {
   cursor: not-allowed;
   opacity: 0.4;
 }
-.pa-slider-ticks::-webkit-slider-runnable-track {
+.pb-slider-ticks::-webkit-slider-runnable-track {
   background:
     repeating-linear-gradient(
       to right,
-      var(--pa-bg) 0 1px,
-      transparent 1px calc(100% / var(--pa-ticks))
+      var(--pb-bg) 0 1px,
+      transparent 1px calc(100% / var(--pb-ticks))
     )
     no-repeat,
-    linear-gradient(to right, var(--pa-accent) var(--pa-fill, 0%), var(--pa-border) 0);
+    linear-gradient(to right, var(--pb-accent) var(--pb-fill, 0%), var(--pb-border) 0);
 }
 
 /* Dialog and Sheet (native <dialog>): fade/scale in, backdrop, scroll lock. */
-:root:has(.pa-dialog[open]) {
+:root:has(.pb-dialog[open]) {
   overflow: hidden;
 }
-.pa-dialog {
+.pb-dialog {
   margin: auto;
   opacity: 0;
   scale: 0.98;
   transition:
-    opacity var(--pa-duration-base, 200ms) var(--pa-ease-out, ease-out),
-    scale var(--pa-duration-base, 200ms) var(--pa-ease-out, ease-out),
-    translate var(--pa-duration-slow, 320ms) var(--pa-ease-out, ease-out),
-    overlay var(--pa-duration-base, 200ms) allow-discrete,
-    display var(--pa-duration-base, 200ms) allow-discrete;
+    opacity var(--pb-duration-base, 200ms) var(--pb-ease-out, ease-out),
+    scale var(--pb-duration-base, 200ms) var(--pb-ease-out, ease-out),
+    translate var(--pb-duration-slow, 320ms) var(--pb-ease-out, ease-out),
+    overlay var(--pb-duration-base, 200ms) allow-discrete,
+    display var(--pb-duration-base, 200ms) allow-discrete;
 }
-.pa-dialog[open] {
+.pb-dialog[open] {
   opacity: 1;
   scale: 1;
   @starting-style {
@@ -325,88 +325,88 @@
     scale: 0.98;
   }
 }
-.pa-dialog::backdrop {
-  background: var(--pa-scrim);
+.pb-dialog::backdrop {
+  background: var(--pb-scrim);
   opacity: 0;
   transition:
-    opacity var(--pa-duration-base, 200ms),
-    overlay var(--pa-duration-base, 200ms) allow-discrete,
-    display var(--pa-duration-base, 200ms) allow-discrete;
+    opacity var(--pb-duration-base, 200ms),
+    overlay var(--pb-duration-base, 200ms) allow-discrete,
+    display var(--pb-duration-base, 200ms) allow-discrete;
 }
-.pa-dialog[open]::backdrop {
+.pb-dialog[open]::backdrop {
   opacity: 1;
   @starting-style {
     opacity: 0;
   }
 }
-.pa-command {
+.pb-command {
   margin: 12vh auto auto;
 }
-.pa-sheet {
+.pb-sheet {
   margin: 0;
   max-width: none;
   max-height: none;
   scale: 1;
   opacity: 1;
 }
-.pa-sheet[data-side="end"],
-.pa-sheet[data-side="start"] {
+.pb-sheet[data-side="end"],
+.pb-sheet[data-side="start"] {
   inset-block: 0;
   height: 100dvh;
   width: min(24rem, 100vw);
 }
-.pa-sheet[data-side="end"] {
+.pb-sheet[data-side="end"] {
   inset-inline: auto 0;
   translate: 100% 0;
 }
-.pa-sheet[data-side="start"] {
+.pb-sheet[data-side="start"] {
   inset-inline: 0 auto;
   translate: -100% 0;
 }
-.pa-sheet[data-side="end"]:dir(rtl) {
+.pb-sheet[data-side="end"]:dir(rtl) {
   translate: -100% 0;
 }
-.pa-sheet[data-side="start"]:dir(rtl) {
+.pb-sheet[data-side="start"]:dir(rtl) {
   translate: 100% 0;
 }
-.pa-sheet[data-side="top"],
-.pa-sheet[data-side="bottom"] {
+.pb-sheet[data-side="top"],
+.pb-sheet[data-side="bottom"] {
   inset-inline: 0;
   width: 100vw;
   max-height: 85dvh;
 }
-.pa-sheet[data-side="top"] {
+.pb-sheet[data-side="top"] {
   inset-block: 0 auto;
   translate: 0 -100%;
 }
-.pa-sheet[data-side="bottom"] {
+.pb-sheet[data-side="bottom"] {
   inset-block: auto 0;
   translate: 0 100%;
 }
-.pa-sheet[data-side][open] {
+.pb-sheet[data-side][open] {
   translate: 0 0;
   @starting-style {
-    translate: var(--pa-sheet-from, 100% 0);
+    translate: var(--pb-sheet-from, 100% 0);
   }
 }
-.pa-sheet[data-side="start"][open] {
-  --pa-sheet-from: -100% 0;
+.pb-sheet[data-side="start"][open] {
+  --pb-sheet-from: -100% 0;
 }
-.pa-sheet[data-side="top"][open] {
-  --pa-sheet-from: 0 -100%;
+.pb-sheet[data-side="top"][open] {
+  --pb-sheet-from: 0 -100%;
 }
-.pa-sheet[data-side="bottom"][open] {
-  --pa-sheet-from: 0 100%;
+.pb-sheet[data-side="bottom"][open] {
+  --pb-sheet-from: 0 100%;
 }
-.pa-sheet[data-side="end"][open]:dir(rtl) {
-  --pa-sheet-from: -100% 0;
+.pb-sheet[data-side="end"][open]:dir(rtl) {
+  --pb-sheet-from: -100% 0;
 }
-.pa-sheet[data-side="start"][open]:dir(rtl) {
-  --pa-sheet-from: 100% 0;
+.pb-sheet[data-side="start"][open]:dir(rtl) {
+  --pb-sheet-from: 100% 0;
 }
 
 /* Tabs (underline): a pixel-dashed accent line under the active tab. */
-.pa-tab[aria-selected="true"]::after {
+.pb-tab[aria-selected="true"]::after {
   content: "";
   position: absolute;
   inset-inline: 0;
@@ -414,167 +414,309 @@
   height: 2px;
   background: repeating-linear-gradient(
     90deg,
-    var(--pa-accent) 0 4px,
+    var(--pb-accent) 0 4px,
     transparent 4px 6px
   );
 }
 
 /* Toasts: slide in from their edge; the lifetime bar is pixel dashed. */
 @layer components {
-  .pa-toaster {
+  .pb-toaster {
     overflow: visible;
   }
 }
-.pa-toast {
+.pb-toast {
   transition:
-    opacity var(--pa-duration-base, 200ms) var(--pa-ease-out, ease-out),
-    translate var(--pa-duration-base, 200ms) var(--pa-ease-out, ease-out);
+    opacity var(--pb-duration-base, 200ms) var(--pb-ease-out, ease-out),
+    translate var(--pb-duration-base, 200ms) var(--pb-ease-out, ease-out);
   @starting-style {
     opacity: 0;
     translate: 0 8px;
   }
 }
-.pa-toast-life {
-  background: repeating-linear-gradient(90deg, var(--pa-tone) 0 4px, transparent 4px 6px);
+.pb-toast-life {
+  background: repeating-linear-gradient(90deg, var(--pb-tone) 0 4px, transparent 4px 6px);
   transform-origin: left;
-  animation: pa-toast-life linear forwards;
+  animation: pb-toast-life linear forwards;
 }
-.pa-toast-life:dir(rtl) {
+.pb-toast-life:dir(rtl) {
   transform-origin: right;
 }
-@keyframes pa-toast-life {
+@keyframes pb-toast-life {
   to {
     transform: scaleX(0);
   }
 }
 
-/* Skeleton: a band of pixels sweeps across in steps. */
-.pa-skeleton {
-  background-color: var(--pa-border);
-  background-image: linear-gradient(
-    90deg,
-    transparent 0 40%,
-    color-mix(in srgb, var(--pa-muted) 22%, transparent) 40% 60%,
-    transparent 60% 100%
-  );
-  background-size: 300% 100%;
-  background-repeat: no-repeat;
-  animation: pa-skeleton 1.6s steps(12, end) infinite;
-  -webkit-mask-image: conic-gradient(#000 25%, #000c 0 50%, #000 0 75%, #000c 0);
-  -webkit-mask-size: 6px 6px;
-  mask-image: conic-gradient(#000 25%, #000c 0 50%, #000 0 75%, #000c 0);
-  mask-size: 6px 6px;
+/* Skeleton: a soft light glides across a fine pixel texture. The glide is a
+   transform on a pseudo-element (GPU-composited, no repaint per frame) and
+   starts mid-sweep, so a skeleton never looks frozen when it appears. */
+.pb-skeleton {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--pb-border);
+  -webkit-mask-image: conic-gradient(#000 25%, #000d 0 50%, #000 0 75%, #000d 0);
+  -webkit-mask-size: 4px 4px;
+  mask-image: conic-gradient(#000 25%, #000d 0 50%, #000 0 75%, #000d 0);
+  mask-size: 4px 4px;
 }
-@keyframes pa-skeleton {
-  from {
-    background-position: 100% 0;
-  }
+.pb-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--pb-text) 9%, transparent) 50%,
+    transparent
+  );
+  translate: -100% 0;
+  animation: pb-skeleton 1.1s cubic-bezier(0.4, 0, 0.2, 1) -0.4s infinite;
+  will-change: translate;
+}
+.pb-skeleton:dir(rtl)::after {
+  animation-direction: reverse;
+}
+@keyframes pb-skeleton {
   to {
-    background-position: 0 0;
+    translate: 100% 0;
   }
 }
 
-/* Progress: edge squares flicker; indeterminate sweeps a pixel band. */
-.pa-progress-edge {
-  animation: pa-progress-edge 960ms steps(2, end) infinite;
-  background: var(--pa-accent);
+/* Progress: the bar grows with a transform (no layout per frame) and a light
+   glint runs over the filled part; the pixel variant lights its squares
+   with a short stagger. Indeterminate: a pixel band glides across. */
+.pb-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--pb-accent);
+  transform-origin: left;
+  scale: var(--pb-progress, 0) 1;
+  transition: scale var(--pb-duration-base, 200ms) var(--pb-ease-out, ease-out);
 }
-@keyframes pa-progress-edge {
+.pb-progress-fill:dir(rtl) {
+  transform-origin: right;
+}
+.pb-progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--pb-on-accent) 22%, transparent),
+    transparent
+  );
+  translate: -100% 0;
+  animation: pb-skeleton 1.4s var(--pb-ease-in-out, ease-in-out) infinite;
+}
+.pb-progress-cell {
+  background: var(--pb-border);
+  transition: background-color 90ms linear var(--pb-cell-delay, 0ms);
+}
+.pb-progress-cell[data-lit] {
+  background: var(--pb-accent);
+}
+.pb-progress-edge {
+  animation: pb-progress-edge 520ms steps(2, end) infinite;
+  background: var(--pb-accent);
+}
+@keyframes pb-progress-edge {
   0%,
   100% {
-    opacity: 0.2;
+    opacity: 0.25;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.85;
   }
 }
-.pa-progress-indeterminate::after {
+.pb-progress-indeterminate::after {
   content: "";
   position: absolute;
   inset-block: 0;
-  width: 30%;
+  left: 0;
+  width: 35%;
   background: repeating-linear-gradient(
     90deg,
-    var(--pa-accent) 0 6px,
+    var(--pb-accent) 0 6px,
     transparent 6px 8px
   );
-  animation: pa-progress-sweep 1.4s steps(14, end) infinite;
+  translate: -100% 0;
+  animation: pb-progress-sweep 1s var(--pb-ease-in-out, ease-in-out) infinite;
+  will-change: translate;
 }
-@keyframes pa-progress-sweep {
-  from {
-    left: -30%;
-  }
+.pb-progress-indeterminate:dir(rtl)::after {
+  animation-direction: reverse;
+}
+@keyframes pb-progress-sweep {
   to {
-    left: 100%;
+    translate: 290% 0;
   }
 }
 
-/* Card: interactive cards zoom their media in pixel steps. */
-.pa-card-media > * {
-  transition: scale var(--pa-duration-slow, 320ms) steps(4, end);
+/* Accordion: the height eases open (where ::details-content is supported),
+   the body fades up, and the marker fills with the accent in pixel steps. */
+.pb-acc {
+  interpolate-size: allow-keywords;
 }
-.pa-card-interactive:hover .pa-card-media > *,
-.pa-card-interactive:focus-within .pa-card-media > * {
+.pb-acc::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition:
+    block-size var(--pb-duration-slow, 320ms) var(--pb-ease-out, ease-out),
+    content-visibility var(--pb-duration-slow, 320ms) allow-discrete;
+}
+.pb-acc[open]::details-content {
+  block-size: auto;
+}
+.pb-acc-body {
+  opacity: 0;
+  translate: 0 -6px;
+  transition:
+    opacity var(--pb-duration-base, 200ms) var(--pb-ease-out, ease-out),
+    translate var(--pb-duration-slow, 320ms) var(--pb-ease-out, ease-out);
+}
+.pb-acc[open] .pb-acc-body {
+  opacity: 1;
+  translate: 0 0;
+  transition-delay: 60ms;
+}
+.pb-acc-mark {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--pb-border-strong);
+  border-radius: var(--pb-radius-xs, 2px);
+  color: var(--pb-muted);
+  background: linear-gradient(var(--pb-accent), var(--pb-accent)) no-repeat center / 0 0;
+  transition:
+    background-size var(--pb-duration-base, 200ms) steps(4, end),
+    border-color var(--pb-duration-fast, 120ms),
+    color var(--pb-duration-fast, 120ms) 80ms;
+}
+.pb-acc-mark > svg {
+  transition: rotate var(--pb-duration-slow, 320ms) var(--pb-ease-out, ease-out);
+}
+.pb-acc > summary:hover .pb-acc-mark {
+  border-color: var(--pb-accent);
+  color: var(--pb-accent);
+}
+.pb-acc[open] .pb-acc-mark {
+  background-size: 100% 100%;
+  border-color: var(--pb-accent);
+  color: var(--pb-on-accent);
+}
+.pb-acc[open] .pb-acc-mark > svg {
+  rotate: 180deg;
+}
+
+/* Card: interactive cards zoom their media in pixel steps. */
+.pb-card-media > * {
+  transition: scale var(--pb-duration-slow, 320ms) steps(4, end);
+}
+.pb-card-interactive:hover .pb-card-media > *,
+.pb-card-interactive:focus-within .pb-card-media > * {
   scale: 1.04;
 }
 
 /* Full-screen menu: slides down. */
-.pa-menu {
+.pb-menu {
   translate: 0 -2%;
 }
-.pa-menu[open] {
+.pb-menu[open] {
   translate: 0 0;
   @starting-style {
     translate: 0 -2%;
   }
 }
 
+/* Pagination: square cells with 2 px pixel-cut corners and a hairline that
+   follows the cut (drawn by an inset shadow inside the clip). */
+.pb-page {
+  clip-path: polygon(
+    2px 0,
+    calc(100% - 2px) 0,
+    calc(100% - 2px) 2px,
+    100% 2px,
+    100% calc(100% - 2px),
+    calc(100% - 2px) calc(100% - 2px),
+    calc(100% - 2px) 100%,
+    2px 100%,
+    2px calc(100% - 2px),
+    0 calc(100% - 2px),
+    0 2px,
+    2px 2px
+  );
+  box-shadow: inset 0 0 0 1px var(--pb-border-strong);
+}
+.pb-page-current {
+  box-shadow: none;
+}
+.pb-page:focus-visible {
+  clip-path: none;
+}
+
 /* Pixel loaders */
-.pa-loader > i {
+.pb-loader > i {
   display: block;
-  width: var(--pa-cell);
-  height: var(--pa-cell);
+  width: var(--pb-cell);
+  height: var(--pb-cell);
   background: currentColor;
-  opacity: 0.18;
+  opacity: 0.15;
 }
-.pa-loader > i[data-accent] {
-  background: var(--pa-accent);
+.pb-loader > i[data-accent] {
+  background: var(--pb-accent);
 }
-.pa-loader[data-variant="snake"] > i {
-  animation: pa-loader-snake 800ms steps(1, end) infinite;
+.pb-loader > i[data-hidden] {
+  visibility: hidden;
 }
-.pa-loader[data-variant="pulse"] > i {
-  animation: pa-loader-pulse 1200ms steps(3, end) infinite;
+.pb-loader[data-variant="snake"] > i {
+  animation: pb-loader-snake 960ms steps(1, end) infinite;
 }
-.pa-loader[data-variant="noise"] > i {
-  animation: pa-loader-noise 900ms steps(1, end) infinite;
+.pb-loader[data-variant="pulse"] > i {
+  animation: pb-loader-pulse 1200ms var(--pb-ease-out, ease-out) infinite;
 }
-@keyframes pa-loader-snake {
-  0%,
-  37.5% {
+.pb-loader[data-variant="noise"] > i {
+  animation: pb-loader-noise 900ms steps(1, end) infinite;
+}
+@keyframes pb-loader-snake {
+  0% {
     opacity: 1;
+    background: var(--pb-accent);
   }
-  50% {
+  12.5% {
+    opacity: 0.85;
+  }
+  25% {
     opacity: 0.55;
   }
-  62.5%,
+  37.5% {
+    opacity: 0.3;
+  }
+  50%,
   100% {
-    opacity: 0.18;
+    opacity: 0.15;
   }
 }
-@keyframes pa-loader-pulse {
+@keyframes pb-loader-pulse {
   0%,
+  70%,
   100% {
-    opacity: 0.18;
+    opacity: 0.15;
+    scale: 0.6;
   }
-  50% {
+  25% {
     opacity: 1;
+    scale: 1;
   }
 }
-@keyframes pa-loader-noise {
+@keyframes pb-loader-noise {
   0%,
   49% {
-    opacity: 0.18;
+    opacity: 0.15;
   }
   50%,
   100% {
@@ -583,53 +725,53 @@
 }
 
 /* Spotlight card */
-.pa-spotlight::before,
-.pa-spotlight-grid::after {
+.pb-spotlight::before,
+.pb-spotlight-grid::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   opacity: 0;
-  transition: opacity var(--pa-duration-base, 200ms);
+  transition: opacity var(--pb-duration-base, 200ms);
 }
-.pa-spotlight::before {
+.pb-spotlight::before {
   background: radial-gradient(
-    var(--pa-r, 260px) circle at var(--pa-x, 50%) var(--pa-y, 50%),
-    color-mix(in srgb, var(--pa-accent) 20%, transparent),
+    var(--pb-r, 260px) circle at var(--pb-x, 50%) var(--pb-y, 50%),
+    color-mix(in oklab, var(--pb-accent) 20%, transparent),
     transparent 70%
   );
 }
-.pa-spotlight-grid::after {
+.pb-spotlight-grid::after {
   background-image:
-    linear-gradient(var(--pa-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--pa-border) 1px, transparent 1px);
+    linear-gradient(var(--pb-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pb-border) 1px, transparent 1px);
   background-size: 12px 12px;
   -webkit-mask-image: radial-gradient(
-    calc(var(--pa-r, 260px) * 0.75) circle at var(--pa-x, 50%) var(--pa-y, 50%),
+    calc(var(--pb-r, 260px) * 0.75) circle at var(--pb-x, 50%) var(--pb-y, 50%),
     #000,
     transparent 70%
   );
   mask-image: radial-gradient(
-    calc(var(--pa-r, 260px) * 0.75) circle at var(--pa-x, 50%) var(--pa-y, 50%),
+    calc(var(--pb-r, 260px) * 0.75) circle at var(--pb-x, 50%) var(--pb-y, 50%),
     #000,
     transparent 70%
   );
 }
-.pa-spotlight:hover::before,
-.pa-spotlight:hover::after,
-.pa-spotlight:focus-within::before,
-.pa-spotlight:focus-within::after {
+.pb-spotlight:hover::before,
+.pb-spotlight:hover::after,
+.pb-spotlight:focus-within::before,
+.pb-spotlight:focus-within::after {
   opacity: 1;
 }
 
 /* Number ticker: digits roll in steps. */
-.pa-ticker-col {
+.pb-ticker-col {
   transition: translate 900ms steps(10, end);
 }
 
 /* Marquee */
-.pa-marquee {
+.pb-marquee {
   -webkit-mask-image: linear-gradient(
     90deg,
     transparent,
@@ -639,25 +781,25 @@
   );
   mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
-.pa-marquee-track {
-  animation: pa-marquee var(--pa-duration, 30s) linear infinite;
+.pb-marquee-track {
+  animation: pb-marquee var(--pb-duration, 30s) linear infinite;
 }
-.pa-marquee-reverse .pa-marquee-track {
+.pb-marquee-reverse .pb-marquee-track {
   animation-direction: reverse;
 }
-.pa-marquee:dir(rtl) .pa-marquee-track {
-  animation-name: pa-marquee-rtl;
+.pb-marquee:dir(rtl) .pb-marquee-track {
+  animation-name: pb-marquee-rtl;
 }
-.pa-marquee-pause:hover .pa-marquee-track,
-.pa-marquee-pause:focus-within .pa-marquee-track {
+.pb-marquee-pause:hover .pb-marquee-track,
+.pb-marquee-pause:focus-within .pb-marquee-track {
   animation-play-state: paused;
 }
-@keyframes pa-marquee {
+@keyframes pb-marquee {
   to {
     translate: -100% 0;
   }
 }
-@keyframes pa-marquee-rtl {
+@keyframes pb-marquee-rtl {
   to {
     translate: 100% 0;
   }
@@ -665,50 +807,61 @@
 
 /* Reduced motion: the dissolve becomes a plain fill, nothing rolls. */
 @media (prefers-reduced-motion: reduce) {
-  .pa-px > i {
+  .pb-px > i {
     transition-duration: 0s;
     transition-delay: 0s;
   }
-  .pa-px-host {
+  .pb-px-host {
     transition-delay: 0s;
   }
-  .pa-roll > span {
+  .pb-roll > span {
     transition: none;
   }
-  .pa-link-px {
+  .pb-link-px {
     transition: none;
   }
-  .pa-spinner > i {
+  .pb-spinner > i {
     animation-duration: 2.4s;
   }
-  .pa-skeleton,
-  .pa-progress-edge,
-  .pa-progress-indeterminate::after {
+  .pb-skeleton::after,
+  .pb-progress-fill::after,
+  .pb-progress-edge {
     animation: none;
   }
-  .pa-loader[data-variant] > i {
-    animation-duration: 2.4s;
+  .pb-progress-indeterminate::after {
+    animation-duration: 3s;
   }
-  .pa-ticker-col,
-  .pa-menu {
+  .pb-progress-fill,
+  .pb-progress-cell {
     transition: none;
   }
-  .pa-marquee {
+  .pb-loader[data-variant] > i {
+    animation-duration: 2.4s;
+  }
+  .pb-ticker-col,
+  .pb-menu {
+    transition: none;
+  }
+  .pb-marquee {
     overflow-x: auto;
   }
-  .pa-marquee-track {
+  .pb-marquee-track {
     animation: none;
   }
-  .pa-marquee-track + .pa-marquee-track {
+  .pb-marquee-track + .pb-marquee-track {
     display: none;
   }
-  .pa-control::after,
-  .pa-check,
-  .pa-popup,
-  .pa-dialog,
-  .pa-dialog::backdrop,
-  .pa-toast,
-  .pa-card-media > * {
+  .pb-acc::details-content,
+  .pb-acc-body,
+  .pb-acc-mark,
+  .pb-acc-mark > svg,
+  .pb-control::after,
+  .pb-check,
+  .pb-popup,
+  .pb-dialog,
+  .pb-dialog::backdrop,
+  .pb-toast,
+  .pb-card-media > * {
     transition: none;
   }
 }

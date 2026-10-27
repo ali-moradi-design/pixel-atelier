@@ -81,7 +81,7 @@ export function Field({
   ...props
 }: FieldProps) {
   const auto = useId();
-  const id = idProp ?? `pa-field-${auto}`;
+  const id = idProp ?? `pb-field-${auto}`;
   const hasError = error != null && error !== false && error !== "";
   const textId = `${id}-text`;
   const showText = hasError || description != null;
@@ -90,12 +90,12 @@ export function Field({
       <label
         htmlFor={id}
         className={cx(
-          "inline-flex items-center gap-1.5 text-[0.8125rem] font-medium text-pa-text",
+          "inline-flex items-center gap-1.5 text-[0.8125rem] font-medium text-pb-text",
           disabled && "opacity-50",
         )}
       >
         {label}
-        {required && <span aria-hidden="true" className="size-1 bg-pa-accent" />}
+        {required && <span aria-hidden="true" className="size-1 bg-pb-accent" />}
       </label>
       <FieldContext.Provider
         value={{
@@ -112,14 +112,14 @@ export function Field({
         <p
           id={textId}
           role="alert"
-          className="flex items-center gap-1.5 text-xs text-pa-danger"
+          className="flex items-center gap-1.5 text-xs text-pb-danger"
         >
           <span aria-hidden="true" className="size-1.5 shrink-0 bg-current" />
           {error}
         </p>
       ) : (
         description != null && (
-          <p id={textId} className="text-xs text-pa-muted">
+          <p id={textId} className="text-xs text-pb-muted">
             {description}
           </p>
         )

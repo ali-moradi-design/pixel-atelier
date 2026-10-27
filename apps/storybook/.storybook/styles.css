@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@pixel-atelier/tokens/theme.css";
+@import "@pixelbits/tokens/theme.css";
 @import "../../../packages/ui/src/styles/pixels.css";
 @source "../../../packages/ui/src";
 
@@ -20,7 +20,35 @@
 }
 
 body {
-  background: var(--pa-bg);
-  color: var(--pa-text);
-  font-family: var(--pa-font-sans);
+  background: var(--pb-bg);
+  color: var(--pb-text);
+  font-family: var(--pb-font-sans);
+}
+
+/* Docs pages (autodocs) follow the toolbar theme too: Storybook paints them
+   white by default, which hides light text in the dark theme. */
+.sbdocs.sbdocs-wrapper,
+.sbdocs.sbdocs-content {
+  background: var(--pb-bg);
+  color: var(--pb-text);
+}
+.sbdocs :is(h1, h2, h3, h4, p, li, td, th, span):not(.docs-story *) {
+  color: inherit;
+}
+.sbdocs :is(.docs-story, .sbdocs-preview) {
+  background: var(--pb-surface);
+  border-color: var(--pb-border);
+}
+.sbdocs table :is(td, th) {
+  border-color: var(--pb-border);
+  background: var(--pb-bg);
+}
+.sbdocs :is(code, pre) {
+  background: var(--pb-raised);
+  border-color: var(--pb-border);
+  color: var(--pb-text);
+}
+.sbdocs :is(.docblock-argstable-body, .docblock-argstable-body td) {
+  background: var(--pb-surface);
+  color: var(--pb-text);
 }

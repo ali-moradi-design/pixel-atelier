@@ -2,6 +2,35 @@
 
 Decisions made after the brief (`brief.md`). Newer entries win.
 
+## 2026-10-27
+
+- Renamed to **Pixelbits** (npm `pixelbits`, free on 2026-10-27; "Pixel
+  Atelier" was hard to type). Utility and variable prefix `pb-` (`bg-pb-muted`,
+  `--pb-accent`). Docs domain `pixelbits.ali-moradi-develop.com`. The GitHub
+  repository keeps its name until the owner renames it.
+- Colors are written in OKLCH. Accents: gold (default), platinum, emerald,
+  sapphire, ruby, amethyst. Status colors are muted jewel tones. The token
+  test parses OKLCH, checks WCAG AA and that every color fits in sRGB.
+- Logo: a pixel gem (13 x 9, variant "E": facet lines cut out) in four gold
+  tones; wordmark in Story Script. Replaces the P1 tile.
+- `Link` is now `TextLink` (`pixelbits/text-link`) so it never clashes with
+  Next.js `Link`.
+- Button gets an `outline` variant; Card gets composable parts (CardMedia,
+  CardHeader, CardEyebrow, CardTitle, CardDescription, CardContent,
+  CardFooter) next to its shortcut props; Tabs gets `withPanels`.
+- Every exported component accepts `className` (test/props.test.tsx checks all
+  exports) and every `asChild` path is tested.
+- Docs: next-themes for the theme (no flash, no transition blink), Lenis
+  smooth scrolling, all fonts local (Geist, Yekan Bakh, Story Script), no
+  Google Fonts. Code blocks are rendered to React elements (no
+  dangerouslySetInnerHTML). Folder structure documented in apps/docs/README.md.
+- SEO per the Next.js docs: per-page metadata helper (canonical, language
+  alternates, Open Graph, Twitter), robots, sitemap, manifest, JSON-LD.
+- Storybook: theme toggle with @storybook/addon-themes; docs pages follow it.
+- Cross-platform: `.gitattributes` forces LF, scripts use `fileURLToPath`
+  and POSIX paths for registry paths, Node >= 22.18 (type stripping) with
+  `engineStrict`, and CI builds on Windows and macOS too.
+
 ## 2026-10-19
 
 - Logo: concept P1, a tile with a cut-out "P" whose corner dissolves
@@ -13,7 +42,7 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 - Everything is written from scratch. Other kits (KokonutUI, shadcn/ui) are
   studied for ideas and quality bar only; no code is copied from them.
 - Performance and bundle size are first-class requirements:
-  - ESM only, one entry point per component (`pixel-atelier/button`),
+  - ESM only, one entry point per component (`pixelbits/button`),
     `"sideEffects"` limited to CSS files, so bundlers tree-shake everything
     that is not imported.
   - CSS first; Motion only where CSS cannot do it, and then with `LazyMotion`
@@ -30,7 +59,7 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 - No `tailwind-merge` (about 7 kB): `className` is appended to the component's
   classes. Our own `Slot` replaces `@radix-ui/react-slot` (saves about 0.8 kB per
   component).
-- Tailwind utilities from the kit are prefixed `pa-` (`bg-pa-surface`) so they
+- Tailwind utilities from the kit are prefixed `pb-` (`bg-pb-surface`) so they
   never clash with an app's own theme (for example shadcn's `accent`).
 - Platform primitives before Radix: checkbox, radio, switch and slider are styled
   native inputs; popups (Select, Combobox, later menus and popovers) use the
@@ -58,7 +87,7 @@ Decisions made after the brief (`brief.md`). Newer entries win.
 - Persian RTL page at `/fa` with its own root layout (`lang="fa" dir="rtl"`,
   Vazirmatn).
 - v1.0 adds five blocks (Hero, FeatureGrid, Pricing, SiteHeader, SiteFooter) as
-  `pixel-atelier/blocks/*` and `block-*` registry items.
+  `pixelbits/blocks/*` and `block-*` registry items.
 - Browser checks (`apps/storybook/browser`, Playwright on the built
   Storybook): axe with color contrast in both themes, and screenshot
   comparison of ten key stories plus one hover state. They found real light
@@ -67,7 +96,7 @@ Decisions made after the brief (`brief.md`). Newer entries win.
   colors on their tinted backgrounds too. Baselines are refreshed with the
   "Update visual baselines" workflow after intended changes.
 - Releases: Changesets + `.github/workflows/release.yml` (npm provenance). The
-  first changeset bumps `pixel-atelier` to 1.0.0; publishing waits for the
+  first changeset bumps `pixelbits` to 1.0.0; publishing waits for the
   `NPM_TOKEN` secret (see `docs/release.md`).
 - Security (see docs/security.md): XSS test suite and banned-API guard for the
   package; pnpm supply-chain policies (minimumReleaseAge, trustPolicy,

@@ -1,41 +1,65 @@
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
-import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
-import { Toaster } from "pixel-atelier/toast";
+import type { Metadata, Viewport } from "next";
+import { Toaster } from "pixelbits/toast";
 import type { ReactNode } from "react";
-import "../../globals.css";
+import { SmoothScroll } from "@/components/layout/smooth-scroll";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { fontVariables, yekanBakh } from "@/fonts";
+import { pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
+import "@/styles/globals.css";
 
-const vazir = Vazirmatn({
-  subsets: ["arabic", "latin"],
-  variable: "--font-vazirmatn",
-  display: "swap",
-});
+const description =
+  "پیکسل‌بیتس یک کیت رابط کاربری آرام و لوکس برای ری‌اکت است که افکت‌های پیکسلی‌اش فقط هنگام تعامل ظاهر می‌شوند؛ با پشتیبانی کامل از راست‌به‌چپ.";
 
 export const metadata: Metadata = {
-  title: "پیکسل آتلیه — نمایش راست‌به‌چپ",
-  description: "همهٔ کامپوننت‌های Pixel Atelier در جهت راست‌به‌چپ و به زبان فارسی.",
-  icons: { icon: "/favicon.svg" },
+  ...pageMetadata({
+    title: "پیکسل‌بیتس، کیت رابط کاربری ری‌اکت",
+    description,
+    path: "/fa/",
+    locale: "fa_IR",
+  }),
+  title: { absolute: "پیکسل‌بیتس | کیت رابط کاربری ری‌اکت با افکت‌های پیکسلی" },
+  metadataBase: new URL(site.url),
+  applicationName: site.name,
+  authors: [{ name: site.author.name, url: site.author.url }],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/manifest.webmanifest",
 };
 
-const restoreTheme = `try{var t=localStorage.getItem("pa-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}`;
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0d0d0f" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f4ef" },
+  ],
+  colorScheme: "dark light",
+};
 
 export default function FaLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="fa"
       dir="rtl"
-      data-theme="dark"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${vazir.variable}`}
+      className={`${fontVariables} ${yekanBakh.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: restores the saved theme before paint */}
-        <script dangerouslySetInnerHTML={{ __html: restoreTheme }} />
-      </head>
-      <body className="min-h-dvh">
-        {children}
-        <Toaster position="bottom-start" />
+      <body className="flex min-h-dvh flex-col">
+        <ThemeProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-3 focus:z-50 focus:bg-pb-accent focus:px-3 focus:py-2 focus:text-pb-on-accent"
+          >
+            رفتن به محتوا
+          </a>
+          {children}
+          <Toaster position="bottom-start" />
+          <SmoothScroll />
+        </ThemeProvider>
       </body>
     </html>
   );

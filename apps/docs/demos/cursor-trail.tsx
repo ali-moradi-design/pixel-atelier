@@ -1,6 +1,6 @@
 "use client";
-import { CursorTrail } from "pixel-atelier/cursor-trail";
-import { Switch } from "pixel-atelier/switch";
+import { CursorTrail } from "pixelbits/cursor-trail";
+import { Switch } from "pixelbits/switch";
 import { useState } from "react";
 
 export default function Demo() {

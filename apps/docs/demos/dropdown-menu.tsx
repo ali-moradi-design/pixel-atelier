@@ -1,12 +1,12 @@
 "use client";
-import { Button } from "pixel-atelier/button";
+import { Button } from "pixelbits/button";
 import {
   DropdownCheckboxItem,
   DropdownItem,
   DropdownLabel,
   DropdownMenu,
   DropdownSeparator,
-} from "pixel-atelier/dropdown-menu";
+} from "pixelbits/dropdown-menu";
 import { useState } from "react";
 
 export default function Demo() {

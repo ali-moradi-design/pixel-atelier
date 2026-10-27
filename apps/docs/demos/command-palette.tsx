@@ -1,7 +1,7 @@
 "use client";
-import { Button } from "pixel-atelier/button";
-import { CommandPalette } from "pixel-atelier/command-palette";
-import { toast } from "pixel-atelier/toast";
+import { Button } from "pixelbits/button";
+import { CommandPalette } from "pixelbits/command-palette";
+import { toast } from "pixelbits/toast";
 import { useState } from "react";
 
 export default function Demo() {

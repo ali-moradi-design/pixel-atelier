@@ -2,7 +2,7 @@
 export const stories = [
   "core-button--variants",
   "core-button--states",
-  "core-link-badge-tag--badges",
+  "core-textlink-badge-tag--badges",
   "core-forms--text-fields",
   "core-forms--choices",
   "core-overlays--tabs-and-accordion",

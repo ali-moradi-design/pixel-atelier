@@ -1,5 +1,5 @@
 "use client";
-import { Pagination } from "pixel-atelier/pagination";
+import { Pagination } from "pixelbits/pagination";
 import { useState } from "react";
 
 export default function Demo() {

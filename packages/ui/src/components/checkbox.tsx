@@ -76,32 +76,32 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           onCheckedChange?.(e.currentTarget.checked);
         }}
         className={cx(
-          "peer pa-check size-full cursor-pointer appearance-none rounded-[3px] border border-pa-border-strong bg-pa-bg outline-none",
+          "peer pb-check size-full cursor-pointer appearance-none rounded-[3px] border border-pb-border-strong bg-pb-bg outline-none",
           "checked:border-transparent indeterminate:border-transparent",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent",
-          "disabled:cursor-not-allowed disabled:opacity-40 aria-[invalid=true]:border-pa-danger",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
+          "disabled:cursor-not-allowed disabled:opacity-40 aria-[invalid=true]:border-pb-danger",
           className,
         )}
       />
       <CheckIcon
         strokeWidth={2.2}
-        className="pointer-events-none absolute size-3.5 text-pa-on-accent opacity-0 peer-checked:opacity-100 peer-indeterminate:opacity-0"
+        className="pointer-events-none absolute size-3.5 text-pb-on-accent opacity-0 peer-checked:opacity-100 peer-indeterminate:opacity-0"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute h-0.5 w-2 bg-pa-on-accent opacity-0 peer-indeterminate:opacity-100"
+        className="pointer-events-none absolute h-0.5 w-2 bg-pb-on-accent opacity-0 peer-indeterminate:opacity-100"
       />
     </span>
   );
   if (!label) return control;
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: the input is inside `control`
-    <label className="inline-flex cursor-pointer items-start gap-2.5 text-sm text-pa-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
+    <label className="inline-flex cursor-pointer items-start gap-2.5 text-sm text-pb-text has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60">
       <span className="mt-px">{control}</span>
       <span className="grid gap-0.5">
         <span>{label}</span>
         {description && (
-          <span id={descId} className="text-xs text-pa-muted">
+          <span id={descId} className="text-xs text-pb-muted">
             {description}
           </span>
         )}

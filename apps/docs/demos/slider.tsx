@@ -1,5 +1,5 @@
-import { Field } from "pixel-atelier/field";
-import { Slider } from "pixel-atelier/slider";
+import { Field } from "pixelbits/field";
+import { Slider } from "pixelbits/slider";
 
 export default function Demo() {
   return (

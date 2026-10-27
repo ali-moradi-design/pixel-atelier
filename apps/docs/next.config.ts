@@ -6,6 +6,6 @@ const config: NextConfig = {
   trailingSlash: true,
   images: { unoptimized: true },
   reactStrictMode: true,
-  transpilePackages: ["@pixel-atelier/tokens"],
+  transpilePackages: ["@pixelbits/tokens"],
 };
 export default config;

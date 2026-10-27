@@ -1,6 +1,6 @@
-import { Hero } from "pixel-atelier/blocks/hero";
-import { Button } from "pixel-atelier/button";
-import { SpotlightCard } from "pixel-atelier/spotlight-card";
+import { Hero } from "pixelbits/blocks/hero";
+import { Button } from "pixelbits/button";
+import { SpotlightCard } from "pixelbits/spotlight-card";
 
 export default function Demo() {
   return (

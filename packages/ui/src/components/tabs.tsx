@@ -8,9 +8,10 @@ import {
   type KeyboardEvent,
   type ReactNode,
   useContext,
-  useEffect,
   useId,
-  useState,
+  useLayoutEffect,
+  useMemo,
+  useRef,
 } from "react";
 import { useControllable } from "../lib/use-controllable.ts";
 
@@ -20,9 +21,7 @@ interface TabsState {
   setValue: (v: string) => void;
   variant: "underline" | "segmented";
   keepMounted: boolean;
-  /** Values that have a TabPanel, so tabs only point at panels that exist. */
-  panels: Set<string>;
-  setPanels: (fn: (s: Set<string>) => Set<string>) => void;
+  withPanels: boolean;
 }
 const TabsContext = createContext<TabsState | null>(null);
 function useTabs(part: string) {
@@ -53,6 +52,12 @@ export interface TabsProps extends Omit<HTMLAttributes<HTMLDivElement>, "default
    * @default false
    */
   keepMounted?: boolean;
+  /**
+   * Set `false` when the tabs switch content without `TabPanel`s (for
+   * example a billing period switch): tabs then point at no panel.
+   * @default true
+   */
+  withPanels?: boolean;
   /** `TabList` and `TabPanel`s. */
   children: ReactNode;
 }
@@ -80,17 +85,21 @@ export function Tabs({
   onValueChange,
   variant = "underline",
   keepMounted = false,
+  withPanels = true,
   className,
   children,
   ...props
 }: TabsProps) {
   const id = useId();
   const [value, setValue] = useControllable(valueProp, defaultValue, onValueChange);
-  const [panels, setPanels] = useState<Set<string>>(() => new Set());
+  // One stable context object per change: tabs and panels re-render only
+  // when the active tab (or a setting) really changes.
+  const ctx = useMemo(
+    () => ({ id, value, setValue, variant, keepMounted, withPanels }),
+    [id, value, setValue, variant, keepMounted, withPanels],
+  );
   return (
-    <TabsContext.Provider
-      value={{ id, value, setValue, variant, keepMounted, panels, setPanels }}
-    >
+    <TabsContext.Provider value={ctx}>
       <div className={cx("grid gap-4", className)} {...props}>
         {children}
       </div>
@@ -134,8 +143,8 @@ export function TabList({ className, children, onKeyDown, ...props }: TabListPro
       onKeyDown={move}
       className={cx(
         variant === "underline"
-          ? "flex gap-6 border-b border-pa-border"
-          : "inline-flex w-fit gap-0.5 rounded-pa-sm border border-pa-border bg-pa-bg p-[3px]",
+          ? "flex gap-6 border-b border-pb-border"
+          : "inline-flex w-fit gap-0.5 rounded-pb-sm border border-pb-border bg-pb-bg p-[3px]",
         className,
       )}
       {...props}
@@ -154,27 +163,40 @@ export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function Tab({ value, className, onClick, ...props }: TabProps) {
   const ctx = useTabs("Tab");
   const selected = ctx.value === value;
+  const ref = useRef<HTMLButtonElement>(null);
+  const panelId = `${ctx.id}-panel-${slug(value)}`;
+  // Point at the panel only when it is in the DOM (only the active one is,
+  // unless keepMounted). Set on the element after commit: no state, so no
+  // extra render of the tabs when panels mount.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: re-check when the active tab changes
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (ctx.withPanels && document.getElementById(panelId))
+      el.setAttribute("aria-controls", panelId);
+    else el.removeAttribute("aria-controls");
+  }, [panelId, ctx.withPanels, ctx.value]);
   return (
     <button
       type="button"
       role="tab"
       id={`${ctx.id}-tab-${slug(value)}`}
       aria-selected={selected}
-      aria-controls={ctx.panels.has(value) ? `${ctx.id}-panel-${slug(value)}` : undefined}
       tabIndex={selected ? 0 : -1}
       onClick={(e) => {
         onClick?.(e);
         if (!e.defaultPrevented) ctx.setValue(value);
       }}
       className={cx(
-        "relative cursor-pointer whitespace-nowrap text-sm text-pa-muted outline-none transition-colors duration-pa-fast hover:text-pa-text aria-selected:text-pa-text",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pa-accent disabled:cursor-not-allowed disabled:opacity-40",
+        "relative cursor-pointer whitespace-nowrap text-sm text-pb-muted outline-none transition-colors duration-pb-fast hover:text-pb-text aria-selected:text-pb-text",
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent disabled:cursor-not-allowed disabled:opacity-40",
         ctx.variant === "underline"
-          ? "pa-tab py-2.5"
-          : "rounded-[2px] px-3 py-1.5 text-[0.8125rem] aria-selected:bg-pa-raised aria-selected:shadow-pa-1",
+          ? "pb-tab py-2.5"
+          : "rounded-[2px] px-3 py-1.5 text-[0.8125rem] aria-selected:bg-pb-raised aria-selected:shadow-pb-1",
         className,
       )}
       {...props}
+      ref={ref}
     />
   );
 }
@@ -187,16 +209,6 @@ export interface TabPanelProps extends HTMLAttributes<HTMLDivElement> {
 /** The content shown while its `Tab` is active. */
 export function TabPanel({ value, className, ...props }: TabPanelProps) {
   const ctx = useTabs("TabPanel");
-  const { setPanels } = ctx;
-  useEffect(() => {
-    setPanels((s) => new Set(s).add(value));
-    return () =>
-      setPanels((s) => {
-        const n = new Set(s);
-        n.delete(value);
-        return n;
-      });
-  }, [setPanels, value]);
   const selected = ctx.value === value;
   if (!selected && !ctx.keepMounted) return null;
   return (
@@ -208,7 +220,7 @@ export function TabPanel({ value, className, ...props }: TabPanelProps) {
       // biome-ignore lint/a11y/noNoninteractiveTabindex: ARIA tabs pattern: the panel is a tab stop when it has no focusable content
       tabIndex={0}
       className={cx(
-        "rounded-pa-xs outline-none focus-visible:outline-2 focus-visible:outline-pa-accent",
+        "rounded-pb-xs outline-none focus-visible:outline-2 focus-visible:outline-pb-accent",
         className,
       )}
       {...props}

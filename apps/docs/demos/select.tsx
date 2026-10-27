@@ -1,5 +1,5 @@
-import { Field } from "pixel-atelier/field";
-import { Select } from "pixel-atelier/select";
+import { Field } from "pixelbits/field";
+import { Select } from "pixelbits/select";
 
 const frameworks = [
   { value: "astro", label: "Astro" },

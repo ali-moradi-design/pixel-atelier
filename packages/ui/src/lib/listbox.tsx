@@ -40,7 +40,7 @@ function highlight(text: string, query?: string) {
   return (
     <>
       {text.slice(0, i)}
-      <mark className="bg-transparent text-pa-accent">
+      <mark className="bg-transparent text-pb-accent">
         {text.slice(i, i + query.length)}
       </mark>
       {text.slice(i + query.length)}
@@ -69,7 +69,7 @@ export function OptionList({
   empty: ReactNode;
 }) {
   if (options.length === 0)
-    return <div className="px-2.5 py-2 text-[0.8125rem] text-pa-muted">{empty}</div>;
+    return <div className="px-2.5 py-2 text-[0.8125rem] text-pb-muted">{empty}</div>;
   return (
     <>
       {options.map((o, i) => (
@@ -86,8 +86,8 @@ export function OptionList({
           onPointerDown={(e) => e.preventDefault()}
           onClick={() => !o.disabled && onPick(o)}
           className={cx(
-            "pa-px-host flex h-[2.125rem] cursor-pointer items-center gap-2.5 rounded-pa-xs px-2.5 text-[0.8125rem] [--px-fill:var(--pa-accent-subtle)] [--px-ink:var(--pa-text)]",
-            "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pa-accent",
+            "pb-px-host flex h-[2.125rem] cursor-pointer items-center gap-2.5 rounded-pb-xs px-2.5 text-[0.8125rem] [--px-fill:var(--pb-accent-subtle)] [--px-ink:var(--pb-text)]",
+            "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
             "aria-disabled:cursor-not-allowed aria-disabled:opacity-40",
           )}
         >
@@ -95,10 +95,10 @@ export function OptionList({
           {o.icon}
           <span className="truncate">{highlight(o.label, query)}</span>
           {o.description && (
-            <span className="truncate text-xs text-pa-muted">{o.description}</span>
+            <span className="truncate text-xs text-pb-muted">{o.description}</span>
           )}
           {o.value === selected && (
-            <CheckIcon className="ms-auto size-3.5 shrink-0 text-pa-accent" />
+            <CheckIcon className="ms-auto size-3.5 shrink-0 text-pb-accent" />
           )}
         </div>
       ))}
@@ -108,4 +108,4 @@ export function OptionList({
 
 /** Classes of the popup panel. */
 export const popupClass =
-  "pa-popup m-0 max-h-72 overflow-auto rounded-pa-md border border-pa-border bg-pa-overlay p-1 text-pa-text shadow-pa-2";
+  "pb-popup m-0 max-h-72 overflow-auto rounded-pb-md border border-pb-border bg-pb-overlay p-1 text-pb-text shadow-pb-2";
