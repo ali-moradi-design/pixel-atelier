@@ -143,11 +143,11 @@ export function Pagination({
             {p === "…" ? (
               <span
                 aria-hidden="true"
-                className="inline-flex h-9 min-w-9 items-center justify-center gap-[3px] text-pb-faint"
+                className="inline-flex h-9 min-w-9 items-center justify-center gap-0.75 text-pb-faint"
               >
-                <i className="size-[3px] bg-current" />
-                <i className="size-[3px] bg-current" />
-                <i className="size-[3px] bg-current" />
+                <i className="size-0.75 bg-current" />
+                <i className="size-0.75 bg-current" />
+                <i className="size-0.75 bg-current" />
               </span>
             ) : (
               item(p, p, { label: `Page ${p}`, current: p === page })

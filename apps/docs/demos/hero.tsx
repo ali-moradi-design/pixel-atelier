@@ -20,7 +20,7 @@ export default function Demo() {
           </Button>
         </>
       }
-      media={<SpotlightCard className="aspect-[4/3]" />}
+      media={<SpotlightCard className="aspect-4/3" />}
     />
   );
 }

@@ -14,7 +14,7 @@ export const controlFrame = cva(
     "pb-control group/control relative flex w-full items-center gap-2 rounded-pb-sm border bg-pb-bg text-pb-text",
     "border-pb-border-strong transition-[border-color,box-shadow] duration-pb-fast",
     "focus-within:border-pb-accent focus-within:shadow-[0_0_0_3px_var(--pb-accent-subtle)]",
-    "has-[[aria-invalid=true]]:border-pb-danger has-[:disabled]:opacity-50",
+    "has-aria-invalid:border-pb-danger has-disabled:opacity-50",
     "[&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-pb-muted",
   ],
   {

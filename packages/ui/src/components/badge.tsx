@@ -8,7 +8,7 @@ import { forwardRef, type HTMLAttributes } from "react";
 // Tints are opaque (mixed with --pb-raised), so a badge keeps its contrast on
 // any background, including a selected row that is tinted itself.
 export const badgeVariants = cva(
-  "inline-flex h-[1.375rem] items-center gap-1.5 whitespace-nowrap rounded-pb-xs border px-2 font-pb-mono text-[0.6875rem] font-medium leading-none tracking-[0.04em]",
+  "inline-flex h-5.5 items-center gap-1.5 whitespace-nowrap rounded-pb-xs border px-2 font-pb-mono text-[0.6875rem] font-medium leading-none tracking-[0.04em]",
   {
     variants: {
       variant: {

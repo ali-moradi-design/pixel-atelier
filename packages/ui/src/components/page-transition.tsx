@@ -128,7 +128,7 @@ export function PixelTransition({
       aria-hidden="true"
       style={{ color, display: "none" }}
       className={cx(
-        "pointer-events-none fixed inset-0 z-[2147483647] size-full",
+        "pointer-events-none fixed inset-0 z-2147483647 size-full",
         className,
       )}
     />

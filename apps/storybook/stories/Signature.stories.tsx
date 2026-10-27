@@ -83,13 +83,13 @@ export const ImageReveal: Story = {
       <PixelImageReveal
         src={sunset}
         alt="Sunset over hills"
-        wrapperClassName="aspect-[4/5] rounded-pb-sm"
+        wrapperClassName="aspect-4/5 rounded-pb-sm"
       />
       <PixelImageReveal
         src={sunset}
         alt="Sunset, revealed on hover"
         trigger="hover"
-        wrapperClassName="aspect-[4/5] rounded-pb-sm"
+        wrapperClassName="aspect-4/5 rounded-pb-sm"
       />
     </div>
   ),

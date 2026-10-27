@@ -34,7 +34,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
     <span
       ref={ref}
       className={cx(
-        "inline-flex h-[1.625rem] items-center gap-1 rounded-pb-xs border border-pb-border bg-pb-raised ps-2.5 text-xs text-pb-text",
+        "inline-flex h-6.5 items-center gap-1 rounded-pb-xs border border-pb-border bg-pb-raised ps-2.5 text-xs text-pb-text",
         onRemove ? "pe-0.5" : "pe-2.5",
         className,
       )}

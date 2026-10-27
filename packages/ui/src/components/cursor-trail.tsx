@@ -119,7 +119,7 @@ export function CursorTrail({
       aria-hidden="true"
       style={{ color }}
       className={cx(
-        "pointer-events-none fixed inset-0 z-[2147483646] size-full",
+        "pointer-events-none fixed inset-0 z-2147483646 size-full",
         className,
       )}
     />

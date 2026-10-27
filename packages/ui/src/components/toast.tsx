@@ -116,7 +116,7 @@ export function Toaster({ position = "bottom-end", max = 3, className }: Toaster
         "pb-toaster fixed m-0 w-[min(24rem,calc(100vw-2rem))] gap-2 border-0 bg-transparent p-0",
         list.length ? "flex" : "hidden",
         v === "top" ? "top-4 bottom-auto flex-col" : "top-auto bottom-4 flex-col-reverse",
-        h === "end" ? "end-4 start-auto" : "start-4 end-auto",
+        h === "end" ? "inset-e-4 inset-s-auto" : "inset-s-4 inset-e-auto",
         className,
       )}
     >
@@ -168,10 +168,7 @@ function ToastView({ item }: { item: ToastItem }) {
       style={{ "--pb-tone": tone[variant] } as CSSProperties}
       className="pb-toast relative flex items-start gap-3 overflow-hidden rounded-pb-md border border-pb-border bg-pb-overlay py-3.5 ps-4 pe-3 text-[0.8125rem] text-pb-text shadow-pb-2"
     >
-      <span
-        aria-hidden="true"
-        className="mt-[0.3125rem] size-2 shrink-0 bg-(--pb-tone)"
-      />
+      <span aria-hidden="true" className="mt-1.25 size-2 shrink-0 bg-(--pb-tone)" />
       <div className="grid min-w-0 flex-1 gap-0.5">
         <div className="font-medium">{title}</div>
         {description && <div className="text-pb-muted">{description}</div>}
@@ -200,7 +197,7 @@ function ToastView({ item }: { item: ToastItem }) {
         <span
           ref={bar}
           aria-hidden="true"
-          className="pb-toast-life absolute start-0 bottom-0 h-0.5 w-full"
+          className="pb-toast-life absolute inset-s-0 bottom-0 h-0.5 w-full"
           style={{ animationDuration: `${duration}ms` }}
         />
       )}

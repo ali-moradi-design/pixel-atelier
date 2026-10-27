@@ -66,7 +66,7 @@ export function FeatureGrid({
             className="grid content-start gap-2.5 border-t border-pb-border pt-5"
           >
             {f.icon && (
-              <span className="mb-1 inline-grid size-9 place-items-center rounded-pb-xs bg-pb-accent-subtle text-pb-accent [&_svg]:size-[1.125rem]">
+              <span className="mb-1 inline-grid size-9 place-items-center rounded-pb-xs bg-pb-accent-subtle text-pb-accent [&_svg]:size-4.5">
                 {f.icon}
               </span>
             )}

@@ -38,7 +38,7 @@ function List({ path }: { path: string }) {
                 <NextLink
                   href={l.href}
                   aria-current={isCurrent(path, l.href) ? "page" : undefined}
-                  className="relative block rounded-pb-xs py-[0.3125rem] ps-3 text-[0.8125rem] text-pb-muted outline-none transition-colors before:absolute before:inset-y-1.5 before:start-0 before:w-0.5 before:bg-transparent before:transition-colors hover:text-pb-text hover:before:bg-pb-border-strong focus-visible:outline-2 focus-visible:outline-pb-accent aria-[current=page]:text-pb-text aria-[current=page]:before:bg-pb-accent"
+                  className="relative block rounded-pb-xs py-1.25 ps-3 text-[0.8125rem] text-pb-muted outline-none transition-colors before:absolute before:inset-y-1.5 before:inset-s-0 before:w-0.5 before:bg-transparent before:transition-colors hover:text-pb-text hover:before:bg-pb-border-strong focus-visible:outline-2 focus-visible:outline-pb-accent aria-[current=page]:text-pb-text aria-[current=page]:before:bg-pb-accent"
                 >
                   {l.label}
                 </NextLink>

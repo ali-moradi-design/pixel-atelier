@@ -162,7 +162,7 @@ export default function Persian() {
               </Button>
             </div>
           </div>
-          <SpotlightCard className="grid aspect-[5/4] place-items-center">
+          <SpotlightCard className="grid aspect-5/4 place-items-center">
             <Mark className="w-2/5" />
           </SpotlightCard>
         </section>

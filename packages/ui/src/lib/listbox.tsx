@@ -86,8 +86,8 @@ export function OptionList({
           onPointerDown={(e) => e.preventDefault()}
           onClick={() => !o.disabled && onPick(o)}
           className={cx(
-            "pb-px-host flex h-[2.125rem] cursor-pointer items-center gap-2.5 rounded-pb-xs px-2.5 text-[0.8125rem] [--px-fill:var(--pb-accent-subtle)] [--px-ink:var(--pb-text)]",
-            "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:start-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
+            "pb-px-host flex h-8.5 cursor-pointer items-center gap-2.5 rounded-pb-xs px-2.5 text-[0.8125rem] [--px-fill:var(--pb-accent-subtle)] [--px-ink:var(--pb-text)]",
+            "data-highlighted:before:absolute data-highlighted:before:inset-y-2 data-highlighted:before:inset-s-0 data-highlighted:before:w-0.5 data-highlighted:before:bg-pb-accent",
             "aria-disabled:cursor-not-allowed aria-disabled:opacity-40",
           )}
         >
