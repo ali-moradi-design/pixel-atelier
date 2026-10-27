@@ -23,3 +23,8 @@ updates:
     groups:
       dev-tooling:
         dependency-type: development
+    ignore:
+      # Must equal the exact postcss version @tailwindcss/postcss depends on,
+      # or the two copies' types clash in scripts/build-css.ts. Bump it by
+      # hand together with Tailwind.
+      - dependency-name: postcss
