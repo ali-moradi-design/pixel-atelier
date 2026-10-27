@@ -10,13 +10,13 @@
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 
 :root {
-  --pb-font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --pb-font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --pb-font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 :root[lang="fa"] {
-  --pb-font-sans: var(--font-yekan-bakh), var(--font-geist-sans), sans-serif;
-  /* Persian has no monospace face: labels set in mono use Yekan Bakh too. */
-  --pb-font-mono: var(--font-yekan-bakh), var(--font-geist-mono), monospace;
+  --pb-font-sans: var(--font-persian-y), var(--font-manrope), sans-serif;
+  /* Persian has no monospace face: labels set in mono use persian-y too. */
+  --pb-font-mono: var(--font-persian-y), var(--font-geist-mono), monospace;
 }
 /* Code stays in Geist Mono, also on the Persian page. */
 :root[lang="fa"] :is([dir="ltr"], code, pre, kbd) {

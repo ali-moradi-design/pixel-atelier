@@ -3,7 +3,7 @@ import { Toaster } from "pixelbits/toast";
 import type { ReactNode } from "react";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { fontVariables, yekanBakh } from "@/fonts";
+import { fontVariables, persianY } from "@/fonts";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "@/styles/globals.css";
@@ -45,7 +45,7 @@ export default function FaLayout({ children }: { children: ReactNode }) {
     <html
       lang="fa"
       dir="rtl"
-      className={`${fontVariables} ${yekanBakh.variable}`}
+      className={`${fontVariables} ${persianY.variable}`}
       suppressHydrationWarning
     >
       <body className="flex min-h-dvh flex-col">

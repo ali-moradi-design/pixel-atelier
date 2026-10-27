@@ -39,7 +39,7 @@ apps/docs/
 │   └── ui/                  Small shared pieces (copy button)
 ├── demos/                   One file per component: the live example AND the
 │                            code shown on its page (keep them short)
-├── fonts/                   Local font files + fonts/index.ts (next/font/local)
+├── fonts/                   Font files (manrope/, persian-y/, story-script/) + index.ts
 ├── lib/
 │   ├── site.ts              Name, URLs, links: change them here only
 │   ├── seo.tsx              Page metadata helper and JSON-LD
@@ -60,7 +60,7 @@ TSDoc automatically.
 
 | Script | When | What it does |
 | --- | --- | --- |
-| `gen.ts` | before `dev`, `build`, `typecheck` | Runs the two below and copies the built Storybook into `public/storybook/` and the brand files into `public/`. |
+| `gen.ts` | before `dev`, `build`, `typecheck` | Rebuilds the kit first when its build is missing or older than its sources, runs the two below, and copies the built Storybook into `public/storybook/` and the brand files into `public/`. |
 | `api.ts` | from `gen.ts` | Reads `packages/ui/dist/**/*.d.ts` and writes `content/api.json`: every component's description, example and props (the props tables). |
 | `registry.ts` | from `gen.ts` | Generates the shadcn registry in `public/r/` (see below). |
 | `csp.ts` | after `next build` | Adds a strict Content-Security-Policy `<meta>` to every page in `out/`, allowing inline scripts only by their SHA-256 hash. |
@@ -83,7 +83,14 @@ never drift from the code.
 
 ## Fonts
 
-All fonts are local files (no request to Google or any other host):
-Geist and Geist Mono (the `geist` package, English UI), Yekan Bakh (`fonts/`,
-Persian page) and Story Script (`fonts/`, the wordmark next to the logo,
-SIL Open Font License). Change the English UI font in `fonts/index.ts`.
+All fonts are files in `fonts/`, served from this site (no request to Google
+or any other host):
+
+- **Manrope** (`fonts/manrope/`, English UI, variable 200–800, SIL Open Font
+  License).
+- **Geist Mono** (code), from the `geist` package.
+- **persian-y** (`fonts/persian-y/`, Persian page).
+- **Story Script** (`fonts/story-script/`, the wordmark next to the logo, SIL
+  Open Font License).
+
+Change the fonts in `fonts/index.ts`.

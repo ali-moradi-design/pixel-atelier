@@ -23,7 +23,7 @@ addons.setConfig({
     inputBg: "#1b1b1f",
     inputBorder: "#3a3a41",
     inputTextColor: "#f2efe8",
-    fontBase: '"Geist", ui-sans-serif, system-ui, sans-serif',
+    fontBase: '"Manrope", ui-sans-serif, system-ui, sans-serif',
     fontCode: '"Geist Mono", ui-monospace, monospace',
   }),
 });
