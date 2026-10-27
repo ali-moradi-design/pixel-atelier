@@ -5,9 +5,10 @@ import { noise } from "../pixels/noise.ts";
 export interface PixelLoaderProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * Animation.
-   * - `"snake"`: a trail chases around a 3 x 3 grid.
-   * - `"pulse"`: the grid breathes from the center out.
-   * - `"noise"`: a 12 x 2 strip flickers like static.
+   * - `"snake"`: an accent head runs clockwise around a 3 x 3 grid with a
+   *   fading tail (indeterminate work, e.g. loading a list).
+   * - `"pulse"`: rings ripple out from an accent center (waiting on a reply).
+   * - `"noise"`: a 12 x 2 strip flickers like static (processing data).
    * @default "snake"
    */
   variant?: "snake" | "pulse" | "noise";
@@ -24,8 +25,9 @@ export interface PixelLoaderProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * Pixel loaders, CSS only, colored by `currentColor` with one accent square.
- * They slow down under reduced motion.
+ * Pixel loaders, CSS only, colored by `currentColor` with accent squares.
+ * Every animation starts mid-cycle, so a loader is already moving on its
+ * first frame. They slow down under reduced motion.
  *
  * @example
  * ```tsx
@@ -44,17 +46,21 @@ export function PixelLoader({
   const cells =
     variant === "noise"
       ? Array.from({ length: 24 }, (_, i) => ({
-          area: undefined,
-          delay: Math.round(noise(i * 3) * 900),
-          accent: i === 9,
+          area: undefined as string | undefined,
+          delay: Math.round(noise(i * 3) * 900) - 900,
+          accent: i === 9 || i === 18,
+          hidden: false,
         }))
       : Array.from({ length: 9 }, (_, i) => ({
           area: `${Math.floor(i / 3) + 1} / ${(i % 3) + 1}`,
+          // Snake: the head runs clockwise, one cell per 120 ms.
+          // Pulse: rings ripple out from the center, 150 ms apart.
           delay:
             variant === "snake"
-              ? (ring.indexOf(i) < 0 ? 0 : ring.indexOf(i)) * 100
-              : (Math.abs((i % 3) - 1) + Math.abs(Math.floor(i / 3) - 1)) * 160,
-          accent: i === 4,
+              ? ring.indexOf(i) * 120 - 960
+              : (Math.abs((i % 3) - 1) + Math.abs(Math.floor(i / 3) - 1)) * 150 - 1200,
+          accent: variant === "pulse" && i === 4,
+          hidden: variant === "snake" && i === 4,
         }));
   return (
     <span
@@ -72,19 +78,15 @@ export function PixelLoader({
       }
       {...props}
     >
-      {cells.map((c, i) =>
-        variant === "snake" && i === 4 ? (
+      {cells.map((c, i) => (
+        <i
           // biome-ignore lint/suspicious/noArrayIndexKey: fixed grid
-          <i key={i} style={{ gridArea: c.area, opacity: 0 }} />
-        ) : (
-          <i
-            // biome-ignore lint/suspicious/noArrayIndexKey: fixed grid
-            key={i}
-            data-accent={c.accent || undefined}
-            style={{ gridArea: c.area, animationDelay: `${c.delay - 2000}ms` }}
-          />
-        ),
-      )}
+          key={i}
+          data-accent={c.accent || undefined}
+          data-hidden={c.hidden || undefined}
+          style={{ gridArea: c.area, animationDelay: `${c.delay}ms` }}
+        />
+      ))}
     </span>
   );
 }

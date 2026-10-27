@@ -3,10 +3,10 @@ import { type AnchorHTMLAttributes, forwardRef } from "react";
 import { Slot } from "../lib/slot.tsx";
 
 /**
- * The class names of `Link` for a given variant, for styling other
- * elements the same way, e.g. `className={linkVariants({ variant: "pixel" })}`.
+ * The class names of `TextLink` for a given variant, for styling other
+ * elements the same way, e.g. `className={textLinkVariants({ variant: "pixel" })}`.
  */
-export const linkVariants = cva(
+export const textLinkVariants = cva(
   "rounded-pb-xs outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
   {
     variants: {
@@ -25,7 +25,7 @@ export const linkVariants = cva(
   },
 );
 
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface TextLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   /**
    * Decoration.
    * - `"underline"`: a quiet underline that turns to the accent on hover.
@@ -44,20 +44,21 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 /**
  * A text link. All native anchor props (`href`, `target`, `rel`…) are passed
- * through.
+ * through. Named `TextLink` so it never clashes with Next.js `Link`: use
+ * both together with `asChild`.
  *
  * @example
  * ```tsx
- * <Link href="/docs">Read the docs</Link>
- * <Link variant="pixel" asChild><NextLink href="/about">About</NextLink></Link>
+ * <TextLink href="/docs">Read the docs</TextLink>
+ * <TextLink variant="pixel" asChild><Link href="/about">About</Link></TextLink>
  * ```
  */
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+export const TextLink = forwardRef<HTMLAnchorElement, TextLinkProps>(function TextLink(
   { className, variant, asChild = false, ...props },
   ref,
 ) {
   const Comp = asChild ? Slot : "a";
   return (
-    <Comp ref={ref} className={cx(linkVariants({ variant }), className)} {...props} />
+    <Comp ref={ref} className={cx(textLinkVariants({ variant }), className)} {...props} />
   );
 });

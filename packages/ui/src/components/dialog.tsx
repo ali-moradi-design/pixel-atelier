@@ -232,6 +232,8 @@ export interface DialogCloseProps {
   asChild?: boolean;
   /** The label or the element to use. */
   children: ReactNode;
+  /** Extra classes, for the button or merged into the child with `asChild`. */
+  className?: string;
 }
 
 /**
@@ -242,11 +244,16 @@ export interface DialogCloseProps {
  * <DialogClose asChild><Button variant="ghost">Cancel</Button></DialogClose>
  * ```
  */
-export function DialogClose({ asChild = false, children }: DialogCloseProps) {
+export function DialogClose({ asChild = false, children, className }: DialogCloseProps) {
   const close = useContext(CloseContext);
-  if (asChild) return <Slot onClick={() => close?.()}>{children}</Slot>;
+  if (asChild)
+    return (
+      <Slot className={className} onClick={() => close?.()}>
+        {children}
+      </Slot>
+    );
   return (
-    <button type="button" onClick={() => close?.()}>
+    <button type="button" className={className} onClick={() => close?.()}>
       {children}
     </button>
   );

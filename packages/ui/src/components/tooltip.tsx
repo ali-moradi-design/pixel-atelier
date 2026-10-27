@@ -28,6 +28,8 @@ export interface TooltipProps {
    * @default "center"
    */
   align?: "start" | "center" | "end";
+  /** Extra classes for the tooltip bubble. */
+  className?: string;
 }
 
 /**
@@ -47,6 +49,7 @@ export function Tooltip({
   children,
   delay = 400,
   align = "center",
+  className,
 }: TooltipProps) {
   const id = useId();
   const anchor = useRef<HTMLElement>(null);
@@ -83,6 +86,7 @@ export function Tooltip({
         hidden={!open}
         className={cx(
           "pb-popup pointer-events-none m-0 max-w-64 rounded-[3px] bg-pb-text px-2 py-1.5 text-xs leading-snug text-pb-bg",
+          className,
         )}
       >
         {content}

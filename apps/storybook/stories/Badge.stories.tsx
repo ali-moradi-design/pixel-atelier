@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "pixelbits/badge";
-import { Link } from "pixelbits/link";
 import { Tag } from "pixelbits/tag";
+import { TextLink } from "pixelbits/text-link";
 import { useState } from "react";
 
-const meta = { title: "Core/Link, Badge, Tag", component: Badge } satisfies Meta<
+const meta = { title: "Core/TextLink, Badge, Tag", component: Badge } satisfies Meta<
   typeof Badge
 >;
 export default meta;
@@ -31,14 +31,14 @@ export const Badges: Story = {
 export const Links: Story = {
   render: () => (
     <p className="text-sm">
-      Read the <Link href="#guide">installation guide</Link>, browse{" "}
-      <Link variant="pixel" href="#all">
+      Read the <TextLink href="#guide">installation guide</TextLink>, browse{" "}
+      <TextLink variant="pixel" href="#all">
         all components
-      </Link>{" "}
+      </TextLink>{" "}
       or{" "}
-      <Link variant="plain" href="#home">
+      <TextLink variant="plain" href="#home">
         go home
-      </Link>
+      </TextLink>
       .
     </p>
   ),

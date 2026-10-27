@@ -2,6 +2,7 @@
 
 import { cx } from "class-variance-authority";
 import type { HTMLAttributes, ReactNode } from "react";
+import { Pixels } from "../pixels/Pixels.tsx";
 
 /**
  * The page numbers to show for `page` of `count`, with `"…"` gaps: always the
@@ -50,8 +51,11 @@ export interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, "onCh
 }
 
 /**
- * Page navigation for long lists. The current page is marked with
- * `aria-current="page"`; previous/next are disabled at the ends.
+ * Page navigation for long lists, in the kit's pixel style: square cells
+ * with cut pixel corners, the pixel dissolve on hover and focus, the current
+ * page filled with the accent, pixel arrows and a dotted gap. The current
+ * page is marked with `aria-current="page"`; previous/next are disabled at
+ * the ends.
  *
  * @example
  * ```tsx
@@ -75,22 +79,28 @@ export function Pagination({
     opts: { label?: string; current?: boolean; disabled?: boolean } = {},
   ) => {
     const cls = cx(
-      "inline-grid h-8 min-w-8 place-items-center rounded-[2px] px-1.5 font-pb-mono text-xs outline-none transition-colors duration-pb-fast",
-      "focus-visible:outline-2 focus-visible:outline-pb-accent",
+      "pb-page pb-px-host inline-grid h-9 min-w-9 place-items-center px-2 font-pb-mono text-xs tabular-nums outline-none",
+      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-accent",
       opts.current
-        ? "bg-pb-text text-pb-bg"
-        : "text-pb-muted hover:bg-pb-raised hover:text-pb-text",
-      opts.disabled && "pointer-events-none opacity-35",
+        ? "pb-page-current bg-pb-accent text-pb-on-accent"
+        : "text-pb-muted [--px-fill:var(--pb-raised)] [--px-ink:var(--pb-text)]",
+      opts.disabled && "pointer-events-none opacity-30",
     );
     const common = {
       "aria-label": opts.label,
       "aria-current": opts.current ? ("page" as const) : undefined,
       className: cls,
     };
+    const inner = (
+      <>
+        {!opts.current && !opts.disabled && <Pixels size={4} />}
+        {content}
+      </>
+    );
     if (href && !opts.disabled)
       return (
         <a href={href(p)} {...common} onClick={() => onPageChange?.(p)}>
-          {content}
+          {inner}
         </a>
       );
     return (
@@ -101,21 +111,31 @@ export function Pagination({
         {...common}
         className={cx(cls, "cursor-pointer")}
       >
-        {content}
+        {inner}
       </button>
     );
   };
+  const arrow = (dir: "prev" | "next") => (
+    <svg
+      viewBox="0 0 5 7"
+      aria-hidden="true"
+      shapeRendering="crispEdges"
+      className={cx(
+        "h-2.5 w-auto fill-current",
+        dir === "prev" ? "rtl:-scale-x-100" : "-scale-x-100 rtl:scale-x-100",
+      )}
+    >
+      <path d="M3 0h1v1H3zM2 1h1v1H2zM1 2h1v1H1zM0 3h1v1H0zM1 4h1v1H1zM2 5h1v1H2zM3 6h1v1H3z" />
+    </svg>
+  );
   return (
     <nav aria-label={label} className={cx("flex", className)} {...props}>
-      <ul className="flex items-center gap-1">
+      <ul className="flex flex-wrap items-center gap-1.5">
         <li>
-          {item(
-            page - 1,
-            <span aria-hidden="true" className="rtl:-scale-x-100">
-              ‹
-            </span>,
-            { label: "Previous page", disabled: page <= 1 },
-          )}
+          {item(page - 1, arrow("prev"), {
+            label: "Previous page",
+            disabled: page <= 1,
+          })}
         </li>
         {paginationRange(page, count, siblings).map((p, i) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: gaps have no identity
@@ -123,9 +143,11 @@ export function Pagination({
             {p === "…" ? (
               <span
                 aria-hidden="true"
-                className="inline-grid h-8 min-w-8 place-items-center font-pb-mono text-xs text-pb-faint"
+                className="inline-flex h-9 min-w-9 items-center justify-center gap-[3px] text-pb-faint"
               >
-                …
+                <i className="size-[3px] bg-current" />
+                <i className="size-[3px] bg-current" />
+                <i className="size-[3px] bg-current" />
               </span>
             ) : (
               item(p, p, { label: `Page ${p}`, current: p === page })
@@ -133,13 +155,10 @@ export function Pagination({
           </li>
         ))}
         <li>
-          {item(
-            page + 1,
-            <span aria-hidden="true" className="rtl:-scale-x-100">
-              ›
-            </span>,
-            { label: "Next page", disabled: page >= count },
-          )}
+          {item(page + 1, arrow("next"), {
+            label: "Next page",
+            disabled: page >= count,
+          })}
         </li>
       </ul>
     </nav>

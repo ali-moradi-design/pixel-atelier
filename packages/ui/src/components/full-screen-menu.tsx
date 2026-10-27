@@ -56,6 +56,8 @@ export interface FullScreenMenuProps {
    * @default "Menu"
    */
   label?: string;
+  /** Extra classes for the root element. */
+  className?: string;
 }
 
 /**
@@ -84,6 +86,7 @@ export function FullScreenMenu({
   columns = 2,
   renderLink,
   label = "Menu",
+  className,
 }: FullScreenMenuProps) {
   const [open, setOpen] = useControllable(openProp, defaultOpen, onOpenChange);
   const ref = useRef<HTMLDialogElement>(null);
@@ -115,7 +118,10 @@ export function FullScreenMenu({
           close();
         }}
         onClose={() => open && close()}
-        className="pb-dialog pb-menu m-0 size-full max-h-none max-w-none bg-pb-bg p-0 text-pb-text"
+        className={cx(
+          "pb-dialog pb-menu m-0 size-full max-h-none max-w-none bg-pb-bg p-0 text-pb-text",
+          className,
+        )}
       >
         {open && (
           <div className="flex min-h-full flex-col">

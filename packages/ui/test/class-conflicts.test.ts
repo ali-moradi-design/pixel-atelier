@@ -1,7 +1,7 @@
 import { badgeVariants } from "../src/components/badge.tsx";
 import { buttonVariants } from "../src/components/button.tsx";
 import { controlFrame } from "../src/components/input.tsx";
-import { linkVariants } from "../src/components/link.tsx";
+import { textLinkVariants } from "../src/components/text-link.tsx";
 
 // The kit does not ship tailwind-merge, so a component must never emit two
 // utilities that set the same property (their order in the CSS would decide).
@@ -37,7 +37,7 @@ it.each([
     "Button",
     buttonVariants,
     {
-      variant: ["primary", "secondary", "ghost", "danger"],
+      variant: ["primary", "secondary", "outline", "ghost", "danger"],
       size: ["sm", "md", "lg", "icon-sm", "icon", "icon-lg"],
     },
   ],
@@ -46,7 +46,7 @@ it.each([
     badgeVariants,
     { variant: ["neutral", "accent", "success", "warning", "danger", "info", "solid"] },
   ],
-  ["Link", linkVariants, { variant: ["underline", "pixel", "plain"] }],
+  ["TextLink", textLinkVariants, { variant: ["underline", "pixel", "plain"] }],
   ["control frame", controlFrame, { size: ["sm", "md", "lg", "none"] }],
 ] as const)("%s variants never emit conflicting utilities", (_, fn, variants) => {
   for (const c of combos(variants as unknown as Record<string, string[]>)) {

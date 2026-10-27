@@ -86,6 +86,8 @@ export interface ToasterProps {
    * @default 3
    */
   max?: number;
+  /** Extra classes for the toast list. */
+  className?: string;
 }
 
 /**
@@ -98,7 +100,7 @@ export interface ToasterProps {
  * <Toaster position="bottom-end" />
  * ```
  */
-export function Toaster({ position = "bottom-end", max = 3 }: ToasterProps) {
+export function Toaster({ position = "bottom-end", max = 3, className }: ToasterProps) {
   const list = useSyncExternalStore(subscribe, getItems, () => noItems).slice(-max);
   const region = useRef<HTMLOListElement>(null);
   useEffect(() => {
@@ -115,6 +117,7 @@ export function Toaster({ position = "bottom-end", max = 3 }: ToasterProps) {
         list.length ? "flex" : "hidden",
         v === "top" ? "top-4 bottom-auto flex-col" : "top-auto bottom-4 flex-col-reverse",
         h === "end" ? "end-4 start-auto" : "start-4 end-auto",
+        className,
       )}
     >
       {list.map((t) => (

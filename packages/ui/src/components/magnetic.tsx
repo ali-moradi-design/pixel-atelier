@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactElement, useEffect, useRef } from "react";
-import { prefersReducedMotion } from "../lib/motion.ts";
+import { hasFinePointer, prefersReducedMotion } from "../lib/motion.ts";
 import { Slot } from "../lib/slot.tsx";
 
 export interface MagneticProps {
@@ -17,6 +17,8 @@ export interface MagneticProps {
    * @default 80
    */
   radius?: number;
+  /** Extra classes, merged into the child element. */
+  className?: string;
 }
 
 /**
@@ -29,11 +31,16 @@ export interface MagneticProps {
  * <Magnetic><Button variant="primary">Start a project</Button></Magnetic>
  * ```
  */
-export function Magnetic({ children, strength = 0.3, radius = 80 }: MagneticProps) {
+export function Magnetic({
+  children,
+  strength = 0.3,
+  radius = 80,
+  className,
+}: MagneticProps) {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
     const el = ref.current;
-    if (!el || prefersReducedMotion() || !matchMedia("(pointer: fine)").matches) return;
+    if (!el || prefersReducedMotion() || !hasFinePointer()) return;
     let raf = 0;
     let tx = 0;
     let ty = 0;
@@ -66,5 +73,9 @@ export function Magnetic({ children, strength = 0.3, radius = 80 }: MagneticProp
       el.style.translate = "";
     };
   }, [strength, radius]);
-  return <Slot ref={ref}>{children}</Slot>;
+  return (
+    <Slot ref={ref} className={className}>
+      {children}
+    </Slot>
+  );
 }

@@ -65,6 +65,8 @@ export interface CommandPaletteProps {
    * @default "Command palette"
    */
   label?: string;
+  /** Extra classes for the root element. */
+  className?: string;
 }
 
 function matches(c: Command, q: string) {
@@ -121,18 +123,22 @@ export function CommandPalette({
   placeholder = "Type a command or search…",
   emptyText = "No results",
   label = "Command palette",
+  className,
 }: CommandPaletteProps) {
   const id = useId();
   const [open, setOpen] = useControllable(openProp, defaultOpen, onOpenChange);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   useHotkey(hotkey, () => setOpen(!open));
-  useEffect(() => {
+  // Reset the search when it opens, during render (no extra effect pass).
+  const [wasOpen, setWasOpen] = useState(open);
+  if (open !== wasOpen) {
+    setWasOpen(open);
     if (open) {
       setQuery("");
       setActive(0);
     }
-  }, [open]);
+  }
   const shown = useMemo(
     () => commands.filter((c) => matches(c, query)),
     [commands, query],
@@ -166,7 +172,10 @@ export function CommandPalette({
       onOpenChange={setOpen}
       aria-label={label}
       closeButton={false}
-      className="pb-command [&>div]:w-[min(36rem,calc(100vw-2rem))] [&>div]:gap-0 [&>div]:p-0"
+      className={cx(
+        "pb-command [&>div]:w-[min(36rem,calc(100vw-2rem))] [&>div]:gap-0 [&>div]:p-0",
+        className,
+      )}
     >
       <div className="flex items-center gap-2.5 border-b border-pb-border px-4">
         <svg

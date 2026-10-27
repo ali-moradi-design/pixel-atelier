@@ -33,7 +33,7 @@ const e = (
 export const catalog: Entry[] = [
   e("button", "Button", "Core", ["Button"]),
   e("icon-button", "Icon button", "Core", ["IconButton"]),
-  e("link", "Link", "Core", ["Link"]),
+  e("text-link", "Text link", "Core", ["TextLink"]),
   e("badge", "Badge", "Core", ["Badge"]),
   e("tag", "Tag", "Core", ["Tag"]),
   e("field", "Field", "Forms", ["Field"]),

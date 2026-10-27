@@ -23,6 +23,8 @@ export const buttonVariants = cva(
       variant: {
         primary: "border-transparent bg-pb-accent text-pb-on-accent",
         secondary: "border-pb-border-strong bg-transparent text-pb-text",
+        outline:
+          "border-pb-accent bg-transparent text-pb-accent [--px-fill:var(--pb-accent)] [--px-ink:var(--pb-on-accent)]",
         ghost:
           "border-transparent text-pb-text [--px-fill:var(--pb-raised)] [--px-ink:var(--pb-text)]",
         danger:
@@ -41,7 +43,7 @@ export const buttonVariants = cva(
   },
 );
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger";
 export type ButtonSize = "sm" | "md" | "lg" | "icon-sm" | "icon" | "icon-lg";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -49,6 +51,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Visual style.
    * - `"primary"`: accent fill, for the one main action of a view.
    * - `"secondary"`: hairline border, for most actions.
+   * - `"outline"`: accent border and text; fills with the accent on hover,
+   *   for a second important action next to a primary one.
    * - `"ghost"`: no border, for toolbars and dense rows.
    * - `"danger"`: red, for destructive actions.
    * @default "secondary"

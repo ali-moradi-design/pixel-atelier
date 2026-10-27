@@ -14,6 +14,8 @@ export interface PixelsProps {
   cols?: number;
   /** Fixed number of rows; overrides `size` vertically. */
   rows?: number;
+  /** Extra classes for the square grid (e.g. `opacity-60`). */
+  className?: string;
 }
 
 /** More squares than this get larger instead (keeps big hosts cheap). */
@@ -41,7 +43,7 @@ const ACTIVE =
  * </a>
  * ```
  */
-export function Pixels({ size = 9, cols, rows }: PixelsProps) {
+export function Pixels({ size = 9, cols, rows, className }: PixelsProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const [grid, setGrid] = useState<readonly [number, number] | null>(null);
 
@@ -74,7 +76,13 @@ export function Pixels({ size = 9, cols, rows }: PixelsProps) {
     ? ({ "--pb-px-cols": grid[0], "--pb-px-rows": grid[1] } as CSSProperties)
     : undefined;
   return (
-    <span ref={ref} className="pb-px" aria-hidden="true" data-pb-pixels="" style={style}>
+    <span
+      ref={ref}
+      className={className ? `pb-px ${className}` : "pb-px"}
+      aria-hidden="true"
+      data-pb-pixels=""
+      style={style}
+    >
       {grid &&
         pixelDelays(grid[0], grid[1]).map((d, i) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: squares never reorder

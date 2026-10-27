@@ -12,12 +12,15 @@ import type { ReactNode } from "react";
  */
 export function RollLabel({
   children,
+  className,
 }: {
   /** The label; rendered twice (the copy is `aria-hidden`). */
   children: ReactNode;
+  /** Extra classes for the wrapper. */
+  className?: string;
 }) {
   return (
-    <span className="pb-roll">
+    <span className={className ? `pb-roll ${className}` : "pb-roll"}>
       <span>{children}</span>
       <span aria-hidden="true">{children}</span>
     </span>
