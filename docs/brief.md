@@ -1,7 +1,7 @@
 # Pixelbits UI kit: brief
 
 Decisions from 2026-10-19. Demo 4 in notes/demos.md (UI kit). Built in the public
-repo `ali-moradi-design/pixel-atelier` (to be created by the user) in its own sessions;
+repo `ali-moradi-design/pixelbits` (to be created by the user) in its own sessions;
 this file is the handoff and is safe to make public.
 
 ## How the build session starts
@@ -20,7 +20,7 @@ backticks, never start a line with an English word, repo files in English.
 ## Prerequisites to check first
 
 - `git`, `node` (current LTS), `pnpm`.
-- The folder is a clone of `ali-moradi-design/pixel-atelier`, on `main`, clean; report
+- The folder is a clone of `ali-moradi-design/pixelbits`, on `main`, clean; report
   what is already in it.
 - GitHub fetch/push works; the public `ali-moradi-design/portfolio` repo is
   readable (the pixel effects to start from live there).
@@ -124,6 +124,6 @@ apps/
 - What happens after the first release (for example the portfolio using the kit)
   is decided later by the user; do not plan it now.
 - Name: Pixelbits (renamed from "Pixel Atelier" on 2026-10-27: easier to
-  type; small pixel pieces). Repo `ali-moradi-design/pixel-atelier`, subdomain
+  type; small pixel pieces). Repo `ali-moradi-design/pixelbits`, subdomain
   `pixelbits.ali-moradi-develop.com`. npm: `pixelbits` was free unscoped
   on 2026-10-27; check again before the first publish.

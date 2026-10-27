@@ -5,7 +5,7 @@ export const site = {
   description:
     "Pixelbits is a calm, luxurious React UI kit whose pixel effects appear only at the moment of interaction. Tailwind v4, native dialog and popover, OKLCH tokens, tiny tree-shaken bundles.",
   url: process.env.SITE_URL ?? "https://pixelbits.ali-moradi-develop.com",
-  repo: "https://github.com/ali-moradi-design/pixel-atelier",
+  repo: "https://github.com/ali-moradi-design/pixelbits",
   npm: "https://www.npmjs.com/package/pixelbits",
   author: { name: "Ali Moradi", url: "https://ali-moradi-develop.com" },
   /** Storybook is a separate static app: the dev server in development, a copied folder in production. */

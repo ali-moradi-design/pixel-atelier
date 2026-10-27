@@ -7,7 +7,7 @@
   "homepage": "https://pixelbits.ali-moradi-develop.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ali-moradi-design/pixel-atelier.git",
+    "url": "git+https://github.com/ali-moradi-design/pixelbits.git",
     "directory": "packages/ui"
   },
   "keywords": [
@@ -89,6 +89,6 @@
     "provenance": true
   },
   "bugs": {
-    "url": "https://github.com/ali-moradi-design/pixel-atelier/issues"
+    "url": "https://github.com/ali-moradi-design/pixelbits/issues"
   }
 }
