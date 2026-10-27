@@ -85,6 +85,8 @@ export function DropdownMenu({
     [setOpen],
   );
   usePopup({ open, onClose: close, anchor, popup, align });
+  // Stable value: menu items do not re-render when the menu does.
+  const closeItem = useCallback(() => close(), [close]);
 
   const items = () => [...(popup.current?.querySelectorAll<HTMLElement>(ITEM) ?? [])];
   useEffect(() => {
@@ -155,9 +157,7 @@ export function DropdownMenu({
         )}
         {...props}
       >
-        {open && (
-          <MenuClose.Provider value={() => close()}>{children}</MenuClose.Provider>
-        )}
+        {open && <MenuClose.Provider value={closeItem}>{children}</MenuClose.Provider>}
       </div>
     </>
   );

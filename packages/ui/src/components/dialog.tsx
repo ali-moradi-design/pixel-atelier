@@ -7,6 +7,7 @@ import {
   type MouseEvent,
   type ReactElement,
   type ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useId,
@@ -102,7 +103,7 @@ function DialogShell({
   // dialogs free), and stays so the close animation shows it.
   const [mounted, setMounted] = useState(open);
   if (open && !mounted) setMounted(true);
-  const close = () => setOpen(false);
+  const close = useCallback(() => setOpen(false), [setOpen]);
   const onBackdrop = (e: MouseEvent<HTMLDialogElement>) => {
     // A click on the <dialog> itself (not its content) is a click on the backdrop.
     if (dismissible && e.target === e.currentTarget) close();

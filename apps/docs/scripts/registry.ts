@@ -2,7 +2,7 @@
 // `npx shadcn add <url>` copies exactly what the npm package ships. Nothing
 // is maintained twice: every item is generated from packages/ui/src.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, normalize, relative } from "node:path";
+import { join, posix } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const SRC = fileURLToPath(new URL("../../../packages/ui/src/", import.meta.url));
@@ -13,8 +13,9 @@ const read = (rel: string) => readFileSync(join(SRC, rel), "utf8");
 /** Relative imports of a source file, as paths relative to src/. */
 function localImports(rel: string) {
   const out: string[] = [];
+  // posix: registry paths always use "/", also on Windows.
   for (const m of read(rel).matchAll(/from "(\.{1,2}\/[^"]+)"/g))
-    out.push(normalize(join(dirname(rel), m[1] ?? "")));
+    out.push(posix.normalize(posix.join(posix.dirname(rel), m[1] ?? "")));
   return out;
 }
 /** Strip .ts/.tsx from relative imports: user projects rarely allow them. */
@@ -172,4 +173,3 @@ export function buildRegistry(outDir: string) {
 if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`registry: ${buildRegistry(process.argv[2] ?? "public/r")} items`);
 }
-void relative;

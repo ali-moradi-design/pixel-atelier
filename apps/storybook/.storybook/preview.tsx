@@ -24,6 +24,9 @@ const preview: Preview = {
       attributeName: "data-theme",
     }),
     (Story, { globals }) => {
+      // Also set the theme during render: the addon sets it in an effect,
+      // after the first paint, and colors would animate from dark to light.
+      document.documentElement.dataset.theme = globals.theme ?? "dark";
       document.documentElement.dataset.accent = globals.accent;
       return Story();
     },

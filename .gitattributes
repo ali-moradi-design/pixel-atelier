@@ -1,0 +1,9 @@
+# Same line endings on every OS: Biome checks for LF, and the build scripts
+# parse source files line by line. Without this, Git on Windows checks files
+# out with CRLF and `pnpm check` fails on a clean clone.
+* text=auto eol=lf
+
+*.png binary
+*.ico binary
+*.woff2 binary
+*.ttf binary

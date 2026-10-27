@@ -1,9 +1,20 @@
 # Session notes (handoff)
 
-Last session: 2026-10-19. Read this first, then `docs/decisions.md`.
+Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
 
 ## Next session: start here
 
+0. Open from 2026-10-27 (the big redesign session, see decisions.md):
+   - The owner picks the English UI font from the shortlist given in chat
+     (Geist stays until then); change it in `apps/docs/fonts/index.ts`
+     (a local `next/font/local` file) and in `packages/tokens` `fonts`.
+   - Visual baselines are outdated on purpose (new colors, logo, pagination,
+     accordion): run the "Update visual baselines" workflow.
+   - Owner: rename the GitHub repo to `pixelbits`, then replace
+     `ali-moradi-design/pixel-atelier` (package.json, site.ts, changesets).
+   - Owner: confirm the Yekan Bakh license allows shipping it in a public
+     repository (it is a commercial font).
+   - Check the new Windows/macOS CI job on the first push.
 1. The owner wants a **walkthrough of the code from the beginning**, step by
    step, before going further. Do not explain everything at once; go in this
    order and wait for questions after each part:

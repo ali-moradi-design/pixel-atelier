@@ -90,6 +90,7 @@ export function Pricing({
             value={period}
             onValueChange={(v) => setPeriod(v as "monthly" | "yearly")}
             variant="segmented"
+            withPanels={false}
           >
             <TabList aria-label="Billing period">
               <Tab value="monthly">Monthly</Tab>

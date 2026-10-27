@@ -2,6 +2,35 @@
 
 Decisions made after the brief (`brief.md`). Newer entries win.
 
+## 2026-10-27
+
+- Renamed to **Pixelbits** (npm `pixelbits`, free on 2026-10-27; "Pixel
+  Atelier" was hard to type). Utility and variable prefix `pb-` (`bg-pb-muted`,
+  `--pb-accent`). Docs domain `pixelbits.ali-moradi-develop.com`. The GitHub
+  repository keeps its name until the owner renames it.
+- Colors are written in OKLCH. Accents: gold (default), platinum, emerald,
+  sapphire, ruby, amethyst. Status colors are muted jewel tones. The token
+  test parses OKLCH, checks WCAG AA and that every color fits in sRGB.
+- Logo: a pixel gem (13 x 9, variant "E": facet lines cut out) in four gold
+  tones; wordmark in Story Script. Replaces the P1 tile.
+- `Link` is now `TextLink` (`pixelbits/text-link`) so it never clashes with
+  Next.js `Link`.
+- Button gets an `outline` variant; Card gets composable parts (CardMedia,
+  CardHeader, CardEyebrow, CardTitle, CardDescription, CardContent,
+  CardFooter) next to its shortcut props; Tabs gets `withPanels`.
+- Every exported component accepts `className` (test/props.test.tsx checks all
+  exports) and every `asChild` path is tested.
+- Docs: next-themes for the theme (no flash, no transition blink), Lenis
+  smooth scrolling, all fonts local (Geist, Yekan Bakh, Story Script), no
+  Google Fonts. Code blocks are rendered to React elements (no
+  dangerouslySetInnerHTML). Folder structure documented in apps/docs/README.md.
+- SEO per the Next.js docs: per-page metadata helper (canonical, language
+  alternates, Open Graph, Twitter), robots, sitemap, manifest, JSON-LD.
+- Storybook: theme toggle with @storybook/addon-themes; docs pages follow it.
+- Cross-platform: `.gitattributes` forces LF, scripts use `fileURLToPath`
+  and POSIX paths for registry paths, Node >= 22.18 (type stripping) with
+  `engineStrict`, and CI builds on Windows and macOS too.
+
 ## 2026-10-19
 
 - Logo: concept P1, a tile with a cut-out "P" whose corner dissolves
