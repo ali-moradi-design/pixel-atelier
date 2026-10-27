@@ -3,9 +3,13 @@
 // is maintained twice: every item is generated from packages/ui/src.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, normalize, relative } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const SRC = new URL("../../../packages/ui/src/", import.meta.url).pathname;
-const SITE = process.env.SITE_URL ?? "https://pixel-atelier.ali-moradi-develop.com";
+const SRC = fileURLToPath(
+  new URL("../../../packages/ui/src/", import.meta.url),
+);
+const SITE =
+  process.env.SITE_URL ?? "https://pixel-atelier.ali-moradi-develop.com";
 const TARGET = "components/pixel-atelier";
 
 const read = (rel: string) => readFileSync(join(SRC, rel), "utf8");
@@ -17,8 +21,10 @@ function localImports(rel: string) {
   return out;
 }
 /** Strip .ts/.tsx from relative imports: user projects rarely allow them. */
-const portable = (code: string) => code.replace(/(from "\.{1,2}\/[^"]+)\.tsx?"/g, '$1"');
-const targetOf = (rel: string) => `${TARGET}/${rel.replace(/^components\//, "ui/")}`;
+const portable = (code: string) =>
+  code.replace(/(from "\.{1,2}\/[^"]+)\.tsx?"/g, '$1"');
+const targetOf = (rel: string) =>
+  `${TARGET}/${rel.replace(/^components\//, "ui/")}`;
 const fileType = (rel: string) =>
   rel.startsWith("components/") ? "registry:ui" : "registry:lib";
 
@@ -83,10 +89,13 @@ export function buildRegistry(outDir: string) {
     const siblings = localImports(rel)
       .filter((p) => p.startsWith("components/"))
       .map(
-        (p) => `${SITE}/r/${p.replace(/^components\//, "").replace(/\.tsx$/, "")}.json`,
+        (p) =>
+          `${SITE}/r/${p.replace(/^components\//, "").replace(/\.tsx$/, "")}.json`,
       );
     const description = read(rel)
-      .match(/\/\*\*\n((?: \*.*\n)+?) \*\/\nexport (?:const|function) [A-Z]/)?.[1]
+      .match(
+        /\/\*\*\n((?: \*.*\n)+?) \*\/\nexport (?:const|function) [A-Z]/,
+      )?.[1]
       ?.split("\n")
       .map((l) => l.replace(/^ \* ?/, ""))
       .join(" ")
@@ -121,7 +130,8 @@ export function buildRegistry(outDir: string) {
     const deps = localImports(rel)
       .filter((p) => p.startsWith("components/"))
       .map(
-        (p) => `${SITE}/r/${p.replace(/^components\//, "").replace(/\.tsx$/, "")}.json`,
+        (p) =>
+          `${SITE}/r/${p.replace(/^components\//, "").replace(/\.tsx$/, "")}.json`,
       );
     write({
       name,
@@ -156,9 +166,9 @@ export function buildRegistry(outDir: string) {
         homepage: SITE,
         items: items.map(({ files, ...rest }) => ({
           ...rest,
-          files: (files as { path: string; type: string; target: string }[]).map(
-            ({ path, type, target }) => ({ path, type, target }),
-          ),
+          files: (
+            files as { path: string; type: string; target: string }[]
+          ).map(({ path, type, target }) => ({ path, type, target })),
         })),
       },
       null,
@@ -169,6 +179,8 @@ export function buildRegistry(outDir: string) {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  console.log(`registry: ${buildRegistry(process.argv[2] ?? "public/r")} items`);
+  console.log(
+    `registry: ${buildRegistry(process.argv[2] ?? "public/r")} items`,
+  );
 }
 void relative;
