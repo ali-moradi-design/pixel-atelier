@@ -83,7 +83,8 @@ Local checks all pass; these are GitHub-only:
 - [ ] Optional: deprecate `0.0.0-stage` (`npm deprecate pixelbits@0.0.0-stage
       "placeholder from staged publishing"`).
 - [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
-      protection, branch protection on `main` (require CI and Security),
+      protection, branch protection on `main` (require CI and Security; more
+      important now that every merge deploys the docs site),
       required reviewer on the `npm` environment.
 - `shadcn add` works only after the docs deploy: the registry is served from
   `https://pixelbits.ali-moradi-develop.com/r/*.json`.
@@ -91,8 +92,9 @@ Local checks all pass; these are GitHub-only:
       2026-10-27): first upload by hand, Nginx config from `deploy/nginx/`,
       own certbot certificate. Server-wide gzip for JS/CSS/JSON added in
       `/etc/nginx/conf.d/gzip.conf` (Ubuntu gzips only HTML by default).
-- [ ] Deploy from CI (roadmap 7.3): build on Linux, rsync `apps/docs/out` to
-      `/srv/static/pixelbits`. Never upload a Windows build: Next 16 writes the
+- [x] Deploy from CI (roadmap 7.3, 2026-10-27): `deploy-docs.yml` builds on
+      Linux and rsyncs `apps/docs/out` to `/srv/static/pixelbits` on every
+      push to main (first green run: build 33 s, deploy 16 s). Never upload a Windows build: Next 16 writes the
       prefetch files (`__next.*.txt`) as nested folders there, so the browser
       gets 404s for them.
 - Storybook: changing the theme or accent on a DOCS page reloads the whole
