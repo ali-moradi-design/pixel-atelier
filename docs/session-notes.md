@@ -66,18 +66,20 @@ Local checks all pass; these are GitHub-only:
 
 ## Open: owner actions (account settings)
 
-- [x] npm: account `ali-moradi-dev`, granular token as the `NPM_TOKEN`
-      secret, Actions allowed to create PRs. 2FA is off: the owner removed
-      it on purpose (the security-key flow was too much friction; npm no
-      longer offers authenticator apps to new accounts). Use a long unique
-      password and trusted publishing instead.
-- [x] `pixelbits@1.0.0` published (2026-10-27) with provenance. npm staged
-      the first publish: it created a placeholder `0.0.0-stage` and released
-      1.0.0 a few minutes later without a manual approval.
-- [ ] Switch to trusted publishing (npmjs.com → pixelbits → Settings →
-      Trusted publisher: GitHub Actions, repo `ali-moradi-design/pixelbits`,
-      workflow `release.yml`, environment `npm`), then delete `NPM_TOKEN`
-      and the npm token. Optionally deprecate `0.0.0-stage`.
+- [x] npm: account `ali-moradi-dev` with 2FA (security key; the owner turned
+      it off once, then had to turn it back on to set up trusted publishing).
+- [x] `pixelbits@1.0.0` published (2026-10-27) with an npm token. npm staged
+      the first publish: placeholder `0.0.0-stage`, then 1.0.0 a few minutes
+      later without a manual approval.
+- [x] Trusted publishing: npmjs.com → pixelbits → Settings → Trusted
+      Publisher (`ali-moradi-design/pixelbits`, `release.yml`, environment
+      `npm`, allowed: npm publish). `release.yml` passes no npm token;
+      `pnpm publish` (pnpm 12) uses the OIDC token. 1.0.1 was published this
+      way by "GitHub Actions" with provenance.
+- [ ] Owner: delete the `NPM_TOKEN` secret (GitHub → Settings → Secrets) and
+      the granular token on npmjs.com; then pick "Require two-factor
+      authentication and disallow bypass 2fa tokens" in the package's
+      Publishing access. Optionally deprecate `0.0.0-stage`.
 - [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
       protection, branch protection on `main` (require CI and Security),
       required reviewer on the `npm` environment.
