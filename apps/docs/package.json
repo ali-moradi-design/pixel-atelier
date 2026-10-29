@@ -6,7 +6,7 @@
   "scripts": {
     "gen": "node scripts/gen.ts",
     "dev": "node scripts/gen.ts && next dev -p 3000",
-    "build": "node scripts/gen.ts && next build && node scripts/csp.ts && node scripts/check-csp.ts",
+    "build": "node scripts/gen.ts && next build && node scripts/standalone.ts && node scripts/check-csp.ts",
     "typecheck": "node scripts/gen.ts && tsc -p ."
   },
   "dependencies": {

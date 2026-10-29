@@ -1,0 +1,16 @@
+# /srv/apps/pixelbits/compose.yaml: the docs site (Next.js standalone server,
+# Storybook under /storybook/). No database. The image is built in CI and only
+# pulled here. .env next to this file holds IMAGE_TAG (the commit SHA to run).
+name: pixelbits
+
+services:
+  web:
+    image: ghcr.io/ali-moradi-design/pixelbits-docs:${IMAGE_TAG:?IMAGE_TAG is not set}
+    # Nginx on the host proxies to this; Docker bypasses ufw, so loopback only
+    ports:
+      - "127.0.0.1:3102:3000"
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 256m
+    restart: unless-stopped

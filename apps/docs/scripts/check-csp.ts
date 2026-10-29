@@ -1,49 +1,70 @@
-// Fails if an exported page has no CSP or runs an inline script the CSP does
-// not allow (by hash). Static check of out/, no browser needed.
-import { createHash } from "node:crypto";
-import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join } from "node:path";
+// Starts the built standalone server and fails if a page has no strict CSP
+// or runs an inline script without the request's nonce (proxy.ts). Every
+// page in the sitemap is checked; no browser needed.
+import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-const OUT = fileURLToPath(new URL("../out/", import.meta.url));
-const problems: string[] = [];
-let pages = 0;
-const walk = (dir: string) => {
-  for (const name of readdirSync(dir)) {
-    const p = join(dir, name);
-    if (name === "storybook" || name === "r") continue;
-    if (statSync(p).isDirectory()) walk(p);
-    else if (name.endsWith(".html")) {
-      pages++;
-      const html = readFileSync(p, "utf8");
-      const csp = html.match(
-        /http-equiv="Content-Security-Policy" content="([^"]+)"/,
-      )?.[1];
-      if (!csp) {
-        problems.push(`${p}: no CSP`);
-        continue;
-      }
-      for (const d of ["object-src 'none'", "base-uri 'none'", "form-action 'none'"])
-        if (!csp.includes(d)) problems.push(`${p}: missing ${d}`);
-      if (/script-src[^;]*'unsafe-(inline|eval)'/.test(csp))
-        problems.push(`${p}: unsafe script-src`);
-      for (const m of html.matchAll(
-        /<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g,
-      )) {
-        const h = createHash("sha256")
-          .update(m[1] ?? "", "utf8")
-          .digest("base64");
-        if (!csp.includes(`'sha256-${h}'`))
-          problems.push(`${p}: inline script not in CSP`);
-      }
-      if (/\son[a-z]+=["']/.test(html.replace(/<script[\s\S]*?<\/script>/g, "")))
-        problems.push(`${p}: inline event handler attribute`);
-    }
+const server = fileURLToPath(
+  new URL("../.next/standalone/apps/docs/server.js", import.meta.url),
+);
+const PORT = "3399";
+const base = `http://127.0.0.1:${PORT}`;
+const child = spawn(process.execPath, [server], {
+  env: { ...process.env, PORT, HOSTNAME: "127.0.0.1", NODE_ENV: "production" },
+  stdio: "ignore",
+});
+
+async function waitUp() {
+  for (let i = 0; i < 60; i++) {
+    try {
+      if ((await fetch(`${base}/robots.txt`)).ok) return;
+    } catch {}
+    await new Promise((r) => setTimeout(r, 250));
   }
-};
-walk(OUT);
+  throw new Error("server did not start");
+}
+
+const problems: string[] = [];
+try {
+  await waitUp();
+  const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
+  const paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+    (m) => new URL(m[1] ?? "").pathname,
+  );
+  for (const path of paths) {
+    const res = await fetch(base + path);
+    const html = await res.text();
+    const csp = res.headers.get("content-security-policy") ?? "";
+    const nonce = csp.match(/'nonce-([^']+)'/)?.[1];
+    if (res.status !== 200) problems.push(`${path}: HTTP ${res.status}`);
+    if (!nonce) {
+      problems.push(`${path}: no CSP nonce`);
+      continue;
+    }
+    for (const d of [
+      "object-src 'none'",
+      "base-uri 'none'",
+      "form-action 'none'",
+      "frame-ancestors 'none'",
+    ])
+      if (!csp.includes(d)) problems.push(`${path}: missing ${d}`);
+    if (/script-src[^;]*'unsafe-(inline|eval)'/.test(csp))
+      problems.push(`${path}: unsafe script-src`);
+    for (const m of html.matchAll(/<script\b([^>]*)>/g)) {
+      const attrs = m[1] ?? "";
+      if (/type="application\/(ld\+)?json"/.test(attrs)) continue; // data, never runs
+      if (!attrs.includes(`nonce="${nonce}"`))
+        problems.push(`${path}: script without the nonce`);
+    }
+    if (/\son[a-z]+=["']/.test(html.replace(/<script[\s\S]*?<\/script>/g, "")))
+      problems.push(`${path}: inline event handler attribute`);
+  }
+  console.log(`csp check: ${paths.length} pages`);
+} finally {
+  child.kill();
+}
 if (problems.length) {
-  console.error(problems.join("\n"));
+  console.error([...new Set(problems)].join("\n"));
   process.exit(1);
 }
-console.log(`csp check: ${pages} pages ok`);
+console.log("csp check: ok");

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { PixelTransition } from "pixelbits/page-transition";
 import { Toaster } from "pixelbits/toast";
 import type { ReactNode } from "react";
@@ -53,11 +54,13 @@ export const viewport: Viewport = {
   colorScheme: "dark light",
 };
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default async function Layout({ children }: { children: ReactNode }) {
+  // per-request CSP nonce from proxy.ts (also makes every page render per request)
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col">
-        <ThemeProvider>
+        <ThemeProvider nonce={nonce}>
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:inset-s-4 focus:top-3 focus:z-50 focus:bg-pb-accent focus:px-3 focus:py-2 focus:text-pb-on-accent"
