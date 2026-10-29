@@ -50,14 +50,18 @@ try {
       if (!csp.includes(d)) problems.push(`${path}: missing ${d}`);
     if (/script-src[^;]*'unsafe-(inline|eval)'/.test(csp))
       problems.push(`${path}: unsafe script-src`);
-    for (const m of html.matchAll(/<script\b([^>]*)>/g)) {
-      const attrs = m[1] ?? "";
-      if (/type="application\/(ld\+)?json"/.test(attrs)) continue; // data, never runs
+    // every start tag, any letter case: scripts need the nonce, no tag may
+    // carry an inline event handler (onclick=…)
+    for (const m of html.matchAll(/<([a-z][\w-]*)\b([^>]*)>/gi)) {
+      const tag = (m[1] ?? "").toLowerCase();
+      const attrs = m[2] ?? "";
+      if (/\son[a-z]+\s*=/i.test(attrs))
+        problems.push(`${path}: inline event handler attribute on <${tag}>`);
+      if (tag !== "script") continue;
+      if (/type\s*=\s*["']?application\/(ld\+)?json/i.test(attrs)) continue; // data, never runs
       if (!attrs.includes(`nonce="${nonce}"`))
         problems.push(`${path}: script without the nonce`);
     }
-    if (/\son[a-z]+=["']/.test(html.replace(/<script[\s\S]*?<\/script>/g, "")))
-      problems.push(`${path}: inline event handler attribute`);
   }
   console.log(`csp check: ${paths.length} pages`);
 } finally {
