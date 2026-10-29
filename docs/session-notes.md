@@ -1,6 +1,6 @@
 # Session notes (handoff)
 
-Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
+Last session: 2026-10-29 (deploy-kit switch; before that 2026-10-27). Read this first, then `docs/decisions.md`.
 
 ## Next session: start here
 
@@ -105,6 +105,12 @@ Local checks all pass; these are GitHub-only:
   secrets → artifact → deploy job in environment `docs` → rsync. The key
   `gha_pixelbits` is forced to `rrsync /srv/static/pixelbits` on the server
   (it cannot run any other command).
+- [x] 2026-10-29: `deploy-docs.yml` now calls the shared
+      `ali-moradi-design/deploy-kit` workflow `deploy-static.yml` (PR #36,
+      pinned to the commit of tag v1.0.0, `secrets: inherit` needed for the
+      `docs` environment's SSH secrets). Same build, rsync and smoke tests;
+      first run green (~54 s). Dependabot bumps the deploy-kit SHA like any
+      other action.
 - English UI font is Manrope (decided); the new logo is in `brand/`.
 
 - [x] Ruleset `protect-main` on the default branch (2026-10-27): PR required
@@ -116,6 +122,19 @@ Local checks all pass; these are GitHub-only:
       Renaming a job means updating the ruleset. "Version packages" PR: close
       and reopen it so the checks run (GITHUB_TOKEN events start no workflows).
 
+## Ideas (not planned yet)
+
+- Keep `workspace:*` for `pixelbits` in the docs and Storybook apps (they show
+  the code that is about to ship). To test what npm users really get, add a
+  CI check on the packed tarball: `pnpm pack`, then publint and
+  are-the-types-wrong, then install it into a small Next app and build it.
+
+- Refactor Select/Combobox onto `usePopup` (smaller, one popup code path).
+- Run Storybook `play` interaction tests in CI (they exist, CI does not run them).
+- Visual tests in the light theme and at phone width.
+- Positioning helper: collision handling beyond flip and clamp.
+- Server-side security tests for the demo apps that have a database
+  (see "Forms in apps with a server and a database" in `docs/security.md`).
 
 ## Working rules (from the owner)
 
