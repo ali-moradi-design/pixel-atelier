@@ -1,6 +1,6 @@
 # Session notes (handoff)
 
-Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
+Last session: 2026-10-29 (deploy-kit switch; before that 2026-10-27). Read this first, then `docs/decisions.md`.
 
 ## Next session: start here
 
@@ -11,9 +11,6 @@ Last session: 2026-10-27. Read this first, then `docs/decisions.md`.
    - Done: the GitHub repo is now `ali-moradi-design/pixelbits`; all URLs
      updated. Old URLs redirect, but local clones should run
      `git remote set-url origin https://github.com/ali-moradi-design/pixelbits.git`.
-   - Owner: confirm the license of the persian-y font files allows shipping
-     them in a public repository.
-   - Check the new Windows/macOS CI job on the first push.
 1. The owner wants a **walkthrough of the code from the beginning**, step by
    step, before going further. Do not explain everything at once; go in this
    order and wait for questions after each part:
@@ -58,8 +55,9 @@ Local checks all pass; these are GitHub-only:
       with the "Update visual baselines" workflow.
 - [x] `Release` workflow: `changesets/action` v2 renamed its inputs
       (`publish-script`, `version-script`, `pr-title`, `commit-message`).
-      Fixed. Next run shows whether "Allow GitHub Actions to create and
-      approve pull requests" also needs turning on.
+      Fixed; later runs are green and 1.0.1 shipped through it, so no extra
+      repository setting was needed.
+- [x] Windows/macOS build jobs: green on main (required checks).
 - Local note: in the cloud session `turbo` cannot spawn tasks ("Exec format
   error"); run `pnpm -r run build|typecheck|test` instead there.
 - [ ] Watch the first CodeQL results in the Security tab.
@@ -80,11 +78,10 @@ Local checks all pass; these are GitHub-only:
       Trusted publisher status: Valid. Publishing access: "Require two-factor
       authentication and disallow bypass 2fa tokens", so only `release.yml`
       (or the owner with 2FA) can publish.
-- [ ] Optional: deprecate `0.0.0-stage` (`npm deprecate pixelbits@0.0.0-stage
-      "placeholder from staged publishing"`).
-- [ ] GitHub: 2FA, private vulnerability reporting, secret scanning with push
-      protection,
-      required reviewer on the `npm` environment.
+- [x] Owner (2026-10-27): `0.0.0-stage`
+      deprecated; GitHub 2FA, private vulnerability reporting, secret
+      scanning with push protection, required reviewer on the `npm`
+      environment; social preview uploaded.
 - `shadcn add` works only after the docs deploy: the registry is served from
   `https://pixelbits.ali-moradi-develop.com/r/*.json`.
 - [x] Docs live at https://pixelbits.ali-moradi-develop.com (roadmap 7.1-7.2,
@@ -108,8 +105,13 @@ Local checks all pass; these are GitHub-only:
   secrets → artifact → deploy job in environment `docs` → rsync. The key
   `gha_pixelbits` is forced to `rrsync /srv/static/pixelbits` on the server
   (it cannot run any other command).
-- [ ] Upload `brand/social-preview.png` as the repository's social preview.
-- [ ] Decide on the font (Geist kept for now; the logo wordmark uses it).
+- [x] 2026-10-29: `deploy-docs.yml` now calls the shared
+      `ali-moradi-design/deploy-kit` workflow `deploy-static.yml` (PR #36,
+      pinned to the commit of tag v1.0.0, `secrets: inherit` needed for the
+      `docs` environment's SSH secrets). Same build, rsync and smoke tests;
+      first run green (~54 s). Dependabot bumps the deploy-kit SHA like any
+      other action.
+- English UI font is Manrope (decided); the new logo is in `brand/`.
 
 - [x] Ruleset `protect-main` on the default branch (2026-10-27): PR required
       (0 approvals), no force push or deletion, branch must be up to date,
@@ -122,6 +124,11 @@ Local checks all pass; these are GitHub-only:
 
 ## Ideas (not planned yet)
 
+- Keep `workspace:*` for `pixelbits` in the docs and Storybook apps (they show
+  the code that is about to ship). To test what npm users really get, add a
+  CI check on the packed tarball: `pnpm pack`, then publint and
+  are-the-types-wrong, then install it into a small Next app and build it.
+
 - Refactor Select/Combobox onto `usePopup` (smaller, one popup code path).
 - Run Storybook `play` interaction tests in CI (they exist, CI does not run them).
 - Visual tests in the light theme and at phone width.
@@ -133,7 +140,7 @@ Local checks all pass; these are GitHub-only:
 
 - Explain in Persian with the language rules in `CLAUDE.md`.
 - graphify for code lookup (`graphify query`, `graphify update .`).
-- PRs: check locally, then squash-merge without waiting for GitHub CI; but
-  look at CI on main at the end of a session and note failures here.
+- PRs: check locally, wait for the required checks (ruleset `protect-main`),
+  then squash-merge.
 - Browser/e2e tests only where needed.
 - If the usage limit is reached, wait for the reset and continue.
