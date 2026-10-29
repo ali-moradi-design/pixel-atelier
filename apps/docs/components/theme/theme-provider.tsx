@@ -8,7 +8,13 @@ import type { ReactNode } from "react";
  * the first paint (no flash on load) and turns transitions off while the
  * theme switches (no blink of animating colors).
  */
-export function ThemeProvider({ children }: { children: ReactNode }) {
+export function ThemeProvider({
+  children,
+  nonce,
+}: {
+  children: ReactNode;
+  nonce?: string;
+}) {
   return (
     <NextThemes
       attribute="data-theme"
@@ -17,6 +23,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       enableSystem
       disableTransitionOnChange
       storageKey="pb-theme"
+      nonce={nonce}
     >
       {children}
     </NextThemes>

@@ -86,7 +86,8 @@ Decisions made after the brief (`brief.md`). Newer entries win.
   spotlight); canvas for large or per-frame effects (image reveal, page
   transition, cursor trail) that only animate while active and stop under
   reduced motion. No animation library: Motion was not needed.
-- Docs site: Next.js static export (`apps/docs/out`, plain files for Nginx),
+- Docs site: Next.js `standalone` server in a container (2026-10-29; was a
+  static export), with a per-request nonce CSP (`apps/docs/proxy.ts`),
   using the kit from its built package like any app. Props tables are generated
   from the TSDoc in `dist/**/*.d.ts`; each demo file is both the live example
   and the code shown. Storybook is copied to `/storybook`.

@@ -14,7 +14,6 @@
       "!brand",
       "!apps/docs/public",
       "!apps/docs/.next",
-      "!apps/docs/out",
       "!apps/docs/content"
     ]
   },

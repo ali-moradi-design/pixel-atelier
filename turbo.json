@@ -18,7 +18,7 @@
     },
     "@pixelbits/docs#build": {
       "dependsOn": ["^build", "@pixelbits/storybook#build"],
-      "outputs": ["out/**"]
+      "outputs": [".next/**", "!.next/cache/**"]
     }
   }
 }

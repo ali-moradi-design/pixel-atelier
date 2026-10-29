@@ -35,7 +35,7 @@ Recommended next steps for the owner (account settings, not code):
 
 | Risk | Defense | Checked by |
 | --- | --- | --- |
-| Injected script running in a page | A strict per-page Content Security Policy: scripts only from the site itself or inline scripts with a known SHA-256 hash; no `unsafe-inline`/`unsafe-eval`; `object-src 'none'`, `base-uri 'none'`. | `apps/docs/scripts/check-csp.ts` on every build; browser test: injected `<img onerror>`, `<svg onload>`, `<script>` and `javascript:` links did not run |
+| Injected script running in a page | A strict Content Security Policy per request: scripts only from the site itself or with the request's nonce (`apps/docs/proxy.ts`, `'strict-dynamic'`); no `unsafe-inline`/`unsafe-eval`; `object-src 'none'`, `base-uri 'none'`. | `apps/docs/scripts/check-csp.ts` on every build (against the running standalone server); browser test: injected `<img onerror>`, `<svg onload>`, `<script>` and `javascript:` links did not run |
 | Forms sending data somewhere | `form-action 'none'`: the browser refuses to submit any form, to this site or another. | Browser test: a form posting to another origin was blocked |
 | Requests with a body reaching the server | Nginx answers only `GET`/`HEAD`; everything else is `405`. Body size limit 1 kB, short timeouts. | `curl` against the real config: POST with script/SQL payloads → 405 |
 | Exposed files, traversal | Hidden files denied (`.env`, `.git` → 403); traversal rejected (400); no directory listing. | `curl` checks |

@@ -1,12 +1,12 @@
 # Docs site (`@pixelbits/docs`)
 
 The documentation site at <https://pixelbits.ali-moradi-develop.com>: a
-Next.js static export (plain files in `out/`, served by Nginx). It uses the
-kit like any app does, from the built `pixelbits` package.
+Next.js server (`output: "standalone"`) in a container behind Nginx. It uses
+the kit like any app does, from the built `pixelbits` package.
 
 ```bash
 pnpm --filter @pixelbits/docs dev     # http://localhost:3000 (run Storybook too for the Storybook link)
-pnpm --filter @pixelbits/docs build   # out/
+pnpm --filter @pixelbits/docs build   # .next/standalone (run: node .next/standalone/apps/docs/server.js)
 ```
 
 ## Where is what
@@ -63,8 +63,12 @@ TSDoc automatically.
 | `gen.ts` | before `dev`, `build`, `typecheck` | Rebuilds the kit first when its build is missing or older than its sources, runs the two below, and copies the built Storybook into `public/storybook/` and the brand files into `public/`. |
 | `api.ts` | from `gen.ts` | Reads `packages/ui/dist/**/*.d.ts` and writes `content/api.json`: every component's description, example and props (the props tables). |
 | `registry.ts` | from `gen.ts` | Generates the shadcn registry in `public/r/` (see below). |
-| `csp.ts` | after `next build` | Adds a strict Content-Security-Policy `<meta>` to every page in `out/`, allowing inline scripts only by their SHA-256 hash. |
-| `check-csp.ts` | after `csp.ts` | Fails the build if a page has no CSP or runs an inline script the CSP does not allow. |
+| `standalone.ts` | after `next build` | Copies `public/` and `.next/static/` into `.next/standalone/` so it runs on its own (the Docker build context). |
+| `check-csp.ts` | after `standalone.ts` | Starts the standalone server and fails if a sitemap page has no strict CSP or runs a script without the request's nonce. |
+
+The CSP itself is set per request with a nonce in `proxy.ts` (Next.js guide
+"Content Security Policy", section "Nonces"); the other headers (HSTS, cache,
+CORS for `/r/`, Storybook's own CSP) are in `next.config.ts`.
 
 ## `public/r/`
 
