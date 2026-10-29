@@ -96,7 +96,7 @@ Local checks all pass; these are GitHub-only:
 - Storybook: changing the theme or accent on a DOCS page reloads the whole
   preview iframe (Storybook 10.6 behavior, also without our docs container;
   story pages switch in ~150 ms). Hence the immutable cache for
-  `/storybook/assets/` in `deploy/nginx/pixelbits.conf`.
+  `/storybook/assets/` (now in `apps/docs/next.config.ts`).
 - [ ] Storybook flash on docs pages: the reloaded iframe paints white before
       the CSS loads. Idea: `.storybook/preview-head.html` with a tiny inline
       script that reads `globals=theme:...` from the iframe URL and sets
@@ -111,6 +111,18 @@ Local checks all pass; these are GitHub-only:
       `docs` environment's SSH secrets). Same build, rsync and smoke tests;
       first run green (~54 s). Dependabot bumps the deploy-kit SHA like any
       other action.
+- [x] 2026-10-29: the docs site runs as a Next.js `standalone` container
+      (PR #37; decision: every Next.js site runs as a server). Image
+      `ghcr.io/ali-moradi-design/pixelbits-docs:<sha>` holds only
+      `.next/standalone`; `/srv/apps/pixelbits`, port 3102, read-only,
+      256 MB. `deploy-docs.yml` builds, pushes and calls deploy-kit's
+      `deploy-app.yml`; the `docs` key is now forced to
+      `deploy-app pixelbits` (no rrsync). CSP: per-request nonce in
+      `apps/docs/proxy.ts` (the Next.js guide's SRI option was tried: Next's
+      inline scripts were blocked), so pages render per request (~20 ms).
+      Headers (HSTS, cache, `/r/` CORS, Storybook CSP) are in
+      `next.config.ts`; Nginx only proxies (GET/HEAD, 1k body). The old
+      rsync notes above are history; `/srv/static/pixelbits` was removed.
 - English UI font is Manrope (decided); the new logo is in `brand/`.
 
 - [x] Ruleset `protect-main` on the default branch (2026-10-27): PR required
